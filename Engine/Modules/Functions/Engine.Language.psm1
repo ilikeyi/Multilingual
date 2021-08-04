@@ -65,9 +65,9 @@ Function LanguageSetting
 			.Get the languages installed on the system
 			.获取系统已安装的语言
 		#>
-		foreach ($item in (Get-WmiObject -Class Win32_OperatingSystem).MUILanguages) {
-			if ($Global:UILanguage -ne $item) {
-				LanguageProcess -NewLang $item
+		Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
+			if ($Global:UILanguage -ne $_) {
+				LanguageProcess -NewLang $_
 			}
 		}
 	}
@@ -148,4 +148,4 @@ Function LanguageProcess {
 	}
 }
 
-Export-ModuleMember -Function LanguageSetting, LanguageProcess
+Export-ModuleMember -Function * -Alias *

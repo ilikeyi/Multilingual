@@ -38,7 +38,6 @@
 	UpdateReset               = 이 솔루션 재설정
 	UpdateResetTips           = 다운로드 주소를 사용할 수 있으면 자동으로 다운로드 및 업데이트해야합니다.
 	UpdateExit                = 자동 업데이트 스크립트는 {0} 초 후에 자동으로 종료됩니다.
-	UpdateNoLocalVersion      = 로컬 버전의 version.xml 파일을 찾을 수 없습니다. 업데이트 확인이 중단되었습니다.
 	UpdateCheckServerStatus   = 서버 상태 확인 ( 총 {0} 선택 사항 )
 	UpdateServerAddress       = 서버 주소: {0}
 	UpdateServeravailable     = 상태: 사용 가능

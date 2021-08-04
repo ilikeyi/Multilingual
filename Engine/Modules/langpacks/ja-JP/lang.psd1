@@ -38,7 +38,6 @@
 	UpdateReset               = このソリューションをリセットする
 	UpdateResetTips           = ダウンロードアドレスが利用可能になると、自動的にダウンロードして更新するように強制されます。
 	UpdateExit                = 自動更新スクリプトは {0} 秒後に自動的に終了します。
-	UpdateNoLocalVersion      = ローカル バージョンの version.xml ファイルが見つかりませんでした。チェックの更新は中止されました。
 	UpdateCheckServerStatus   = サーバーのステータスを確認します ( 合計 {0} オプション )
 	UpdateServerAddress       = サーバーアドレス: {0}
 	UpdateServeravailable     = ステータス: 利用可能

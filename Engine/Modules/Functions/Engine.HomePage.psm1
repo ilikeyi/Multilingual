@@ -23,7 +23,7 @@ Function Logo
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
-   buildstring: $($ProductVersion).bs_release.210226-1208`n"
+   buildstring: $($ProductVersion).bs_release.210814-1208`n"
 }
 
 <#
@@ -46,7 +46,7 @@ Function Mainpage
 	switch ($select)
 	{
 		"1" {
-			UpdateGUI
+			Update
 			ToMainpage -wait 2
 		}
 		"2" {
@@ -58,8 +58,7 @@ Function Mainpage
 			Mainpage
 		}
 		"r" {
-			Language -Auto
-			ToMainpage -wait 2
+			RefreshModules
 		}
 		"q" { exit }
 		default { Mainpage }
@@ -89,4 +88,4 @@ Function ToMainpage
 	}
 }
 
-Export-ModuleMember -Function Logo, Mainpage, ToMainpage
+Export-ModuleMember -Function * -Alias *

@@ -65,4 +65,4 @@ Function JoinMainFolder
 	}
 }
 
-Export-ModuleMember -Function CheckCatalog, RemoveTree, JoinMainFolder
+Export-ModuleMember -Function * -Alias *

@@ -222,4 +222,4 @@ Function SignupProcess
 	}
 }
 
-Export-ModuleMember -Function Signup, SignupProcess
+Export-ModuleMember -Function * -Alias *

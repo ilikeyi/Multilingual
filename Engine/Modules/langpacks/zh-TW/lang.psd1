@@ -38,7 +38,6 @@
 	UpdateReset               = 重置此解決方案
 	UpdateResetTips           = 下載地址可用時，強制下載並自動更新。
 	UpdateExit                = 自動更新腳本將會在 {0} 秒後自動退出。
-	UpdateNoLocalVersion      = 未找到本地版的 version.xml 文件，檢查更新已中止。
 	UpdateCheckServerStatus   = 檢查服務器狀態 ( 共 {0} 個可選 )
 	UpdateServerAddress       = 服務器地址：{0}
 	UpdateServeravailable     = 狀態：可用

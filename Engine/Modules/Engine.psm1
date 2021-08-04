@@ -1,7 +1,17 @@
-﻿Push-Location "$PSScriptRoot\..\..\"
+﻿<#
+	.about us
+	.关于我们
+#>
+Push-Location "$PSScriptRoot\..\..\"
 $Global:UniqueMainFolder = $(Get-Location)
 $Global:UniqueID = [IO.Path]::GetFileName($(Get-Location))
 $Global:AuthorURL = "https://fengyi.tel"
+
+<#
+	.Log file name prefix
+	.日志文件名前缀
+#>
+$Global:SaveTo = "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
 
 <#
 	.Available languages
@@ -377,8 +387,28 @@ Function LanguageChange
 }
 
 <#
-	.Refresh all modules and languages
-	.刷新所有模块和语言
+	.Refresh all modules
+	.刷新所有模块
+#>
+Function RefreshModules
+{
+	param
+	(
+		[switch]$Silent
+	)
+
+	Write-Host "`n   $($lang.RefreshModules)"
+	Language -Auto
+	Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+
+	if (-not ($Silent)) {
+		ToMainpage -wait 2
+	}
+}
+
+<#
+	.Import all modules
+	.导入所有模块
 #>
 Function ImportModules
 {

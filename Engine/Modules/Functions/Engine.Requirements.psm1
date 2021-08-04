@@ -49,4 +49,4 @@ Function Requirements
 	Start-Sleep -s 4
 }
 
-Export-ModuleMember -Function Requirements
+Export-ModuleMember -Function * -Alias *

@@ -17,29 +17,14 @@
 $LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
 
 <#
-	.Log file name prefix
-	.日志文件名前缀
-#>
-$SaveTo = "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
-
-<#
-	.Clean up file types
-	.清理文件类型
-#>
-$CleanFileTypes = @(
-	"*.log"
-	"*.csv"
-)
-
-<#
 	.Clean up all logs from 7 days ago
 	.清理 7 天前的所有日志
 #>
 Function CleanOldlogs
 {
-	Get-ChildItem –Path $LogsSaveFolder –Recurse -include ($CleanFileTypes) | Where-Object {
-		$_.CreationTime –lt (Get-Date).AddDays(-7)
-	} | Remove-Item -Force -ErrorAction SilentlyContinue
+	Get-ChildItem -Path $LogsSaveFolder -Directory -ErrorAction SilentlyContinue | Where-Object {
+		($_.LastWriteTime -lt (Get-Date).AddDays(-7))
+	} | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
 }
 
 <#
@@ -83,7 +68,7 @@ function WriteLogs
 		File      = $callItem.ScriptName
 		Message   = $Message
 	}
-	Export-Csv -InputObject $data -Path "$LogsSaveFolder\$SaveTo.csv" -NoTypeInformation -Append
+	Export-Csv -InputObject $data -Path "$($LogsSaveFolder)\$($Global:SaveTo)\Logging.csv" -NoTypeInformation -Append
 }
 
 <#
@@ -96,14 +81,14 @@ Function Logging
 		.Generate Logs directory
 		.生成 Logs 目录
 	#>
-	CheckCatalog -chkpath $LogsSaveFolder
+	CheckCatalog -chkpath "$($LogsSaveFolder)\$($Global:SaveTo)"
 	CleanOldlogs
 
 	<#
 		.Operation record
 		.操作记录
 	#>
-	Start-Transcript -Path "$LogsSaveFolder\$SaveTo.log" -Force -ErrorAction SilentlyContinue
+	Start-Transcript -Path "$($LogsSaveFolder)\$($Global:SaveTo)\Logging.log" -Force -ErrorAction SilentlyContinue
 }
 
-Export-ModuleMember -Function Logging, WriteLogs
+Export-ModuleMember -Function * -Alias *

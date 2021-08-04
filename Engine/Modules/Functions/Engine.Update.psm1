@@ -14,7 +14,7 @@
 	.Current version
 	.当前版本
 #>
-$ProductVersion = "1.0.0.3"
+$ProductVersion = "1.0.0.4"
 
 <#
 	.Update minimum version requirements
@@ -60,7 +60,7 @@ Function Update
 		$Global:IsProcess = $False
 	}
 
-	Logo -Title $($lang.Update)
+	Logo -Title $($lang.PlanTask)
 	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
 
 	if ($Auto) {
@@ -391,7 +391,7 @@ $($getSerVer.changelog.log)`n"
 						}
 						1 {
 							Write-Host "`n   $($lang.UserCancel)"
-							ImportModules
+							RefreshModules -Silent
 						}
 					}
 				}
@@ -431,9 +431,9 @@ Function ArchivePacker
 		$url
 	)
 
-	$output = "$PSScriptRoot\..\..\..\latest.zip"
-	$PPocess = "$PSScriptRoot\Post.Processing.bat"
-	$PsPocess = "$PSScriptRoot\Post.Processing.ps1"
+	$output   = "$PSScriptRoot\..\..\..\latest.zip"
+	$PPocess  = "$PSScriptRoot\..\..\Post.Processing.bat"
+	$PsPocess = "$PSScriptRoot\..\..\Post.Processing.ps1"
 
 	$start_time = Get-Date
 	remove-item -path $output -force -ErrorAction SilentlyContinue
@@ -443,7 +443,7 @@ Function ArchivePacker
 	if ((Test-Path $output -PathType Leaf)) {
 		Write-Host "`n   $($lang.UpdateUnpacking)$output"
 		Archive -filename $output -to "$PSScriptRoot\..\..\..\"
-		ImportModules
+		RefreshModules -Silent
 		Write-Host "`n   * $($lang.UpdatePostProc)"
 		if ($Global:IsProcess) {
 			Write-Host "   - $($lang.UpdateNotExecuted)" -ForegroundColor red
@@ -462,7 +462,7 @@ Function ArchivePacker
 			} else {
 				Write-Host "   - $($lang.UpdateNoPost)`n" -ForegroundColor red
 			}
-			ImportModules
+			RefreshModules -Silent
 			Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
 		}
 	} else {
@@ -669,4 +669,4 @@ Function TestURI
 }
 
 Export-ModuleMember -Variable ProductVersion, ChkLocalver
-Export-ModuleMember -Function Update, UpdateGUI, UpdateProcess, ArchivePacker, Archive, Compressing, ArchitecturePacker, GetArchitecturePacker, TestURI
+Export-ModuleMember -Function * -Alias *

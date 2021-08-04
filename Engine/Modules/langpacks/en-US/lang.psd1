@@ -38,7 +38,6 @@
 	UpdateReset               = Reset this solution
 	UpdateResetTips           = When the download address is available, it is forced to download and update automatically.
 	UpdateExit                = The automatic update script will automatically exit after {0} seconds.
-	UpdateNoLocalVersion      = The version.xml file of the local version was not found, and the update check has been aborted.
 	UpdateCheckServerStatus   = Check server status ( total {0} optional )
 	UpdateServerAddress       = Server address: {0}
 	UpdateServeravailable     = Status: Available

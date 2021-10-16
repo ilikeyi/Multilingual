@@ -34,7 +34,8 @@ Function CleanOldlogs
 function WriteLogs
 {
 	[cmdletbinding()]
-	param (
+	param
+	(
 		$Message,
 
 		[ValidateSet('Info', 'Warning', 'Error', 'Verbose')]

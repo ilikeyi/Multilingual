@@ -21,6 +21,10 @@
 	ToMsg                     = \n   {0} 秒後自動返回到主菜單。
 	ToQuit                    = \n   {0} 秒後退出主菜單。
 	PlanTask                  = 計劃任務
+	DiskSearch                = 搜索計劃：
+	DiskSearchFind            = 搜索到，正在運行中：{0}
+	DeployCleanup             = 清理 Deploy 目錄
+	Reboot                    = 完成後，重新啟動計算機
 
 	NetworkLocationWizard     = 網絡位置嚮導
 	UseZip                    = 使用 {0} 解壓軟件
@@ -68,4 +72,15 @@
 	UpdateInstallSel          = 是，將安裝上述更新\n否，則不會安裝該更新
 	UpdateNoUpdateAvailable   = \n   沒有可用的更新。\n\n   您正在運行 {0}'s Solutions 的最新可用版本。\n
 	UpdateNotSatisfied        = \n   不滿足最低更新程序版本要求，\n\n   最低要求版本：{0}\n\n   請重新下載 {1}'s Solutions 的副本，以更新此工具。\n\n   檢查更新已中止。\n
+
+	# Create Update
+	UpdateCreate              = 創建升級包
+	UpdateLow                 = 最低要求: \
+	UpCreateRear              = 創建後需要做些什麼
+	UpCreateASC               = 給升級包添加 PGP 簽名，證書密碼：
+	UpCreateSHA256            = 給升級包生成 .SHA-256
+	Uping                     = 正在生成
+	SkipCreate                = 跳過生成，未找到
+	ZipStatus                 = 未安裝 7-Zip。
+	ASCStatus                 = 未安裝 Gpg4win。
 '@

@@ -32,7 +32,7 @@ Function RemoveTree
 
 	Remove-Item $Path -force -Recurse -ErrorAction silentlycontinue | Out-Null
 	
-	if (Test-Path "$Path\" -ErrorAction silentlycontinue) {
+	if (Test-Path -Path "$Path\" -ErrorAction silentlycontinue) {
 		Get-ChildItem -Path $Path -File -Force -ErrorAction SilentlyContinue | ForEach-Object {
 			Remove-Item $_.FullName -force -ErrorAction SilentlyContinue
 		}
@@ -41,7 +41,7 @@ Function RemoveTree
 			RemoveTree -Path $_.FullName
 		}
 
-		if (Test-Path "$Path\" -ErrorAction silentlycontinue) {
+		if (Test-Path -Path "$Path\" -ErrorAction silentlycontinue) {
 			Remove-Item $Path -force -ErrorAction SilentlyContinue
 		}
 	}

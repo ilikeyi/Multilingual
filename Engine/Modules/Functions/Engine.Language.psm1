@@ -76,13 +76,25 @@ Function LanguageSetting
 		.Execute add language
 		.执行添加语言
 	#>
-	Set-WinUserLanguageList $Global:GroupLanguage -Force
+	Set-WinUserLanguageList $Global:GroupLanguage -Force -ErrorAction SilentlyContinue | Out-Null
 
 	<#
 		.Set the default keyboard: English
 		.设置默认键盘：英文
 	#>
-	Set-WinDefaultInputMethodOverride -InputTip "0409:00000409"
+	Set-WinDefaultInputMethodOverride -InputTip "0409:00000409" -ErrorAction SilentlyContinue | Out-Null
+
+	<#
+		.Different input methods used for each application window
+		.为每个应用程序窗口使用不同的输入法
+
+		.Enabled
+		 Set-WinLanguageBarOption -UseLegacySwitchMode -ErrorAction SilentlyContinue | Out-Null
+
+		.Disable
+		 Set-WinLanguageBarOption -ErrorAction SilentlyContinue | Out-Null
+	#>
+#	Set-WinLanguageBarOption -UseLegacySwitchMode -ErrorAction SilentlyContinue | Out-Null
 
 	<#
 		.Set regional codes to match known languages to prevent illegal matches.
@@ -91,8 +103,8 @@ Function LanguageSetting
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 		$LanguageName = $Global:AvailableLanguages[$i][1]
 
-		if (Test-Path -Path "$PSScriptRoot\..\..\Deploy\Region\$($LanguageName)") {
-			Set-WinSystemLocale $LanguageName
+		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
+			Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
 			break
 		}
 	}
@@ -106,7 +118,7 @@ Function LanguageSetting
 	<#
 		.Beta: Use Unicode UTF-8 for worldwide language support
 	#>
-	if (Test-Path "$PSScriptRoot\..\..\Deploy\UseUTF8" -PathType Leaf) {
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\UseUTF8" -PathType Leaf) {
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "ACP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "OEMCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "MACCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
@@ -120,7 +132,8 @@ Function LanguageSetting
      https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs	
 #>
 Function LanguageProcess {
-	param (
+	param
+	(
 		$NewLang
 	)
 

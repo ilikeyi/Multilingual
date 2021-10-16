@@ -14,7 +14,7 @@
 	.Current version
 	.当前版本
 #>
-$ProductVersion = "1.0.0.4"
+$ProductVersion = "1.0.0.5"
 
 <#
 	.Update minimum version requirements
@@ -32,6 +32,17 @@ $IsCorrectAuVer = $false
 <#
 	.Available servers
 	.可用的服务器
+
+	Usage:
+	用法：
+
+       Only one URL address must be added in front of the, number, multiple addresses do not need to be added, example:
+       只有一个 URL 地址必须在前面添加 , 号，多地址不用添加，示例：
+
+	$PreServerList = @(
+		,("$($Global:AuthorURL)",
+		  "/download/solutions/update/Multilingual/latest.json")
+	)
 #>
 $Global:ServerList = @()
 $PreServerList = @(
@@ -229,7 +240,7 @@ Function UpdateGUI
 	foreach ($list in $PreServerList) {
 		$fullurl = $list[0] + $list[1]
 		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
-			Height  = 26
+			Height  = 28
 			Width   = 395
 			Text    = $list[0]
 			Tag     = $fullurl
@@ -330,7 +341,7 @@ Function UpdateProcess
 	$chkRemovever = $($getSerVer.version.minau).Replace('.', '')
 	$url = $getSerVer.url
 	
-	If ([String]::IsNullOrEmpty($chkRemovever)) {
+	If (([String]::IsNullOrEmpty($chkRemovever))) {
 		$IsCorrectAuVer = $false
 	} else {
 		if ($ChkLocalver.Replace('.', '') -ge $chkRemovever) {
@@ -440,7 +451,7 @@ Function ArchivePacker
 	Invoke-WebRequest -Uri $url -OutFile $output -ErrorAction SilentlyContinue
 	Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
 
-	if ((Test-Path $output -PathType Leaf)) {
+	if (Test-Path -Path $output -PathType Leaf) {
 		Write-Host "`n   $($lang.UpdateUnpacking)$output"
 		Archive -filename $output -to "$PSScriptRoot\..\..\..\"
 		RefreshModules -Silent
@@ -448,14 +459,14 @@ Function ArchivePacker
 		if ($Global:IsProcess) {
 			Write-Host "   - $($lang.UpdateNotExecuted)" -ForegroundColor red
 		} else {
-			if ((Test-Path $PPocess -PathType Leaf)) {
+			if (Test-Path -Path $PPocess -PathType Leaf) {
 				Start-Process -FilePath $PPocess -wait -WindowStyle Minimized
 				remove-item -path $PPocess -force
 				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 			} else {
 				Write-Host "   - $($lang.UpdateNoPost)" -ForegroundColor red
 			}
-			if ((Test-Path $PsPocess -PathType Leaf)) {
+			if (Test-Path -Path $PsPocess -PathType Leaf) {
 				Start-Process powershell -ArgumentList "-file $($PsPocess)" -Wait -WindowStyle Minimized
 				remove-item -path $PsPocess -force
 				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
@@ -488,7 +499,7 @@ Function Archive
 
 	if (Compressing) {
 		Write-host "   - $($lang.UseZip -f $($Global:Zip))"
-		if ([string]::IsNullOrEmpty($Password)) {
+		if (([string]::IsNullOrEmpty($Password))) {
 			$arguments = "x ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
 		} else {
 			$arguments = "x ""-p$Password"" ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
@@ -506,17 +517,17 @@ Function Archive
 #>
 Function Compressing
 {
-	if (Test-Path "$env:ProgramFiles\7-Zip\7z.exe") {
-		$Global:Zip = "$env:ProgramFiles\7-Zip\7z.exe"
+	if (Test-Path -Path "${env:ProgramFiles}\7-Zip\7z.exe" -PathType Leaf) {
+		$Global:Zip = "${env:ProgramFiles}\7-Zip\7z.exe"
 		return $true
 	}
 
-	if (Test-Path "$env:ProgramFiles(x86)\7-Zip\7z.exe") {
-		$Global:Zip = "$env:ProgramFiles(x86)\7-Zip\7z.exe"
+	if (Test-Path -Path "${env:ProgramFiles(x86)}\7-Zip\7z.exe" -PathType Leaf) {
+		$Global:Zip = "${env:ProgramFiles(x86)}\7-Zip\7z.exe"
 		return $true
 	}
 
-	if (Test-Path "$(GetArchitecturePacker -Path "$($Global:UniqueMainFolder)\Engine\AIO\7zPacker")\7z.exe") {
+	if (Test-Path -Path "$(GetArchitecturePacker -Path "$($Global:UniqueMainFolder)\Engine\AIO\7zPacker")\7z.exe" -PathType Leaf) {
 		$Global:Zip = "$(GetArchitecturePacker -Path "$($Global:UniqueMainFolder)\Engine\AIO\7zPacker")\7z.exe"
 		return $true
 	}
@@ -536,15 +547,15 @@ Function ArchitecturePacker
 
 	switch ($env:PROCESSOR_ARCHITECTURE) {
 		"arm64" {
-			if (Test-Path "$Path\arm64" -PathType Container) {
+			if (Test-Path -Path "$Path\arm64" -PathType Container) {
 				RemoveTree -Path "$Path\AMD64"
 				RemoveTree -Path "$Path\x86"
 			} else {
-				if (Test-Path "$Path\AMD64" -PathType Container) {
+				if (Test-Path -Path "$Path\AMD64" -PathType Container) {
 					RemoveTree -Path "$Path\arm64"
 					RemoveTree -Path "$Path\x86"
 				} else {
-					if (Test-Path "$Path\x86" -PathType Container) {
+					if (Test-Path -Path "$Path\x86" -PathType Container) {
 						RemoveTree -Path "$Path\arm64"
 						RemoveTree -Path "$Path\AMD64"
 					}
@@ -552,11 +563,11 @@ Function ArchitecturePacker
 			}
 		}
 		"AMD64" {
-			if (Test-Path "$Path\AMD64" -PathType Container) {
+			if (Test-Path -Path "$Path\AMD64" -PathType Container) {
 				RemoveTree -Path "$Path\arm64"
 				RemoveTree -Path "$Path\x86"
 			} else {
-				if (Test-Path "$Path\x86" -PathType Container) {
+				if (Test-Path -Path "$Path\x86" -PathType Container) {
 					RemoveTree -Path "$Path\arm64"
 					RemoveTree -Path "$Path\AMD64"
 				}
@@ -582,13 +593,13 @@ Function GetArchitecturePacker
 
 	switch ($env:PROCESSOR_ARCHITECTURE) {
 		"arm64" {
-			if (Test-Path "$Path\arm64" -PathType Container) {
+			if (Test-Path -Path "$Path\arm64" -PathType Container) {
 				return "$Path\arm64"
 			} else {
-				if (Test-Path "$Path\AMD64" -PathType Container) {
+				if (Test-Path -Path "$Path\AMD64" -PathType Container) {
 					return "$Path\AMD64"
 				} else {
-					if (Test-Path "$Path\x86" -PathType Container) {
+					if (Test-Path -Path "$Path\x86" -PathType Container) {
 						return "$Path\x86"
 					} else {
 						return $Path
@@ -597,10 +608,10 @@ Function GetArchitecturePacker
 			}
 		}
 		"AMD64" {
-			if (Test-Path "$Path\AMD64" -PathType Container) {
+			if (Test-Path -Path "$Path\AMD64" -PathType Container) {
 				return "$Path\AMD64"
 			} else {
-				if (Test-Path "$Path\x86" -PathType Container) {
+				if (Test-Path -Path "$Path\x86" -PathType Container) {
 					return "$Path\x86"
 				} else {
 					return $Path
@@ -608,7 +619,7 @@ Function GetArchitecturePacker
 			}
 		}
 		"x86" {
-			if (Test-Path "$Path\x86" -PathType Container) {
+			if (Test-Path -Path "$Path\x86" -PathType Container) {
 				return "$Path\x86"
 			} else {
 				return $Path

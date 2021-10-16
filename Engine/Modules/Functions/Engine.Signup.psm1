@@ -27,13 +27,20 @@ Function Signup
 	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
 
 	if ($Force) {
-		if (Test-Path "$PSScriptRoot\..\..\Deploy\DoNotUpdate" -PathType Leaf) {
+		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\DoNotUpdate" -PathType Leaf) {
 			Write-Host "   - $($lang.UpdateSkipUpdateCheck)"
 		} else {
 			Write-Host "   - $($lang.ForceUpdate)"
 			Update -Auto -Force -IsProcess
 		}
 
+		<#
+			.Usage
+			.用法
+
+			-Reboot | Restart the computer
+			          重新启动计算机
+		#>
 		SignupProcess
 	} else {
 		SignupGUI
@@ -62,11 +69,18 @@ Function SignupGUI
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 
+		if ($GUISignupDeployCleanup.Checked) {
+			RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
+		}
+
+		if ($GUISignupReboot.Checked) {
+			Restart-Computer -Force
+		}
 		$GUISignup.Close()
 	}
 	$GUISignup         = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
-		Height         = 568
+		Height         = 600
 		Width          = 450
 		Text           = $lang.Reset
 		TopMost        = $True
@@ -77,7 +91,7 @@ Function SignupGUI
 		BackColor      = "#ffffff"
 	}
 	$GUISignupPanel    = New-Object system.Windows.Forms.Panel -Property @{
-		Height         = 468
+		Height         = 438
 		Width          = 450
 		BorderStyle    = 0
 		autoSizeMode   = 0
@@ -92,9 +106,22 @@ Function SignupGUI
 		Text           = $lang.SettingLangAndKeyboard
 		Checked        = $True
 	}
+	$GUISignupDeployCleanup = New-Object System.Windows.Forms.Checkbox -Property @{
+		Height         = 22
+		Width          = 300
+		Text           = $lang.DeployCleanup
+		Location       = "12,458"
+		Checked        = $True
+	}
+	$GUISignupReboot   = New-Object System.Windows.Forms.Checkbox -Property @{
+		Height         = 22
+		Width          = 300
+		Text           = $lang.Reboot
+		Location       = "12,485"
+	}
 	$GUISignupOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "10,482"
+		Location       = "10,515"
 		Height         = 36
 		Width          = 202
 		add_Click      = $GUISignupOKClick
@@ -102,7 +129,7 @@ Function SignupGUI
 	}
 	$GUISignupCanel    = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "218,482"
+		Location       = "218,515"
 		Height         = 36
 		Width          = 202
 		add_Click      = $GUISignupCanelClick
@@ -110,6 +137,8 @@ Function SignupGUI
 	}
 	$GUISignup.controls.AddRange((
 		$GUISignupPanel,
+		$GUISignupDeployCleanup,
+		$GUISignupReboot,
 		$GUISignupOK,
 		$GUISignupCanel
 	))
@@ -136,10 +165,18 @@ Function SignupGUI
 #>
 Function SignupProcess
 {
+	param (
+		[switch]$Reboot
+	)
+
 	<#
 		.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
 		.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
 	#>
+	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\AppxDeploymentClient\" -TaskName "Pre-staged app cleanup" -ErrorAction SilentlyContinue | Out-Null
+	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
+	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
+
 	If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) { New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null }
 	Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
 
@@ -147,7 +184,10 @@ Function SignupProcess
 		.After using the $OEM$ mode to add files, the default is read-only. Change all files to: Normal.
 		.使用 $OEM$ 模式添加文件后默认为只读，更改所有文件为：正常。
 	#>
-	Get-ChildItem "$env:SystemDrive\$($Global:UniqueID)" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
+	Get-ChildItem "$($env:SystemDrive)\$($Global:UniqueID)" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
+	if (Test-Path -Path "$($env:SystemDrive)\Users\Public\Desktop\Office" -PathType Container) {
+		Get-ChildItem "$($env:SystemDrive)\Users\Public\Desktop\Office" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
+	}
 
 	<#
 		.Close the pop-up after entering the system for the first time: Network Location Wizard
@@ -163,18 +203,55 @@ Function SignupProcess
 	LanguageSetting
 
 	<#
+		.Search for Bat and PS1
+		.搜索 Bat、PS1
+	#>
+	write-host "`n   $($lang.DiskSearch)"
+
+	<#
+		.Search for local deployment: Bat
+		.搜索本地部署：Bat
+	#>
+	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | foreach-Object {
+		write-host	"   - $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
+		Start-Process -FilePath "$($_.Fullname)"  -wait -WindowStyle Minimized
+	}
+
+	<#
+		.Search for local deployment: ps1
+		.搜索本地部署：ps1
+	#>
+	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
+		write-host	"   - $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
+		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)"" -Force" -Wait -WindowStyle Minimized
+	}
+
+	<#
 		.Recovery PowerShell strategy
 		.恢复 PowerShell 策略
 	#>
-	if (Test-Path "$PSScriptRoot\..\..\Deploy\ResetExecutionPolicy" -PathType Leaf) {
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ResetExecutionPolicy" -PathType Leaf) {
 		Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -ErrorAction SilentlyContinue
+	}
+
+	<#
+		.Restart the computer
+		.重新启动计算机
+	#>
+	$FlagsRebootComputer = $False
+
+	if ($Reboot) {
+		$FlagsRebootComputer = $True
+	}
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Reboot" -PathType Leaf) {
+		$FlagsRebootComputer = $True
 	}
 
 	<#
 		.Clean up the solution
 		.清理解决方案
 	#>
-	if (Test-Path "$PSScriptRoot\..\..\Deploy\ClearSolutions" -PathType Leaf) {
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ClearSolutions" -PathType Leaf) {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
 		RemoveTree -Path "$($Global:UniqueMainFolder)"
 
@@ -186,7 +263,7 @@ Function SignupProcess
 		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 		$regKey = "Clear $($Global:UniqueID) Folder"
 		$regValue = "cmd.exe /c rd /s /q ""$($Global:UniqueMainFolder)"""
-		if ((Test-Path $regPath)) {
+		if (Test-Path $regPath) {
 			New-ItemProperty -Path $regPath -Name $regKey -Value $regValue -PropertyType STRING -Force | Out-Null
 		} else {
 			New-Item -Path $regPath -Force | Out-Null
@@ -198,7 +275,7 @@ Function SignupProcess
 		.Clean up the main engine
 		.清理主引擎
 	#>
-	if (Test-Path "$PSScriptRoot\..\..\Deploy\ClearEngine" -PathType Leaf) {
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ClearEngine" -PathType Leaf) {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
 		RemoveTree -Path "$($Global:UniqueMainFolder)\Engine"
 	}
@@ -207,13 +284,9 @@ Function SignupProcess
 		.Clean up deployment configuration
 		.清理部署配置
 	#>
-	RemoveTree -Path "$PSScriptRoot\..\..\Deploy"
+	RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
 
-	<#
-		.首次注册模式
-		.First registration mode
-	#>
-	if ($Force) {
+	if ($FlagsRebootComputer) {
 		<#
 			.Reboot Computer
 			.重启计算机

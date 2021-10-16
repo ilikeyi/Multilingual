@@ -2,7 +2,7 @@
 	.about us
 	.关于我们
 #>
-Push-Location "$PSScriptRoot\..\..\"
+Push-Location "$($PSScriptRoot)\..\..\"
 $Global:UniqueMainFolder = $(Get-Location)
 $Global:UniqueID = [IO.Path]::GetFileName($(Get-Location))
 $Global:AuthorURL = "https://fengyi.tel"
@@ -192,7 +192,7 @@ Function Language
 		.Mandatory use of the specified language
 		.强制使用指定语言
 	#>
-	if (-not ([string]::IsNullOrEmpty($Force)))
+	if (-not (([string]::IsNullOrEmpty($Force))))
 	{
 		LanguageChange -lang $Force
 		ImportModules
@@ -322,9 +322,9 @@ Function LanguageSelectGUI
 	}
 
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-		if (Test-Path "$($PSScriptRoot)\langpacks\$($Global:AvailableLanguages[$i][1])" -PathType Container) {
+		if (Test-Path -Path "$($PSScriptRoot)\langpacks\$($Global:AvailableLanguages[$i][1])" -PathType Container) {
 			$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
-				Height  = 26
+				Height  = 28
 				Width   = 400
 				Text    = $Global:AvailableLanguages[$i][3]
 				Tag     = $Global:AvailableLanguages[$i][1]
@@ -365,18 +365,19 @@ Function LanguageSelectGUI
 #>
 Function LanguageChange
 {
-	param (
+	param
+	(
 		[string]$lang
 	)
 
-	if (Test-Path "$PSScriptRoot\langpacks\$lang\lang.psd1" -PathType Leaf)
+	if (Test-Path -Path "$($PSScriptRoot)\langpacks\$lang\lang.psd1" -PathType Leaf)
 	{
 		$Global:IsLang = $lang
-		Import-LocalizedData -BindingVariable Global:Lang -UICulture $lang -FileName "lang.psd1" -BaseDirectory "$PSScriptRoot\langpacks\$lang"
+		Import-LocalizedData -BindingVariable Global:Lang -UICulture $lang -FileName "lang.psd1" -BaseDirectory "$($PSScriptRoot)\langpacks\$lang"
 	} else {
-		if (Test-Path "$PSScriptRoot\langpacks\en-US\lang.psd1" -PathType Leaf) {
+		if (Test-Path -Path "$($PSScriptRoot)\langpacks\en-US\lang.psd1" -PathType Leaf) {
 			$Global:IsLang = "en-US"
-			Import-LocalizedData -BindingVariable Global:Lang -UICulture $lang -FileName "lang.psd1" -BaseDirectory "$PSScriptRoot\langpacks\en-US"
+			Import-LocalizedData -BindingVariable Global:Lang -UICulture $lang -FileName "lang.psd1" -BaseDirectory "$($PSScriptRoot)\langpacks\en-US"
 		} else {
 			Clear-Host
 			Write-Host "`n  There is no language pack locally, it will automatically exit after 6 seconds." -ForegroundColor Red
@@ -424,7 +425,7 @@ Function ImportModules
 		.Import all *.psm1
 		.导入所有 *.psm1
 	#>
-	Get-ChildItem –Path  "$PSScriptRoot\Functions" –Recurse -include "Engine*.psm1" | ForEach-Object {
+	Get-ChildItem –Path  "$($PSScriptRoot)\Functions" –Recurse -include "Engine*.psm1" | ForEach-Object {
 		Import-Module $_.FullName -Scope Global -Force
 	}
 }

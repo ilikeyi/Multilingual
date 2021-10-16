@@ -21,6 +21,10 @@
 	ToMsg                     = \n   {0} 몇 초 후 자동으로 주 메뉴로 돌아갑니다.
 	ToQuit                    = \n   {0} 몇 초 안에 메인 메뉴를 종료합니다.
 	PlanTask                  = 예약 된 일정
+	DiskSearch                = 검색 계획:
+	DiskSearchFind            = 검색, 실행 중: {0}
+	DeployCleanup             = Deploy 디렉토리 정리
+	Reboot                    = 완료되면 컴퓨터를 다시 시작합니다.
 
 	NetworkLocationWizard     = 네트워크 위치 마법사
 	UseZip                    = {0} 압축 해제 소프트웨어 사용
@@ -68,4 +72,15 @@
 	UpdateInstallSel          = 예, 위 업데이트가 설치됩니다.\n아니요, 업데이트가 설치되지 않습니다.
 	UpdateNoUpdateAvailable   = \n   사용 가능한 업데이트가 없습니다.\n\n   {0} 솔루션의 최신 버전을 실행 중입니다.\n
 	UpdateNotSatisfied        = \n   최소 업데이트 프로그램 버전 요구 사항을 충족하지 않습니다,\n\n   필요한 최소 버전 : {0}\n\n   다시 다운로드하십시오 {1}'s Solutions 사본, 이 도구를 업데이트합니다.\n\n   업데이트 확인이 중단되었습니다.\n
+
+	# Create Update
+	UpdateCreate              = 업그레이드 패키지 생성
+	UpdateLow                 = 최소 요구 사항: \
+	UpCreateRear              = 생성 후 해야 할 일
+	UpCreateASC               = 업그레이드 패키지에 PGP 서명 추가, 인증서 비밀번호:
+	UpCreateSHA256            = 업그레이드 패키지 생성 .SHA-256
+	Uping                     = 생성
+	SkipCreate                = 생성 건너뛰기, 찾을 수 없음
+	ZipStatus                 = 7-Zip 이 설치되어 있지 않습니다.
+	ASCStatus                 = Gpg4win 이 설치되어 있지 않습니다.
 '@

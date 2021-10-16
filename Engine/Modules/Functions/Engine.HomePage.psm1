@@ -15,7 +15,8 @@
 #>
 Function Logo
 {
-	param (
+	param
+	(
 		$Title
 	)
 	Clear-Host

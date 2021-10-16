@@ -29,7 +29,8 @@
 #>
 
 [CmdletBinding()]
-param(
+param
+(
 	[switch]$Force,
 	[string[]]$Functions
 )

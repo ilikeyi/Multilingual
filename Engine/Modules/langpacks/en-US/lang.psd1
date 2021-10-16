@@ -21,6 +21,10 @@
 	ToMsg                     = \n   Automatically return to the main menu after {0} seconds.
 	ToQuit                    = \n   Exit the main menu in {0} seconds.
 	PlanTask                  = Scheduled Tasks
+	DiskSearch                = Search plan:
+	DiskSearchFind            = Searched, running: {0}
+	DeployCleanup             = Clean up the Deploy directory
+	Reboot                    = When finished, restart the computer
 
 	NetworkLocationWizard     = Network Location Wizard
 	UseZip                    = Use {0} decompression software
@@ -68,4 +72,15 @@
 	UpdateInstallSel          = Yes, the above update will be installed\nNo, the update will not be installed
 	UpdateNoUpdateAvailable   = \n   No updates available.\n\n   You are running the latest available version of {0}'s Solutions.\n
 	UpdateNotSatisfied        = \n   Does not meet the minimum update program version requirements,\n\n   Minimum required version: {0}\n\n   Please download a copy of {1}'s Solutions again to update this tool.\n\n   Check for update has been aborted.\n
+
+	# Create Update
+	UpdateCreate              = Create upgrade package
+	UpdateLow                 = Minimum requirement: \
+	UpCreateRear              = What needs to be done after creation
+	UpCreateASC               = Add PGP signature to the upgrade package, certificate password:
+	UpCreateSHA256            = Generate .SHA-256 for the upgrade package
+	Uping                     = Generating
+	SkipCreate                = Skip generation, not found
+	ZipStatus                 = 7-Zip is not installed.
+	ASCStatus                 = Gpg4win is not installed.
 '@

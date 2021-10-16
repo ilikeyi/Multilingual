@@ -21,6 +21,10 @@
 	ToMsg                     = \n   {0} 数秒後、自動的にメインメニューに戻ります。
 	ToQuit                    = \n   {0} 数秒でメイン メニューを終了します。
 	PlanTask                  = スケジュールされたタスク
+	DiskSearch                = 検索プラン：
+	DiskSearchFind            = 検索、実行中：{0}
+	DeployCleanup             = Deploy ディレクトリをクリーンアップします
+	Reboot                    = 終了したら、コンピューターを再起動します
 
 	NetworkLocationWizard     = ネットワーク ロケーション ウィザード
 	UseZip                    = {0} を使用してソフトウェアを解凍します
@@ -68,4 +72,15 @@
 	UpdateInstallSel          = はい、上記の更新がインストールされます\nいいえ、更新はインストールされません
 	UpdateNoUpdateAvailable   = \n   利用可能なアップデートはありません。\n\n   あなたは走っている {0}'s Solutions の入手可能な最新バージョン。\n
 	UpdateNotSatisfied        = \n   アップデートプログラムの最小バージョン要件を満たしていない、\n\n   最低限必要なバージョン: {0}\n\n   もう一度ダウンロードしてください {1}'s Solutions このツールを更新するには。\n\n   チェックの更新が中止されました。\n
+
+	# Create Update
+	UpdateCreate              = アップグレードパッケージを作成する
+	UpdateLow                 = 最小要件: \
+	UpCreateRear              = 作成後に行う必要があること
+	UpCreateASC               = アップグレードパッケージにPGP署名、証明書パスワードを追加します。
+	UpCreateSHA256            = ップグレードパッケージを生成する .SHA-256
+	Uping                     = 生成
+	SkipCreate                = 世代をスキップしますが見つかりません
+	ZipStatus                 = 7-Zip がインストールされていません。
+	ASCStatus                 = Gpg4win がインストールされていません。
 '@

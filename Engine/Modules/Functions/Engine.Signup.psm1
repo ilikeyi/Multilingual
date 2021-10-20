@@ -203,6 +203,41 @@ Function SignupProcess
 	LanguageSetting
 
 	<#
+		.Complete the prerequisite deployment, restart, and perform the first deployment
+		.完成先决部署，重新启动，进行首次部署
+	#>
+	$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
+	if (-not (Test-Path $regPath)) {
+		New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
+	}
+
+	$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:UniqueMainFolder)\Engine\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+	New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
+
+	Restart-Computer -Force
+}
+
+Function FirstDeployment
+{
+	param
+	(
+		[switch]$Force,
+		[switch]$Quit
+	)
+	if ($Quit) { $Global:QUIT = $true }
+
+	Logo -Title $($lang.FirstDeployment)
+	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
+
+	Write-Host "   $($lang.FirstDeployment)"
+	Get-Command -CommandType function | ForEach-Object {
+		if ($_ -like "DeployTask*") {
+			Write-Host "   $($lang.DeployTask)$($_.Name)"
+			Invoke-Expression -Command $_.Name
+		}
+	}
+
+	<#
 		.Search for Bat and PS1
 		.搜索 Bat、PS1
 	#>

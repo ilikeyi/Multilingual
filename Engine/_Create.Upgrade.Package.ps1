@@ -302,7 +302,6 @@ Function UpdateCreateGUI
 	$GUIUpdate.controls.AddRange((
 		$GUIUpdateVersion,
 		$GUIUpdateLowVersion,
-		$GUIUpdateShow,
 		$GUIUpdateBackup,
 		$GUIUpdateBackupTips,
 		$GUIUpdateRearTips,
@@ -321,7 +320,6 @@ Function UpdateCreateGUI
 	if ($Global:IsZip) {
 		$GUIUpdateOK.Enabled = $True
 	} else {
-		$GUIUpdateShow.Enabled = $False
 		$GUIUpdateGroupASC.Enabled = $False
 		$GUIUpdateOK.Enabled = $False
 		$GUIUpdateErrorMsg.Text += $lang.ZipStatus
@@ -499,7 +497,7 @@ function CreateVersion
 		"title": "$($Global:UniqueID)'s Solutions - new autoupdate system",
 		"log":   "   - Latest *Update"
 	},
-	"url": "$($Global:AuthorURL)/download/solutions/update/$($Version)/latest.zip"
+	"url": "$($Global:AuthorURL)/download/solutions/update/Multilingual/latest.zip"
 }
 "@ | Out-File -FilePath "$SaveTo\latest.json" -Encoding Ascii
 }

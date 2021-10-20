@@ -24,6 +24,8 @@
 	DiskSearch                = 搜索计划：
 	DiskSearchFind            = 搜索到，正在运行中：{0}
 	DeployCleanup             = 清理 Deploy 目录
+	FirstDeployment           = 首次部署
+	DeployTask                = 部署任务：
 	Reboot                    = 完成后，重新启动计算机
 
 	NetworkLocationWizard     = 网络位置向导

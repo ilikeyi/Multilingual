@@ -20,9 +20,16 @@ $Global:SaveTo = "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
 	.Group type: 1. Language pack; 2. Language interface pack (LIP)
 	.分组类型：1、语言包；2、语言界面包（LIP）
 
+	.Starting from Windows 11, five new types have been added, totaling 43 types ( ca-ES, eu-ES, gl-ES, id-ID, vi-VN )
+	.从 Windows 11 开始，新增五种，共计 43 种（ca-ES、eu-ES、gl-ES、id-ID、vi-VN）
+
 	https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows
 #>
 $Global:AvailableLanguages = @(
+	<#
+		.Language pack
+		.语言包
+	#>
 	("1", "ar-SA",          "ar",              "Arabic - Saudi Arabia"),
 	("1", "bg-BG",          "bg",              "Bulgarian (Bulgaria)"),
 	("1", "zh-HK",          "hk",              "Chinese - Hong Kong SAR"),
@@ -61,6 +68,17 @@ $Global:AvailableLanguages = @(
 	("1", "th-TH",          "th",              "Thai (Thailand)"),
 	("1", "tr-TR",          "tr",              "Turkish (Turkey)"),
 	("1", "uk-UA",          "ua",              "Ukrainian (Ukraine)"),
+	("1", "ca-es",          "ca-es",           "Catalan (Spain)"),
+	("1", "eu-es",          "eu-es",           "Basque (Spain)"),
+	("1", "gl-es",          "gl",              "Galician (Spain)"),
+	("1", "id-id",          "id",              "Indonesian (Indonesia)"),
+	("1", "vi-vn",          "vi-vn",           "Vietnamese (Viet Nam)"),
+	("1", "sr-latn-rs",     "sr-latn-rs",      "Serbian (Latin, Serbia)"),
+
+	<#
+		.Language Interface Pack (LIP)
+		.语言界面包 (LIP)
+	#>
 	("2", "af-za",          "af",              "Afrikaans (South Africa)"),
 	("2", "am-et",          "am-et",           "Amharic (Ethiopia)	"),
 	("2", "as-in",          "as-in",           "Assamese (India)"),
@@ -69,21 +87,17 @@ $Global:AvailableLanguages = @(
 	("2", "bn-bd",          "bn-bd",           "Bangla (Bangladesh)"),
 	("2", "bn-in",          "bn-in",           "Bangla (India)"),
 	("2", "bs-latn-ba",     "bs-latn-ba",      "Bosnian (Latin)"),
-	("2", "ca-es",          "ca-es",           "Catalan (Spain)"),
 	("2", "ca-es-valencia", "ca-es-valencia",  "Valencian"),
 	("2", "chr-cher-us",    "chr-cher-us",     "Cherokee"),
 	("2", "cy-gb",          "cy",              "Welsh (United Kingdom)"),
-	("2", "eu-es",          "eu-es",           "Basque (Spain)"),
 	("2", "fa-ir",          "fa",              "Farsi (Iran)"),
 	("2", "fil-ph",         "fil-ph",          "Filipino"),
 	("2", "ga-ie",          "ga-ie",           "Irish (Ireland)"),
 	("2", "gd-gb",          "gd-gb",           "Scottish Gaelic	"),
-	("2", "gl-es",          "gl",              "Galician (Spain)"),
 	("2", "gu-in",          "gu",              "Gujarati (India)"),
 	("2", "ha-latn-ng",     "ha-latn-ng",      "Hausa (Latin, Nigeria)"),
 	("2", "hi-in",          "hi",              "Hindi (India)"),
 	("2", "hy-am",          "hy",              "Armenian (Armenia)"),
-	("2", "id-id",          "id",              "Indonesian (Indonesia)"),
 	("2", "ig-ng",          "ig-ng",           "Igbo (Nigeria)"),
 	("2", "is-is",          "is",              "Icelandic (Iceland)"),
 	("2", "ka-ge",          "ka",              "Georgian (Georgia)"),
@@ -117,7 +131,6 @@ $Global:AvailableLanguages = @(
 	("2", "sq-al",          "sq",              "Albanian (Albania)"),
 	("2", "sr-cyrl-ba",     "sr-cyrl-ba",      "Serbian (Cyrillic, Bosnia and Herzegovina)"),
 	("2", "sr-cyrl-rs",     "sr-cyrl-rs",      "Serbian (Cyrillic, Serbia)"),
-	("2", "sr-latn-rs",     "sr-latn-rs",      "Serbian (Latin, Serbia)"),
 	("2", "sw-ke",          "sw-ke",           "Kiswahili (Kenya)"),
 	("2", "ta-in",          "ta-in",           "Tamil (India)"),
 	("2", "te-in",          "te-in",           "Telugu (India)"),
@@ -129,7 +142,6 @@ $Global:AvailableLanguages = @(
 	("2", "ug-cn",          "ug-cn",           "Uyghur"),
 	("2", "ur-pk",          "ur-pk",           "Urdu (Islamic Republic of Pakistan)"),
 	("2", "uz-latn-uz",     "uz-latn-uz",      "Uzbek (Latin)"),
-	("2", "vi-vn",          "vi-vn",           "Vietnamese (Viet Nam)"),
 	("2", "wo-sn",          "wo-sn",           "Wolof"),
 	("2", "xh-za",          "xh-za",           "Xhosa (South Africa)"),
 	("2", "yo-ng",          "yo-ng",           "Yoruba (Nigeria)"),

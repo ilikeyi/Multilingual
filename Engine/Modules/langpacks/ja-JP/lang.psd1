@@ -24,6 +24,8 @@
 	DiskSearch                = 検索プラン：
 	DiskSearchFind            = 検索、実行中：{0}
 	DeployCleanup             = Deploy ディレクトリをクリーンアップします
+	FirstDeployment           = 最初の展開
+	DeployTask                = 展開タスク：
 	Reboot                    = 終了したら、コンピューターを再起動します
 
 	NetworkLocationWizard     = ネットワーク ロケーション ウィザード

@@ -14,7 +14,7 @@
 	.Current version
 	.当前版本
 #>
-$ProductVersion = "1.0.0.5"
+$ProductVersion = "1.0.0.6"
 
 <#
 	.Update minimum version requirements
@@ -61,6 +61,7 @@ Function Update
 	param
 	(
 		[switch]$Auto,
+		[switch]$Force,
 		[switch]$IsProcess
 	)
 	
@@ -71,14 +72,14 @@ Function Update
 		$Global:IsProcess = $False
 	}
 
-	Logo -Title $($lang.PlanTask)
-	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
+	Logo -Title $($lang.Update)
+	Write-Host "   $($lang.Update)`n   ---------------------------------------------------"
 
 	if ($Auto) {
 		foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
 			$Global:ServerList += $item[0] + $item[1]
 		}
-		UpdateProcess
+		UpdateProcess -Force
 	} else {
 		UpdateGUI
 	}
@@ -295,6 +296,11 @@ Function UpdateGUI
 #>
 Function UpdateProcess
 {
+	param
+	(
+		[switch]$Force
+	)
+
 	<#
 		.Disabled IE first-launch configuration
 		.禁用 IE 首次启动配置
@@ -378,6 +384,10 @@ $($getSerVer.changelog.log)`n"
 				Write-host "   $($lang.UpdateNewLatest)`n" -ForegroundColor Green
 
 				$FlagsCheckForceUpdate = $False
+				if ($Force) {
+					$FlagsCheckForceUpdate = $True
+				}
+
 				if ($Global:UpdateAvailableSilent) {
 					$FlagsCheckForceUpdate = $True
 				}

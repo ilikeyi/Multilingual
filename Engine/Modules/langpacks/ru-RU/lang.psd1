@@ -24,6 +24,8 @@
 	DiskSearch                = План поиска:
 	DiskSearchFind            = Поиск, выполняется: {0}
 	DeployCleanup             = Очистить Deploy каталог
+	FirstDeployment           = Первое развертывание
+	DeployTask                = Задачи развертывания: \
 	Reboot                    = По завершении перезагрузите компьютер.
 
 	NetworkLocationWizard     = Мастер сетевого расположения

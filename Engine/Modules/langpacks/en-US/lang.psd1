@@ -24,9 +24,16 @@
 	DiskSearch                = Search plan:
 	DiskSearchFind            = Searched, running: {0}
 	DeployCleanup             = Clean up the Deploy directory
-	FirstDeployment           = First deployment
+	FirstDeployment           = First experience deployment
+	FirstDeploymentWarning    = Do not turn off the PowerShell icon displayed in the taskbar.
+	FirstDeploymentDone       = The deployment has been completed.
 	DeployTask                = Deployment tasks: \
 	Reboot                    = When finished, restart the computer
+
+	DeployPackerTips          = There are deployment packages available
+	DeployPackerTipsDone      = The deployment package has been completed.
+	DeployOfficeTips          = Office deployment plan available
+	DeployOfficeTipsDone      = The Office deployment plan is complete.
 
 	NetworkLocationWizard     = Network Location Wizard
 	UseZip                    = Use {0} decompression software

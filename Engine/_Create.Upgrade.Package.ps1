@@ -77,9 +77,17 @@ $TempFolderUpdate = "$([Environment]::GetFolderPath("MyDocuments"))\Temp.$($Glob
 	.从压缩包中排除文件或目录
 #>
 $ArchiveExcludeUp = @(
+	"-xr-!00"
+	"-xr-!10"
+	"-xr-!20"
+	"-xr-!30"
+	"-xr-!40"
+	"-xr-!50"
+	"-xr-!60"
+	"-xr-!70"
 	"-xr-!Engine\Deploy"
 	"-xr-!Engine\Logs"
-#	"-xr-!Engine\_Create.Upgrade.Package.ps1"
+	"-xr-!Engine\_Create.Upgrade.Package.ps1"
 )
 
 <#
@@ -124,6 +132,24 @@ function GetZip {
 	if (Test-Path -Path "$($env:SystemDrive)\$($Global:UniqueID)\$($Global:UniqueID)\7zPacker\7z.exe" -PathType leaf) {
 		$Global:IsZip = $True
 		$Global:IsZipPath = "$($env:SystemDrive)\$($Global:UniqueID)\$($Global:UniqueID)\7zPacker\7z.exe"
+		return
+	}
+
+	if (Test-Path "$PSScriptRoot\AIO\7zPacker\x86\7z.exe" -PathType leaf) {
+		$Global:IsZip = $True
+		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\x86\7z.exe"
+		return
+	}
+
+	if (Test-Path "$PSScriptRoot\AIO\7zPacker\AMD64\7z.exe" -PathType leaf) {
+		$Global:IsZip = $True
+		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\AMD64\7z.exe"
+		return
+	}
+
+	if (Test-Path "$PSScriptRoot\AIO\7zPacker\arm64\7z.exe" -PathType leaf) {
+		$Global:IsZip = $True
+		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\arm64\7z.exe"
 		return
 	}
 }
@@ -436,7 +462,7 @@ function UpdateCreateASC
 
 			Write-Host "   * $($lang.Uping) $UpdateName.asc"
 			if (([string]::IsNullOrEmpty($Global:secure_password))) {
-				Start-Process $GpgLocalPath -argument "--local-user $GpgKI --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait
+				Start-Process $GpgLocalPath -argument "--local-user $GpgKI --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
 			} else {
 				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase $Global:secure_password --local-user $GpgKI --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
 			}

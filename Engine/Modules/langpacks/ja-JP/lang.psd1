@@ -24,9 +24,16 @@
 	DiskSearch                = 検索プラン：
 	DiskSearchFind            = 検索、実行中：{0}
 	DeployCleanup             = Deploy ディレクトリをクリーンアップします
-	FirstDeployment           = 最初の展開
+	FirstDeployment           = 初めての導入
+	FirstDeploymentWarning    = タスクバーに表示されるPowerShellアイコンをオフにしないでください。
+	FirstDeploymentDone       = 展開が完了しました。
 	DeployTask                = 展開タスク：
 	Reboot                    = 終了したら、コンピューターを再起動します
+
+	DeployPackerTips          = 利用可能な展開パッケージがあります
+	DeployPackerTipsDone      = 展開パッケージが完了しました。
+	DeployOfficeTips          = 利用可能 Office 展開計画
+	DeployOfficeTipsDone      = Office 展開計画が完了しました。
 
 	NetworkLocationWizard     = ネットワーク ロケーション ウィザード
 	UseZip                    = {0} を使用してソフトウェアを解凍します

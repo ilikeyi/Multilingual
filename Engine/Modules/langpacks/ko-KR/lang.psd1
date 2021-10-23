@@ -24,9 +24,16 @@
 	DiskSearch                = 검색 계획:
 	DiskSearchFind            = 검색, 실행 중: {0}
 	DeployCleanup             = Deploy 디렉토리 정리
-	FirstDeployment           = 첫 번째 배포
+	FirstDeployment           = 첫 경험 배포
+	FirstDeploymentWarning    = 작업 표시줄에 표시된 PowerShell 아이콘을 끄지 마십시오.
+	FirstDeploymentDone       = 배포가 완료되었습니다.
 	DeployTask                = 배포 작업: \
 	Reboot                    = 완료되면 컴퓨터를 다시 시작합니다.
+
+	DeployPackerTips          = 사용 가능한 배포 패키지가 있습니다
+	DeployPackerTipsDone      = 배포 패키지가 완료되었습니다.
+	DeployOfficeTips          = Office 배포 계획 사용 가능
+	DeployOfficeTipsDone      = Office 배포 계획이 완료되었습니다.
 
 	NetworkLocationWizard     = 네트워크 위치 마법사
 	UseZip                    = {0} 압축 해제 소프트웨어 사용

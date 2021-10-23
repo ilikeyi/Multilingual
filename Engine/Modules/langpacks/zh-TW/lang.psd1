@@ -24,9 +24,16 @@
 	DiskSearch                = 搜索計劃：
 	DiskSearchFind            = 搜索到，正在運行中：{0}
 	DeployCleanup             = 清理 Deploy 目錄
-	FirstDeployment           = 首次部署
+	FirstDeployment           = 首次體驗部署
+	FirstDeploymentWarning    = 請勿關閉任務欄顯示的 PowerShell 圖標。
+	FirstDeploymentDone       = 已完成部署。
 	DeployTask                = 部署任務：
 	Reboot                    = 完成後，重新啟動計算機
+
+	DeployPackerTips          = 有可用的部署合集包
+	DeployPackerTipsDone      = 部署合集包已完成。
+	DeployOfficeTips          = 有可用的 Office 部署計劃
+	DeployOfficeTipsDone      = Office 部署計劃已完成。
 
 	NetworkLocationWizard     = 網絡位置嚮導
 	UseZip                    = 使用 {0} 解壓軟件

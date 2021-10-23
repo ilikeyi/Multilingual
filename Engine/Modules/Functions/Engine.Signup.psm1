@@ -211,7 +211,7 @@ Function SignupProcess
 		New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
 	}
 
-	$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:UniqueMainFolder)\Engine\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+	$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:UniqueMainFolder)\Engine\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized"""
 	New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 	Restart-Computer -Force
@@ -226,8 +226,16 @@ Function FirstDeployment
 	)
 	if ($Quit) { $Global:QUIT = $true }
 
-	Logo -Title $($lang.FirstDeployment)
+	Logo -Title "$($lang.FirstDeployment)"
 	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
+
+	<#
+		.Pop up the main interface
+		.弹出主界面
+	#>
+	if (Test-Path "$PSScriptRoot\..\..\Deploy\PopupEngine" -PathType Leaf) {
+		Start-Process powershell -ArgumentList "-file "$($Global:UniqueMainFolder)\Engine\Engine.ps1""
+	}
 
 	Write-Host "   $($lang.FirstDeployment)"
 	Get-Command -CommandType function | ForEach-Object {
@@ -259,6 +267,15 @@ Function FirstDeployment
 	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
 		write-host	"   - $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)"" -Force" -Wait -WindowStyle Minimized
+	}
+
+	<#
+		.For the first time, planning on-demand, custom area
+		.首次体署，按需计划，自定义区域
+	#>
+	if (Test-Path "$PSScriptRoot\..\..\Deploy\FirstExperience" -PathType Leaf)
+	{
+
 	}
 
 	<#

@@ -24,9 +24,16 @@
 	DiskSearch                = План поиска:
 	DiskSearchFind            = Поиск, выполняется: {0}
 	DeployCleanup             = Очистить Deploy каталог
-	FirstDeployment           = Первое развертывание
+	FirstDeployment           = Развертывание первого опыта
+	FirstDeploymentWarning    = Не выключайте значок PowerShell, отображаемый на панели задач.
+	FirstDeploymentDone       = Развертывание завершено.
 	DeployTask                = Задачи развертывания: \
 	Reboot                    = По завершении перезагрузите компьютер.
+
+	DeployPackerTips          = Доступны пакеты развертывания
+	DeployPackerTipsDone      = Пакет развертывания завершен.
+	DeployOfficeTips          = Доступен план развертывания Office
+	DeployOfficeTipsDone      = План развертывания Office завершен.
 
 	NetworkLocationWizard     = Мастер сетевого расположения
 	UseZip                    = Использовать программу распаковки {0}

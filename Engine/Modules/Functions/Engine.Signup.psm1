@@ -18,15 +18,15 @@ Function Signup
 {
 	param
 	(
-		[switch]$Force,
+		[switch]$FirstExperience,
 		[switch]$Quit
 	)
 	if ($Quit) { $Global:QUIT = $true }
 
 	Logo -Title $($lang.Reset)
-	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
+	Write-Host "   $($lang.Reset)`n   ---------------------------------------------------"
 
-	if ($Force) {
+	if ($FirstExperience) {
 		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\DoNotUpdate" -PathType Leaf) {
 			Write-Host "   - $($lang.UpdateSkipUpdateCheck)"
 		} else {
@@ -203,18 +203,22 @@ Function SignupProcess
 	LanguageSetting
 
 	<#
-		.Complete the prerequisite deployment, restart, and perform the first deployment
-		.完成先决部署，重新启动，进行首次部署
+		.After completing the prerequisite deployment, determine whether to restart the computer
+		.完成先决条件部署后，判断是否重启计算机
 	#>
-	$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
-	if (-not (Test-Path $regPath)) {
-		New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\PrerequisitesReboot" -PathType Leaf) {
+		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
+		if (-not (Test-Path $regPath)) {
+			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
+		}
+	
+		$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:UniqueMainFolder)\Engine\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
+
+		Restart-Computer -Force
+	} else {
+		FirstDeployment
 	}
-
-	$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:UniqueMainFolder)\Engine\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized"""
-	New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
-
-	Restart-Computer -Force
 }
 
 Function FirstDeployment
@@ -226,15 +230,44 @@ Function FirstDeployment
 	)
 	if ($Quit) { $Global:QUIT = $true }
 
-	Logo -Title "$($lang.FirstDeployment)"
-	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
+	Logo -Title $($lang.FirstDeployment)
+	Write-Host "   $($lang.FirstDeployment)`n   ---------------------------------------------------"
+
+	<#
+		.Prerequisite deployment rules
+		.先决部署规则
+	#>
+	$FlagsRebootComputer = $False
+	$FlagsClearSolutionsRure = $False
+
+	if ($Reboot) {
+		$FlagsRebootComputer = $True
+	}
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\FirstExperienceReboot" -PathType Leaf) {
+		$FlagsRebootComputer = $True
+	}
+
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ClearSolutions" -PathType Leaf) {
+		$FlagsClearSolutionsRure = $True
+	}
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ClearEngine" -PathType Leaf) {
+		$FlagsClearSolutionsRure = $True
+	}
 
 	<#
 		.Pop up the main interface
 		.弹出主界面
 	#>
-	if (Test-Path "$PSScriptRoot\..\..\Deploy\PopupEngine" -PathType Leaf) {
-		Start-Process powershell -ArgumentList "-file "$($Global:UniqueMainFolder)\Engine\Engine.ps1""
+	Write-Host "`n   $($lang.FirstDeploymentPopup)"
+	if ($FlagsClearSolutionsRure) {
+		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+	} else {
+		if (Test-Path "$($PSScriptRoot)\..\..\Deploy\PopupEngine" -PathType Leaf) {
+			Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
+			Start-Process powershell -ArgumentList "-file $($PSScriptRoot)\..\..\Engine.ps1"
+		} else {
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+		}
 	}
 
 	Write-Host "   $($lang.FirstDeployment)"
@@ -266,16 +299,20 @@ Function FirstDeployment
 	#>
 	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
 		write-host	"   - $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
-		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)"" -Force" -Wait -WindowStyle Minimized
+		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)""" -Wait -WindowStyle Minimized
 	}
 
 	<#
-		.For the first time, planning on-demand, custom area
-		.首次体署，按需计划，自定义区域
+		.Allow the first pre-experience, as planned
+		.允许首次预体验，按计划
 	#>
-	if (Test-Path "$PSScriptRoot\..\..\Deploy\FirstExperience" -PathType Leaf)
+	Write-Host "`n   $($lang.FirstExpFinishOnDemand)"
+	if (Test-Path "$($PSScriptRoot)\..\..\Deploy\FirstPreExperience" -PathType Leaf)
 	{
+		Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
 
+	} else {
+		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
 
 	<#
@@ -284,19 +321,6 @@ Function FirstDeployment
 	#>
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ResetExecutionPolicy" -PathType Leaf) {
 		Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -ErrorAction SilentlyContinue
-	}
-
-	<#
-		.Restart the computer
-		.重新启动计算机
-	#>
-	$FlagsRebootComputer = $False
-
-	if ($Reboot) {
-		$FlagsRebootComputer = $True
-	}
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Reboot" -PathType Leaf) {
-		$FlagsRebootComputer = $True
 	}
 
 	<#

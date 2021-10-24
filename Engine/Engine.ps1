@@ -31,7 +31,7 @@
 [CmdletBinding()]
 param
 (
-	[switch]$Force,
+	[switch]$FirstExperience,
 	[string[]]$Functions
 )
 
@@ -67,8 +67,8 @@ if ($Functions) {
 	exit
 }
 
-if ($Force) {
-	Signup -Force
+if ($FirstExperience) {
+	Signup -FirstExperience
 } else {
 	Mainpage
 }

@@ -11,6 +11,7 @@
 	Exit                      = 그만두 다
 	AllSel                    = 모두 선택
 	AllClear                  = 모두 지우기
+	Operable                  = 실시 가능한
 	Inoperable                = 작동 불가
 	ForceUpdate               = 강제 확인 및 업데이트
 	SettingLangAndKeyboard    = 시스템 언어 및 키보드 설정
@@ -20,13 +21,14 @@
 	FailedCreateFolder        = 디렉터리 생성 실패:
 	ToMsg                     = \n   {0} 몇 초 후 자동으로 주 메뉴로 돌아갑니다.
 	ToQuit                    = \n   {0} 몇 초 안에 메인 메뉴를 종료합니다.
-	PlanTask                  = 예약 된 일정
 	DiskSearch                = 검색 계획:
 	DiskSearchFind            = 검색, 실행 중: {0}
 	DeployCleanup             = Deploy 디렉토리 정리
 	FirstDeployment           = 첫 경험 배포
 	FirstDeploymentWarning    = 작업 표시줄에 표시된 PowerShell 아이콘을 끄지 마십시오.
 	FirstDeploymentDone       = 배포가 완료되었습니다.
+	FirstDeploymentPopup      = 메인 인터페이스 팝업
+	FirstExpFinishOnDemand    = 계획대로 첫 번째 사전 경험 허용
 	DeployTask                = 배포 작업: \
 	Reboot                    = 완료되면 컴퓨터를 다시 시작합니다.
 

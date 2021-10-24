@@ -11,6 +11,7 @@
 	Exit                      = Exit
 	AllSel                    = Select all
 	AllClear                  = Clear all
+	Operable                  = Operable
 	Inoperable                = Inoperable
 	ForceUpdate               = Forcibly check and update
 	SettingLangAndKeyboard    = Set system language and keyboard
@@ -20,13 +21,14 @@
 	FailedCreateFolder        = Failed to create directory: \
 	ToMsg                     = \n   Automatically return to the main menu after {0} seconds.
 	ToQuit                    = \n   Exit the main menu in {0} seconds.
-	PlanTask                  = Scheduled Tasks
 	DiskSearch                = Search plan:
 	DiskSearchFind            = Searched, running: {0}
 	DeployCleanup             = Clean up the Deploy directory
 	FirstDeployment           = First experience deployment
 	FirstDeploymentWarning    = Do not turn off the PowerShell icon displayed in the taskbar.
 	FirstDeploymentDone       = The deployment has been completed.
+	FirstDeploymentPopup      = Pop up the main interface
+	FirstExpFinishOnDemand    = Allow the first pre-experience, as planned
 	DeployTask                = Deployment tasks: \
 	Reboot                    = When finished, restart the computer
 

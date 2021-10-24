@@ -11,6 +11,7 @@
 	Exit                      = 退出
 	AllSel                    = 选择所有
 	AllClear                  = 清除所有
+	Operable                  = 可操作
 	Inoperable                = 不可操作
 	ForceUpdate               = 强行检查并更新
 	SettingLangAndKeyboard    = 设置系统语言和键盘
@@ -20,13 +21,14 @@
 	FailedCreateFolder        = 创建目录失败：
 	ToMsg                     = \n   {0} 秒后自动返回到主菜单。
 	ToQuit                    = \n   {0} 秒后退出主菜单。
-	PlanTask                  = 计划任务
 	DiskSearch                = 搜索计划：
 	DiskSearchFind            = 搜索到，正在运行中：{0}
 	DeployCleanup             = 清理 Deploy 目录
 	FirstDeployment           = 首次体验部署
 	FirstDeploymentWarning    = 请勿关闭任务栏显示的 PowerShell 图标。
 	FirstDeploymentDone       = 已完成部署。
+	FirstDeploymentPopup      = 弹出主界面
+	FirstExpFinishOnDemand    = 允许首次预体验，按计划
 	DeployTask                = 部署任务：
 	Reboot                    = 完成后，重新启动计算机
 

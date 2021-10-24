@@ -11,6 +11,7 @@
 	Exit                      = 脱落
 	AllSel                    = すべて選択
 	AllClear                  = すべてクリア
+	Operable                  = 操作可能
 	Inoperable                = 動作不能
 	ForceUpdate               = 強制的に確認して更新する
 	SettingLangAndKeyboard    = システム言語とキーボードを設定する
@@ -20,13 +21,14 @@
 	FailedCreateFolder        = ディレクトリの作成に失敗しました:
 	ToMsg                     = \n   {0} 数秒後、自動的にメインメニューに戻ります。
 	ToQuit                    = \n   {0} 数秒でメイン メニューを終了します。
-	PlanTask                  = スケジュールされたタスク
 	DiskSearch                = 検索プラン：
 	DiskSearchFind            = 検索、実行中：{0}
 	DeployCleanup             = Deploy ディレクトリをクリーンアップします
 	FirstDeployment           = 初めての導入
 	FirstDeploymentWarning    = タスクバーに表示されるPowerShellアイコンをオフにしないでください。
 	FirstDeploymentDone       = 展開が完了しました。
+	FirstDeploymentPopup      = メインインターフェイスをポップアップします
+	FirstExpFinishOnDemand    = 計画どおり、最初の事前体験を許可する
 	DeployTask                = 展開タスク：
 	Reboot                    = 終了したら、コンピューターを再起動します
 

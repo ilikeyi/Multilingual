@@ -270,8 +270,8 @@ Function LanguageSelectGUI
 	}
 	$GUISelectLanguage = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
-		Height         = 568
-		Width          = 450
+		Height         = 720
+		Width          = 550
 		Text           = "Choose your country or region."
 		TopMost        = $True
 		StartPosition  = "CenterScreen"
@@ -281,8 +281,8 @@ Function LanguageSelectGUI
 		BackColor      = "#ffffff"
 	}
 	$GUISelectLanguagePanel = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 428
-		Width          = 450
+		Height         = 530
+		Width          = 550
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
@@ -290,31 +290,31 @@ Function LanguageSelectGUI
 		Dock           = 1
 	}
 	$GUISelectLanguageErrorMsg = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "10,435"
+		Location       = "8,545"
 		Height         = 22
-		Width          = 400
+		Width          = 508
 		Text           = ""
 	}
 	$GUISelectLanguageDontPrompt = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
-		Width          = 400
+		Width          = 508
 		Text           = "Remember the chosen language"
-		Location       = '12,455'
+		Location       = '10,566'
 		add_Click      = $GUISelectLanguageDontPromptClick
 	}
 	$GUISelectLanguageOK = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "10,482"
+		Location       = "8,595"
 		Height         = 36
-		Width          = 202
+		Width          = 515
 		add_Click      = $GUISelectLanguageOKClick
 		Text           = "OK"
 	}
 	$GUISelectLanguageCanel = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "218,482"
+		Location       = "8,635"
 		Height         = 36
-		Width          = 202
+		Width          = 515
 		add_Click      = $GUISelectLanguageCanelClick
 		Text           = "Cancel"
 	}

@@ -80,8 +80,8 @@ Function SignupGUI
 	}
 	$GUISignup         = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
-		Height         = 600
-		Width          = 450
+		Height         = 720
+		Width          = 550
 		Text           = $lang.Reset
 		TopMost        = $True
 		StartPosition  = "CenterScreen"
@@ -91,12 +91,12 @@ Function SignupGUI
 		BackColor      = "#ffffff"
 	}
 	$GUISignupPanel    = New-Object system.Windows.Forms.Panel -Property @{
-		Height         = 438
+		Height         = 520
 		Width          = 450
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
-		Padding        = 0
+		Padding        = "8,0,8,0"
 		Dock           = 1
 	}
 	$GUISignupLangAndKeyboard = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -108,30 +108,30 @@ Function SignupGUI
 	}
 	$GUISignupDeployCleanup = New-Object System.Windows.Forms.Checkbox -Property @{
 		Height         = 22
-		Width          = 300
+		Width          = 505
 		Text           = $lang.DeployCleanup
-		Location       = "12,458"
+		Location       = "12,538"
 		Checked        = $True
 	}
 	$GUISignupReboot   = New-Object System.Windows.Forms.Checkbox -Property @{
 		Height         = 22
-		Width          = 300
+		Width          = 505
 		Text           = $lang.Reboot
-		Location       = "12,485"
+		Location       = "12,565"
 	}
 	$GUISignupOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "10,515"
+		Location       = "8,595"
 		Height         = 36
-		Width          = 202
+		Width          = 515
 		add_Click      = $GUISignupOKClick
 		Text           = $lang.OK
 	}
 	$GUISignupCanel    = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "218,515"
+		Location       = "8,635"
 		Height         = 36
-		Width          = 202
+		Width          = 515
 		add_Click      = $GUISignupCanelClick
 		Text           = $lang.Cancel
 	}

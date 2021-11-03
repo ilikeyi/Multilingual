@@ -157,8 +157,8 @@ Function UpdateGUI
 	}
 	$GUIUpdate         = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
-		Height         = 600
-		Width          = 450
+		Height         = 720
+		Width          = 550
 		Text           = $lang.Update
 		TopMost        = $True
 		StartPosition  = "CenterScreen"
@@ -169,15 +169,15 @@ Function UpdateGUI
 	}
 	$GUIUpdateAuto     = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
-		Width          = 395
+		Width          = 505
 		Text           = $lang.UpdateServerSelect
 		Location       = '10,6'
 		add_Click      = $GUIUpdateAutoClick
 		Checked        = $True
 	}
 	$GUIUpdatePanel    = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 355
-		Width          = 428
+		Height         = 425
+		Width          = 528
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
@@ -188,42 +188,42 @@ Function UpdateGUI
 	}
 	$GUIUpdateSilent   = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
-		Width          = 395
+		Width          = 505
 		Text           = $lang.UpdateSilent
-		Location       = '10,400'
+		Location       = '12,475'
 		Checked        = $True
 	}
 	$GUIUpdateReset    = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
-		Width          = 395
+		Width          = 505
 		Text           = $lang.UpdateReset
-		Location       = '10,425'
+		Location       = '12,503'
 	}
 	$GUIUpdateResetTips = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "26,450"
+		Location       = "28,528"
 		Height         = 28
-		Width          = 390
+		Width          = 490
 		Text           = $lang.UpdateResetTips
 	}
 	$GUIUpdateErrorMsg = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "10,490"
+		Location       = "10,570"
 		Height         = 22
-		Width          = 405
+		Width          = 490
 		Text           = ""
 	}
 	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "10,515"
+		Location       = "8,595"
 		Height         = 36
-		Width          = 202
+		Width          = 515
 		add_Click      = $GUIUpdateOKClick
 		Text           = $lang.OK
 	}
 	$GUIUpdateCanel    = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "218,515"
+		Location       = "8,635"
 		Height         = 36
-		Width          = 202
+		Width          = 515
 		add_Click      = $GUIUpdateCanelClick
 		Text           = $lang.Cancel
 	}

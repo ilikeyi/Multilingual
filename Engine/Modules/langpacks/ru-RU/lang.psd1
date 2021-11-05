@@ -3,7 +3,7 @@
 	Mainname                  = решение
 	Mainpage                  = Панель инструментов решения
 	Update                    = Проверить обновления
-	Reset                     = Сброс настроек
+	FirstExperience           = Первый опыт
 	Disable                   = Запрещать
 	Done                      = выполнять
 	OK                        = определять

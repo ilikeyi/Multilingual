@@ -37,7 +37,7 @@ Function Mainpage
 	Write-Host "   $($lang.Mainpage)`n   ---------------------------------------------------"
 
 	write-host "   1. $($lang.Update)
-   2. $($lang.Reset) $($lang.Mainname)" -ForegroundColor Green
+   2. $($lang.FirstExperience)" -ForegroundColor Green
 
    write-host  "`n`n   L. $($lang.SwitchLanguage)
    R. $($lang.RefreshModules)
@@ -51,7 +51,7 @@ Function Mainpage
 			ToMainpage -wait 2
 		}
 		"2" {
-			Signup
+			FirstExperience
 			ToMainpage -wait 2
 		}
 		"l" {

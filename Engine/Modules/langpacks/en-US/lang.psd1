@@ -3,7 +3,7 @@
 	Mainname                  = Solutions
 	Mainpage                  = Solutions Toolbox
 	Update                    = Check for updates
-	Reset                     = Reset
+	FirstExperience           = First Experience
 	Disable                   = Disabled
 	Done                      = Complete
 	OK                        = OK

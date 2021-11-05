@@ -3,7 +3,7 @@
 	Mainname                  = 問題解決
 	Mainpage                  = ソリューション ツールボックス
 	Update                    = ソリューション ツールボックス
-	Reset                     = リセット
+	FirstExperience           = 初体験
 	Disable                   = 無効にする
 	Done                      = 実施する
 	OK                        = 決定する

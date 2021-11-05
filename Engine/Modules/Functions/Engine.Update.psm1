@@ -537,8 +537,8 @@ Function Compressing
 		return $true
 	}
 
-	if (Test-Path -Path "$(GetArchitecturePacker -Path "$($Global:UniqueMainFolder)\Engine\AIO\7zPacker")\7z.exe" -PathType Leaf) {
-		$Global:Zip = "$(GetArchitecturePacker -Path "$($Global:UniqueMainFolder)\Engine\AIO\7zPacker")\7z.exe"
+	if (Test-Path -Path "$(GetArchitecturePacker -Path "$($Global:EngineMainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
+		$Global:Zip = "$(GetArchitecturePacker -Path "$($Global:EngineMainFolder)\AIO\7zPacker")\7z.exe"
 		return $true
 	}
 	return $false

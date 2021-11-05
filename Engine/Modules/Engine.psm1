@@ -5,6 +5,9 @@
 Push-Location "$($PSScriptRoot)\..\..\"
 $Global:UniqueMainFolder = $(Get-Location)
 $Global:UniqueID = [IO.Path]::GetFileName($(Get-Location))
+
+Push-Location "$($PSScriptRoot)\..\"
+$Global:EngineMainFolder = $(Get-Location)
 $Global:AuthorURL = "https://fengyi.tel"
 
 <#

@@ -3,7 +3,7 @@
 	Mainname                  = 해결책
 	Mainpage                  = 솔루션 도구 상자
 	Update                    = 업데이트 확인
-	Reset                     = 초기화
+	FirstExperience           = 첫 경험
 	Disable                   = 비활성화
 	Done                      = 수행하다
 	OK                        = 결정

@@ -3,7 +3,7 @@
 	Mainname                  = 解決方案
 	Mainpage                  = 解決方案工具箱
 	Update                    = 檢查更新
-	Reset                     = 重置
+	FirstExperience           = 首次體驗
 	Disable                   = 禁用
 	Done                      = 完成
 	OK                        = 確定

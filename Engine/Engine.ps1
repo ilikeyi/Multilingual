@@ -68,7 +68,7 @@ if ($Functions) {
 }
 
 if ($FirstExperience) {
-	Signup -FirstExperience
+	FirstExperience -Force
 } else {
 	Mainpage
 }

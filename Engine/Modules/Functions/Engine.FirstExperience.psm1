@@ -1,9 +1,9 @@
 ﻿<#
  .Synopsis
-  Signup
+  FirstExperience
 
  .Description
-  Signup Feature Modules
+  FirstExperience Feature Modules
 
  .NOTES
   Author:  Yi
@@ -14,19 +14,19 @@
 	.Register user interface
 	.注册用户界面
 #>
-Function Signup
+Function FirstExperience
 {
 	param
 	(
-		[switch]$FirstExperience,
+		[switch]$Force,
 		[switch]$Quit
 	)
 	if ($Quit) { $Global:QUIT = $true }
 
-	Logo -Title $($lang.Reset)
-	Write-Host "   $($lang.Reset)`n   ---------------------------------------------------"
+	Logo -Title $($lang.FirstExperience)
+	Write-Host "   $($lang.FirstExperience)`n   ---------------------------------------------------"
 
-	if ($FirstExperience) {
+	if ($Force) {
 		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\DoNotUpdate" -PathType Leaf) {
 			Write-Host "   - $($lang.UpdateSkipUpdateCheck)"
 		} else {
@@ -41,44 +41,44 @@ Function Signup
 			-Reboot | Restart the computer
 			          重新启动计算机
 		#>
-		SignupProcess
+		FirstExperienceProcess
 	} else {
-		SignupGUI
+		FirstExperienceGUI
 	}
 }
 
-Function SignupGUI
+Function FirstExperienceGUI
 {
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
 
-	Write-Host "`n   $($lang.Reset)"
+	Write-Host "`n   $($lang.FirstExperience)"
 
-	$GUISignupCanelClick = {
+	$GUIFECanelClick = {
 		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
-		$GUISignup.Close()
+		$GUIFE.Close()
 	}
-	$GUISignupOKClick = {
-		$GUISignup.Hide()
+	$GUIFEOKClick = {
+		$GUIFE.Hide()
 
-		if ($GUISignupLangAndKeyboard.Checked) {
+		if ($GUIFELangAndKeyboard.Checked) {
 			LanguageSetting
 			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 
-		if ($GUISignupDeployCleanup.Checked) {
+		if ($GUIFEDeployCleanup.Checked) {
 			RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
 		}
 
-		if ($GUISignupReboot.Checked) {
+		if ($GUIFEReboot.Checked) {
 			Restart-Computer -Force
 		}
-		$GUISignup.Close()
+		$GUIFE.Close()
 	}
-	$GUISignup         = New-Object system.Windows.Forms.Form -Property @{
+	$GUIFE             = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 550
@@ -90,7 +90,7 @@ Function SignupGUI
 		ControlBox     = $False
 		BackColor      = "#ffffff"
 	}
-	$GUISignupPanel    = New-Object system.Windows.Forms.Panel -Property @{
+	$GUIFEPanel        = New-Object system.Windows.Forms.Panel -Property @{
 		Height         = 520
 		Width          = 450
 		BorderStyle    = 0
@@ -99,71 +99,71 @@ Function SignupGUI
 		Padding        = "8,0,8,0"
 		Dock           = 1
 	}
-	$GUISignupLangAndKeyboard = New-Object System.Windows.Forms.CheckBox -Property @{
+	$GUIFELangAndKeyboard = New-Object System.Windows.Forms.CheckBox -Property @{
 		Location       = "10,5"
 		Height         = 22
 		Width          = 390
 		Text           = $lang.SettingLangAndKeyboard
 		Checked        = $True
 	}
-	$GUISignupDeployCleanup = New-Object System.Windows.Forms.Checkbox -Property @{
+	$GUIFEDeployCleanup = New-Object System.Windows.Forms.Checkbox -Property @{
 		Height         = 22
 		Width          = 505
 		Text           = $lang.DeployCleanup
 		Location       = "12,538"
 		Checked        = $True
 	}
-	$GUISignupReboot   = New-Object System.Windows.Forms.Checkbox -Property @{
+	$GUIFEReboot       = New-Object System.Windows.Forms.Checkbox -Property @{
 		Height         = 22
 		Width          = 505
 		Text           = $lang.Reboot
 		Location       = "12,565"
 	}
-	$GUISignupOK       = New-Object system.Windows.Forms.Button -Property @{
+	$GUIFEOK           = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "8,595"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUISignupOKClick
+		add_Click      = $GUIFEOKClick
 		Text           = $lang.OK
 	}
-	$GUISignupCanel    = New-Object system.Windows.Forms.Button -Property @{
+	$GUIFECanel        = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "8,635"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUISignupCanelClick
+		add_Click      = $GUIFECanelClick
 		Text           = $lang.Cancel
 	}
-	$GUISignup.controls.AddRange((
-		$GUISignupPanel,
-		$GUISignupDeployCleanup,
-		$GUISignupReboot,
-		$GUISignupOK,
-		$GUISignupCanel
+	$GUIFE.controls.AddRange((
+		$GUIFEPanel,
+		$GUIFEDeployCleanup,
+		$GUIFEReboot,
+		$GUIFEOK,
+		$GUIFECanel
 	))
-	$GUISignupPanel.controls.AddRange((
-		$GUISignupLangAndKeyboard
+	$GUIFEPanel.controls.AddRange((
+		$GUIFELangAndKeyboard
 	))
  
 	switch ($Global:IsLang) {
 		"zh-CN" {
-			$GUISignup.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
+			$GUIFE.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
 		}
 		Default {
-			$GUISignup.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+			$GUIFE.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
 		}
 	}
 
-	$GUISignup.FormBorderStyle = 'Fixed3D'
-	$GUISignup.ShowDialog() | Out-Null
+	$GUIFE.FormBorderStyle = 'Fixed3D'
+	$GUIFE.ShowDialog() | Out-Null
 }
 
 <#
 	.Start processing registration tasks
 	.开始处理注册任务
 #>
-Function SignupProcess
+Function FirstExperienceProcess
 {
 	param (
 		[switch]$Reboot
@@ -212,7 +212,7 @@ Function SignupProcess
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
 		}
 	
-		$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:UniqueMainFolder)\Engine\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+		$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:EngineMainFolder)\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
@@ -353,7 +353,7 @@ Function FirstDeployment
 	#>
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ClearEngine" -PathType Leaf) {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		RemoveTree -Path "$($Global:UniqueMainFolder)\Engine"
+		RemoveTree -Path "$($Global:EngineMainFolder)"
 	}
 
 	<#

@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Main page
 	Mainname                  = 해결책
-	Mainpage                  = 솔루션 도구 상자
 	Update                    = 업데이트 확인
 	FirstExperience           = 첫 경험
 	Disable                   = 비활성화
@@ -41,8 +40,9 @@
 	UseZip                    = {0} 압축 해제 소프트웨어 사용
 	UseOSZip                  = 시스템과 함께 제공되는 압축 해제 소프트웨어 사용
 	UserCancel                = 사용자가 작업을 취소했습니다.
-	SetLang                   = 시스템 기본 언어 설정 :
-	KeyboardSequence          = 키보드 시퀀스 :
+	SetLang                   = 시스템 기본 언어 설정: \
+	SetTimezone               = 시간대 설정: \
+	KeyboardSequence          = 키보드 시퀀스: \
 	Wubi                      = Wubi
 	Pinyi                     = 병음
 

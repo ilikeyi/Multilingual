@@ -189,7 +189,7 @@ Function UpdateCreateGUI
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
-   buildstring: $($ProductVersion).bs_release.210814-1208`n"
+   buildstring: $($ProductVersion).bs_release.220110-1208`n"
 
 	Write-Host "   $($lang.UpdateCreate)`n   ---------------------------------------------------"
 
@@ -515,7 +515,7 @@ function CreateVersion
 		"url":  "$($Global:AuthorURL)"
 	},
 	"version": {
-		"buildstring": "$($CurrentVersion).bs_release.210814-1208",
+		"buildstring": "$($CurrentVersion).bs_release.220110-1208",
 		"version":     "$($CurrentVersion)",
 		"minau":       "$($LowVer)"
 	},

@@ -24,7 +24,7 @@ Function Logo
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
-   buildstring: $($ProductVersion).bs_release.210814-1208`n"
+   buildstring: $($ProductVersion).bs_release.220110-1208`n"
 }
 
 <#
@@ -33,8 +33,8 @@ Function Logo
 #>
 Function Mainpage
 {
-	Logo -Title $($lang.Mainpage)
-	Write-Host "   $($lang.Mainpage)`n   ---------------------------------------------------"
+	Logo -Title $($lang.Mainname)
+	Write-Host "   $($lang.Mainname)`n   ---------------------------------------------------"
 
 	write-host "   1. $($lang.Update)
    2. $($lang.FirstExperience)" -ForegroundColor Green

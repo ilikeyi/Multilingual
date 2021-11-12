@@ -101,7 +101,7 @@ Function LanguageSetting
 		.设置区域编码，根据已知语言匹配，防止非法匹配。
 	#>
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-		$LanguageName = $Global:AvailableLanguages[$i][1]
+		$LanguageName = $Global:AvailableLanguages[$i][2]
 
 		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
 			Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
@@ -113,7 +113,14 @@ Function LanguageSetting
 		.Setting time
 		.设置时间
 	#>
-#	Set-TimeZone -Id "China Standard Time" -PassThru | Out-Null
+	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
+		if ($Global:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
+			Write-Host "`n   $($lang.SetTimezone)"
+			Write-Host "   $($Global:AvailableLanguages[$i][5])" -ForegroundColor Green
+			Set-TimeZone -Id $Global:AvailableLanguages[$i][5] -PassThru | Out-Null
+			break
+		}
+	}
 
 	<#
 		.Beta: Use Unicode UTF-8 for worldwide language support

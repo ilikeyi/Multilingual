@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Main page
 	Mainname                  = 解决方案
-	Mainpage                  = 解决方案工具箱
 	Update                    = 检查更新
 	FirstExperience           = 首次体验
 	Disable                   = 禁用
@@ -42,6 +41,7 @@
 	UseOSZip                  = 使用系统自带的解压软件
 	UserCancel                = 用户已取消操作。
 	SetLang                   = 设置系统首选语言：
+	SetTimezone               = 设置时区：
 	KeyboardSequence          = 键盘顺序：
 	Wubi                      = 五笔
 	Pinyi                     = 拼音

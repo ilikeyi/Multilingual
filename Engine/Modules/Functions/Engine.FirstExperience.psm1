@@ -82,7 +82,7 @@ Function FirstExperienceGUI
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 550
-		Text           = $lang.Reset
+		Text           = $lang.FirstExperience
 		TopMost        = $True
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
@@ -270,6 +270,21 @@ Function FirstDeployment
 		}
 	}
 
+	<#
+		.Allow the first pre-experience, as planned
+		.允许首次预体验，按计划
+	#>
+	Write-Host "`n   $($lang.FirstExpFinishOnDemand)"
+	if (Test-Path "$($PSScriptRoot)\..\..\Deploy\FirstPreExperience" -PathType Leaf)
+	{
+		Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
+
+
+
+	} else {
+		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+	}
+
 	Write-Host "   $($lang.FirstDeployment)"
 	Get-Command -CommandType function | ForEach-Object {
 		if ($_ -like "DeployTask*") {
@@ -300,19 +315,6 @@ Function FirstDeployment
 	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
 		write-host	"   - $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)""" -Wait -WindowStyle Minimized
-	}
-
-	<#
-		.Allow the first pre-experience, as planned
-		.允许首次预体验，按计划
-	#>
-	Write-Host "`n   $($lang.FirstExpFinishOnDemand)"
-	if (Test-Path "$($PSScriptRoot)\..\..\Deploy\FirstPreExperience" -PathType Leaf)
-	{
-		Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
-
-	} else {
-		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
 
 	<#

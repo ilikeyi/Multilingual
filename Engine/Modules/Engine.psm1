@@ -11,14 +11,17 @@ $Global:EngineMainFolder = $(Get-Location)
 $Global:AuthorURL = "https://fengyi.tel"
 
 <#
-	.Log file name prefix
-	.日志文件名前缀
+	.The log is saved to the directory name
+	.日志保存到目录名称
 #>
 $Global:SaveTo = "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
 
 <#
 	.Available languages
 	.可用语言
+
+	.Sorting rules: group type, regional language, short name, region name, time region
+	.排序规则：分组类型、区域语言、短名称、区域名称、时间区域
 
 	.Group type: 1. Language pack; 2. Language interface pack (LIP)
 	.分组类型：1、语言包；2、语言界面包（LIP）
@@ -27,130 +30,130 @@ $Global:SaveTo = "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
 	.从 Windows 11 开始，新增五种，共计 43 种（ca-ES、eu-ES、gl-ES、id-ID、vi-VN）
 
 	https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows
+	https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11
 #>
 $Global:AvailableLanguages = @(
 	<#
 		.Language pack
 		.语言包
 	#>
-	("1", "ar-SA",          "ar",              "Arabic - Saudi Arabia"),
-	("1", "bg-BG",          "bg",              "Bulgarian (Bulgaria)"),
-	("1", "zh-HK",          "hk",              "Chinese - Hong Kong SAR"),
-	("1", "zh-CN",          "cn",              "Chinese - China"),
-	("1", "zh-TW",          "tw",              "Chinese - Taiwan"),
-	("1", "hr-HR",          "hr",              "Croatian (Croatia)"),
-	("1", "cs-CZ",          "dz",              "Czech (Czech Republic)"),
-	("1", "da-DK",          "dk",              "Danish (Denmark)"),
-	("1", "nl-NL",          "nl",              "Dutch - Netherlands"),
-	("1", "en-US",          "en",              "English - United States"),
-	("1", "en-GB",          "gb",              "English - Great Britain"),
-	("1", "et-EE",          "ee",              "Estonian (Estonia)"),
-	("1", "fi-FI",          "fi",              "Finnish (Finland)"),
-	("1", "fr-CA",          "ca",              "French - Canada"),
-	("1", "fr-FR",          "fr",              "French - France"),
-	("1", "de-DE",          "de",              "German - Germany"),
-	("1", "el-GR",          "gr",              "Greek (Greece)"),
-	("1", "he-IL",          "il",              "Hebrew (Israel)"),
-	("1", "hu-HU",          "hu",              "Hungarian (Hungary)"),
-	("1", "it-IT",          "it",              "Italian - Italy"),
-	("1", "ja-JP",          "jp",              "Japanese (Japan)"),
-	("1", "ko-KR",          "kr",              "Korean (Korea)"),
-	("1", "lv-LV",          "lv",              "Latvian (Latvia)"),
-	("1", "lt-LT",          "lt",              "Lithuanian (Lithuania)"),
-	("1", "nb-NO",          "no",              "Norwegian (Bokm?l) (Norway)"),
-	("1", "pl-PL",          "pl",              "Polish (Poland)"),
-	("1", "pt-BR",          "br",              "Portuguese - Brazil"),
-	("1", "pt-PT",          "pt",              "Portuguese - Portugal"),
-	("1", "ro-RO",          "ro",              "Romanian (Romania)"),
-	("1", "ru-RU",          "ru",              "Russian (Russia)"),
-	("1", "sk-SK",          "sk",              "Slovak (Slovakia)"),
-	("1", "sl-SI",          "si",              "Slovenian (Slovenia)"),
-	("1", "es-MX",          "mx",              "Spanish (Mexico)"),
-	("1", "es-ES",          "es-ES",           "Spanish (Castilian)"),
-	("1", "sv-SE",          "se",              "Swedish (Sweden)"),
-	("1", "th-TH",          "th",              "Thai (Thailand)"),
-	("1", "tr-TR",          "tr",              "Turkish (Turkey)"),
-	("1", "uk-UA",          "ua",              "Ukrainian (Ukraine)"),
-	("1", "ca-es",          "ca-es",           "Catalan (Spain)"),
-	("1", "eu-es",          "eu-es",           "Basque (Spain)"),
-	("1", "gl-es",          "gl",              "Galician (Spain)"),
-	("1", "id-id",          "id",              "Indonesian (Indonesia)"),
-	("1", "vi-vn",          "vi-vn",           "Vietnamese (Viet Nam)"),
-	("1", "sr-latn-rs",     "sr-latn-rs",      "Serbian (Latin, Serbia)"),
+	("1",  "1025",  "ar-SA",          "ar",              "Arabic - Saudi Arabia",                          "Argentina Standard Time"),
+	("1",  "1026",  "bg-BG",          "bg",              "Bulgarian (Bulgaria)",                           "FLE Standard Time"),
+	("1",  "3076",  "zh-HK",          "hk",              "Chinese - Hong Kong SAR",                        "China Standard Time"),
+	("1",  "2052",  "zh-CN",          "cn",              "Chinese - China",                                "China Standard Time"),
+	("1",  "1028",  "zh-TW",          "tw",              "Chinese - Taiwan",                               "Taipei Standard Time"),
+	("1",  "1050",  "hr-HR",          "hr",              "Croatian (Croatia)",                             "Central European Standard Time"),
+	("1",  "1029",  "cs-CZ",          "dz",              "Czech (Czech Republic)",                         "W. Central Africa Standard Time"),
+	("1",  "1030",  "da-DK",          "dk",              "Danish (Denmark)",                               "Romance Standard Time"),
+	("1",  "1043",  "nl-NL",          "nl",              "Dutch - Netherlands",                            "W. Europe Standard Time"),
+	("1",  "1033",  "en-US",          "en",              "English - United States",                        "Pacific Standard Time"),
+	("1",  "2057",  "en-GB",          "gb",              "English - Great Britain",                        "GMT Standard Time"),
+	("1",  "1061",  "et-EE",          "ee",              "Estonian (Estonia)",                             "FLE Standard Time"),
+	("1",  "1035",  "fi-FI",          "fi",              "Finnish (Finland)",                              "FLE Standard Time"),
+	("1",  "3084",  "fr-CA",          "ca",              "French - Canada",                                "Eastern Standard Time"),
+	("1",  "1036",  "fr-FR",          "fr",              "French - France",                                "Central European Time"),
+	("1",  "1031",  "de-DE",          "de",              "German - Germany",                               "W. Europe Standard Time"),
+	("1",  "1032",  "el-GR",          "gr",              "Greek (Greece)",                                 "GTB Standard Time"),
+	("1",  "1037",  "he-IL",          "il",              "Hebrew (Israel)",                                "Israel Standard Time"),
+	("1",  "1038",  "hu-HU",          "hu",              "Hungarian (Hungary)",                            "Central Europe Standard Time"),
+	("1",  "1040",  "it-IT",          "it",              "Italian - Italy",                                "W. Europe Standard Time"),
+	("1",  "1041",  "ja-JP",          "jp",              "Japanese (Japan)",                               "Tokyo Standard Time"),
+	("1",  "1042",  "ko-KR",          "kr",              "Korean (Korea)",                                 "Korea Standard Time"),
+	("1",  "1062",  "lv-LV",          "lv",              "Latvian (Latvia)",                               "FLE Standard Time"),
+	("1",  "1063",  "lt-LT",          "lt",              "Lithuanian (Lithuania)",                         "FLE Standard Time"),
+	("1",  "1044",  "nb-NO",          "no",              "Norwegian (Bokm?l) (Norway)",                    "W. Europe Standard Time"),
+	("1",  "1045",  "pl-PL",          "pl",              "Polish (Poland)",                                "Central European Standard Time"),
+	("1",  "1046",  "pt-BR",          "br",              "Portuguese - Brazil",                            "E. South America Standard Time"),
+	("1",  "2070",  "pt-PT",          "pt",              "Portuguese - Portugal",                          "GMT Standard Time"),
+	("1",  "1048",  "ro-RO",          "ro",              "Romanian (Romania)",                             "GTB Standard Time"),
+	("1",  "1049",  "ru-RU",          "ru",              "Russian (Russia)",                               "Russian Standard Time"),
+	("1",  "1051",  "sk-SK",          "sk",              "Slovak (Slovakia)",                              "Central Europe Standard Time"),
+	("1",  "1060",  "sl-SI",          "si",              "Slovenian (Slovenia)",                           "Central Europe Standard Time"),
+	("1",  "2058",  "es-MX",          "mx",              "Spanish (Mexico)",                               "Central Standard Time (Mexico)"),
+	("1",  "3082",  "es-ES",          "es-ES",           "Spanish (Castilian)",                            "Romance Standard Time"),
+	("1",  "1053",  "sv-SE",          "se",              "Swedish (Sweden)",                               "W. Europe Standard Time"),
+	("1",  "1054",  "th-TH",          "th",              "Thai (Thailand)",                                "SE Asia Standard Time"),
+	("1",  "1055",  "tr-TR",          "tr",              "Turkish (Turkey)",                               "Turkey Standard Time"),
+	("1",  "1058",  "uk-UA",          "ua",              "Ukrainian (Ukraine)",                            "FLE Standard Time"),
+	("1",  "1027",  "ca-es",          "ca-es",           "Catalan (Spain)",                                "Romance Standard Time"),
+	("1",  "1069",  "eu-es",          "eu-es",           "Basque (Spain)",                                 "Romance Standard Time"),
+	("1",  "1110",  "gl-es",          "gl",              "Galician (Spain)",                               "Greenland Standard Time"),
+	("1",  "1057",  "id-id",          "id",              "Indonesian (Indonesia)",                         "SE Asia Standard Time"),
+	("1",  "1066",  "vi-vn",          "vi-vn",           "Vietnamese (Viet Nam)",                          "SE Asia Standard Time"),
+	("1",  "9242",  "sr-latn-rs",     "sr-latn-rs",      "Serbian (Latin, Serbia)",                        "Central Europe Standard Time"),
 
 	<#
 		.Language Interface Pack (LIP)
 		.语言界面包 (LIP)
 	#>
-	("2", "af-za",          "af",              "Afrikaans (South Africa)"),
-	("2", "am-et",          "am-et",           "Amharic (Ethiopia)	"),
-	("2", "as-in",          "as-in",           "Assamese (India)"),
-	("2", "az-latn-az",     "az-latn-az",      "Azerbaijan"),
-	("2", "be-by",          "be-by",           "Belarusian (Belarus)"),
-	("2", "bn-bd",          "bn-bd",           "Bangla (Bangladesh)"),
-	("2", "bn-in",          "bn-in",           "Bangla (India)"),
-	("2", "bs-latn-ba",     "bs-latn-ba",      "Bosnian (Latin)"),
-	("2", "ca-es-valencia", "ca-es-valencia",  "Valencian"),
-	("2", "chr-cher-us",    "chr-cher-us",     "Cherokee"),
-	("2", "cy-gb",          "cy",              "Welsh (United Kingdom)"),
-	("2", "fa-ir",          "fa",              "Farsi (Iran)"),
-	("2", "fil-ph",         "fil-ph",          "Filipino"),
-	("2", "ga-ie",          "ga-ie",           "Irish (Ireland)"),
-	("2", "gd-gb",          "gd-gb",           "Scottish Gaelic	"),
-	("2", "gu-in",          "gu",              "Gujarati (India)"),
-	("2", "ha-latn-ng",     "ha-latn-ng",      "Hausa (Latin, Nigeria)"),
-	("2", "hi-in",          "hi",              "Hindi (India)"),
-	("2", "hy-am",          "hy",              "Armenian (Armenia)"),
-	("2", "ig-ng",          "ig-ng",           "Igbo (Nigeria)"),
-	("2", "is-is",          "is",              "Icelandic (Iceland)"),
-	("2", "ka-ge",          "ka",              "Georgian (Georgia)"),
-	("2", "kk-kz",          "kk",              "Kazakh (Kazakhstan)"),
-	("2", "km-kh",          "km-kh",           "Khmer (Cambodia)"),
-	("2", "kn-in",          "kn",              "Kannada (India)"),
-	("2", "kok-in",         "kok",             "Konkani (India)"),
-	("2", "ku-arab-iq",     "ku-arab-iq",      "Central Kurdish"),
-	("2", "ky-kg",          "ky",              "Kyrgyz (Kyrgyzstan)"),
-	("2", "lb-lu",          "lb-lu",           "Luxembourgish (Luxembourg)"),
-	("2", "lo-la",          "lo-la",           "Lao (Laos)"),
-	("2", "mi-nz",          "mi",              "Maori (New Zealand)"),
-	("2", "mk-mk",          "mk",              "FYRO Macedonian"),
-	("2", "ml-in",          "ml-in",           "Malayalam (India)"),
-	("2", "mn-mn",          "mn",              "Mongolian (Mongolia)"),
-	("2", "mr-in",          "mr",              "Marathi (India)"),
-	("2", "ms-my",          "ms-my",           "Malay (Malaysia)"),
-	("2", "mt-mt",          "mt",              "Maltese (Malta)"),
-	("2", "ne-np",          "ne-np",           "Nepali (Federal Democratic Republic of Nepal)"),
-	("2", "nn-no",          "nn-no",           "Norwegian (Nynorsk) (Norway)"),
-	("2", "nso-za",         "nso-za",          "Sesotho sa Leboa (South Africa)"),
-	("2", "or-in",          "or-in",           "Odia (India)"),
-	("2", "pa-arab-pk",     "pa-arab-pk",      "pa-arab-pk"),
-	("2", "pa-in",          "pa",              "Punjabi (India)"),
-	("2", "prs-af",         "prs-af",          "Dari"),
-	("2", "quc-latn-gt",    "quc-latn-gt",     "K'iche' (Guatemala)"),
-	("2", "quz-pe",         "quz-pe",          "Quechua (Peru)"),
-	("2", "rw-rw",          "rw-rw",           "Kinyarwanda"),
-	("2", "sd-arab-pk",     "sd-arab-pk",      "Sindhi (Arabic)"),
-	("2", "si-lk",          "si-lk",           "Sinhala (Sri Lanka)"),
-	("2", "sq-al",          "sq",              "Albanian (Albania)"),
-	("2", "sr-cyrl-ba",     "sr-cyrl-ba",      "Serbian (Cyrillic, Bosnia and Herzegovina)"),
-	("2", "sr-cyrl-rs",     "sr-cyrl-rs",      "Serbian (Cyrillic, Serbia)"),
-	("2", "sw-ke",          "sw-ke",           "Kiswahili (Kenya)"),
-	("2", "ta-in",          "ta-in",           "Tamil (India)"),
-	("2", "te-in",          "te-in",           "Telugu (India)"),
-	("2", "tg-cyrl-tj",     "tg-cyrl-tj",      "Tajik (Cyrillic)"),
-	("2", "ti-et",          "ti-et",           "Tigrinya"),
-	("2", "tk-tm",          "tk-tm",           "Turkmen"),
-	("2", "tn-za",          "tn-za",           "Tswana (South Africa)"),
-	("2", "tt-ru",          "tt-ru",           "Tatar (Russia)"),
-	("2", "ug-cn",          "ug-cn",           "Uyghur"),
-	("2", "ur-pk",          "ur-pk",           "Urdu (Islamic Republic of Pakistan)"),
-	("2", "uz-latn-uz",     "uz-latn-uz",      "Uzbek (Latin)"),
-	("2", "wo-sn",          "wo-sn",           "Wolof"),
-	("2", "xh-za",          "xh-za",           "Xhosa (South Africa)"),
-	("2", "yo-ng",          "yo-ng",           "Yoruba (Nigeria)"),
-	("2", "zu-za",          "zu-za",           "Zulu (South Africa)")
+	("2",  "1078",  "af-za",          "af",              "Afrikaans (South Africa)",                       "Afghanistan Standard Time"),
+	("2",  "1118",  "am-et",          "am-et",           "Amharic (Ethiopia)",                             "E. Africa Standard Time"),
+	("2",  "1101",  "as-in",          "as-in",           "Assamese (India)",                               "India Standard Time"),
+	("2",  "1068",  "az-latn-az",     "az-latn-az",      "Azerbaijan",                                     "Azerbaijan Standard Time"),
+	("2",  "1059",  "be-by",          "be-by",           "Belarusian (Belarus)",                           "W. Central Africa Standard Time"),
+	("2",  "2117",  "bn-bd",          "bn-bd",           "Bangla (Bangladesh)",                            "Bangladesh Standard Time"),
+	("2",  "1093",  "bn-in",          "bn-in",           "Bangla (India)",                                 "India Standard Time"),
+	("2",  "5146",  "bs-latn-ba",     "bs-latn-ba",      "Bosnian (Latin)",                                "Central European Standard Time"),
+	("2",  "2051",  "ca-es-valencia", "ca-es-valencia",  "Valencian",                                      "Romance Standard Time"),
+	("2",  "1116",  "chr-cher-us",    "chr-cher-us",     "Cherokee",                                       "Central Standard Time (Mexico)"),
+	("2",  "1106",  "cy-gb",          "cy",              "Welsh (United Kingdom)",                         "E. Europe Standard Time"),
+	("2",  "1065",  "fa-ir",          "fa",              "Farsi (Iran)",                                   "Iran Standard Time"),
+	("2",  "1124",  "fil-ph",         "fil-ph",          "Filipino",                                       "Singapore Standard Time"),
+	("2",  "2108",  "ga-ie",          "ga-ie",           "Irish (Ireland)",                                "GMT Standard Time"),
+	("2",  "1169",  "gd-gb",          "gd-gb",           "Scottish Gaelic",                                "GMT Standard Time"),
+	("2",  "1095",  "gu-in",          "gu",              "Gujarati (India)",                               "West Pacific Standard Time"),
+	("2",  "1128",  "ha-latn-ng",     "ha-latn-ng",      "Hausa (Latin, Nigeria)",                         "W. Central Africa Standard Time"),
+	("2",  "1081",  "hi-in",          "hi",              "Hindi (India)",                                  "India Standard Time"),
+	("2",  "1067",  "hy-am",          "hy",              "Armenian (Armenia)",                             "Caucasus Standard Time"),
+	("2",  "1136",  "ig-ng",          "ig-ng",           "Igbo (Nigeria)",                                 "W. Central Africa Standard Time"),
+	("2",  "1039",  "is-is",          "is",              "Icelandic (Iceland)",                            "Greenwich Standard Time"),
+	("2",  "1079",  "ka-ge",          "ka",              "Georgian (Georgia)",                             "Greenwich Standard Time"),
+	("2",  "1087",  "kk-kz",          "kk",              "Kazakh (Kazakhstan)",                            "Central Asia Standard Time"),
+	("2",  "1107",  "km-kh",          "km-kh",           "Khmer (Cambodia)",                               "SE Asia Standard Time"),
+	("2",  "1099",  "kn-in",          "kn",              "Kannada (India)",                                "SA Western Standard Time"),
+	("2",  "1111",  "kok-in",         "kok",             "Konkani (India)",                                "India Standard Time"),
+	("2",  "1170",  "ku-arab-iq",     "ku-arab-iq",      "Central Kurdish",                                "Arabic Standard Time"),
+	("2",  "1088",  "ky-kg",          "ky",              "Kyrgyz (Kyrgyzstan)",                            "SA Pacific Standard Time"),
+	("2",  "1134",  "lb-lu",          "lb-lu",           "Luxembourgish (Luxembourg)",                     "W. Europe Standard Time"),
+	("2",  "1108",  "lo-la",          "lo-la",           "Lao (Laos)",                                     "SE Asia Standard Time"),
+	("2",  "1153",  "mi-nz",          "mi",              "Maori (New Zealand)",                            "New Zealand Standard Time"),
+	("2",  "1071",  "mk-mk",          "mk",              "FYRO Macedonian",                                "Central European Standard Time"),
+	("2",  "1100",  "ml-in",          "ml-in",           "Malayalam (India)",                              "Central European Standard Time"),
+	("2",  "1104",  "mn-mn",          "mn",              "Mongolian (Mongolia)",                           "Ulaanbaatar Standard Time"),
+	("2",  "1102",  "mr-in",          "mr",              "Marathi (India)",                                "Greenwich Standard Time"),
+	("2",  "1086",  "ms-my",          "ms-my",           "Malay (Malaysia)",                               "Singapore Standard Time"),
+	("2",  "1082",  "mt-mt",          "mt",              "Maltese (Malta)",                                "W. Europe Standard Time"),
+	("2",  "1121",  "ne-np",          "ne-np",           "Nepali (Federal Democratic Republic of Nepal)",  "Nepal Standard Time"),
+	("2",  "2068",  "nn-no",          "nn-no",           "Norwegian (Nynorsk) (Norway)",                   "W. Europe Standard Time"),
+	("2",  "1132",  "nso-za",         "nso-za",          "Sesotho sa Leboa (South Africa)",                "South Africa Standard Time"),
+	("2",  "1096",  "or-in",          "or-in",           "Odia (India)",                                   "India Standard Time"),
+	("2",  "2118",  "pa-arab-pk",     "pa-arab-pk",      "Punjabi (Arabic, Pakistan)",                     "Pakistan Standard Time"),
+	("2",  "1094",  "pa-in",          "pa",              "Punjabi (India)",                                "SA Pacific Standard Time"),
+	("2",  "1164",  "prs-af",         "prs-af",          "Dari",                                           "SA Pacific Standard Time"),
+	("2",  "1158",  "quc-latn-gt",    "quc-latn-gt",     "K'iche' (Guatemala)",                            "Central America Standard Time"),
+	("2",  "3179",  "quz-pe",         "quz-pe",          "Quechua (Peru)",                                 "SA Pacific Standard Time"),
+	("2",  "1159",  "rw-rw",          "rw-rw",           "Kinyarwanda",                                    "South Africa Standard Time"),
+	("2",  "2137",  "sd-arab-pk",     "sd-arab-pk",      "Sindhi (Arabic)",                                "Pakistan Standard Time"),
+	("2",  "1115",  "si-lk",          "si-lk",           "Sinhala (Sri Lanka)",                            "Sri Lanka Standard Time"),
+	("2",  "1052",  "sq-al",          "sq",              "Albanian (Albania)",                             "Central Europe Standard Time"),
+	("2",  "7194",  "sr-cyrl-ba",     "sr-cyrl-ba",      "Serbian (Cyrillic, Bosnia and Herzegovina)",     "Central European Standard Time"),
+	("2",  "10266", "sr-cyrl-rs",     "sr-cyrl-rs",      "Serbian (Cyrillic, Serbia)",                     "Central Europe Standard Time"),
+	("2",  "1089",  "sw-ke",          "sw-ke",           "Kiswahili (Kenya)",                              "E. Africa Standard Time"),
+	("2",  "1097",  "ta-in",          "ta-in",           "Tamil (India)",                                  "India Standard Time"),
+	("2",  "1098",  "te-in",          "te-in",           "Telugu (India)",                                 "India Standard Time"),
+	("2",  "1064",  "tg-cyrl-tj",     "tg-cyrl-tj",      "Tajik (Cyrillic)",                               "West Asia Standard Time"),
+	("2",  "1139",  "ti-et",          "ti-et",           "Tigrinya",                                       "E. Africa Standard Time"),
+	("2",  "1090",  "tk-tm",          "tk-tm",           "Turkmen",                                        "West Asia Standard Time"),
+	("2",  "1074",  "tn-za",          "tn-za",           "Tswana (South Africa)",                          "South Africa Standard Time"),
+	("2",  "1092",  "tt-ru",          "tt-ru",           "Tatar (Russia)",                                 "Russian Standard Time"),
+	("2",  "1152",  "ug-cn",          "ug-cn",           "Uyghur",                                         "E. Africa Standard Time"),
+	("2",  "1056",  "ur-pk",          "ur-pk",           "Urdu (Islamic Republic of Pakistan)",            "Pakistan Standard Time"),
+	("2",  "1091",  "uz-latn-uz",     "uz-latn-uz",      "Uzbek (Latin)",                                  "West Asia Standard Time"),
+	("2",  "1160",  "wo-sn",          "wo-sn",           "Wolof",                                          "Greenwich Standard Time"),
+	("2",  "1076",  "xh-za",          "xh-za",           "Xhosa (South Africa)",                           "South Africa Standard Time"),
+	("2",  "1130",  "yo-ng",          "yo-ng",           "Yoruba (Nigeria)",                               "W. Central Africa Standard Time"),
+	("2",  "1130",  "zu-za",          "zu-za",           "Zulu (South Africa)",                            "South Africa Standard Time")
 )
-
 
 <#
 	.Language Module
@@ -337,15 +340,15 @@ Function LanguageSelectGUI
 	}
 
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-		if (Test-Path -Path "$($PSScriptRoot)\langpacks\$($Global:AvailableLanguages[$i][1])" -PathType Container) {
+		if (Test-Path -Path "$($PSScriptRoot)\langpacks\$($Global:AvailableLanguages[$i][2])" -PathType Container) {
 			$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
 				Height  = 28
 				Width   = 400
-				Text    = $Global:AvailableLanguages[$i][3]
-				Tag     = $Global:AvailableLanguages[$i][1]
+				Text    = $Global:AvailableLanguages[$i][4]
+				Tag     = $Global:AvailableLanguages[$i][2]
 			}
 
-			if ($Global:AvailableLanguages[$i][1] -eq $FlagsDefaultLanguage) {
+			if ($Global:AvailableLanguages[$i][2] -eq $FlagsDefaultLanguage) {
 				$CheckBox.Checked = $True
 			}
 

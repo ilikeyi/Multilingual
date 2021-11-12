@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Main page
 	Mainname                  = Solutions
-	Mainpage                  = Solutions Toolbox
 	Update                    = Check for updates
 	FirstExperience           = First Experience
 	Disable                   = Disabled
@@ -42,6 +41,7 @@
 	UseOSZip                  = Use the decompression software that comes with the system
 	UserCancel                = The user has cancelled the operation.
 	SetLang                   = Set system preferred language: \
+	SetTimezone               = Set time zone: \
 	KeyboardSequence          = Keyboard sequence: \
 	Wubi                      = Wubi
 	Pinyi                     = Pinyin

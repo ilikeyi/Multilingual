@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Main page
 	Mainname                  = 問題解決
-	Mainpage                  = ソリューション ツールボックス
 	Update                    = ソリューション ツールボックス
 	FirstExperience           = 初体験
 	Disable                   = 無効にする
@@ -41,7 +40,8 @@
 	UseZip                    = {0} を使用してソフトウェアを解凍します
 	UseOSZip                  = システムに付属の解凍ソフトウェアを使用します
 	UserCancel                = ユーザーが操作をキャンセルしました。
-	SetLang                   = システムの優先言語を設定します。
+	SetLang                   = システムの優先言語を設定します：
+	SetTimezone               = タイムゾーンの 設定：
 	KeyboardSequence          = キーボード シーケンス:
 	Wubi                      = ウビ
 	Pinyi                     = ピンイン

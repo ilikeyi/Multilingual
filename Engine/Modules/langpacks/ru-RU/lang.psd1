@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Main page
 	Mainname                  = решение
-	Mainpage                  = Панель инструментов решения
 	Update                    = Проверить обновления
 	FirstExperience           = Первый опыт
 	Disable                   = Запрещать
@@ -42,6 +41,7 @@
 	UseOSZip                  = Используйте программное
 	UserCancel                = Пользователь отменил операцию.
 	SetLang                   = Установить предпочтительный язык системы:
+	SetTimezone               = Установить часовой пояс:
 	KeyboardSequence          = последовательность клавиш:
 	Wubi                      = Вуби
 	Pinyi                     = Пиньинь

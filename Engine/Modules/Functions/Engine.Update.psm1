@@ -160,7 +160,7 @@ Function UpdateGUI
 		Height         = 720
 		Width          = 550
 		Text           = $lang.Update
-		TopMost        = $True
+		TopMost        = $False
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False

@@ -83,7 +83,7 @@ Function FirstExperienceGUI
 		Height         = 720
 		Width          = 550
 		Text           = $lang.FirstExperience
-		TopMost        = $True
+		TopMost        = $False
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False
@@ -174,11 +174,22 @@ Function FirstExperienceProcess
 		.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
 	#>
 	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\AppxDeploymentClient\" -TaskName "Pre-staged app cleanup" -ErrorAction SilentlyContinue | Out-Null
-	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
-	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
 
+	<#
+		.Prevent cleanup of unused language packs
+		.阻止清理未使用的语言包
+	#>
 	If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) { New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null }
 	Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
+	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
+
+	<#
+		.Block cleanup of unused Language Feature On Demand packages
+		.阻止清理未使用的 Language Feature On Demand 包
+	#>
+	If (-not (Test-Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput")) { New-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Force | Out-Null }
+	Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name "AllowLanguageFeaturesUninstall" -Type DWord -Value 0 -ErrorAction SilentlyContinue | Out-Null
+	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
 
 	<#
 		.After using the $OEM$ mode to add files, the default is read-only. Change all files to: Normal.

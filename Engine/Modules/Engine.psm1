@@ -279,7 +279,7 @@ Function LanguageSelectGUI
 		Height         = 720
 		Width          = 550
 		Text           = "Choose your country or region."
-		TopMost        = $True
+		TopMost        = $False
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False

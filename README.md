@@ -13,7 +13,7 @@ The main function:
 4. Automatically obtain the monolingual version and non-monolingual version adding rules;
 ```
 
-全自动添加 Windows 系统已知语言
+全自动添加 Windows 系统已安装的语言
 -
 
 主要功能：
@@ -25,12 +25,11 @@ The main function:
    https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview
 ```
 
-
 部署引擎分为二部分
+-
 可通过描述文件来干预部署过程。
 
-
-第一部分：先决部署
+* 第一部分：先决部署
 | 路径 | 描述文件 | 名称 |
 |---|---|---|
 | \Deploy | DoNotUpdate | 阻止部署引擎自动更新 |
@@ -41,8 +40,7 @@ The main function:
 | \Deploy | PrerequisitesReboot | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。 |
 
 
-
-第二部分：完成首次部署
+* 第二部分：完成首次部署
 | 路径 | 描述文件 | 名称 |
 |---|---|---|
 | \Deploy | PopupEngine | 允许首次弹出部署引擎主界面 |

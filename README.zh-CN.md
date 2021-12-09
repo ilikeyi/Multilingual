@@ -14,8 +14,7 @@ Automatically add known languages
 ```
 
 可用语言
-```
-* 包含：
+-
  * United States - English
  * 日本 - 日本語
  * 대한민국 - 한국어

@@ -13,6 +13,16 @@ The main function:
    https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview
 ```
 
+Available languages
+-
+ * United States - English
+ * 日本 - 日本語
+ * 대한민국 - 한국어
+ * Россия - Русский
+ * 简体中文 - 中国
+ * 繁體中文 - 中國
+
+
 The deployment engine is divided into two parts
 -
 The deployment process can be intervened through the description file.

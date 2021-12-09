@@ -21,7 +21,7 @@ The main function:
 1、支持在线升级；
 2、获取 Windows 操作系统已安装的语言包，自动添加；
 3、添加过程中，自动判断 S、SN 版，按规则添加；
-4、已遵循并满足“[语言概述](https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview)”的所有条件
+4、已遵循并满足 [语言概述](https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview) 的所有条件
 ```
 
 部署引擎分为二部分

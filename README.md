@@ -27,18 +27,18 @@ The main function:
 部署引擎分为二部分
 可通过描述文件来干预部署过程。
 
-第一部分：先决部署
-| 路径             | 描述文件            | 名称                                                                    |
-|------------------|---------------------|-------------------------------------------------------------------------|
-| \Deploy          | DoNotUpdate         | 阻止部署引擎自动更新                                                    |
-| \Deploy          | ExcludeDefender     | 添加主目录到 Defend 排除目录                                            |
-| \Deploy          | SyncVolumeName      | 系统盘卷标名与主目录相同                                                |
-| \Deploy          | UseUTF8             | Beta 版：使用 Unicode UTF-8 提供全球语言支持                            |
-| \Deploy\Regional |                     | 更改系统区域设置                                                        |
-| \Deploy          | PrerequisitesReboot | 重新启动计算机 完成先决部署后重新启动计算机，可解决需重启才生效的问题。 |
+#第一部分：先决部署
+| 路径 | 描述文件 | 名称 |
+|---|---|---|
+| \Deploy | DoNotUpdate | 阻止部署引擎自动更新 |
+| \Deploy | ExcludeDefender | 添加主目录到 Defend 排除目录 |
+| \Deploy | SyncVolumeName | 系统盘卷标名与主目录相同 |
+| \Deploy | UseUTF8 | Beta 版：使用 Unicode UTF-8 提供全球语言支持 |
+| \Deploy\Regional |  | 更改系统区域设置 |
+| \Deploy | PrerequisitesReboot | 重新启动计算机<br><br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。 |
 
 
-第二部分：完成首次部署
+#第二部分：完成首次部署
 PopupEngine             | 允许首次弹出部署引擎主界面
 FirstPreExperience      | 允许首次预体验，按计划
 ResetExecutionPolicy    | 恢复 PowerShell 执行策略：受限

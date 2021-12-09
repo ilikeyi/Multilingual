@@ -25,8 +25,10 @@ The main function:
    https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview
 ```
 
+
 部署引擎分为二部分
 可通过描述文件来干预部署过程。
+
 
 第一部分：先决部署
 | 路径 | 描述文件 | 名称 |
@@ -37,6 +39,7 @@ The main function:
 | \Deploy | UseUTF8 | Beta 版：使用 Unicode UTF-8 提供全球语言支持 |
 | \Deploy\Regional | 区域标记 | 更改系统区域设置 |
 | \Deploy | PrerequisitesReboot | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。 |
+
 
 
 第二部分：完成首次部署

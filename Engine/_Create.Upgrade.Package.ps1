@@ -18,10 +18,11 @@
 
 	.LINK
 	 https://github.com/ilikeyi/Multilingual
-	  - https://github.com/ilikeyi/solutions/tree/main/scheme/Engine/Multilingual
+	 https://gitee.com/ilikeyi/Multilingual
 
-	  https://gitee.com/ilikeyi/Multilingual
-	  - https://gitee.com/ilikeyi/solutions/tree/master/scheme/Engine/Multilingual
+	.NOTES
+	 Author:  Yi
+	 Website: http://fengyi.tel
 #>
 
 Remove-Module -Name Engine -Force -ErrorAction Ignore | Out-Null

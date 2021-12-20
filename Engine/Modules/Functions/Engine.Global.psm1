@@ -1,4 +1,16 @@
 ﻿<#
+ .Synopsis
+  Global
+
+ .Description
+  Global Feature Modules
+
+ .NOTES
+  Author:  Yi
+  Website: http://fengyi.tel
+#>
+
+<#
 	.Verify the directory and create
 	.验证目录并创建
 #>

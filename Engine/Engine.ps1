@@ -18,10 +18,7 @@
 
 	.LINK
 	 https://github.com/ilikeyi/Multilingual
-	  - https://github.com/ilikeyi/solutions/tree/main/scheme/Engine/Multilingual
-
-	  https://gitee.com/ilikeyi/Multilingual
-	  - https://gitee.com/ilikeyi/solutions/tree/master/scheme/Engine/Multilingual
+	 https://gitee.com/ilikeyi/Multilingual
 	 
 	.NOTES
 	 Author:  Yi

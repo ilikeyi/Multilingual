@@ -1,66 +1,50 @@
 ﻿<#
-	.Package: Search for packages, run the main boot Deploy.ps1, and deploy custom content
-	.包：搜索包，运行主引导 Deploy.ps1，可部署自定义内容
+ .Synopsis
+  First Experience Deploy Rule
+
+ .Description
+  First Experience Deploy Rule Feature Modules
+
+ .NOTES
+  Author:  Yi
+  Website: http://fengyi.tel
 #>
-Function DeployTaskPackage
-{
-	$DesktopOldpath = [Environment]::GetFolderPath("Desktop")
-	if (Test-Path -Path "$($DesktopOldpath)\Package\Deploy.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($DesktopOldpath)\Package\Deploy.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-
-	if (Test-Path -Path "$($env:SystemDrive)\Package\Deploy.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($env:SystemDrive)\Package\Deploy.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-
-	if (Test-Path -Path "$($env:SystemDrive)\Users\Public\Desktop\Package\Deploy.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($env:SystemDrive)\Users\Public\Desktop\Package\Deploy.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\Package\Deploy.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($PSScriptRoot)\..\..\..\Package\Deploy.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\00\Package\Deploy.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($PSScriptRoot)\..\..\..\00\Package\Deploy.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-}
 
 <#
-	.Get the Office installation guide Install.Office.ps1
-	.获取 Office 安装引导 Install.Office.ps1
+	.Search boot file rules
+	.搜索引导文件规则
 #>
-Function DeployTaskOffice
+$DeploySearchGuide = @(
+	"Package\Deploy.ps1"
+	"Office\Install.Office.ps1"
+)
+
+<#
+	.Deployment guide
+	.部署引导
+#>
+Function DeployGuide
 {
-	$DesktopOldpath = [Environment]::GetFolderPath("Desktop")
-	if (Test-Path -Path "$($DesktopOldpath)\Office\Install.Office.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($DesktopOldpath)\Office\Install.Office.ps1" -Wait -WindowStyle Minimized
-		return
-	}
+	$SearchDiskPath = @(
+		"$([Environment]::GetFolderPath("Desktop"))"
+		"$($env:SystemDrive)"
+		"$($env:SystemDrive)\Users\Public\Desktop"
+		"$($PSScriptRoot)\..\..\.."
+		"$($PSScriptRoot)\..\..\..\00"
+	)
 
-	if (Test-Path -Path "$($env:SystemDrive)\Package\Office\Install.Office.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($env:SystemDrive)\Package\Office\Install.Office.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-
-	if (Test-Path -Path "$($env:SystemDrive)\Users\Public\Desktop\Office\Install.Office.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($env:SystemDrive)\Users\Public\Desktop\Office\Install.Office.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\Office\Install.Office.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($PSScriptRoot)\..\..\..\Office\Install.Office.ps1" -Wait -WindowStyle Minimized
-		return
-	}
-
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\00\Office\Install.Office.ps1" -PathType leaf) {
-		Start-Process powershell -ArgumentList "-file $($PSScriptRoot)\..\..\..\00\Office\Install.Office.ps1" -Wait -WindowStyle Minimized
-		return
+	foreach ($item in $DeploySearchGuide) {
+		foreach ($itemn in $SearchDiskPath) {
+			if (Test-Path -Path "$($itemn)\$($item)" -PathType leaf) {
+				write-host "   $($lang.DeployTask)$($itemn)\$($item)"
+				if ($Global:MarkRebootComputer) {
+					Start-Process powershell -ArgumentList "-file $($itemn)\$($item)" -Wait -WindowStyle Minimized
+				} else {
+					Start-Process powershell -ArgumentList "-file $($itemn)\$($item)" -WindowStyle Minimized
+				}
+				break
+			}
+		}
 	}
 }
 

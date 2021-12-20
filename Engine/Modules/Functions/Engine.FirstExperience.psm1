@@ -160,8 +160,8 @@ Function FirstExperienceGUI
 }
 
 <#
-	.Start processing registration tasks
-	.开始处理注册任务
+	.Prerequisite deployment
+	.先决部署
 #>
 Function FirstExperienceProcess
 {
@@ -222,8 +222,8 @@ Function FirstExperienceProcess
 		if (-not (Test-Path $regPath)) {
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
 		}
-	
-		$regValue = "powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:EngineMainFolder)\Engine.ps1"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+
+		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:EnginePath)"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
@@ -248,14 +248,14 @@ Function FirstDeployment
 		.Prerequisite deployment rules
 		.先决部署规则
 	#>
-	$FlagsRebootComputer = $False
+	$Global:MarkRebootComputer = $False
 	$FlagsClearSolutionsRure = $False
 
 	if ($Reboot) {
-		$FlagsRebootComputer = $True
+		$Global:MarkRebootComputer = $True
 	}
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\FirstExperienceReboot" -PathType Leaf) {
-		$FlagsRebootComputer = $True
+		$Global:MarkRebootComputer = $True
 	}
 
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ClearSolutions" -PathType Leaf) {
@@ -275,7 +275,7 @@ Function FirstDeployment
 	} else {
 		if (Test-Path "$($PSScriptRoot)\..\..\Deploy\PopupEngine" -PathType Leaf) {
 			Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
-			Start-Process powershell -ArgumentList "-file $($PSScriptRoot)\..\..\Engine.ps1"
+			Start-Process powershell -ArgumentList "-file $($Global:EnginePath)"
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
@@ -297,12 +297,7 @@ Function FirstDeployment
 	}
 
 	Write-Host "   $($lang.FirstDeployment)"
-	Get-Command -CommandType function | ForEach-Object {
-		if ($_ -like "DeployTask*") {
-			Write-Host "   $($lang.DeployTask)$($_.Name)"
-			Invoke-Expression -Command $_.Name
-		}
-	}
+	DeployGuide
 
 	<#
 		.Search for Bat and PS1
@@ -375,7 +370,7 @@ Function FirstDeployment
 	#>
 	RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
 
-	if ($FlagsRebootComputer) {
+	if ($Global:MarkRebootComputer) {
 		<#
 			.Reboot Computer
 			.重启计算机

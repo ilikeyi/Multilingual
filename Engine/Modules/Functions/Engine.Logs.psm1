@@ -14,7 +14,7 @@
 	.Logs are saved to
 	.日志保存到
 #>
-$LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
+$Global:LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
 
 <#
 	.Clean up all logs from 7 days ago
@@ -22,7 +22,7 @@ $LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
 #>
 Function CleanOldlogs
 {
-	Get-ChildItem -Path $LogsSaveFolder -Directory -ErrorAction SilentlyContinue | Where-Object {
+	Get-ChildItem -Path "$($Global:LogsSaveFolder)\Log-*" -Directory -ErrorAction SilentlyContinue | Where-Object {
 		($_.LastWriteTime -lt (Get-Date).AddDays(-7))
 	} | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
 }
@@ -45,7 +45,10 @@ function WriteLogs
 		$Tag,
 		
 		[Switch]
-		$OutputToScreen 
+		$OutputToScreen,
+
+		[switch]
+		$Main
 	)
 	
 	#Write-Verbose "$Title $Message"
@@ -69,7 +72,11 @@ function WriteLogs
 		File      = $callItem.ScriptName
 		Message   = $Message
 	}
-	Export-Csv -InputObject $data -Path "$($LogsSaveFolder)\$($Global:SaveTo)\Logging.csv" -NoTypeInformation -Append
+	if ($Main) {
+		Export-Csv -InputObject $data -Path "$($Global:LogsSaveFolder)\Logging.csv" -NoTypeInformation -Append
+	} else {
+		Export-Csv -InputObject $data -Path "$($Global:LogsSaveFolder)\$($Global:SaveTo)\Logging.csv" -NoTypeInformation -Append
+	}
 }
 
 <#
@@ -82,14 +89,14 @@ Function Logging
 		.Generate Logs directory
 		.生成 Logs 目录
 	#>
-	CheckCatalog -chkpath "$($LogsSaveFolder)\$($Global:SaveTo)"
+	CheckCatalog -chkpath "$($Global:LogsSaveFolder)\$($Global:SaveTo)"
 	CleanOldlogs
 
 	<#
 		.Operation record
 		.操作记录
 	#>
-	Start-Transcript -Path "$($LogsSaveFolder)\$($Global:SaveTo)\Logging.log" -Force -ErrorAction SilentlyContinue
+	Start-Transcript -Path "$($Global:LogsSaveFolder)\$($Global:SaveTo)\Logging.log" -Force -ErrorAction SilentlyContinue
 }
 
 Export-ModuleMember -Function * -Alias *

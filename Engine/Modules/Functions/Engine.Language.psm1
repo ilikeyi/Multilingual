@@ -123,6 +123,12 @@ Function LanguageSetting
 	}
 
 	<#
+		.Resynchronize time
+		.重新同步时间
+	#>
+	W32tm /resync /force | Out-Null
+
+	<#
 		.Beta: Use Unicode UTF-8 for worldwide language support
 	#>
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\UseUTF8" -PathType Leaf) {

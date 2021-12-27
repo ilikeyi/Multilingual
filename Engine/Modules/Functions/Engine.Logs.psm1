@@ -22,9 +22,11 @@ $Global:LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
 #>
 Function CleanOldlogs
 {
-	Get-ChildItem -Path "$($Global:LogsSaveFolder)\Log-*" -Directory -ErrorAction SilentlyContinue | Where-Object {
-		($_.LastWriteTime -lt (Get-Date).AddDays(-7))
-	} | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+	Get-ChildItem -Path "$($Global:LogsSaveFolder)" -Directory -Exclude $Global:SaveTo -ErrorAction SilentlyContinue | Where-Object {
+		if ($_.LastWriteTime -lt (Get-Date).AddDays(-7)) {
+			Remove-Item -path $_.Fullname -Force -Recurse -ErrorAction SilentlyContinue
+		}
+	}
 }
 
 <#

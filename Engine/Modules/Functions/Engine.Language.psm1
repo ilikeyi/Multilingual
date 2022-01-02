@@ -100,6 +100,7 @@ Function LanguageSetting
 		.Set regional codes to match known languages to prevent illegal matches.
 		.设置区域编码，根据已知语言匹配，防止非法匹配。
 	#>
+	Set-WinSystemLocale $Global:UILanguage -ErrorAction SilentlyContinue | Out-Null
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 		$LanguageName = $Global:AvailableLanguages[$i][2]
 

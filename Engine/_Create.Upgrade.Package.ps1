@@ -18,7 +18,6 @@
 
 	.LINK
 	 https://github.com/ilikeyi/Multilingual
-	 https://gitee.com/ilikeyi/Multilingual
 
 	.NOTES
 	 Author:  Yi

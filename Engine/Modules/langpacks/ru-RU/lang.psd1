@@ -4,6 +4,7 @@
 	Update                    = Проверить обновления
 	FirstExperience           = Первый опыт
 	Disable                   = Запрещать
+	Enable                    = включить
 	Done                      = выполнять
 	OK                        = определять
 	Cancel                    = отменить
@@ -14,6 +15,10 @@
 	Inoperable                = Вышедший из строя
 	ForceUpdate               = Принудительно проверить и обновить
 	SettingLangAndKeyboard    = Установите системный язык и клавиатуру
+	SettingUTF8               = Бета-версия: используйте Unicode UTF-8 Доступна глобальная языковая поддержк
+	SettingUTF8Tips           = Это может вызвать новые проблемы после использования.
+	SettingLocale             = установить локаль системы
+	SettingLocaleTips         = Действителен при отсутствии тега зоны развертывания.
 	SwitchLanguage            = Смена языка
 	RefreshModules            = Перезагрузить модуль
 	Choose                    = пожалуйста, выберите
@@ -29,7 +34,7 @@
 	FirstDeploymentPopup      = Всплывает основной интерфейс
 	FirstExpFinishOnDemand    = Разрешить первый предварительный опыт, как и планировалось
 	DeployTask                = Задачи развертывания: \
-	Reboot                    = По завершении перезагрузите компьютер.
+	Reboot                    = перезагрузите компьютер.
 
 	DeployPackerTips          = Доступны пакеты развертывания
 	DeployPackerTipsDone      = Пакет развертывания завершен.

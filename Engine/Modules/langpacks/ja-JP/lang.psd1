@@ -4,6 +4,7 @@
 	Update                    = ソリューション ツールボックス
 	FirstExperience           = 初体験
 	Disable                   = 無効にする
+	Enable                    = 有効
 	Done                      = 実施する
 	OK                        = 決定する
 	Cancel                    = キャンセル
@@ -14,6 +15,10 @@
 	Inoperable                = 動作不能
 	ForceUpdate               = 強制的に確認して更新する
 	SettingLangAndKeyboard    = システム言語とキーボードを設定する
+	SettingUTF8               = Beta バージョン：使用 Unicode UTF-8 利用可能なグローバル言語サポート
+	SettingUTF8Tips           = 使用後に新たな問題が発生する場合があります。
+	SettingLocale             = システムロケールを設定する
+	SettingLocaleTips         = 展開ゾーンタグが存在しない場合に有効です。
 	SwitchLanguage            = 言語を切り替える
 	RefreshModules            = モジュールをリロードします
 	Choose                    = 選んでください
@@ -29,7 +34,7 @@
 	FirstDeploymentPopup      = メインインターフェイスをポップアップします
 	FirstExpFinishOnDemand    = 計画どおり、最初の事前体験を許可する
 	DeployTask                = 展開タスク：
-	Reboot                    = 終了したら、コンピューターを再起動します
+	Reboot                    = コンピューターを再起動します
 
 	DeployPackerTips          = 利用可能な展開パッケージがあります
 	DeployPackerTipsDone      = 展開パッケージが完了しました。

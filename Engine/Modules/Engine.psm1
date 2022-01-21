@@ -389,8 +389,7 @@ Function LanguageChange
 		[string]$lang
 	)
 
-	if (Test-Path -Path "$($PSScriptRoot)\langpacks\$lang\lang.psd1" -PathType Leaf)
-	{
+	if (Test-Path -Path "$($PSScriptRoot)\langpacks\$lang\lang.psd1" -PathType Leaf) {
 		$Global:IsLang = $lang
 		Import-LocalizedData -BindingVariable Global:Lang -UICulture $lang -FileName "lang.psd1" -BaseDirectory "$($PSScriptRoot)\langpacks\$lang"
 	} else {

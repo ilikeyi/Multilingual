@@ -16,6 +16,11 @@
 #>
 Function LanguageSetting
 {
+	param
+	(
+		[switch]$Force
+	)
+
 	Write-Host "`n   $($lang.SettingLangAndKeyboard)"
 
 	<#
@@ -48,13 +53,19 @@ Function LanguageSetting
 		$FlagsSingleLanguage = $True
 	}
 
+	<#
+		.Processing: Single language
+		.处理：单语版
+	#>
 	if ($FlagsSingleLanguage) {
 		<#
-			.Processing: Single language
-			.处理：单语版
+			.Get the languages installed on the system
+			.获取系统已安装的语言
 		#>
-		if ($Global:UILanguage -ne "en-US" ) {
-			LanguageProcess -NewLang "en-US"
+		Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
+			if ("en-US" -eq $_) {
+				LanguageProcess -NewLang "en-US"
+			}
 		}
 	} else {
 		<#
@@ -97,17 +108,20 @@ Function LanguageSetting
 #	Set-WinLanguageBarOption -UseLegacySwitchMode -ErrorAction SilentlyContinue | Out-Null
 
 	<#
-		.Set regional codes to match known languages to prevent illegal matches.
-		.设置区域编码，根据已知语言匹配，防止非法匹配。
+		.Set regional codes
+		.设置区域编码
 	#>
-	Set-WinSystemLocale $Global:UILanguage -ErrorAction SilentlyContinue | Out-Null
-	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-		$LanguageName = $Global:AvailableLanguages[$i][2]
+	if ($Force) {
+		RegionCode -Force
+	} else {
+		RegionCode
+	}
 
-		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
-			Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
-			break
-		}
+	<#
+		.Beta: Use Unicode UTF-8 for worldwide language support
+	#>
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\UseUTF8" -PathType Leaf) {
+		UseBetaUTF8 -Enable
 	}
 
 	<#
@@ -128,15 +142,6 @@ Function LanguageSetting
 		.重新同步时间
 	#>
 	W32tm /resync /force | Out-Null
-
-	<#
-		.Beta: Use Unicode UTF-8 for worldwide language support
-	#>
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\UseUTF8" -PathType Leaf) {
-		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "ACP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
-		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "OEMCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
-		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "MACCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
-	}
 }
 
 <#
@@ -172,6 +177,60 @@ Function LanguageProcess {
 	#>
 	if (-not ($FlagsNewLanguage)) {
 		$Global:GroupLanguage.Add($NewLang)
+	}
+}
+
+<#
+	.Set regional codes to match known languages to prevent illegal matches.
+	.设置区域编码，根据已知语言匹配，防止非法匹配。
+#>
+Function RegionCode
+{
+	param
+	(
+		[switch]$Force
+	)
+
+	Write-Host "   $($lang.SettingLocale)"
+	if ($Force) {
+		Set-WinSystemLocale (Get-Culture).Name -ErrorAction SilentlyContinue | Out-Null
+	}
+
+	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
+		$LanguageName = $Global:AvailableLanguages[$i][2]
+
+		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
+			Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
+			break
+		}
+	}
+
+	Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+}
+
+Function UseBetaUTF8
+{
+	param
+	(
+		[switch]$Enable,
+		[switch]$Disable
+	)
+
+	Write-Host "   $($lang.SettingUTF8)"
+	if ($Enable) {
+		Write-Host "   $($lang.Enable)".PadRight(22) -NoNewline
+		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "ACP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
+		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "OEMCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
+		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "MACCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
+		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+	}
+
+	if ($Disable) {
+		Write-Host "   $($lang.Disable)".PadRight(22) -NoNewline
+		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "ACP" -Type String -Value 936 -ErrorAction SilentlyContinue | Out-Null
+		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "OEMCP" -Type String -Value 936 -ErrorAction SilentlyContinue | Out-Null
+		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "MACCP" -Type String -Value 10008 -ErrorAction SilentlyContinue | Out-Null
+		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 	}
 }
 

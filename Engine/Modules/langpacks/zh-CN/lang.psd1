@@ -4,6 +4,7 @@
 	Update                    = 检查更新
 	FirstExperience           = 首次体验
 	Disable                   = 禁用
+	Enable                    = 启用
 	Done                      = 完成
 	OK                        = 确定
 	Cancel                    = 取消
@@ -14,6 +15,10 @@
 	Inoperable                = 不可操作
 	ForceUpdate               = 强行检查并更新
 	SettingLangAndKeyboard    = 设置系统语言和键盘
+	SettingUTF8               = Beta 版：使用 Unicode UTF-8 提供全球语言支持
+	SettingUTF8Tips           = 使用后也许会引发新问题。
+	SettingLocale             = 设置系统区域
+	SettingLocaleTips         = 不存在部署区域标记时有效。
 	SwitchLanguage            = 切换语言
 	RefreshModules            = 重新加载模块
 	Choose                    = 请选择
@@ -29,7 +34,7 @@
 	FirstDeploymentPopup      = 弹出主界面
 	FirstExpFinishOnDemand    = 允许首次预体验，按计划
 	DeployTask                = 部署任务：
-	Reboot                    = 完成后，重新启动计算机
+	Reboot                    = 重新启动计算机
 
 	DeployPackerTips          = 有可用的部署合集包
 	DeployPackerTipsDone      = 部署合集包已完成。

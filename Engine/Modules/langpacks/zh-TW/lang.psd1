@@ -4,6 +4,7 @@
 	Update                    = 檢查更新
 	FirstExperience           = 首次體驗
 	Disable                   = 禁用
+	Enable                    = 啟用
 	Done                      = 完成
 	OK                        = 確定
 	Cancel                    = 取消
@@ -14,6 +15,10 @@
 	Inoperable                = 不可操作
 	ForceUpdate               = 強行檢查並更新
 	SettingLangAndKeyboard    = 設置系統語言和鍵盤
+	SettingUTF8               = Beta 版：使用 Unicode UTF-8 提供全球語言支持
+	SettingUTF8Tips           = 使用後也許會引發新問題。
+	SettingLocale             = 設置系統區域
+	SettingLocaleTips         = 不存在部署區域標記時有效。
 	SwitchLanguage            = 切換語言
 	RefreshModules            = 重新加載模塊
 	Choose                    = 請選擇
@@ -29,7 +34,7 @@
 	FirstDeploymentPopup      = 彈出主界面
 	FirstExpFinishOnDemand    = 允許首次預體驗，按計劃
 	DeployTask                = 部署任務：
-	Reboot                    = 完成後，重新啟動計算機
+	Reboot                    = 重新啟動計算機
 
 	DeployPackerTips          = 有可用的部署合集包
 	DeployPackerTipsDone      = 部署合集包已完成。

@@ -34,13 +34,6 @@ Function FirstExperience
 			Update -Auto -Force -IsProcess
 		}
 
-		<#
-			.Usage
-			.用法
-
-			-Reboot | Restart the computer
-			          重新启动计算机
-		#>
 		FirstExperienceProcess
 	} else {
 		FirstExperienceGUI
@@ -53,8 +46,6 @@ Function FirstExperienceGUI
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
 
-	Write-Host "`n   $($lang.FirstExperience)"
-
 	$GUIFECanelClick = {
 		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
 		$GUIFE.Close()
@@ -66,15 +57,39 @@ Function FirstExperienceGUI
 			LanguageSetting
 			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 		} else {
+			Write-Host "   $($lang.SettingLangAndKeyboard)"
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 
-		if ($GUIFEDeployCleanup.Checked) {
-			RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
+		if ($GUIFEUtf8.Checked) {
+			UseBetaUTF8 -Enable
+		} else {
+			Write-Host "   $($lang.SettingUTF8)"
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 
+		if ($GUIFELocale.Checked) {
+			RegionCode -Force
+			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		} else {
+			Write-Host "   $($lang.SettingLocale)"
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+		}
+
+		Write-Host "   $($lang.DeployCleanup)"
+		if ($GUIFEDeployCleanup.Checked) {
+			RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
+			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		} else {
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+		}
+
+		Write-Host "   $($lang.Reboot)"
 		if ($GUIFEReboot.Checked) {
 			Restart-Computer -Force
+			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		} else {
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 		$GUIFE.Close()
 	}
@@ -90,31 +105,53 @@ Function FirstExperienceGUI
 		ControlBox     = $False
 		BackColor      = "#ffffff"
 	}
-	$GUIFEPanel        = New-Object system.Windows.Forms.Panel -Property @{
+	$GUIFEPanel        = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		Height         = 520
-		Width          = 450
+		Width          = 490
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
 		Padding        = "8,0,8,0"
 		Dock           = 1
+		Location       = "10,5"
 	}
 	$GUIFELangAndKeyboard = New-Object System.Windows.Forms.CheckBox -Property @{
-		Location       = "10,5"
-		Height         = 22
-		Width          = 390
+		Height         = 30
+		Width          = 490
 		Text           = $lang.SettingLangAndKeyboard
 		Checked        = $True
 	}
+	$GUIFEUtf8         = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 490
+		Text           = $lang.SettingUTF8
+	}
+	$GUIFEUtf8Tips     = New-Object System.Windows.Forms.Label -Property @{
+		Height         = 26
+		Width          = 490
+		Text           = $lang.SettingUTF8Tips
+		Padding        = "16,0,8,0"
+	}
+	$GUIFELocale       = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 490
+		Text           = "$($lang.SettingLocale) ( $((Get-Culture).Name) )"
+	}
+	$GUIFELocaleTips     = New-Object System.Windows.Forms.Label -Property @{
+		Height         = 26
+		Width          = 490
+		Text           = $lang.SettingLocaleTips
+		Padding        = "16,0,8,0"
+	}
 	$GUIFEDeployCleanup = New-Object System.Windows.Forms.Checkbox -Property @{
-		Height         = 22
+		Height         = 30
 		Width          = 505
 		Text           = $lang.DeployCleanup
 		Location       = "12,538"
 		Checked        = $True
 	}
 	$GUIFEReboot       = New-Object System.Windows.Forms.Checkbox -Property @{
-		Height         = 22
+		Height         = 30
 		Width          = 505
 		Text           = $lang.Reboot
 		Location       = "12,565"
@@ -143,7 +180,11 @@ Function FirstExperienceGUI
 		$GUIFECanel
 	))
 	$GUIFEPanel.controls.AddRange((
-		$GUIFELangAndKeyboard
+		$GUIFELangAndKeyboard,
+		$GUIFEUtf8,
+		$GUIFEUtf8Tips,
+		$GUIFELocale,
+		$GUIFELocaleTips
 	))
  
 	switch ($Global:IsLang) {
@@ -165,10 +206,6 @@ Function FirstExperienceGUI
 #>
 Function FirstExperienceProcess
 {
-	param (
-		[switch]$Reboot
-	)
-
 	<#
 		.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
 		.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
@@ -211,13 +248,14 @@ Function FirstExperienceProcess
 		.Set system language, keyboard, etc.
 		.设置系统语言、键盘等
 	#>
-	LanguageSetting
+	LanguageSetting -Force
 
 	<#
 		.After completing the prerequisite deployment, determine whether to restart the computer
 		.完成先决条件部署后，判断是否重启计算机
 	#>
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\PrerequisitesReboot" -PathType Leaf) {
+		Write-Host "   $($lang.Reboot)"
 		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 		if (-not (Test-Path $regPath)) {
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
@@ -227,6 +265,7 @@ Function FirstExperienceProcess
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
+		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 	} else {
 		FirstDeployment
 	}

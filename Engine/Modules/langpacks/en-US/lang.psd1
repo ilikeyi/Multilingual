@@ -4,6 +4,7 @@
 	Update                    = Check for updates
 	FirstExperience           = First Experience
 	Disable                   = Disabled
+	Enable                    = Enabled
 	Done                      = Complete
 	OK                        = OK
 	Cancel                    = Cancel
@@ -14,6 +15,10 @@
 	Inoperable                = Inoperable
 	ForceUpdate               = Forcibly check and update
 	SettingLangAndKeyboard    = Set system language and keyboard
+	SettingUTF8               = Beta: Global language support using Unicode UTF-8
+	SettingUTF8Tips           = May cause new problems after use.
+	SettingLocale             = Set system locale
+	SettingLocaleTips         = Valid when no deployment locale tag exists.
 	SwitchLanguage            = Switch language
 	RefreshModules            = Reload the module
 	Choose                    = Please select
@@ -29,7 +34,7 @@
 	FirstDeploymentPopup      = Pop up the main interface
 	FirstExpFinishOnDemand    = Allow the first pre-experience, as planned
 	DeployTask                = Deployment tasks: \
-	Reboot                    = When finished, restart the computer
+	Reboot                    = Restart the computer
 
 	DeployPackerTips          = There are deployment packages available
 	DeployPackerTipsDone      = The deployment package has been completed.

@@ -14,7 +14,7 @@
 	.Current version
 	.当前版本
 #>
-$ProductVersion = "1.0.0.8"
+$ProductVersion = "1.0.1.0"
 
 <#
 	.Update minimum version requirements

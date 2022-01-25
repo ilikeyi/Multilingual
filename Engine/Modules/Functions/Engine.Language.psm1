@@ -122,6 +122,9 @@ Function LanguageSetting
 	#>
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\UseUTF8" -PathType Leaf) {
 		UseBetaUTF8 -Enable
+	} else {
+		Write-Host "   $($lang.SettingUTF8)"
+		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
 
 	<#
@@ -193,19 +196,24 @@ Function RegionCode
 
 	Write-Host "   $($lang.SettingLocale)"
 	if ($Force) {
+		Write-Host "   - $((Get-Culture).Name)"
 		Set-WinSystemLocale (Get-Culture).Name -ErrorAction SilentlyContinue | Out-Null
+		write-host "   - Force"
+		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+	} else {
+		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
 
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 		$LanguageName = $Global:AvailableLanguages[$i][2]
 
 		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
+			Write-Host "   - $($LanguageName)"
 			Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
+			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 			break
 		}
 	}
-
-	Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 }
 
 Function UseBetaUTF8

@@ -11,6 +11,35 @@
 #>
 
 <#
+	.Dynamic save function
+	.动态保存功能
+#>
+Function DynamicSave
+{
+	param
+	(
+		$regkey,
+		$name,
+		$value,
+		[switch]$Multi,
+		[switch]$String
+	)
+
+	$Path = "HKCU:\SOFTWARE\$($Global:UniqueID)\$($regkey)"
+
+	if (-not (Test-Path $Path)) {
+		New-Item -Path $Path -Force -ErrorAction SilentlyContinue | Out-Null
+	}
+
+	if ($Multi) {
+		New-ItemProperty -LiteralPath $Path -Name $name -Value $value -PropertyType MultiString -Force -ea SilentlyContinue | Out-Null
+	}
+	if ($String) {
+		New-ItemProperty -LiteralPath $Path -Name $name -Value $value -PropertyType String -Force -ea SilentlyContinue | Out-Null
+	}
+}
+
+<#
 	.Verify the directory and create
 	.验证目录并创建
 #>

@@ -93,8 +93,12 @@
 	UpdateCreate              = Создать пакет обновления
 	UpdateLow                 = Минимальные требования: \
 	UpCreateRear              = Что нужно сделать после создания
-	UpCreateASC               = Добавьте подпись PGP в пакет обновления, пароль сертификата:
+	UpCreateASC               = Добавить подпись PGP в пакет обновления
+	CreateASCPwd              = пароль сертификата
+	CreateASCAuthor           = подписант
+	CreateASCAuthorTips       = Подписанты не выбраны.
 	UpCreateSHA256            = Создайте .SHA-256 для пакета обновления
+	SelectFromError           = Ошибка: {0}
 	Uping                     = Создание
 	SkipCreate                = Пропустить генерацию, не найдено
 	ZipStatus                 = 7-Zip не устанавливается.

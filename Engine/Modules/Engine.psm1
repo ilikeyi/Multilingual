@@ -334,8 +334,7 @@ Function LanguageSelectGUI
 	))
 
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language" -ErrorAction SilentlyContinue) {
-		$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language"
-		$FlagsDefaultLanguage = $GetLanguage
+		$FlagsDefaultLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language"
 	} else {
 		$FlagsDefaultLanguage = (Get-Culture).Name
 	}

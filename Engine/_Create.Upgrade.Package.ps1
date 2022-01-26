@@ -52,7 +52,10 @@ Logging
   .Signed GPG KEY-ID
   .签名 GPG KEY-ID
 #>
-$GpgKI = "0FEBF674EAD23E05"
+$GpgKI = @(
+	"0FEBF674EAD23E05"
+	"2499B7924675A12B"
+)
 
 <#
   .Compressed package name
@@ -180,7 +183,6 @@ Function UpdateCreateGUI
 {
 	param
 	(
-
 		[switch]$Queue
 	)
 
@@ -199,9 +201,9 @@ Function UpdateCreateGUI
  
 	$GUIUpdateCreateASCClick = {
 		if ($GUIUpdateCreateASC.Checked) {
-			$GUIUpdateCreateASCPWD.Enabled = $True
+			$GUIUpdateCreateASCPanel.Enabled = $True
 		} else {
-			$GUIUpdateCreateASCPWD.Enabled = $False
+			$GUIUpdateCreateASCPanel.Enabled = $False
 		}
 	}
 
@@ -219,9 +221,23 @@ Function UpdateCreateGUI
 		.事件：确认
 	#>
 	$GUIUpdateOKClick = {
-		
+		<#
+			.搜索到后生成 PGP
+		#>
+		if ($GUIUpdateCreateASC.Enabled) {
+			if ($GUIUpdateCreateASC.Checked) {
+				if ([string]::IsNullOrEmpty($GUIUpdateCreateASCSign.Text)) {
+					$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError -f $($lang.CreateASCAuthorTips))"
+					return
+				} else {
+					DynamicSave -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
+					$Global:secure_password = $GUIUpdateCreateASCPWD.Text
+					$Global:SignGpgKeyID = $GUIUpdateCreateASCSign.Text
+				}
+			}
+		}
+
 		$GUIUpdate.Hide()
-		$Global:secure_password = $GUIUpdateCreateASCPWD.Text
 		UpdateCleanOld
 		UpdatePack
 
@@ -268,18 +284,18 @@ Function UpdateCreateGUI
 		.创建升级包后需要做些什么
 	#>
 	$GUIUpdateRearTips = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "12,436"
+		Location       = "12,352"
 		Height         = 22
-		Width          = 510
+		Width          = 390
 		Text           = $lang.UpCreateRear
 	}
 	$GUIUpdateGroupASC = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
-		Height         = 100
+		Height         = 140
 		Width          = 520
 		autoSizeMode   = 1
 		Padding        = "8,0,8,0"
-		Location       = '0,460'
+		Location       = '0,376'
 	}
 	$GUIUpdateCreateASC = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
@@ -289,17 +305,45 @@ Function UpdateCreateGUI
 		Checked        = $True
 		add_Click      = $GUIUpdateCreateASCClick
 	}
+	$GUIUpdateCreateASCPanel = New-Object system.Windows.Forms.Panel -Property @{
+		BorderStyle    = 0
+		Height         = 108
+		Width          = 530
+		autoSizeMode   = 1
+		Padding        = "0,0,0,0"
+		Location       = "0,25"
+	}
+	$GUIUpdateCreateASCPWDName = New-Object system.Windows.Forms.Label -Property @{
+		Location       = "42,0"
+		Height         = 22
+		Width          = 390
+		Text           = $lang.CreateASCPwd
+	}
 	$GUIUpdateCreateASCPWD = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 22
-		Width          = 452
+		Width          = 390
 		Text           = $($Global:secure_password)
-		Location       = '43,25'
+		Location       = '59,25'
 	}
+	$GUIUpdateCreateASCSignName = New-Object system.Windows.Forms.Label -Property @{
+		Location       = "42,60"
+		Height         = 22
+		Width          = 390
+		Text           = $lang.CreateASCAuthor
+	}
+	$GUIUpdateCreateASCSign = New-Object system.Windows.Forms.ComboBox -Property @{
+		Location       = "59,83"
+		Height         = 55
+		Width          = 390
+		Text           = ""
+		DropDownStyle  = "DropDownList"
+	}
+
 	$GUIUpdateCreateSHA256 = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 470
 		Text           = $lang.UpCreateSHA256
-		Location       = '26,60'
+		Location       = '26,525'
 		Checked        = $True
 	}
 
@@ -309,7 +353,7 @@ Function UpdateCreateGUI
 		Width          = 390
 		Text           = ""
 	}
-	$GUIUpdateOK = New-Object system.Windows.Forms.Button -Property @{
+	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "8,595"
 		Height         = 36
@@ -317,7 +361,7 @@ Function UpdateCreateGUI
 		add_Click      = $GUIUpdateOKClick
 		Text           = $lang.OK
 	}
-	$GUIUpdateCanel    = New-Object system.Windows.Forms.Button -Property @{
+	$GUIUpdateCanel = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "8,635"
 		Height         = 36
@@ -328,10 +372,9 @@ Function UpdateCreateGUI
 	$GUIUpdate.controls.AddRange((
 		$GUIUpdateVersion,
 		$GUIUpdateLowVersion,
-		$GUIUpdateBackup,
-		$GUIUpdateBackupTips,
 		$GUIUpdateRearTips,
 		$GUIUpdateGroupASC,
+		$GUIUpdateCreateSHA256,
 		$GUIUpdateErrorMsg,
 		$GUIUpdateOK,
 		$GUIUpdateCanel
@@ -339,8 +382,14 @@ Function UpdateCreateGUI
 
 	$GUIUpdateGroupASC.controls.AddRange((
 		$GUIUpdateCreateASC,
+		$GUIUpdateCreateASCPanel
+	))
+
+	$GUIUpdateCreateASCPanel.controls.AddRange((
+		$GUIUpdateCreateASCPWDName,
 		$GUIUpdateCreateASCPWD,
-		$GUIUpdateCreateSHA256
+		$GUIUpdateCreateASCSignName,
+		$GUIUpdateCreateASCSign
 	))
 
 	if ($Global:IsZip) {
@@ -351,12 +400,23 @@ Function UpdateCreateGUI
 		$GUIUpdateErrorMsg.Text += $lang.ZipStatus
 	}
 
+	<#
+		.初始化：PGP KEY-ID
+	#>
+	foreach ($item in $GpgKI) {
+		$GUIUpdateCreateASCSign.Items.Add($item) | Out-Null
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue) {
+		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue
+	}
+
+	GetASC
 	if ($Global:IsGpg) {
 		$GUIUpdateCreateASC.Enabled = $True
-		$GUIUpdateCreateASCPWD.Enabled = $True
+		$GUIUpdateCreateASCPanel.Enabled = $True
 	} else {
 		$GUIUpdateCreateASC.Enabled = $False
-		$GUIUpdateCreateASCPWD.Enabled = $False
+		$GUIUpdateCreateASCPanel.Enabled = $False
 		$GUIUpdateErrorMsg.Text += $lang.ASCStatus
 	}
 
@@ -462,9 +522,9 @@ function UpdateCreateASC
 
 			Write-Host "   * $($lang.Uping) $UpdateName.asc"
 			if (([string]::IsNullOrEmpty($Global:secure_password))) {
-				Start-Process $GpgLocalPath -argument "--local-user $GpgKI --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
+				Start-Process $GpgLocalPath -argument "--local-user $Global:SignGpgKeyID --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
 			} else {
-				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase $Global:secure_password --local-user $GpgKI --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
+				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase $Global:secure_password --local-user $Global:SignGpgKeyID --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
 			}
 			Write-Host "     - $($lang.Done)`n" -ForegroundColor Green
 		}
@@ -529,5 +589,4 @@ function CreateVersion
 }
 
 GetZip
-GetASC
 UpdateCreateGUI

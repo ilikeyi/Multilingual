@@ -522,9 +522,9 @@ function UpdateCreateASC
 
 			Write-Host "   * $($lang.Uping) $UpdateName.asc"
 			if (([string]::IsNullOrEmpty($Global:secure_password))) {
-				Start-Process $GpgLocalPath -argument "--local-user $Global:SignGpgKeyID --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
+				Start-Process $GpgLocalPath -argument "--local-user $Global:SignGpgKeyID --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			} else {
-				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase $Global:secure_password --local-user $Global:SignGpgKeyID --output $($_.FullName).asc --detach-sign $($_.FullName)" -Wait -WindowStyle Minimized
+				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase ""$Global:secure_password"" --local-user ""$Global:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			}
 			Write-Host "     - $($lang.Done)`n" -ForegroundColor Green
 		}

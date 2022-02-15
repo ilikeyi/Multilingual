@@ -192,7 +192,7 @@ Function FirstExperienceGUI
 			$GUIFE.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
 		}
 		Default {
-			$GUIFE.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+			$GUIFE.Font = New-Object System.Drawing.Font("Segoe UI", 9, [System.Drawing.FontStyle]::Regular)
 		}
 	}
 
@@ -261,7 +261,7 @@ Function FirstExperienceProcess
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
 		}
 
-		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:EnginePath)"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:ScriptMainFile)"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
@@ -314,7 +314,7 @@ Function FirstDeployment
 	} else {
 		if (Test-Path "$($PSScriptRoot)\..\..\Deploy\PopupEngine" -PathType Leaf) {
 			Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
-			Start-Process powershell -ArgumentList "-file $($Global:EnginePath)"
+			Start-Process powershell -ArgumentList "-file $($Global:ScriptMainFile)"
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
@@ -400,7 +400,7 @@ Function FirstDeployment
 	#>
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\ClearEngine" -PathType Leaf) {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		RemoveTree -Path "$($Global:EngineMainFolder)"
+		RemoveTree -Path "$($Global:MainFolder)"
 	}
 
 	<#

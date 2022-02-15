@@ -79,6 +79,7 @@ Function Update
 		foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
 			$Global:ServerList += $item[0] + $item[1]
 		}
+
 		UpdateProcess -Force
 	} else {
 		UpdateGUI
@@ -94,8 +95,6 @@ Function UpdateGUI
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
-
-	Write-Host "`n   $($lang.Update)"
 
 	$GUIUpdateAutoClick = {
 		if ($GUIUpdateAuto.Checked) {
@@ -176,8 +175,8 @@ Function UpdateGUI
 		Checked        = $True
 	}
 	$GUIUpdatePanel    = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 425
-		Width          = 528
+		Height         = 415
+		Width          = 530
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
@@ -190,18 +189,18 @@ Function UpdateGUI
 		Height         = 22
 		Width          = 505
 		Text           = $lang.UpdateSilent
-		Location       = '12,475'
+		Location       = '12,465'
 		Checked        = $True
 	}
 	$GUIUpdateReset    = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 505
 		Text           = $lang.UpdateReset
-		Location       = '12,503'
+		Location       = '12,493'
 	}
 	$GUIUpdateResetTips = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "28,528"
-		Height         = 28
+		Location       = "28,518"
+		Height         = 36
 		Width          = 490
 		Text           = $lang.UpdateResetTips
 	}
@@ -282,7 +281,7 @@ Function UpdateGUI
 			$GUIUpdate.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
 		}
 		Default {
-			$GUIUpdate.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+			$GUIUpdate.Font = New-Object System.Drawing.Font("Segoe UI", 9, [System.Drawing.FontStyle]::Regular)
 		}
 	}
 
@@ -537,8 +536,8 @@ Function Compressing
 		return $true
 	}
 
-	if (Test-Path -Path "$(GetArchitecturePacker -Path "$($Global:EngineMainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
-		$Global:Zip = "$(GetArchitecturePacker -Path "$($Global:EngineMainFolder)\AIO\7zPacker")\7z.exe"
+	if (Test-Path -Path "$(GetArchitecturePacker -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
+		$Global:Zip = "$(GetArchitecturePacker -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe"
 		return $true
 	}
 	return $false

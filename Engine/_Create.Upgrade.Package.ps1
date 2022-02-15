@@ -425,7 +425,7 @@ Function UpdateCreateGUI
 			$GUIUpdate.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
 		}
 		Default {
-			$GUIUpdate.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+			$GUIUpdate.Font = New-Object System.Drawing.Font("Segoe UI", 9, [System.Drawing.FontStyle]::Regular)
 		}
 	}
 
@@ -526,8 +526,15 @@ function UpdateCreateASC
 			} else {
 				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase ""$Global:secure_password"" --local-user ""$Global:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			}
-			Write-Host "     - $($lang.Done)`n" -ForegroundColor Green
+
+			if (Test-Path "$($_.FullName).asc" -PathType Leaf) {
+				Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
+			} else {
+				Write-Host "    - $($lang.Inoperable)`n"
+			}
 		}
+	} else {
+		Write-Host "    $($lang.ASCStatus)" -ForegroundColor Red
 	}
 }
 

@@ -5,10 +5,10 @@
 Push-Location "$($PSScriptRoot)\..\..\"
 $Global:UniqueMainFolder = $(Get-Location)
 $Global:UniqueID = [IO.Path]::GetFileName($(Get-Location))
-$Global:EnginePath = $MyInvocation.PSCommandPath
+$Global:ScriptMainFile = $MyInvocation.PSCommandPath
 
 Push-Location "$($PSScriptRoot)\..\"
-$Global:EngineMainFolder = $(Get-Location)
+$Global:MainFolder = $(Get-Location)
 $Global:AuthorURL = "https://fengyi.tel"
 
 <#
@@ -369,7 +369,7 @@ Function LanguageSelectGUI
 			$GUISelectLanguage.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
 		}
 		Default {
-			$GUISelectLanguage.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+			$GUISelectLanguage.Font = New-Object System.Drawing.Font("Segoe UI", 9, [System.Drawing.FontStyle]::Regular)
 		}
 	}
 

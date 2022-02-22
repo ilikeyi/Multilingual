@@ -451,7 +451,7 @@ Function ArchivePacker
 		$url
 	)
 
-	$output   = "$($PSScriptRoot)\..\..\..\latest.zip"
+	$output   = "$($PSScriptRoot)\..\..\latest.zip"
 	$PPocess  = "$($PSScriptRoot)\..\..\Post.Processing.bat"
 	$PsPocess = "$($PSScriptRoot)\..\..\Post.Processing.ps1"
 
@@ -462,7 +462,7 @@ Function ArchivePacker
 
 	if (Test-Path -Path $output -PathType Leaf) {
 		Write-Host "`n   $($lang.UpdateUnpacking)$(Convert-Path -Path $output -ErrorAction SilentlyContinue)"
-		Archive -filename $output -to "$($PSScriptRoot)\..\..\..\"
+		Archive -filename $output -to "$($PSScriptRoot)\..\..\"
 		RefreshModules -Silent
 		Write-Host "`n   * $($lang.UpdatePostProc)"
 		if ($Global:IsProcess) {

@@ -80,17 +80,9 @@ $TempFolderUpdate = "$([Environment]::GetFolderPath("MyDocuments"))\Temp.$($Glob
 	.从压缩包中排除文件或目录
 #>
 $ArchiveExcludeUp = @(
-	"-xr-!00"
-	"-xr-!10"
-	"-xr-!20"
-	"-xr-!30"
-	"-xr-!40"
-	"-xr-!50"
-	"-xr-!60"
-	"-xr-!70"
-	"-xr-!Engine\Deploy"
-	"-xr-!Engine\Logs"
-	"-xr-!Engine\_Create.Upgrade.Package.ps1"
+	"-xr-!Deploy"
+	"-xr-!Logs"
+	"-xr-!_Create.Upgrade.Package.ps1"
 )
 
 <#
@@ -434,7 +426,7 @@ function UpdateCleanOld {
 
 function UpdatePack {
 	foreach ($item in $BuildTypeUp) {
-		Push-Location "$PSScriptRoot\.."
+		Push-Location $PSScriptRoot
 		UpdatePackCreate -Type $item
 		CreateVersion -SaveTo "$TempFolderUpdate" -Version $ProductVersion -CurrentVersion $ProductVersion -LowVer $ChkLocalver
 	}
@@ -516,7 +508,7 @@ function UpdateCreateASC
 
 			Write-Host "   * $($lang.Uping) $UpdateName.asc"
 			if (([string]::IsNullOrEmpty($Global:secure_password))) {
-				Start-Process $GpgLocalPath -argument "--local-user $Global:SignGpgKeyID --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
+				Start-Process $GpgLocalPath -argument "--local-user ""$Global:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			} else {
 				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase ""$Global:secure_password"" --local-user ""$Global:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			}

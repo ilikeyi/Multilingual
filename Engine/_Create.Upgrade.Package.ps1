@@ -116,63 +116,58 @@ Enum Archive
 	gz
 }
 
-function GetZip {
-	$Global:IsZip = $False
+function GetZip
+{
 	$Global:IsZipPath = "No"
 
 	if (Test-Path -Path "${env:ProgramFiles}\7-Zip\7z.exe" -PathType leaf) {
-		$Global:IsZip = $True
 		$Global:IsZipPath = "${env:ProgramFiles}\7-Zip\7z.exe"
-		return
+		return $True
 	}
 
 	if (Test-Path -Path "${env:ProgramFiles(x86)}\7-Zip\7z.exe" -PathType leaf) {
-		$Global:IsZip = $True
 		$Global:IsZipPath = "${env:ProgramFiles(x86)}\7-Zip\7z.exe"
-		return
+		return $True
 	}
 
 	if (Test-Path -Path "$($env:SystemDrive)\$($Global:UniqueID)\$($Global:UniqueID)\7zPacker\7z.exe" -PathType leaf) {
-		$Global:IsZip = $True
 		$Global:IsZipPath = "$($env:SystemDrive)\$($Global:UniqueID)\$($Global:UniqueID)\7zPacker\7z.exe"
-		return
+		return $True
 	}
 
 	if (Test-Path "$PSScriptRoot\AIO\7zPacker\x86\7z.exe" -PathType leaf) {
-		$Global:IsZip = $True
 		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\x86\7z.exe"
-		return
+		return $True
 	}
 
 	if (Test-Path "$PSScriptRoot\AIO\7zPacker\AMD64\7z.exe" -PathType leaf) {
-		$Global:IsZip = $True
 		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\AMD64\7z.exe"
-		return
+		return $True
 	}
 
 	if (Test-Path "$PSScriptRoot\AIO\7zPacker\arm64\7z.exe" -PathType leaf) {
-		$Global:IsZip = $True
 		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\arm64\7z.exe"
-		return
+		return $True
 	}
+
+	return $False
 }
 
 function GetASC
 {
-	$Global:IsGpg = $False
 	$Global:IsGpgPath = "No"
 
 	if (Test-Path -Path "${env:ProgramFiles}\GnuPG\bin\gpg.exe" -PathType leaf) {
-		$Global:IsGpg = $True
 		$Global:IsGpgPath = "${env:ProgramFiles}\GnuPG\bin\gpg.exe"
-		return
+		return $True
 	}
 
 	if (Test-Path -Path "${env:ProgramFiles(x86)}\GnuPG\bin\gpg.exe" -PathType leaf) {
-		$Global:IsGpg = $True
 		$Global:IsGpgPath = "${env:ProgramFiles(x86)}\GnuPG\bin\gpg.exe"
-		return
+		return $True
 	}
+
+	return $False
 }
 
 <#
@@ -321,9 +316,9 @@ Function UpdateCreateGUI
 	}
 	$GUIUpdateCreateASCPWD = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 22
-		Width          = 390
+		Width          = 400
 		Text           = $($Global:secure_password)
-		Location       = '59,25'
+		Location       = '42,25'
 	}
 	$GUIUpdateCreateASCSignName = New-Object system.Windows.Forms.Label -Property @{
 		Location       = "42,60"
@@ -332,9 +327,9 @@ Function UpdateCreateGUI
 		Text           = $lang.CreateASCAuthor
 	}
 	$GUIUpdateCreateASCSign = New-Object system.Windows.Forms.ComboBox -Property @{
-		Location       = "59,83"
+		Location       = "42,83"
 		Height         = 55
-		Width          = 390
+		Width          = 400
 		Text           = ""
 		DropDownStyle  = "DropDownList"
 	}
@@ -392,7 +387,7 @@ Function UpdateCreateGUI
 		$GUIUpdateCreateASCSign
 	))
 
-	if ($Global:IsZip) {
+	if (GetZip) {
 		$GUIUpdateOK.Enabled = $True
 	} else {
 		$GUIUpdateGroupASC.Enabled = $False
@@ -410,8 +405,7 @@ Function UpdateCreateGUI
 		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue
 	}
 
-	GetASC
-	if ($Global:IsGpg) {
+	if (GetASC) {
 		$GUIUpdateCreateASC.Enabled = $True
 		$GUIUpdateCreateASCPanel.Enabled = $True
 	} else {
@@ -453,7 +447,7 @@ function UpdatePackCreate
 		[string]$Type
 	)
 
-	if ($Global:IsZip) {
+	if (GetZip) {
 		CheckCatalog -chkpath $TempFolderUpdate
 		switch ($Type) {
 			"zip" {
@@ -595,5 +589,4 @@ function CreateVersion
 "@ | Out-File -FilePath "$SaveTo\latest.json" -Encoding Ascii
 }
 
-GetZip
 UpdateCreateGUI

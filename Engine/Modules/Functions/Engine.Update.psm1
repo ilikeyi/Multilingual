@@ -461,7 +461,7 @@ Function ArchivePacker
 	Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
 
 	if (Test-Path -Path $output -PathType Leaf) {
-		Write-Host "`n   $($lang.UpdateUnpacking)$output"
+		Write-Host "`n   $($lang.UpdateUnpacking)$(Convert-Path -Path $output -ErrorAction SilentlyContinue)"
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\..\"
 		RefreshModules -Silent
 		Write-Host "`n   * $($lang.UpdatePostProc)"
@@ -475,6 +475,7 @@ Function ArchivePacker
 			} else {
 				Write-Host "   - $($lang.UpdateNoPost)" -ForegroundColor red
 			}
+
 			if (Test-Path -Path $PsPocess -PathType Leaf) {
 				Start-Process powershell -ArgumentList "-file $($PsPocess)" -Wait -WindowStyle Minimized
 				remove-item -path $PsPocess -force
@@ -482,6 +483,7 @@ Function ArchivePacker
 			} else {
 				Write-Host "   - $($lang.UpdateNoPost)`n" -ForegroundColor red
 			}
+
 			RefreshModules -Silent
 			Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
 		}

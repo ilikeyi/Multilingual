@@ -54,7 +54,8 @@ Function CheckCatalog
 		New-Item -Path $chkpath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 		if (-not (Test-Path $chkpath -PathType Container))
 		{
-			Write-Host "   - $($lang.FailedCreateFolder)$($chkpath)`n" -ForegroundColor Red
+			Write-Host "   $($lang.FailedCreateFolder)"
+			Write-Host "   $($chkpath)" -ForegroundColor Red
 			return
 		}
 	}

@@ -41,12 +41,12 @@ Function Requirements
 	} else {
 		Write-Host -ForegroundColor Red "Failed".PadLeft(8)
 		Write-Host "`n   It will automatically exit after 6 seconds." -ForegroundColor Red
-		Start-Sleep -s 6
+		timeout /t 6
 		exit
 	}
 
 	Write-Host "`n   Congratulations, passing the prerequisites.`n   About to go to the next step." -ForegroundColor Green
-	Start-Sleep -s 4
+	Start-Sleep -s 2
 }
 
 Export-ModuleMember -Function * -Alias *

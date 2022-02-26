@@ -16,11 +16,6 @@
 #>
 Function LanguageSetting
 {
-	param
-	(
-		[switch]$Force
-	)
-
 	Write-Host "`n   $($lang.SettingLangAndKeyboard)"
 
 	<#
@@ -111,11 +106,7 @@ Function LanguageSetting
 		.Set regional codes
 		.设置区域编码
 	#>
-	if ($Force) {
-		RegionCode -Force
-	} else {
-		RegionCode
-	}
+	RegionCode -Match
 
 	<#
 		.Beta: Use Unicode UTF-8 for worldwide language support
@@ -191,28 +182,32 @@ Function RegionCode
 {
 	param
 	(
-		[switch]$Force
+		[switch]$Match,
+		[switch]$Auto
 	)
 
 	Write-Host "   $($lang.SettingLocale)"
-	if ($Force) {
-		Write-Host "   - $((Get-Culture).Name)"
-		Set-WinSystemLocale (Get-Culture).Name -ErrorAction SilentlyContinue | Out-Null
-		write-host "   - Force"
-		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+	if ($Match) {
+		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
+			$LanguageName = $Global:AvailableLanguages[$i][2]
+
+			if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
+				Write-Host "   - $($LanguageName)"
+				Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
+				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+				break
+			}
+		}
 	} else {
 		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
 
-	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-		$LanguageName = $Global:AvailableLanguages[$i][2]
-
-		if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
-			Write-Host "   - $($LanguageName)"
-			Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
-			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
-			break
-		}
+	if ($Auto) {
+		Write-Host "   - $((Get-Culture).Name)"
+		Set-WinSystemLocale (Get-Culture).Name -ErrorAction SilentlyContinue | Out-Null
+		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+	} else {
+		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
 }
 

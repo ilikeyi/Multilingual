@@ -1,0 +1,115 @@
+**********************
+PowerShell transcript start
+Start time: 20220226234338
+Username: DESKTOP-077HHO4\Administrator
+RunAs User: DESKTOP-077HHO4\Administrator
+Configuration Name: 
+Machine: DESKTOP-077HHO4 (Microsoft Windows NT 10.0.22557.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll
+Process ID: 9292
+PSVersion: 7.2.1
+PSEdition: Core
+GitCommitId: 7.2.1
+OS: Microsoft Windows 10.0.22557
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.10032.0, 6.0.0, 6.1.0, 6.2.0, 7.0.0, 7.1.0, 7.2.1
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is D:\Yi.Solutions\_Scheme\Engine\Multilingual\Modules\Functions\..\..\Logs\Log-20220226234336\Logging.log
+
+   Author: Engine ( https://fengyi.tel )
+
+   From: Engine's Solutions
+   buildstring: 1.0.1.0.bs_release.220201-1208
+   Create upgrade package
+   ---------------------------------------------------
+   The user has cancelled the operation.
+PS D:\Yi.Solutions\_Scheme\Engine\Multilingual> D:\Yi.Solutions\_Scheme\Engine\Multilingual\_Create.Upgrade.Package.ps1
+
+   Prerequisites
+   ---------------------------------------------------------------
+   Checking PS version 5.1 and above
+      OK
+   Checking Windows version > 10.0.16299.0
+      OK
+   Checking Must be elevated to higher authority
+      OK
+
+   Congratulations, passing the prerequisites.
+   About to go to the next step.
+Transcript started, output file is D:\Yi.Solutions\_Scheme\Engine\Multilingual\Modules\Functions\..\..\Logs\Log-20220226234343\Logging.log
+
+   Author: Engine ( https://fengyi.tel )
+
+   From: Engine's Solutions
+   buildstring: 1.0.1.0.bs_release.220201-1208
+   Create upgrade package
+   ---------------------------------------------------
+   The user has cancelled the operation.
+PS D:\Yi.Solutions\_Scheme\Engine\Multilingual> D:\Yi.Solutions\_Scheme\Engine\v8\_Create.Upgrade.Package.ps1
+
+   Prerequisites
+   ---------------------------------------------------------------
+   Checking PS version 5.1 and above
+      OK
+   Checking Windows version > 10.0.16299.0
+      OK
+   Checking Must be elevated to higher authority
+      OK
+
+   Congratulations, passing the prerequisites.
+   About to go to the next step.
+Transcript started, output file is D:\Yi.Solutions\_Scheme\Engine\v8\Modules\Functions\..\..\Logs\Log-20220226234525\Logging.log
+
+   Author: Engine ( https://fengyi.tel )
+
+   From: Engine's Solutions
+   buildstring: 8.0.0.2.bs_release.220201-1208
+   Create upgrade package
+   ---------------------------------------------------
+   The user has cancelled the operation.
+PS D:\Yi.Solutions\_Scheme\Engine\v8> D:\Yi.Solutions\_Scheme\Engine\v8\_Create.Upgrade.Package.ps1
+
+   Prerequisites
+   ---------------------------------------------------------------
+   Checking PS version 5.1 and above
+      OK
+   Checking Windows version > 10.0.16299.0
+      OK
+   Checking Must be elevated to higher authority
+      OK
+
+   Congratulations, passing the prerequisites.
+   About to go to the next step.
+Transcript started, output file is D:\Yi.Solutions\_Scheme\Engine\v8\Modules\Functions\..\..\Logs\Log-20220226234530\Logging.log
+
+   Author: Engine ( https://fengyi.tel )
+
+   From: Engine's Solutions
+   buildstring: 8.0.0.2.bs_release.220201-1208
+   Create upgrade package
+   ---------------------------------------------------
+   The user has cancelled the operation.
+PS D:\Yi.Solutions\_Scheme\Engine\v8> D:\Yi.Solutions\_Scheme\Engine\v8\_Create.Upgrade.Package.ps1
+
+   Prerequisites
+   ---------------------------------------------------------------
+   Checking PS version 5.1 and above
+      OK
+   Checking Windows version > 10.0.16299.0
+      OK
+   Checking Must be elevated to higher authority
+      OK
+
+   Congratulations, passing the prerequisites.
+   About to go to the next step.
+Transcript started, output file is D:\Yi.Solutions\_Scheme\Engine\v8\Modules\Functions\..\..\Logs\Log-20220226234536\Logging.log
+
+   Author: Engine ( https://fengyi.tel )
+
+   From: Engine's Solutions
+   buildstring: 8.0.0.2.bs_release.220201-1208
+   Create upgrade package
+   ---------------------------------------------------

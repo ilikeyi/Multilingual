@@ -189,8 +189,10 @@ Function UpdateCreateGUI
 	$GUIUpdateCreateASCClick = {
 		if ($GUIUpdateCreateASC.Checked) {
 			$GUIUpdateCreateASCPanel.Enabled = $True
+			DynamicSave -regkey "Engine" -name "IsPGP" -value "True" -String
 		} else {
 			$GUIUpdateCreateASCPanel.Enabled = $False
+			DynamicSave -regkey "Engine" -name "IsPGP" -value "False" -String
 		}
 	}
 
@@ -294,7 +296,7 @@ Function UpdateCreateGUI
 	}
 	$GUIUpdateCreateASCPanel = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
-		Height         = 108
+		Height         = 115
 		Width          = 530
 		autoSizeMode   = 1
 		Padding        = "0,0,0,0"
@@ -398,11 +400,25 @@ Function UpdateCreateGUI
 	}
 
 	if (GetASC) {
-		$GUIUpdateCreateASC.Enabled = $True
-		$GUIUpdateCreateASCPanel.Enabled = $True
+		$GUIUpdateGroupASC.Enabled = $True
+		
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+				"True" {
+					$GUIUpdateCreateASC.Checked = $True
+					$GUIUpdateCreateASCPanel.Enabled = $True
+				}
+				"False" {
+					$GUIUpdateCreateASC.Checked = $False
+					$GUIUpdateCreateASCPanel.Enabled = $False
+				}
+			}
+		} else {
+			$GUIUpdateCreateASC.Checked = $False
+			$GUIUpdateCreateASCPanel.Enabled = $False
+		}
 	} else {
-		$GUIUpdateCreateASC.Enabled = $False
-		$GUIUpdateCreateASCPanel.Enabled = $False
+		$GUIUpdateGroupASC.Enabled = $False
 		$GUIUpdateErrorMsg.Text += $lang.ASCStatus
 	}
 

@@ -69,7 +69,7 @@ Function FirstExperienceGUI
 		}
 
 		if ($GUIFELocale.Checked) {
-			RegionCode -Force
+			RegionCode -Auto
 			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.SettingLocale)"
@@ -248,7 +248,7 @@ Function FirstExperienceProcess
 		.Set system language, keyboard, etc.
 		.设置系统语言、键盘等
 	#>
-	LanguageSetting -Force
+	LanguageSetting
 
 	<#
 		.After completing the prerequisite deployment, determine whether to restart the computer

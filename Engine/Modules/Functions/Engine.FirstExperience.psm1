@@ -98,7 +98,6 @@ Function FirstExperienceGUI
 		Height         = 720
 		Width          = 550
 		Text           = $lang.FirstExperience
-		TopMost        = $False
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False

@@ -106,6 +106,7 @@ Function LanguageSetting
 		.Set regional codes
 		.设置区域编码
 	#>
+	RegionCode -Auto
 	RegionCode -Match
 
 	<#

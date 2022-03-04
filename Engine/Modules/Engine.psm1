@@ -280,7 +280,6 @@ Function LanguageSelectGUI
 		Height         = 720
 		Width          = 550
 		Text           = "Choose your country or region."
-		TopMost        = $False
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False
@@ -305,7 +304,7 @@ Function LanguageSelectGUI
 	$GUISelectLanguageDontPrompt = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 508
-		Text           = "Remember the chosen language"
+		Text           = "&Remember the chosen language"
 		Location       = '10,566'
 		add_Click      = $GUISelectLanguageDontPromptClick
 	}
@@ -315,7 +314,7 @@ Function LanguageSelectGUI
 		Height         = 36
 		Width          = 515
 		add_Click      = $GUISelectLanguageOKClick
-		Text           = "OK"
+		Text           = "&OK"
 	}
 	$GUISelectLanguageCanel = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
@@ -323,7 +322,7 @@ Function LanguageSelectGUI
 		Height         = 36
 		Width          = 515
 		add_Click      = $GUISelectLanguageCanelClick
-		Text           = "Cancel"
+		Text           = "&Cancel"
 	}
 	$GUISelectLanguage.controls.AddRange((
 		$GUISelectLanguagePanel,

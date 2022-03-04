@@ -249,7 +249,6 @@ Function UpdateCreateGUI
 		Height         = 720
 		Width          = 550
 		Text           = $lang.UpdateCreate
-		TopMost        = $False
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False

@@ -159,7 +159,6 @@ Function UpdateGUI
 		Height         = 720
 		Width          = 550
 		Text           = $lang.Update
-		TopMost        = $False
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False
@@ -592,8 +591,8 @@ Function ArchitecturePacker
 }
 
 <#
-	.Clean up the interface
-	.清理接口
+	.Determine if architecture is available by path
+	.按路径来判断架构是否可用
 #>
 Function GetArchitecturePacker
 {
@@ -605,13 +604,13 @@ Function GetArchitecturePacker
 	switch ($env:PROCESSOR_ARCHITECTURE) {
 		"arm64" {
 			if (Test-Path -Path "$Path\arm64" -PathType Container) {
-				return "$Path\arm64"
+				return Convert-Path -Path "$Path\arm64" -ErrorAction SilentlyContinue
 			} else {
 				if (Test-Path -Path "$Path\AMD64" -PathType Container) {
-					return "$Path\AMD64"
+					return Convert-Path -Path "$Path\AMD64" -ErrorAction SilentlyContinue
 				} else {
 					if (Test-Path -Path "$Path\x86" -PathType Container) {
-						return "$Path\x86"
+						return Convert-Path -Path "$Path\x86" -ErrorAction SilentlyContinue
 					} else {
 						return $Path
 					}
@@ -620,10 +619,10 @@ Function GetArchitecturePacker
 		}
 		"AMD64" {
 			if (Test-Path -Path "$Path\AMD64" -PathType Container) {
-				return "$Path\AMD64"
+				return Convert-Path -Path "$Path\AMD64" -ErrorAction SilentlyContinue
 			} else {
 				if (Test-Path -Path "$Path\x86" -PathType Container) {
-					return "$Path\x86"
+					return Convert-Path -Path "$Path\x86" -ErrorAction SilentlyContinue
 				} else {
 					return $Path
 				}
@@ -631,7 +630,7 @@ Function GetArchitecturePacker
 		}
 		"x86" {
 			if (Test-Path -Path "$Path\x86" -PathType Container) {
-				return "$Path\x86"
+				return Convert-Path -Path "$Path\x86" -ErrorAction SilentlyContinue
 			} else {
 				return $Path
 			}

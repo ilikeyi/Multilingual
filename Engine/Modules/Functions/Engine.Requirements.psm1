@@ -41,7 +41,7 @@ Function Requirements
 	} else {
 		Write-Host -ForegroundColor Red "Failed".PadLeft(8)
 		Write-Host "`n   It will automatically exit after 6 seconds." -ForegroundColor Red
-		timeout /t 6
+		start-process "timeout.exe" -argumentlist "/t 6 /nobreak" -wait -nonewwindow
 		exit
 	}
 

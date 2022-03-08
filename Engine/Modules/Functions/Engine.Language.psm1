@@ -103,10 +103,15 @@ Function LanguageSetting
 #	Set-WinLanguageBarOption -UseLegacySwitchMode -ErrorAction SilentlyContinue | Out-Null
 
 	<#
-		.Set regional codes
-		.设置区域编码
+		.Regional codes: auto
+		.区域编码：自动
 	#>
 	RegionCode -Auto
+
+	<#
+		.Regional codes: match
+		.区域编码：匹配
+	#>
 	RegionCode -Match
 
 	<#

@@ -42,8 +42,6 @@
 	DeployOfficeTipsDone      = Office 배포 계획이 완료되었습니다.
 
 	NetworkLocationWizard     = 네트워크 위치 마법사
-	UseZip                    = {0} 압축 해제 소프트웨어 사용
-	UseOSZip                  = 시스템과 함께 제공되는 압축 해제 소프트웨어 사용
 	UserCancel                = 사용자가 작업을 취소했습니다.
 	SetLang                   = 시스템 기본 언어 설정: \
 	SetTimezone               = 시간대 설정: \

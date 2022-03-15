@@ -42,8 +42,6 @@
 	DeployOfficeTipsDone      = Office 展開計画が完了しました。
 
 	NetworkLocationWizard     = ネットワーク ロケーション ウィザード
-	UseZip                    = {0} を使用してソフトウェアを解凍します
-	UseOSZip                  = システムに付属の解凍ソフトウェアを使用します
 	UserCancel                = ユーザーが操作をキャンセルしました。
 	SetLang                   = システムの優先言語を設定します：
 	SetTimezone               = タイムゾーンの 設定：

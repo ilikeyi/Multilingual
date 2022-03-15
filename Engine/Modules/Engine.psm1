@@ -416,7 +416,7 @@ Function RefreshModules
 
 	Write-Host "`n   $($lang.RefreshModules)"
 	Language -Auto
-	Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+	Write-Host "   $($lang.Done)" -ForegroundColor Green
 
 	if (-not ($Silent)) {
 		ToMainpage -wait 2

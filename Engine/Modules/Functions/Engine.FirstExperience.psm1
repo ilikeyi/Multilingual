@@ -326,15 +326,15 @@ Function FirstDeployment
 	Write-Host "`n   $($lang.FirstExpFinishOnDemand)"
 	if (Test-Path "$($PSScriptRoot)\..\..\Deploy\FirstPreExperience" -PathType Leaf)
 	{
-		Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
+		Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
 
 
 	} else {
-		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 	}
 
-	Write-Host "   $($lang.FirstDeployment)"
+	Write-Host "`n   $($lang.FirstDeployment)"
 	DeployGuide
 
 	<#

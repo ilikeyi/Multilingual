@@ -42,8 +42,6 @@
 	DeployOfficeTipsDone      = The Office deployment plan is complete.
 
 	NetworkLocationWizard     = Network Location Wizard
-	UseZip                    = Use {0} decompression software
-	UseOSZip                  = Use the decompression software that comes with the system
 	UserCancel                = The user has cancelled the operation.
 	SetLang                   = Set system preferred language: \
 	SetTimezone               = Set time zone: \

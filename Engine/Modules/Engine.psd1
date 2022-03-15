@@ -14,9 +14,9 @@
 
 	PrivateData = @{
 		PSData = @{
-			# Tags = @()
+			Tags = @("Multilingual")
 			# LicenseUri   = ''
-			# ProjectUri   = ''
+			ProjectUri   = 'https://github.com/ilikeyi/Multilingual'
 			# IconUri      = ''
 			# ReleaseNotes = ''
 		}

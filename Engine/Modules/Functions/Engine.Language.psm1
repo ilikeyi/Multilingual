@@ -192,7 +192,7 @@ Function RegionCode
 		[switch]$Auto
 	)
 
-	Write-Host "   $($lang.SettingLocale)"
+	Write-Host "`n   $($lang.SettingLocale)"
 	if ($Match) {
 		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 			$LanguageName = $Global:AvailableLanguages[$i][2]

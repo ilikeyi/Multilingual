@@ -461,6 +461,8 @@ Function ArchivePacker
 
 	if (Test-Path -Path $output -PathType Leaf) {
 		Write-Host "`n   $($lang.UpdateUnpacking)$(Convert-Path -Path $output -ErrorAction SilentlyContinue)"
+
+		Write-Host "   - $($lang.Unpacking)".PadRight(28) -NoNewline
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\"
 		RefreshModules -Silent
 		Write-Host "`n   * $($lang.UpdatePostProc)"
@@ -507,17 +509,19 @@ Function Archive
 
 	Convert-Path $filename -ErrorAction SilentlyContinue | Out-Null
 
+	Write-Host "     $($filename)"
+	Write-Host "     $($lang.Unpacking)".PadRight(28) -NoNewline
 	if (Compressing) {
-		Write-host "   - $($lang.UseZip -f $($Global:Zip))"
 		if (([string]::IsNullOrEmpty($Password))) {
 			$arguments = "x ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
 		} else {
 			$arguments = "x ""-p$Password"" ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
 		}
 		Start-Process $Global:Zip "$arguments" -Wait -WindowStyle Minimized
+		Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 	} else {
-		Write-host "    - $($lang.UseOSZip)"
 		Expand-Archive -LiteralPath $filename -DestinationPath $to -force
+		Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 	}
 }
 

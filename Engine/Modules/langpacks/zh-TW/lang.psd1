@@ -42,8 +42,6 @@
 	DeployOfficeTipsDone      = Office 部署計劃已完成。
 
 	NetworkLocationWizard     = 網絡位置嚮導
-	UseZip                    = 使用 {0} 解壓軟件
-	UseOSZip                  = 使用系統自帶的解壓軟件
 	UserCancel                = 用戶已取消操作。
 	SetLang                   = 設置系統首選語言：
 	SetTimezone               = 設置時區：

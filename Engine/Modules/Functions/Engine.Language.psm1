@@ -103,14 +103,11 @@ Function LanguageSetting
 #	Set-WinLanguageBarOption -UseLegacySwitchMode -ErrorAction SilentlyContinue | Out-Null
 
 	<#
-		.Regional codes: auto
-		.区域编码：自动
-	#>
-	RegionCode -Auto
+		.Regional codes
+		.区域编码
 
-	<#
-		.Regional codes: match
-		.区域编码：匹配
+		-Match | 匹配
+		-Auto  | 强行同步与当前系统主语言一致
 	#>
 	RegionCode -Match
 
@@ -128,20 +125,22 @@ Function LanguageSetting
 		.Setting time
 		.设置时间
 	#>
-	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-		if ($Global:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
-			Write-Host "`n   $($lang.SetTimezone)"
-			Write-Host "   $($Global:AvailableLanguages[$i][5])" -ForegroundColor Green
-			Set-TimeZone -Id $Global:AvailableLanguages[$i][5] -PassThru | Out-Null
-			break
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\TimeZone" -PathType Leaf) {
+		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
+			if ($Global:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
+				Write-Host "`n   $($lang.SetTimezone)"
+				Write-Host "   $($Global:AvailableLanguages[$i][5])" -ForegroundColor Green
+				Set-TimeZone -Id $Global:AvailableLanguages[$i][5] -PassThru | Out-Null
+				break
+			}
 		}
-	}
 
-	<#
-		.Resynchronize time
-		.重新同步时间
-	#>
-	W32tm /resync /force | Out-Null
+		<#
+			.Resynchronize time
+			.重新同步时间
+		#>
+		W32tm /resync /force | Out-Null
+	}
 }
 
 <#
@@ -189,7 +188,7 @@ Function RegionCode
 	param
 	(
 		[switch]$Match,
-		[switch]$Auto
+		[switch]$Force
 	)
 
 	Write-Host "`n   $($lang.SettingLocale)"
@@ -208,7 +207,7 @@ Function RegionCode
 		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
 
-	if ($Auto) {
+	if ($Force) {
 		Write-Host "   - $((Get-Culture).Name)"
 		Set-WinSystemLocale (Get-Culture).Name -ErrorAction SilentlyContinue | Out-Null
 		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green

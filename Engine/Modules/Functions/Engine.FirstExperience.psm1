@@ -69,7 +69,7 @@ Function FirstExperienceGUI
 		}
 
 		if ($GUIFELocale.Checked) {
-			RegionCode -Auto
+			RegionCode -Force
 			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.SettingLocale)"

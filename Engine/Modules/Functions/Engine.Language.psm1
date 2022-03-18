@@ -25,6 +25,15 @@ Function LanguageSetting
 	$Global:UILanguage = (Get-Culture).Name
 
 	<#
+		.Get the language installed in the system and generate it into an array
+		.获取系统已安装语言，并生成到数组里
+	#>
+	$Global:AvailableLanguages = @()
+	Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
+		$Global:AvailableLanguages += $_
+	}
+
+	<#
 		.Reset the array and initialize the language
 		.重置数组和初始化语言
 	#>
@@ -48,32 +57,24 @@ Function LanguageSetting
 		$FlagsSingleLanguage = $True
 	}
 
-	<#
-		.Processing: Single language
-		.处理：单语版
-	#>
 	if ($FlagsSingleLanguage) {
 		<#
-			.Get the languages installed on the system
-			.获取系统已安装的语言
+			.Processing: Single language
+			.处理：单语版
 		#>
-		Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
-			if ("en-US" -eq $_) {
-				LanguageProcess -NewLang "en-US"
-			}
+		if (($Global:AvailableLanguages) -Contains "en-US") {
+			LanguageProcess -NewLang "en-US"
+			Write-Host "   $($lang.AddTo), en-US"
 		}
 	} else {
 		<#
 			.Processing: other unrestricted versions
 			.处理：其它不受限制版本
 		#>
-		<#
-			.Get the languages installed on the system
-			.获取系统已安装的语言
-		#>
-		Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
-			if ($Global:UILanguage -ne $_) {
-				LanguageProcess -NewLang $_
+		foreach ($item in $Global:AvailableLanguages) {
+			if ($Global:UILanguage -ne $item) {
+				LanguageProcess -NewLang $item
+				Write-Host "   $($lang.AddTo), $item"
 			}
 		}
 	}
@@ -107,7 +108,7 @@ Function LanguageSetting
 		.区域编码
 
 		-Match | 匹配
-		-Auto  | 强行同步与当前系统主语言一致
+		-Force | 强行同步与当前系统主语言一致
 	#>
 	RegionCode -Match
 

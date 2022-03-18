@@ -12,12 +12,6 @@ $Global:MainFolder = $(Get-Location)
 $Global:AuthorURL = "https://fengyi.tel"
 
 <#
-	.The log is saved to the directory name
-	.日志保存到目录名称
-#>
-$Global:SaveTo = "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
-
-<#
 	.Available languages
 	.可用语言
 

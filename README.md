@@ -7,9 +7,11 @@ Automatically add languages installed on Windows system
 The main function:
 ```
 1. Support online upgrade;
-2. Obtain the installed language pack and add it automatically;
-3. During the adding process, the S and SN versions are automatically judged and added according to the rules;
-4. All the conditions of "Language Overview" have been complied with and met
+2. Modify the script and press R to hot refresh;
+3. Implement deployment rules according to the description file;
+4. Get the installed language pack and add it automatically;
+5. During the adding process, the S and SN versions are automatically judged and added according to the rules;
+6. All conditions of "Language Overview" have been followed and met
    https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview
 ```
 

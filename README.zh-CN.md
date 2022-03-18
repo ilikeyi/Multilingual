@@ -7,9 +7,11 @@ Automatically add known languages
 主要功能：
 ```
 1、支持在线升级；
-2、获取已安装的语言包，自动添加；
-3、添加过程中，自动判断 S、SN 版，按规则添加；
-4、已遵循并满足“语言概述”的所有条件
+2、修改脚本按 R 可热刷新；
+3、根据描述文件来实现部署规则；
+4、获取已安装的语言包，自动添加；
+5、添加过程中，自动判断 S、SN 版，按规则添加；
+6、已遵循并满足“语言概述”的所有条件
    https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview
 ```
 

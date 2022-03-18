@@ -5,7 +5,6 @@
 Push-Location "$($PSScriptRoot)\..\..\"
 $Global:UniqueMainFolder = $(Get-Location)
 $Global:UniqueID = [IO.Path]::GetFileName($(Get-Location))
-$Global:ScriptMainFile = $MyInvocation.PSCommandPath
 
 Push-Location "$($PSScriptRoot)\..\"
 $Global:MainFolder = $(Get-Location)

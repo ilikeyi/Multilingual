@@ -43,9 +43,6 @@ Function Mainpage
    R. $($lang.RefreshModules)
    Q. $($lang.Exit)`n"
 
-Get-Module
-(Get-Module -Name Engine).Version.ToString()
-
 	$select = Read-Host "   $($lang.Choose)"
 	switch ($select)
 	{

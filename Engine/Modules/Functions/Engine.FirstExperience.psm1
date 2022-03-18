@@ -260,7 +260,7 @@ Function FirstExperienceProcess
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
 		}
 
-		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$($Global:ScriptMainFile)"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$((Convert-Path -Path "$($PSScriptRoot)\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
@@ -313,7 +313,7 @@ Function FirstDeployment
 	} else {
 		if (Test-Path "$($PSScriptRoot)\..\..\Deploy\PopupEngine" -PathType Leaf) {
 			Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
-			Start-Process powershell -ArgumentList "-file $($Global:ScriptMainFile)"
+			Start-Process powershell -ArgumentList "-file $((Convert-Path -Path "$($PSScriptRoot)\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}

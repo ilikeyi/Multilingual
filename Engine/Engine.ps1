@@ -35,7 +35,7 @@ param
 	.The log is saved to the directory name
 	.日志保存到目录名称
 #>
-$Global:SaveTo = "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
+New-Variable -Scope global -Name LogSaveTo -Value "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
 
 Remove-Module -Name Engine -Force -ErrorAction Ignore | Out-Null
 Import-Module -Name $PSScriptRoot\Modules\Engine.psd1 -PassThru -Force | Out-Null

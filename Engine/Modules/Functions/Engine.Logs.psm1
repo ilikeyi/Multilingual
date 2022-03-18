@@ -22,7 +22,7 @@ $Global:LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
 #>
 Function CleanOldlogs
 {
-	Get-ChildItem -Path "$($Global:LogsSaveFolder)" -Directory -Exclude $Global:SaveTo -ErrorAction SilentlyContinue | Where-Object {
+	Get-ChildItem -Path "$($Global:LogsSaveFolder)" -Directory -Exclude $LogSaveTo -ErrorAction SilentlyContinue | Where-Object {
 		if ($_.LastWriteTime -lt (Get-Date).AddDays(-7)) {
 			Remove-Item -path $_.Fullname -Force -Recurse -ErrorAction SilentlyContinue
 		}
@@ -77,7 +77,7 @@ function WriteLogs
 	if ($Main) {
 		Export-Csv -InputObject $data -Path "$($Global:LogsSaveFolder)\Logging.csv" -NoTypeInformation -Append
 	} else {
-		Export-Csv -InputObject $data -Path "$($Global:LogsSaveFolder)\$($Global:SaveTo)\Logging.csv" -NoTypeInformation -Append
+		Export-Csv -InputObject $data -Path "$($Global:LogsSaveFolder)\$($LogSaveTo)\Logging.csv" -NoTypeInformation -Append
 	}
 }
 
@@ -91,14 +91,14 @@ Function Logging
 		.Generate Logs directory
 		.生成 Logs 目录
 	#>
-	CheckCatalog -chkpath "$($Global:LogsSaveFolder)\$($Global:SaveTo)"
+	CheckCatalog -chkpath "$($Global:LogsSaveFolder)\$($LogSaveTo)"
 	CleanOldlogs
 
 	<#
 		.Operation record
 		.操作记录
 	#>
-	Start-Transcript -Path "$($Global:LogsSaveFolder)\$($Global:SaveTo)\Logging.log" -Force -ErrorAction SilentlyContinue
+	Start-Transcript -Path "$($Global:LogsSaveFolder)\$($LogSaveTo)\Logging.log" -Force -ErrorAction SilentlyContinue
 }
 
 Export-ModuleMember -Function * -Alias *

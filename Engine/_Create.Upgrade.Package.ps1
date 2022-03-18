@@ -13,8 +13,8 @@
 
 	.EXAMPLE
 	.示例
-	 PS C:\> .\Engine.ps1
-	 PS C:\> .\Engine.ps1 -Function "Function1 -Param", "Function2 -Param"
+	 PS C:\> .\_Create.Upgrade.Package.ps1
+	 PS C:\> .\_Create.Upgrade.Package.ps1 -Silent -PGP -PGPPWD "P@ssw0rd" $PGPKEY "0FEBF674EAD23E05" -SaveTo "D:\UpdatePackge"
 
 	.LINK
 	 https://github.com/ilikeyi/Multilingual
@@ -23,6 +23,22 @@
 	 Author:  Yi
 	 Website: http://fengyi.tel
 #>
+
+param
+(
+	[switch]$Silent,
+	[switch]$SHA256,
+	[switch]$PGP,
+	[string]$PGPPWD,
+	[string]$PGPKEY,
+	[string]$SaveTo
+)
+
+<#
+	.The log is saved to the directory name
+	.日志保存到目录名称
+#>
+New-Variable -Scope global -Name LogSaveTo -Value "Log-$(Get-Date -Format "yyyyMMddHHmmss")"
 
 Remove-Module -Name Engine -Force -ErrorAction Ignore | Out-Null
 Import-Module -Name $PSScriptRoot\Modules\Engine.psd1 -PassThru -Force | Out-Null
@@ -82,7 +98,7 @@ $TempFolderUpdate = "$([Environment]::GetFolderPath("MyDocuments"))\Temp.$($Glob
 $ArchiveExcludeUp = @(
 	"-xr-!Deploy"
 	"-xr-!Logs"
-	"-xr-!_Create.Upgrade.Package.ps1"
+#	"-xr-!_Create.Upgrade.Package.ps1"
 )
 
 <#
@@ -232,13 +248,13 @@ Function UpdateCreateGUI
 
 		if ($GUIUpdateCreateASC.Enabled) {
 			if ($GUIUpdateCreateASC.Checked) {
-				UpdateCreateASC -Path $TempFolderUpdate
+				UpdateCreateASC
 			}
 		}
 
 		if ($GUIUpdateCreateSHA256.Enabled) {
 			if ($GUIUpdateCreateSHA256.Checked) {
-				UpdateCreateSHA256 -Path $TempFolderUpdate
+				UpdateCreateSHA256
 			}
 		}
 		MoveUpAllfile
@@ -434,8 +450,8 @@ Function UpdateCreateGUI
 	$GUIUpdate.ShowDialog() | Out-Null
 }
 
-function UpdateCleanOld {
-	remove-item -path "$UpdateSaveTo" -Recurse -force -ErrorAction SilentlyContinue
+function UpdateCleanOld
+{
 	remove-item -path "$TempFolderUpdate" -Recurse -force -ErrorAction SilentlyContinue
 }
 
@@ -443,7 +459,7 @@ function UpdatePack {
 	foreach ($item in $BuildTypeUp) {
 		Push-Location $PSScriptRoot
 		UpdatePackCreate -Type $item
-		CreateVersion -SaveTo "$TempFolderUpdate" -Version (Get-Module -Name Engine).Version.ToString() -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $ChkLocalver
+		CreateVersion -SaveTo "$TempFolderUpdate" -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $ChkLocalver
 	}
 }
 
@@ -479,7 +495,7 @@ function UpdatePackCreate
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
 				} else {
-					Write-Host "     - $($lang.SkipCreate) $UpdateName.tar`n"
+					Write-Host "    - $($lang.SkipCreate) $UpdateName.tar`n"
 				}
 			}
 			"gz" {
@@ -501,11 +517,6 @@ function UpdatePackCreate
 
 function UpdateCreateASC
 {
-	param
-	(
-		$Path
-	)
-
 	$FlagsCheckGPG = $False
 	if (Test-Path -Path "${env:ProgramFiles}\GnuPG\bin\gpg.exe" -PathType leaf) {
 		$FlagsCheckGPG = $True
@@ -517,7 +528,7 @@ function UpdateCreateASC
 	}
 
 	if ($FlagsCheckGPG) {
-		Get-ChildItem $Path -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | Foreach-Object {
+		Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | Foreach-Object {
 			Remove-Item -path "$($_.FullName).sig" -Force -ErrorAction SilentlyContinue
 			Remove-Item -path "$($_.FullName).asc" -Force -ErrorAction SilentlyContinue
 
@@ -541,19 +552,15 @@ function UpdateCreateASC
 
 function UpdateCreateSHA256
 {
-	param
-	(
-		$Path
-	)
-
-	Get-ChildItem $Path -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | Foreach-Object {
+	Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | Foreach-Object {
+		$fullnewpathFU = "$($_.FullName)"
 		$fullnewpath = "$($_.FullName).sha256"
 
-		Write-Host "   * $($lang.Uping) $UpdateName.sha256"
-		$calchash = (Get-FileHash $($_.FullName) -Algorithm SHA256)
-		Remove-Item -path $fullnewpath -Force -ErrorAction SilentlyContinue
+		Write-Host "   * $($lang.Uping) $($_.FullName).sha256"
+		$calchash = (Get-FileHash $($fullnewpathFU) -Algorithm SHA256)
 		$calchash.hash + "  " + $_.Name | Out-File -FilePath $fullnewpath -Encoding ASCII
-		Write-Host "     - $($lang.Done)`n" -ForegroundColor Green
+
+		Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
 	}
 }
 
@@ -571,7 +578,6 @@ function CreateVersion
 	param
 	(
 		[string]$SaveTo,
-		[string]$Version,
 		[string]$CurrentVersion,
 		[string]$LowVer
 	)
@@ -596,4 +602,23 @@ function CreateVersion
 "@ | Out-File -FilePath "$SaveTo\latest.json" -Encoding Ascii
 }
 
-UpdateCreateGUI
+if ($Silent) {
+	$UpdateSaveTo = $SaveTo
+
+	UpdateCleanOld
+	UpdatePack
+
+	if ($PGP) {
+		$Global:secure_password = $PGPPWD
+		$Global:SignGpgKeyID = $PGPKEY
+		UpdateCreateASC
+	}
+
+	if ($SHA256) {
+		UpdateCreateSHA256
+	}
+
+	MoveUpAllfile
+} else {
+	UpdateCreateGUI
+}

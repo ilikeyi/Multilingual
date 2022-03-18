@@ -24,7 +24,7 @@ Function Logo
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
-   buildstring: $($ProductVersion).bs_release.220201-1208`n"
+   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.220201-1208`n"
 }
 
 <#
@@ -42,6 +42,9 @@ Function Mainpage
    write-host  "`n`n   L. $($lang.SwitchLanguage)
    R. $($lang.RefreshModules)
    Q. $($lang.Exit)`n"
+
+Get-Module
+(Get-Module -Name Engine).Version.ToString()
 
 	$select = Read-Host "   $($lang.Choose)"
 	switch ($select)

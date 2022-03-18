@@ -38,49 +38,49 @@ $Global:AvailableLanguages = @(
 		.Language pack
 		.语言包
 	#>
-	("1",  "1025",  "ar-SA",          "ar",              "Arabic - Saudi Arabia",                          "Argentina Standard Time"),
+	("1",  "1025",  "ar-SA",          "ar",              "Arabic (Saudi Arabia)",                          "Argentina Standard Time"),
 	("1",  "1026",  "bg-BG",          "bg",              "Bulgarian (Bulgaria)",                           "FLE Standard Time"),
-	("1",  "3076",  "zh-HK",          "hk",              "Chinese - Hong Kong SAR",                        "China Standard Time"),
-	("1",  "2052",  "zh-CN",          "cn",              "Chinese - China",                                "China Standard Time"),
-	("1",  "1028",  "zh-TW",          "tw",              "Chinese - Taiwan",                               "Taipei Standard Time"),
+	("1",  "3076",  "zh-HK",          "hk",              "Chinese (Traditional, Hong Kong SAR)",           "China Standard Time"),
+	("1",  "2052",  "zh-CN",          "cn",              "Chinese (Simplified, China)",                    "China Standard Time"),
+	("1",  "1028",  "zh-TW",          "tw",              "Chinese (Traditional, Taiwan)",                  "Taipei Standard Time"),
 	("1",  "1050",  "hr-HR",          "hr",              "Croatian (Croatia)",                             "Central European Standard Time"),
 	("1",  "1029",  "cs-CZ",          "dz",              "Czech (Czech Republic)",                         "W. Central Africa Standard Time"),
 	("1",  "1030",  "da-DK",          "dk",              "Danish (Denmark)",                               "Romance Standard Time"),
-	("1",  "1043",  "nl-NL",          "nl",              "Dutch - Netherlands",                            "W. Europe Standard Time"),
-	("1",  "1033",  "en-US",          "en",              "English - United States",                        "Pacific Standard Time"),
-	("1",  "2057",  "en-GB",          "gb",              "English - Great Britain",                        "GMT Standard Time"),
+	("1",  "1043",  "nl-NL",          "nl",              "Dutch (Netherlands)",                            "W. Europe Standard Time"),
+	("1",  "1033",  "en-US",          "en",              "English (United States)",                        "Pacific Standard Time"),
+	("1",  "2057",  "en-GB",          "gb",              "English (United Kingdom)",                       "GMT Standard Time"),
 	("1",  "1061",  "et-EE",          "ee",              "Estonian (Estonia)",                             "FLE Standard Time"),
 	("1",  "1035",  "fi-FI",          "fi",              "Finnish (Finland)",                              "FLE Standard Time"),
-	("1",  "3084",  "fr-CA",          "ca",              "French - Canada",                                "Eastern Standard Time"),
-	("1",  "1036",  "fr-FR",          "fr",              "French - France",                                "Central European Time"),
-	("1",  "1031",  "de-DE",          "de",              "German - Germany",                               "W. Europe Standard Time"),
+	("1",  "3084",  "fr-CA",          "ca",              "French (Canada)",                                "Eastern Standard Time"),
+	("1",  "1036",  "fr-FR",          "fr",              "French (France)",                                "Central European Time"),
+	("1",  "1031",  "de-DE",          "de",              "German (Germany)",                               "W. Europe Standard Time"),
 	("1",  "1032",  "el-GR",          "gr",              "Greek (Greece)",                                 "GTB Standard Time"),
 	("1",  "1037",  "he-IL",          "il",              "Hebrew (Israel)",                                "Israel Standard Time"),
 	("1",  "1038",  "hu-HU",          "hu",              "Hungarian (Hungary)",                            "Central Europe Standard Time"),
-	("1",  "1040",  "it-IT",          "it",              "Italian - Italy",                                "W. Europe Standard Time"),
+	("1",  "1040",  "it-IT",          "it",              "Italian (Italy)",                                "W. Europe Standard Time"),
 	("1",  "1041",  "ja-JP",          "jp",              "Japanese (Japan)",                               "Tokyo Standard Time"),
 	("1",  "1042",  "ko-KR",          "kr",              "Korean (Korea)",                                 "Korea Standard Time"),
 	("1",  "1062",  "lv-LV",          "lv",              "Latvian (Latvia)",                               "FLE Standard Time"),
 	("1",  "1063",  "lt-LT",          "lt",              "Lithuanian (Lithuania)",                         "FLE Standard Time"),
-	("1",  "1044",  "nb-NO",          "no",              "Norwegian (Bokm?l) (Norway)",                    "W. Europe Standard Time"),
+	("1",  "1044",  "nb-NO",          "no",              "Norwegian, Bokmål (Norway)",                     "W. Europe Standard Time"),
 	("1",  "1045",  "pl-PL",          "pl",              "Polish (Poland)",                                "Central European Standard Time"),
-	("1",  "1046",  "pt-BR",          "br",              "Portuguese - Brazil",                            "E. South America Standard Time"),
-	("1",  "2070",  "pt-PT",          "pt",              "Portuguese - Portugal",                          "GMT Standard Time"),
+	("1",  "1046",  "pt-BR",          "br",              "Portuguese (Brazil)",                            "E. South America Standard Time"),
+	("1",  "2070",  "pt-PT",          "pt",              "Portuguese (Portugal)",                          "GMT Standard Time"),
 	("1",  "1048",  "ro-RO",          "ro",              "Romanian (Romania)",                             "GTB Standard Time"),
 	("1",  "1049",  "ru-RU",          "ru",              "Russian (Russia)",                               "Russian Standard Time"),
 	("1",  "1051",  "sk-SK",          "sk",              "Slovak (Slovakia)",                              "Central Europe Standard Time"),
 	("1",  "1060",  "sl-SI",          "si",              "Slovenian (Slovenia)",                           "Central Europe Standard Time"),
 	("1",  "2058",  "es-MX",          "mx",              "Spanish (Mexico)",                               "Central Standard Time (Mexico)"),
-	("1",  "3082",  "es-ES",          "es-ES",           "Spanish (Castilian)",                            "Romance Standard Time"),
+	("1",  "3082",  "es-ES",          "es-ES",           "Spanish (Spain)",                                "Romance Standard Time"),
 	("1",  "1053",  "sv-SE",          "se",              "Swedish (Sweden)",                               "W. Europe Standard Time"),
 	("1",  "1054",  "th-TH",          "th",              "Thai (Thailand)",                                "SE Asia Standard Time"),
 	("1",  "1055",  "tr-TR",          "tr",              "Turkish (Turkey)",                               "Turkey Standard Time"),
 	("1",  "1058",  "uk-UA",          "ua",              "Ukrainian (Ukraine)",                            "FLE Standard Time"),
-	("1",  "1027",  "ca-es",          "ca-es",           "Catalan (Spain)",                                "Romance Standard Time"),
-	("1",  "1069",  "eu-es",          "eu-es",           "Basque (Spain)",                                 "Romance Standard Time"),
-	("1",  "1110",  "gl-es",          "gl",              "Galician (Spain)",                               "Greenland Standard Time"),
+	("1",  "1027",  "ca-es",          "ca-es",           "Catalan",                                        "Romance Standard Time"),
+	("1",  "1069",  "eu-es",          "eu-es",           "Basque (Basque)",                                "Romance Standard Time"),
+	("1",  "1110",  "gl-es",          "gl",              "Galician",                                       "Greenland Standard Time"),
 	("1",  "1057",  "id-id",          "id",              "Indonesian (Indonesia)",                         "SE Asia Standard Time"),
-	("1",  "1066",  "vi-vn",          "vi-vn",           "Vietnamese (Viet Nam)",                          "SE Asia Standard Time"),
+	("1",  "1066",  "vi-vn",          "vi-vn",           "Vietnamese",                                     "SE Asia Standard Time"),
 	("1",  "9242",  "sr-latn-rs",     "sr-latn-rs",      "Serbian (Latin, Serbia)",                        "Central Europe Standard Time"),
 
 	<#
@@ -91,14 +91,14 @@ $Global:AvailableLanguages = @(
 	("2",  "1118",  "am-et",          "am-et",           "Amharic (Ethiopia)",                             "E. Africa Standard Time"),
 	("2",  "1101",  "as-in",          "as-in",           "Assamese (India)",                               "India Standard Time"),
 	("2",  "1068",  "az-latn-az",     "az-latn-az",      "Azerbaijan",                                     "Azerbaijan Standard Time"),
-	("2",  "1059",  "be-by",          "be-by",           "Belarusian (Belarus)",                           "W. Central Africa Standard Time"),
+	("2",  "1059",  "be-by",          "be-by",           "Belarusian",                                     "W. Central Africa Standard Time"),
 	("2",  "2117",  "bn-bd",          "bn-bd",           "Bangla (Bangladesh)",                            "Bangladesh Standard Time"),
 	("2",  "1093",  "bn-in",          "bn-in",           "Bangla (India)",                                 "India Standard Time"),
 	("2",  "5146",  "bs-latn-ba",     "bs-latn-ba",      "Bosnian (Latin)",                                "Central European Standard Time"),
 	("2",  "2051",  "ca-es-valencia", "ca-es-valencia",  "Valencian",                                      "Romance Standard Time"),
 	("2",  "1116",  "chr-cher-us",    "chr-cher-us",     "Cherokee",                                       "Central Standard Time (Mexico)"),
-	("2",  "1106",  "cy-gb",          "cy",              "Welsh (United Kingdom)",                         "E. Europe Standard Time"),
-	("2",  "1065",  "fa-ir",          "fa",              "Farsi (Iran)",                                   "Iran Standard Time"),
+	("2",  "1106",  "cy-gb",          "cy",              "Welsh (Great Britain)",                          "E. Europe Standard Time"),
+	("2",  "1065",  "fa-ir",          "fa",              "Persian",                                        "Iran Standard Time"),
 	("2",  "1124",  "fil-ph",         "fil-ph",          "Filipino",                                       "Singapore Standard Time"),
 	("2",  "2108",  "ga-ie",          "ga-ie",           "Irish (Ireland)",                                "GMT Standard Time"),
 	("2",  "1169",  "gd-gb",          "gd-gb",           "Scottish Gaelic",                                "GMT Standard Time"),
@@ -433,15 +433,19 @@ Function ImportModules
 		.Remove all Engine modules
 		.删除所有 Engine 模块
 	#>
+
 	Get-Module -Name Engine* | Where-Object -Property Name -like "Engine*" | ForEach-Object {
 		Remove-Module -Name $_.Name -Force -ErrorAction Ignore
 	}
+
+	Remove-Module -Name Engine -Force -ErrorAction Ignore | Out-Null
+	Import-Module -Name $PSScriptRoot\..\Modules\Engine.psd1 -Scope Global -Force | Out-Null
 
 	<#
 		.Import all *.psm1
 		.导入所有 *.psm1
 	#>
-	Get-ChildItem –Path  "$($PSScriptRoot)\Functions" –Recurse -include "Engine*.psm1" | ForEach-Object {
+	Get-ChildItem –Path "$($PSScriptRoot)\Functions" –Recurse -include "Engine.*.psm1" | ForEach-Object {
 		Import-Module $_.FullName -Scope Global -Force
 	}
 }

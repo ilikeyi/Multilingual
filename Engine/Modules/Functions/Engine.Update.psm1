@@ -11,12 +11,6 @@
 #>
 
 <#
-	.Current version
-	.当前版本
-#>
-$ProductVersion = "1.0.1.0"
-
-<#
 	.Update minimum version requirements
 	.更新最低版本要求
 #>
@@ -359,7 +353,7 @@ Function UpdateProcess
 		Write-Host "`n   $($lang.UpdateMinimumVersion -f $($ChkLocalver))"
 		$IsUpdateAvailable = $false
 
-		if ($getSerVer.version.version.Replace('.', '') -gt $ProductVersion.Replace('.', '')) {
+		if ($getSerVer.version.version.Replace('.', '') -gt (Get-Module -Name Engine).Version.ToString().Replace('.', '')) {
 			$IsUpdateAvailable = $true
 		} else {
 			$IsUpdateAvailable = $false
@@ -372,7 +366,7 @@ Function UpdateProcess
 				Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "   ---------------------------------------------------"
 
-				Write-host "`n   $($lang.UpdateCurrent)$($ProductVersion)
+				Write-host "`n   $($lang.UpdateCurrent)$((Get-Module -Name Engine).Version.ToString())
    $($lang.UpdateLatest)$($getSerVer.version.version)
 
    $($getSerVer.changelog.title)
@@ -693,5 +687,5 @@ Function TestURI
 	}
 }
 
-Export-ModuleMember -Variable ProductVersion, ChkLocalver
+Export-ModuleMember -Variable ChkLocalver
 Export-ModuleMember -Function * -Alias *

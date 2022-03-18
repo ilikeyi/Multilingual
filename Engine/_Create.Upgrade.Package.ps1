@@ -178,7 +178,7 @@ Function UpdateCreateGUI
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
-   buildstring: $($ProductVersion).bs_release.220201-1208`n"
+   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.220201-1208`n"
 
 	Write-Host "   $($lang.UpdateCreate)`n   ---------------------------------------------------"
 
@@ -259,7 +259,7 @@ Function UpdateCreateGUI
 		Location       = "12,5"
 		Height         = 22
 		Width          = 390
-		Text           = "$($lang.UpdateCurrent) $($ProductVersion)"
+		Text           = "$($lang.UpdateCurrent) $((Get-Module -Name Engine).Version.ToString())"
 	}
 	$GUIUpdateLowVersion = New-Object system.Windows.Forms.Label -Property @{
 		Location       = "12,30"
@@ -443,7 +443,7 @@ function UpdatePack {
 	foreach ($item in $BuildTypeUp) {
 		Push-Location $PSScriptRoot
 		UpdatePackCreate -Type $item
-		CreateVersion -SaveTo "$TempFolderUpdate" -Version $ProductVersion -CurrentVersion $ProductVersion -LowVer $ChkLocalver
+		CreateVersion -SaveTo "$TempFolderUpdate" -Version (Get-Module -Name Engine).Version.ToString() -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $ChkLocalver
 	}
 }
 

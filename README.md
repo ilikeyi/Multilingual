@@ -69,7 +69,7 @@ Download template: Yi.Deploy.Rule.ISO
 | \Deploy\{allow, Not Allowed}  | ResetExecutionPolicy  | Recovery PowerShell execution strategy: restricted |
 | \Deploy\{allow, Not Allowed}  | ClearSolutions        | Delete the entire solution |
 | \Deploy\{allow, Not Allowed}  | ClearEngine           | Delete the deployment engine, keep the others |
-| \Deploy\{allow, Not Allowed}  | PrerequisitesReboot   | Restart the computer<br>After the deployment is complete, there are no important events. It is recommended that you cancel. |
+| \Deploy\{allow, Not Allowed}  | FirstExperienceReboot | Restart the computer<br>After the deployment is complete, there are no important events. It is recommended that you cancel. |
 
 
 ## License

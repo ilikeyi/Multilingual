@@ -69,7 +69,7 @@ Automatically add known languages
 | \Deploy\{allow, Not Allowed}  | ResetExecutionPolicy  | 恢复 PowerShell 执行策略：受限 |
 | \Deploy\{allow, Not Allowed}  | ClearSolutions        | 删除整个解决方案 |
 | \Deploy\{allow, Not Allowed}  | ClearEngine           | 删除部署引擎，保留其它 |
-| \Deploy\{allow, Not Allowed}  | PrerequisitesReboot   | 重新启动计算机<br>部署完成后没有重要的事件，建议您取消。 |
+| \Deploy\{allow, Not Allowed}  | FirstExperienceReboot | 重新启动计算机<br>部署完成后没有重要的事件，建议您取消。 |
 
 
 ## 协议

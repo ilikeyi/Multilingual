@@ -47,7 +47,7 @@ When enabling full disk search and synchronization of deployment tags, you can s
 
 When full disk search and synchronization of deployment tags are not allowed, only the Deploy directory under the directory where the deployment engine scripts are stored is recognized.
 
-Download template: Yi.Deploy.Rule.ISO
+Download template: Yi.Engine.Deploy.Rule.ISO
 
 
 * Part 1: Prerequisite deployment

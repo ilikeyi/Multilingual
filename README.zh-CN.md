@@ -47,7 +47,7 @@ Automatically add known languages
 
 不允许全盘搜索并同步部署标记时，仅识别部署引擎脚本存放目录下的 Deploy 目录。
 
-下载模板：Yi.Engine.Deploy.Rule.ISO
+下载模板：Engine.Deploy.Rule.ISO
 
 
 * 第一部分：先决部署

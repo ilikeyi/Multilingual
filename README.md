@@ -27,14 +27,15 @@ Available languages
 
 The deployment engine is divided into multiple parts
 -
-You can intervene in the deployment process by adding more deployment tags.
+You can intervene in the deployment process by adding more deployment tags, activate the first deployment:
+.\Engine.ps1 -Force
 
 
 * Shared deployment tags
 
 | Path             | Deployment tag        | Description |
 |------------------|-----------------------|---|
-| \Deploy          | IsMarkSync            | Allows full disk search and synchronization of deployment tags |
+| \Deploy\Allow    | IsMarkSync            | Allows full disk search and synchronization of deployment tags |
 
 When enabling full disk search and synchronization of deployment tags, you can store deployment tags on any other disk, allowing or disallowing deployment, for example:
    1. The priority judgment deployment is marked as:
@@ -54,8 +55,6 @@ Download template: Yi.Deploy.Rule.ISO
 | Assignable path               | Deployment tag        | Description |
 |-------------------------------|-----------------------|---|
 | \Deploy\{allow, Not Allowed}  | AutoUpdate            | Allow automatic updates |
-| \Deploy\{allow, Not Allowed}  | ExcludeDefender       | Add home directory to Defend exclusion directory |
-| \Deploy\{allow, Not Allowed}  | SyncVolumeName        | The volume label of the system disk is the same as the home directory |
 | \Deploy\{allow, Not Allowed}  | UseUTF8               | Beta: Use Unicode UTF-8 to provide global language support |
 | \Deploy\{allow, Not Allowed}  | PrerequisitesReboot   | Restart the computer<br>Restarting the computer after completing the prerequisite deployment can solve the problem that needs to be restarted to take effect. |
 | \Deploy\Regional              | 区域标记               | Change system locale |

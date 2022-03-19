@@ -27,7 +27,8 @@ Automatically add known languages
 
 部署引擎分为多部分
 -
-可通过添加更多的部署标记来进行干预部署过程。
+可通过添加更多的部署标记来进行干预部署过程，激活首次部署：
+.\Engine.ps1 -Force
 
 
 * 共享部署标记
@@ -54,8 +55,6 @@ Automatically add known languages
 | 可分配路径                     | 部署标记               | 描述 |
 |-------------------------------|-----------------------|---|
 | \Deploy\{allow, Not Allowed}  | AutoUpdate            | 允许自动更新 |
-| \Deploy\{allow, Not Allowed}  | ExcludeDefender       | 添加主目录到 Defend 排除目录 |
-| \Deploy\{allow, Not Allowed}  | SyncVolumeName        | 系统盘卷标名与主目录相同 |
 | \Deploy\{allow, Not Allowed}  | UseUTF8               | Beta 版：使用 Unicode UTF-8 提供全球语言支持 |
 | \Deploy\{allow, Not Allowed}  | PrerequisitesReboot   | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。 |
 | \Deploy\Regional              | 区域标记               | 更改系统区域设置 |

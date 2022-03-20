@@ -177,7 +177,7 @@ Function Language
 				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language" -ErrorAction SilentlyContinue) {
 					$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language"
 					Language_Change -lang $GetLanguage
-					ImportModules
+					Modules_Import -Import
 					return
 				}
 			}
@@ -196,7 +196,7 @@ Function Language
 		} else {
 			Language_Change -lang (Get-Culture).Name
 		}
-		ImportModules
+		Modules_Import -Import
 		return
 	}
 
@@ -207,7 +207,7 @@ Function Language
 	if (-not (([string]::IsNullOrEmpty($Force))))
 	{
 		Language_Change -lang $Force
-		ImportModules
+		Modules_Import -Import
 		return
 	}
 
@@ -217,10 +217,13 @@ Function Language
 	#>
 	if (([string]::IsNullOrEmpty($Global:IsLang))) {
 		Language_Select_GUI
-		if ($Global:Quit) { exit }
+		if ($Global:Quit) {
+			Modules_Import
+			exit
+		}
 	} else {
 		Language_Change -lang $Global:IsLang
-		ImportModules
+		Modules_Import -Import
 	}
 }
 
@@ -257,7 +260,7 @@ Function Language_Select_GUI
 					$FlagsLanguageCheck = $True
 					New-ItemProperty -Path $Path -Name "Language" -Value $_.Tag -PropertyType string -Force | Out-Null
 					Language_Change -lang $_.Tag
-					ImportModules
+					Modules_Import -Import
 				}
 			}
 		}
@@ -391,6 +394,7 @@ Function Language_Change
 			Clear-Host
 			Write-Host "`n  There is no language pack locally, it will automatically exit after 6 seconds." -ForegroundColor Red
 			Start-Sleep -s 6
+			Modules_Import
 			exit
 		}
 	}
@@ -400,7 +404,7 @@ Function Language_Change
 	.Refresh all modules
 	.刷新所有模块
 #>
-Function RefreshModules
+Function Modules_Refresh
 {
 	param
 	(
@@ -420,25 +424,29 @@ Function RefreshModules
 	.Import all modules
 	.导入所有模块
 #>
-Function ImportModules
+Function Modules_Import
 {
+	param
+	(
+		[switch]$Import
+	)
+
 	<#
 		.Remove all Engine modules
 		.删除所有 Engine 模块
 	#>
-
 	Get-Module -Name Engine* | Where-Object -Property Name -like "Engine*" | ForEach-Object {
 		Remove-Module -Name $_.Name -Force -ErrorAction Ignore
 	}
 
-	Remove-Module -Name Engine -Force -ErrorAction Ignore | Out-Null
-	Import-Module -Name $PSScriptRoot\..\Modules\Engine.psd1 -Scope Global -Force | Out-Null
-
-	<#
-		.Import all *.psd1
-		.导入所有 *.psd1
-	#>
-	Get-ChildItem –Path "$($PSScriptRoot)\Functions" –Recurse -include "Engine.*.psd1" | ForEach-Object {
-		Import-Module -Name $_.FullName -Scope Global -Force
+	if ($Import) {
+		Import-Module -Name $PSScriptRoot\..\Modules\Engine.psd1 -Scope Global -Force | Out-Null
+		<#
+			.Import all *.psd1
+			.导入所有 *.psd1
+		#>
+		Get-ChildItem –Path "$($PSScriptRoot)\Functions" –Recurse -include "Engine.*.psd1" | ForEach-Object {
+			Import-Module -Name $_.FullName -Scope Global -Force
+		}
 	}
 }

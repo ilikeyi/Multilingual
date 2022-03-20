@@ -47,9 +47,12 @@ Function Mainpage
 			Mainpage
 		}
 		"r" {
-			RefreshModules
+			Modules_Refresh
 		}
-		"q" { exit }
+		"q" {
+			Modules_Import
+			exit
+		}
 		default { Mainpage }
 	}
 }
@@ -69,6 +72,7 @@ Function ToMainpage
 		$Global:QUIT = $False
 		Write-Host $($lang.ToQuit -f $wait) -ForegroundColor Red
 		Start-Sleep -s $wait
+		Modules_Import
 		exit
 	} else {
 		Write-Host $($lang.ToMsg -f $wait) -ForegroundColor Red

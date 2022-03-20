@@ -21,7 +21,7 @@ Function Logs_Clear_Old
 	.Write log format as csv
 	.写入日志格式为 csv
 #>
-function Logs_Write
+Function Logs_Write
 {
 	[cmdletbinding()]
 	param

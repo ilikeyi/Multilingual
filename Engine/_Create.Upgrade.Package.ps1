@@ -124,7 +124,7 @@ Enum Archive
 	gz
 }
 
-function GetZip
+Function Get_Zip
 {
 	$Global:IsZipPath = "No"
 
@@ -161,7 +161,7 @@ function GetZip
 	return $False
 }
 
-function GetASC
+Function Get_ASC
 {
 	$Global:IsGpgPath = "No"
 
@@ -182,7 +182,7 @@ function GetASC
 	.Create upgrade package user interface
 	.创建升级包用户界面
 #>
-Function UpdateCreateGUI
+Function Update_Create_UI
 {
 	param
 	(
@@ -243,21 +243,21 @@ Function UpdateCreateGUI
 		}
 
 		$GUIUpdate.Hide()
-		UpdateCleanOld
-		UpdatePack
+		Update_Create_Clear_Old
+		Update_Create_Process
 
 		if ($GUIUpdateCreateASC.Enabled) {
 			if ($GUIUpdateCreateASC.Checked) {
-				UpdateCreateASC
+				Update_Create_ASC
 			}
 		}
 
 		if ($GUIUpdateCreateSHA256.Enabled) {
 			if ($GUIUpdateCreateSHA256.Checked) {
-				UpdateCreateSHA256
+				Update_Create_SHA256
 			}
 		}
-		MoveUpAllfile
+		Update_Create_MoveTo
 		$GUIUpdate.Close()
 	}
 	$GUIUpdate         = New-Object system.Windows.Forms.Form -Property @{
@@ -396,7 +396,7 @@ Function UpdateCreateGUI
 		$GUIUpdateCreateASCSign
 	))
 
-	if (GetZip) {
+	if (Get_Zip) {
 		$GUIUpdateOK.Enabled = $True
 	} else {
 		$GUIUpdateGroupASC.Enabled = $False
@@ -414,7 +414,7 @@ Function UpdateCreateGUI
 		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue
 	}
 
-	if (GetASC) {
+	if (Get_ASC) {
 		$GUIUpdateGroupASC.Enabled = $True
 		
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "IsPGP" -ErrorAction SilentlyContinue) {
@@ -450,27 +450,28 @@ Function UpdateCreateGUI
 	$GUIUpdate.ShowDialog() | Out-Null
 }
 
-function UpdateCleanOld
+Function Update_Create_Clear_Old
 {
 	remove-item -path "$TempFolderUpdate" -Recurse -force -ErrorAction SilentlyContinue
 }
 
-function UpdatePack {
+Function Update_Create_Process
+{
 	foreach ($item in $BuildTypeUp) {
 		Push-Location $PSScriptRoot
-		UpdatePackCreate -Type $item
-		CreateVersion -SaveTo "$TempFolderUpdate" -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $Global:ChkLocalver
+		Update_Create_Process_Add -Type $item
+		Update_Create_Version -SaveTo "$TempFolderUpdate" -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $Global:ChkLocalver
 	}
 }
 
-function UpdatePackCreate
+Function Update_Create_Process_Add
 {
 	Param
 	(
 		[string]$Type
 	)
 
-	if (GetZip) {
+	if (Get_Zip) {
 		Check_Folder -chkpath $TempFolderUpdate
 		switch ($Type) {
 			"zip" {
@@ -515,7 +516,7 @@ function UpdatePackCreate
 	}
 }
 
-function UpdateCreateASC
+Function Update_Create_ASC
 {
 	$FlagsCheckGPG = $False
 	if (Test-Path -Path "${env:ProgramFiles}\GnuPG\bin\gpg.exe" -PathType leaf) {
@@ -550,7 +551,7 @@ function UpdateCreateASC
 	}
 }
 
-function UpdateCreateSHA256
+Function Update_Create_SHA256
 {
 	Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | Foreach-Object {
 		$fullnewpathFU = "$($_.FullName)"
@@ -564,7 +565,7 @@ function UpdateCreateSHA256
 	}
 }
 
-function MoveUpAllfile
+Function Update_Create_MoveTo
 {
 	Check_Folder -chkpath $UpdateSaveTo
 
@@ -573,7 +574,7 @@ function MoveUpAllfile
 	Remove_Tree -path "$TempFolderUpdate"
 }
 
-function CreateVersion
+Function Update_Create_Version
 {
 	param
 	(
@@ -605,20 +606,20 @@ function CreateVersion
 if ($Silent) {
 	$UpdateSaveTo = $SaveTo
 
-	UpdateCleanOld
-	UpdatePack
+	Update_Create_Clear_Old
+	Update_Create_Process
 
 	if ($PGP) {
 		$Global:secure_password = $PGPPWD
 		$Global:SignGpgKeyID = $PGPKEY
-		UpdateCreateASC
+		Update_Create_ASC
 	}
 
 	if ($SHA256) {
-		UpdateCreateSHA256
+		Update_Create_SHA256
 	}
 
-	MoveUpAllfile
+	Update_Create_MoveTo
 } else {
-	UpdateCreateGUI
+	Update_Create_UI
 }

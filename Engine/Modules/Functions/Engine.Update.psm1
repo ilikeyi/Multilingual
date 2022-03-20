@@ -377,7 +377,7 @@ $($getSerVer.changelog.log)`n"
 				}
 	
 				If ($FlagsCheckForceUpdate) {
-					ArchivePacker -url $url
+					Update_And_Download -url $url
 				} else {
 					$title = "$($lang.UpdateInstall)"
 					$message = "$($lang.UpdateInstallSel)"
@@ -388,11 +388,11 @@ $($getSerVer.changelog.log)`n"
 					Switch ($prompt)
 					{
 						0 {
-							ArchivePacker -url $url
+							Update_And_Download -url $url
 						}
 						1 {
 							Write-Host "`n   $($lang.UserCancel)"
-							RefreshModules -Silent
+							Modules_Refresh -Silent
 						}
 					}
 				}
@@ -408,7 +408,7 @@ $($getSerVer.changelog.log)`n"
 				if (Test_URI $url) {
 					Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
 					Write-Host "   ---------------------------------------------------"
-					ArchivePacker -url $url
+					Update_And_Download -url $url
 				} else {
 					Write-Host "   - $($lang.UpdateUnavailable)" -ForegroundColor Red
 					Write-Host "   ---------------------------------------------------"
@@ -425,7 +425,7 @@ $($getSerVer.changelog.log)`n"
 	Language -Auto
 }
 
-Function ArchivePacker
+Function Update_And_Download
 {
 	param
 	(
@@ -446,7 +446,7 @@ Function ArchivePacker
 
 		Write-Host "   - $($lang.Unpacking)".PadRight(28) -NoNewline
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\"
-		RefreshModules -Silent
+		Modules_Refresh -Silent
 		Write-Host "`n   * $($lang.UpdatePostProc)"
 		if ($Global:IsProcess) {
 			Write-Host "   - $($lang.UpdateNotExecuted)" -ForegroundColor red
@@ -467,7 +467,7 @@ Function ArchivePacker
 				Write-Host "   - $($lang.UpdateNoPost)`n" -ForegroundColor red
 			}
 
-			RefreshModules -Silent
+			Modules_Refresh -Silent
 			Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
 		}
 	} else {
@@ -523,8 +523,8 @@ Function Compressing
 		return $true
 	}
 
-	if (Test-Path -Path "$(Arch_Get_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
-		$Global:Zip = "$(Arch_Get_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe"
+	if (Test-Path -Path "$(Get_Arch_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
+		$Global:Zip = "$(Get_Arch_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe"
 		return $true
 	}
 	return $false
@@ -534,7 +534,7 @@ Function Compressing
 	.Processing: clean up packages by architecture
 	.处理：按架构清理软件包
 #>
-Function Arch_Path_Clear
+Function Clear_Arch_Path
 {
 	param
 	(
@@ -580,7 +580,7 @@ Function Arch_Path_Clear
 	.Determine if architecture is available by path
 	.按路径来判断架构是否可用
 #>
-Function Arch_Get_Path
+Function Get_Arch_Path
 {
 	param
 	(

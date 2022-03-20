@@ -66,6 +66,7 @@ if ($Functions) {
 	foreach ($Function in $Functions) {
 		Invoke-Expression -Command $Function
 	}
+	Modules_Import
 	exit
 }
 

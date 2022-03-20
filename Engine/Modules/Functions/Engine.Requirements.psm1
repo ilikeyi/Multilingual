@@ -30,6 +30,7 @@ Function Requirements
 		Write-Host -ForegroundColor Red "Failed".PadLeft(8)
 		Write-Host "`n   It will automatically exit after 6 seconds." -ForegroundColor Red
 		start-process "timeout.exe" -argumentlist "/t 6 /nobreak" -wait -nonewwindow
+		Modules_Import
 		exit
 	}
 

@@ -205,10 +205,10 @@ Function UpdateCreateGUI
 	$GUIUpdateCreateASCClick = {
 		if ($GUIUpdateCreateASC.Checked) {
 			$GUIUpdateCreateASCPanel.Enabled = $True
-			DynamicSave -regkey "Engine" -name "IsPGP" -value "True" -String
+			Save_Dynamic -regkey "Engine" -name "IsPGP" -value "True" -String
 		} else {
 			$GUIUpdateCreateASCPanel.Enabled = $False
-			DynamicSave -regkey "Engine" -name "IsPGP" -value "False" -String
+			Save_Dynamic -regkey "Engine" -name "IsPGP" -value "False" -String
 		}
 	}
 
@@ -235,7 +235,7 @@ Function UpdateCreateGUI
 					$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError -f $($lang.CreateASCAuthorTips))"
 					return
 				} else {
-					DynamicSave -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
+					Save_Dynamic -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
 					$Global:secure_password = $GUIUpdateCreateASCPWD.Text
 					$Global:SignGpgKeyID = $GUIUpdateCreateASCSign.Text
 				}
@@ -471,7 +471,7 @@ function UpdatePackCreate
 	)
 
 	if (GetZip) {
-		CheckCatalog -chkpath $TempFolderUpdate
+		Check_Folder -chkpath $TempFolderUpdate
 		switch ($Type) {
 			"zip" {
 				Write-Host "   * $($lang.Uping) $UpdateName.zip"
@@ -566,11 +566,11 @@ function UpdateCreateSHA256
 
 function MoveUpAllfile
 {
-	CheckCatalog -chkpath $UpdateSaveTo
+	Check_Folder -chkpath $UpdateSaveTo
 
 	Copy-Item -Path "$TempFolderUpdate\*" -Destination $UpdateSaveTo -Recurse -Force -ErrorAction SilentlyContinue
 
-	RemoveTree -path "$TempFolderUpdate"
+	Remove_Tree -path "$TempFolderUpdate"
 }
 
 function CreateVersion

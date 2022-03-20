@@ -176,7 +176,7 @@ Function Language
 			if ($GetLanguagePrompt -eq "True") {
 				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language" -ErrorAction SilentlyContinue) {
 					$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language"
-					LanguageChange -lang $GetLanguage
+					Language_Change -lang $GetLanguage
 					ImportModules
 					return
 				}
@@ -192,9 +192,9 @@ Function Language
 	{
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language" -ErrorAction SilentlyContinue) {
 			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "Language"
-			LanguageChange -lang $GetLanguage
+			Language_Change -lang $GetLanguage
 		} else {
-			LanguageChange -lang (Get-Culture).Name
+			Language_Change -lang (Get-Culture).Name
 		}
 		ImportModules
 		return
@@ -206,7 +206,7 @@ Function Language
 	#>
 	if (-not (([string]::IsNullOrEmpty($Force))))
 	{
-		LanguageChange -lang $Force
+		Language_Change -lang $Force
 		ImportModules
 		return
 	}
@@ -216,15 +216,15 @@ Function Language
 		.已保存语言
 	#>
 	if (([string]::IsNullOrEmpty($Global:IsLang))) {
-		LanguageSelectGUI
+		Language_Select_GUI
 		if ($Global:Quit) { exit }
 	} else {
-		LanguageChange -lang $Global:IsLang
+		Language_Change -lang $Global:IsLang
 		ImportModules
 	}
 }
 
-Function LanguageSelectGUI
+Function Language_Select_GUI
 {
 	$Path = "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine"
 	if (-not (Test-Path $Path)) {
@@ -256,7 +256,7 @@ Function LanguageSelectGUI
 				if ($_.Checked) {
 					$FlagsLanguageCheck = $True
 					New-ItemProperty -Path $Path -Name "Language" -Value $_.Tag -PropertyType string -Force | Out-Null
-					LanguageChange -lang $_.Tag
+					Language_Change -lang $_.Tag
 					ImportModules
 				}
 			}
@@ -373,7 +373,7 @@ Function LanguageSelectGUI
 	.Change language
 	.更改语言
 #>
-Function LanguageChange
+Function Language_Change
 {
 	param
 	(

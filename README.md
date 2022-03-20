@@ -57,7 +57,7 @@ Download template: Engine.Deploy.Rule.ISO
 | \Deploy\{allow, Not Allowed}  | AutoUpdate            | Allow automatic updates |
 | \Deploy\{allow, Not Allowed}  | UseUTF8               | Beta: Use Unicode UTF-8 to provide global language support |
 | \Deploy\{allow, Not Allowed}  | PrerequisitesReboot   | Restart the computer<br>Restarting the computer after completing the prerequisite deployment can solve the problem that needs to be restarted to take effect. |
-| \Deploy\Regional              | 区域标记               | Change system locale |
+| \Deploy\Regional              | Zone marker           | Change system locale |
 
 
 * Part 2: Complete the first deployment

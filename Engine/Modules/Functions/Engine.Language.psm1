@@ -2,7 +2,7 @@
 	.Set system language settings
 	.设置系统语言
 #>
-Function LanguageSetting
+Function Language_Setting
 {
 	Write-Host "`n   $($lang.SettingLangAndKeyboard)"
 
@@ -13,13 +13,10 @@ Function LanguageSetting
 	$Global:UILanguage = (Get-Culture).Name
 
 	<#
-		.Get the language installed in the system and generate it into an array
-		.获取系统已安装语言，并生成到数组里
+		.Refresh all known languages installed
+		.刷新已安装的所有已知语言
 	#>
-	$Global:AvailableLanguages = @()
-	Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
-		$Global:AvailableLanguages += $_
-	}
+	Language_Known_Available
 
 	<#
 		.Reset the array and initialize the language
@@ -34,7 +31,7 @@ Function LanguageSetting
 		.添加当前首选语言
 	#>
 	Write-Host "   - $($lang.SetLang)$($Global:UILanguage)" -ForegroundColor Green
-	LanguageProcess -NewLang $Global:UILanguage
+	Language_Process -NewLang $Global:UILanguage
 
 	<#
 		.Specialized processing: monolingual, and non-monolingual
@@ -51,7 +48,7 @@ Function LanguageSetting
 			.处理：单语版
 		#>
 		if (($Global:AvailableLanguages) -Contains "en-US") {
-			LanguageProcess -NewLang "en-US"
+			Language_Process -NewLang "en-US"
 			Write-Host "   $($lang.AddTo), en-US"
 		}
 	} else {
@@ -61,7 +58,7 @@ Function LanguageSetting
 		#>
 		foreach ($item in $Global:AvailableLanguages) {
 			if ($Global:UILanguage -ne $item) {
-				LanguageProcess -NewLang $item
+				Language_Process -NewLang $item
 				Write-Host "   $($lang.AddTo), $item"
 			}
 		}
@@ -98,13 +95,13 @@ Function LanguageSetting
 		-Match | 匹配
 		-Force | 强行同步与当前系统主语言一致
 	#>
-	RegionCode -Match
+	Language_Region_Setting -Match
 
 	<#
 		.Beta: Use Unicode UTF-8 for worldwide language support
 	#>
-	if (DeploySync -Mark "UseUTF8") {
-		UseBetaUTF8 -Enable
+	if (Deploy_Sync -Mark "UseUTF8") {
+		Language_Use_UTF8 -Enable
 	} else {
 		Write-Host "   $($lang.SettingUTF8)"
 		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
@@ -114,7 +111,7 @@ Function LanguageSetting
 		.Setting time
 		.设置时间
 	#>
-	if (DeploySync -Mark "TimeZone") {
+	if (Deploy_Sync -Mark "TimeZone") {
 		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 			if ($Global:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
 				Write-Host "`n   $($lang.SetTimezone)"
@@ -138,7 +135,8 @@ Function LanguageSetting
 
      https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs	
 #>
-Function LanguageProcess {
+Function Language_Process
+{
 	param
 	(
 		$NewLang
@@ -169,10 +167,26 @@ Function LanguageProcess {
 }
 
 <#
+	.Get all known languages installed by the running operating system
+	.获取正在运行的操作系统已安装的所有已知语言
+#>
+Function Language_Known_Available
+{
+	<#
+		.Get the language installed in the system and generate it into an array
+		.获取系统已安装语言，并生成到数组里
+	#>
+	$Global:AvailableLanguages = @()
+	Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
+		$Global:AvailableLanguages += $_
+	}
+}
+
+<#
 	.Set regional codes to match known languages to prevent illegal matches.
 	.设置区域编码，根据已知语言匹配，防止非法匹配。
 #>
-Function RegionCode
+Function Language_Region_Setting
 {
 	param
 	(
@@ -205,7 +219,7 @@ Function RegionCode
 	}
 }
 
-Function UseBetaUTF8
+Function Language_Use_UTF8
 {
 	param
 	(

@@ -2,7 +2,7 @@
 	.Dynamic save function
 	.动态保存功能
 #>
-Function DynamicSave
+Function Save_Dynamic
 {
 	param
 	(
@@ -31,7 +31,7 @@ Function DynamicSave
 	.Verify the directory and create
 	.验证目录并创建
 #>
-Function CheckCatalog
+Function Check_Folder
 {
 	Param
 	(
@@ -53,7 +53,7 @@ Function CheckCatalog
 	.Delete directory
 	.删除目录
 #>
-Function RemoveTree
+Function Remove_Tree
 {
 	Param
 	(
@@ -68,7 +68,7 @@ Function RemoveTree
 		}
 
 		Get-ChildItem -Path $Path -Directory -ErrorAction SilentlyContinue | ForEach-Object {
-			RemoveTree -Path $_.FullName
+			Remove_Tree -Path $_.FullName
 		}
 
 		if (Test-Path -Path "$Path\" -ErrorAction silentlycontinue) {
@@ -81,7 +81,7 @@ Function RemoveTree
 	.验证路径是否后缀带有 \
 	.Verify that the path is suffixed with \
 #>
-Function JoinMainFolder
+Function Join_MainFolder
 {
 	param
 	(

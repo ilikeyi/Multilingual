@@ -16,20 +16,20 @@ Function FirstExperience
 	Write-Host "   $($lang.FirstExperience)`n   ---------------------------------------------------"
 
 	if ($Force) {
-		if (DeploySync -Mark "AutoUpdate") {
+		if (Deploy_Sync -Mark "AutoUpdate") {
 			Write-Host "   - $($lang.ForceUpdate)"
 			Update -Auto -Force -IsProcess
 		} else {
 			Write-Host "   - $($lang.UpdateSkipUpdateCheck)"
 		}
 
-		FirstExperienceProcess
+		FirstExperience_Process
 	} else {
-		FirstExperienceGUI
+		FirstExperience_Setting_UI
 	}
 }
 
-Function FirstExperienceGUI
+Function FirstExperience_Setting_UI
 {
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
@@ -43,7 +43,7 @@ Function FirstExperienceGUI
 		$GUIFE.Hide()
 
 		if ($GUIFELangAndKeyboard.Checked) {
-			LanguageSetting
+			Language_Setting
 			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.SettingLangAndKeyboard)"
@@ -51,14 +51,14 @@ Function FirstExperienceGUI
 		}
 
 		if ($GUIFEUtf8.Checked) {
-			UseBetaUTF8 -Enable
+			Language_Use_UTF8 -Enable
 		} else {
 			Write-Host "   $($lang.SettingUTF8)"
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 
 		if ($GUIFELocale.Checked) {
-			RegionCode -Force
+			Language_Region_Setting -Force
 			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.SettingLocale)"
@@ -67,7 +67,7 @@ Function FirstExperienceGUI
 
 		Write-Host "   $($lang.DeployCleanup)"
 		if ($GUIFEDeployCleanup.Checked) {
-			RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
+			Remove_Tree -Path "$($PSScriptRoot)\..\..\Deploy"
 			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
@@ -125,7 +125,7 @@ Function FirstExperienceGUI
 		Width          = 490
 		Text           = "$($lang.SettingLocale) ( $((Get-Culture).Name) )"
 	}
-	$GUIFELocaleTips     = New-Object System.Windows.Forms.Label -Property @{
+	$GUIFELocaleTips   = New-Object System.Windows.Forms.Label -Property @{
 		Height         = 26
 		Width          = 490
 		Text           = $lang.SettingLocaleTips
@@ -192,29 +192,41 @@ Function FirstExperienceGUI
 	.Prerequisite deployment
 	.先决部署
 #>
-Function FirstExperienceProcess
+Function FirstExperience_Process
 {
 	<#
-		.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
-		.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
+		.Refresh all known languages installed
+		.刷新已安装的所有已知语言
 	#>
-	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\AppxDeploymentClient\" -TaskName "Pre-staged app cleanup" -ErrorAction SilentlyContinue | Out-Null
+	Language_Known_Available
 
 	<#
-		.Prevent cleanup of unused language packs
-		.阻止清理未使用的语言包
+		.Determine whether all languages currently installed are multilingual versions, and add known policies to multilingual versions
+		.获取已安装所有语言是否是多语版，多语版则添加已知策略
 	#>
-	If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) { New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null }
-	Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
-	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
+	if ($Global:AvailableLanguages.count -gt 0) {
+		<#
+			.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
+			.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
+		#>
+		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\AppxDeploymentClient\" -TaskName "Pre-staged app cleanup" -ErrorAction SilentlyContinue | Out-Null
 
-	<#
-		.Block cleanup of unused Language Feature On Demand packages
-		.阻止清理未使用的 Language Feature On Demand 包
-	#>
-	If (-not (Test-Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput")) { New-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Force | Out-Null }
-	Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name "AllowLanguageFeaturesUninstall" -Type DWord -Value 0 -ErrorAction SilentlyContinue | Out-Null
-	Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
+		<#
+			.Prevent cleanup of unused language packs
+			.阻止清理未使用的语言包
+		#>
+		If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) { New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null }
+		Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
+		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
+
+		<#
+			.Block cleanup of unused Language Feature On Demand packages
+			.阻止清理未使用的 Language Feature On Demand 包
+		#>
+		If (-not (Test-Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput")) { New-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Force | Out-Null }
+		Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name "AllowLanguageFeaturesUninstall" -Type DWord -Value 0 -ErrorAction SilentlyContinue | Out-Null
+		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
+	}
 
 	<#
 		.After using the $OEM$ mode to add files, the default is read-only. Change all files to: Normal.
@@ -236,32 +248,32 @@ Function FirstExperienceProcess
 		.Set system language, keyboard, etc.
 		.设置系统语言、键盘等
 	#>
-	LanguageSetting
+	Language_Setting
 
 	<#
 		.After completing the prerequisite deployment, determine whether to restart the computer
 		.完成先决条件部署后，判断是否重启计算机
 	#>
 	Write-Host "   $($lang.Reboot)"
-	if (DeploySync -Mark "PrerequisitesReboot") {
+	if (Deploy_Sync -Mark "PrerequisitesReboot") {
 		Write-Host "   $($lang.Operable)".PadRight(28) -NoNewline
 		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 		if (-not (Test-Path $regPath)) {
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
 		}
 
-		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$((Convert-Path -Path "$($PSScriptRoot)\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"" -Functions \""FirstDeployment -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$((Convert-Path -Path "$($PSScriptRoot)\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"" -Functions \""FirstExperience_Deploy -Quit\""' -WindowStyle Minimized -Verb RunAs"""
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
 		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 	} else {
 		Write-Host "   $($lang.Inoperable)"
-		FirstDeployment
+		FirstExperience_Deploy
 	}
 }
 
-Function FirstDeployment
+Function FirstExperience_Deploy
 {
 	param
 	(
@@ -283,14 +295,14 @@ Function FirstDeployment
 	if ($Reboot) {
 		$Global:MarkRebootComputer = $True
 	}
-	if (DeploySync -Mark "FirstExperienceReboot") {
+	if (Deploy_Sync -Mark "FirstExperienceReboot") {
 		$Global:MarkRebootComputer = $True
 	}
 
-	if (DeploySync -Mark "ClearSolutions") {
+	if (Deploy_Sync -Mark "ClearSolutions") {
 		$FlagsClearSolutionsRure = $True
 	}
-	if (DeploySync -Mark "ClearEngine") {
+	if (Deploy_Sync -Mark "ClearEngine") {
 		$FlagsClearSolutionsRure = $True
 	}
 
@@ -326,7 +338,7 @@ Function FirstDeployment
 	}
 
 	Write-Host "`n   $($lang.FirstDeployment)"
-	DeployGuide
+	Deploy_Guide
 
 	<#
 		.Search for Bat and PS1
@@ -356,7 +368,7 @@ Function FirstDeployment
 		.Recovery PowerShell strategy
 		.恢复 PowerShell 策略
 	#>
-	if (DeploySync -Mark "ResetExecutionPolicy") {
+	if (Deploy_Sync -Mark "ResetExecutionPolicy") {
 		Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -ErrorAction SilentlyContinue
 	}
 
@@ -364,9 +376,9 @@ Function FirstDeployment
 		.Clean up the solution
 		.清理解决方案
 	#>
-	if (DeploySync -Mark "ClearSolutions") {
+	if (Deploy_Sync -Mark "ClearSolutions") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		RemoveTree -Path "$($Global:UniqueMainFolder)"
+		Remove_Tree -Path "$($Global:UniqueMainFolder)"
 
 		<#
 			.In order to prevent the solution from being unable to be cleaned up, the next time you log in, execute it again
@@ -388,16 +400,16 @@ Function FirstDeployment
 		.Clean up the main engine
 		.清理主引擎
 	#>
-	if (DeploySync -Mark "ClearEngine") {
+	if (Deploy_Sync -Mark "ClearEngine") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		RemoveTree -Path "$($Global:MainFolder)"
+		Remove_Tree -Path "$($Global:MainFolder)"
 	}
 
 	<#
 		.Clean up deployment configuration
 		.清理部署配置
 	#>
-	RemoveTree -Path "$($PSScriptRoot)\..\..\Deploy"
+	Remove_Tree -Path "$($PSScriptRoot)\..\..\Deploy"
 
 	if ($Global:MarkRebootComputer) {
 		<#

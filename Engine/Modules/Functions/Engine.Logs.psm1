@@ -8,7 +8,7 @@ $Global:LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
 	.Clean up all logs from 7 days ago
 	.清理 7 天前的所有日志
 #>
-Function CleanOldlogs
+Function Logs_Clear_Old
 {
 	Get-ChildItem -Path "$($Global:LogsSaveFolder)" -Directory -Exclude $LogSaveTo -ErrorAction SilentlyContinue | Where-Object {
 		if ($_.LastWriteTime -lt (Get-Date).AddDays(-7)) {
@@ -21,7 +21,7 @@ Function CleanOldlogs
 	.Write log format as csv
 	.写入日志格式为 csv
 #>
-function WriteLogs
+function Logs_Write
 {
 	[cmdletbinding()]
 	param
@@ -79,8 +79,8 @@ Function Logging
 		.Generate Logs directory
 		.生成 Logs 目录
 	#>
-	CheckCatalog -chkpath "$($Global:LogsSaveFolder)\$($LogSaveTo)"
-	CleanOldlogs
+	Check_Folder -chkpath "$($Global:LogsSaveFolder)\$($LogSaveTo)"
+	Logs_Clear_Old
 
 	<#
 		.Operation record

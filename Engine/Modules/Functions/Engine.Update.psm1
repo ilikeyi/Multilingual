@@ -62,9 +62,9 @@ Function Update
 			$Global:ServerList += $item[0] + $item[1]
 		}
 
-		UpdateProcess -Force
+		Update_Process -Force
 	} else {
-		UpdateGUI
+		Update_Setting_UI
 	}
 }
 
@@ -72,7 +72,7 @@ Function Update
 	.Update interface
 	.更新界面
 #>
-Function UpdateGUI
+Function Update_Setting_UI
 {
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
@@ -114,7 +114,7 @@ Function UpdateGUI
 			foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
 				$Global:ServerList += $item[0] + $item[1]
 			}
-			UpdateProcess
+			Update_Process
 			$GUIUpdate.Close()
 		} else {
 			$FlagsVerifyServerlist = $False
@@ -129,7 +129,7 @@ Function UpdateGUI
 
 			if ($FlagsVerifyServerlist) {
 				$GUIUpdate.Hide()
-				UpdateProcess
+				Update_Process
 				$GUIUpdate.Close()
 			} else {
 				$GUIUpdateErrorMsg.Text = "$($lang.UpdateServerNoSelect)"
@@ -274,7 +274,7 @@ Function UpdateGUI
 	.Update process
 	.更新处理
 #>
-Function UpdateProcess
+Function Update_Process
 {
 	param
 	(
@@ -292,7 +292,7 @@ Function UpdateProcess
 
 	foreach ($item in $Global:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress -f $($item))"
-		if (TestURI $item) {
+		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
 			Write-Host "   - $($lang.UpdateServeravailable)" -ForegroundColor Green
@@ -350,7 +350,7 @@ Function UpdateProcess
 		if ($IsUpdateAvailable) {
 			Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
 			Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
-			if (TestURI $url) {
+			if (Test_URI $url) {
 				Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "   ---------------------------------------------------"
 
@@ -405,7 +405,7 @@ $($getSerVer.changelog.log)`n"
 			if ($Global:UpdateAvailableReset) {
 				Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
 				Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
-				if (TestURI $url) {
+				if (Test_URI $url) {
 					Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
 					Write-Host "   ---------------------------------------------------"
 					ArchivePacker -url $url
@@ -523,8 +523,8 @@ Function Compressing
 		return $true
 	}
 
-	if (Test-Path -Path "$(GetArchitecturePacker -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
-		$Global:Zip = "$(GetArchitecturePacker -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe"
+	if (Test-Path -Path "$(Arch_Get_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
+		$Global:Zip = "$(Arch_Get_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe"
 		return $true
 	}
 	return $false
@@ -534,7 +534,7 @@ Function Compressing
 	.Processing: clean up packages by architecture
 	.处理：按架构清理软件包
 #>
-Function ArchitecturePacker
+Function Arch_Path_Clear
 {
 	param
 	(
@@ -544,34 +544,34 @@ Function ArchitecturePacker
 	switch ($env:PROCESSOR_ARCHITECTURE) {
 		"arm64" {
 			if (Test-Path -Path "$Path\arm64" -PathType Container) {
-				RemoveTree -Path "$Path\AMD64"
-				RemoveTree -Path "$Path\x86"
+				Remove_Tree -Path "$Path\AMD64"
+				Remove_Tree -Path "$Path\x86"
 			} else {
 				if (Test-Path -Path "$Path\AMD64" -PathType Container) {
-					RemoveTree -Path "$Path\arm64"
-					RemoveTree -Path "$Path\x86"
+					Remove_Tree -Path "$Path\arm64"
+					Remove_Tree -Path "$Path\x86"
 				} else {
 					if (Test-Path -Path "$Path\x86" -PathType Container) {
-						RemoveTree -Path "$Path\arm64"
-						RemoveTree -Path "$Path\AMD64"
+						Remove_Tree -Path "$Path\arm64"
+						Remove_Tree -Path "$Path\AMD64"
 					}
 				}
 			}
 		}
 		"AMD64" {
 			if (Test-Path -Path "$Path\AMD64" -PathType Container) {
-				RemoveTree -Path "$Path\arm64"
-				RemoveTree -Path "$Path\x86"
+				Remove_Tree -Path "$Path\arm64"
+				Remove_Tree -Path "$Path\x86"
 			} else {
 				if (Test-Path -Path "$Path\x86" -PathType Container) {
-					RemoveTree -Path "$Path\arm64"
-					RemoveTree -Path "$Path\AMD64"
+					Remove_Tree -Path "$Path\arm64"
+					Remove_Tree -Path "$Path\AMD64"
 				}
 			}
 		}
 		"x86" {
-			RemoveTree -Path "$Path\arm64"
-			RemoveTree -Path "$Path\AMD64"
+			Remove_Tree -Path "$Path\arm64"
+			Remove_Tree -Path "$Path\AMD64"
 		}
 	}
 }
@@ -580,7 +580,7 @@ Function ArchitecturePacker
 	.Determine if architecture is available by path
 	.按路径来判断架构是否可用
 #>
-Function GetArchitecturePacker
+Function Arch_Get_Path
 {
 	param
 	(
@@ -628,7 +628,7 @@ Function GetArchitecturePacker
 	.Test if the URL address is available
 	.测试 URL 地址是否可用
 #>
-Function TestURI
+Function Test_URI
 {
 	Param
 	(

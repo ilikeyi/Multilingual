@@ -36,13 +36,10 @@
 	DeployTask                = 部署任务：
 	Reboot                    = 重新启动计算机
 
-	DeployPackerTips          = 有可用的部署合集包
-	DeployPackerTipsDone      = 部署合集包已完成。
-	DeployOfficeTips          = 有可用的 Office 部署计划
-	DeployOfficeTipsDone      = Office 部署计划已完成。
-
 	NetworkLocationWizard     = 网络位置向导
 	UserCancel                = 用户已取消操作。
+	LangMul                   = 多语言
+	LangSingle                = 单语
 	SetLang                   = 设置系统首选语言：
 	SetTimezone               = 设置时区：
 	KeyboardSequence          = 键盘顺序：
@@ -81,6 +78,7 @@
 	UpdateNoPost              = 未找到后期处理任务
 	UpdateUnpacking           = 正在解压：
 	UpdateDone                = 已成功更新！
+	UpdateDoneRefresh         = 更新完成后，执行函数处理。
 	UpdateUpdateStop          = 下载更新时发生错误，更新过程中止。
 	UpdateInstall             = 您要安装此更新吗？
 	UpdateInstallSel          = 是，将安装上述更新\n否，则不会安装该更新

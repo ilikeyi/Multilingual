@@ -36,13 +36,10 @@
 	DeployTask                = 展開タスク：
 	Reboot                    = コンピューターを再起動します
 
-	DeployPackerTips          = 利用可能な展開パッケージがあります
-	DeployPackerTipsDone      = 展開パッケージが完了しました。
-	DeployOfficeTips          = 利用可能 Office 展開計画
-	DeployOfficeTipsDone      = Office 展開計画が完了しました。
-
 	NetworkLocationWizard     = ネットワーク ロケーション ウィザード
 	UserCancel                = ユーザーが操作をキャンセルしました。
+	LangMul                   = 多言語
+	LangSingle                = 単一言語
 	SetLang                   = システムの優先言語を設定します：
 	SetTimezone               = タイムゾーンの 設定：
 	KeyboardSequence          = キーボード シーケンス:
@@ -81,6 +78,7 @@
 	UpdateNoPost              = 後処理タスクが見つかりません
 	UpdateUnpacking           = 開梱:
 	UpdateDone                = 正常に更新されました！
+	UpdateDoneRefresh         = 更新が完了したら、関数処理を実行します。
 	UpdateUpdateStop          = 更新のダウンロード中にエラーが発生し、更新プロセスが中止されました。
 	UpdateInstall             = この更新プログラムをインストールしますか?
 	UpdateInstallSel          = はい、上記の更新がインストールされます\nいいえ、更新はインストールされません

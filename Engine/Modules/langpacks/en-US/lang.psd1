@@ -36,13 +36,10 @@
 	DeployTask                = Deployment tasks: \
 	Reboot                    = Restart the computer
 
-	DeployPackerTips          = There are deployment packages available
-	DeployPackerTipsDone      = The deployment package has been completed.
-	DeployOfficeTips          = Office deployment plan available
-	DeployOfficeTipsDone      = The Office deployment plan is complete.
-
 	NetworkLocationWizard     = Network Location Wizard
 	UserCancel                = The user has cancelled the operation.
+	LangMul                   = Multilingual
+	LangSingle                = Monolingual
 	SetLang                   = Set system preferred language: \
 	SetTimezone               = Set time zone: \
 	KeyboardSequence          = Keyboard sequence: \
@@ -81,6 +78,7 @@
 	UpdateNoPost              = No post-processing task found
 	UpdateUnpacking           = Unpacking: \
 	UpdateDone                = Successfully updated!
+	UpdateDoneRefresh         = After the update is complete, execute function processing.
 	UpdateUpdateStop          = An error occurred while downloading the update and the update process was aborted.
 	UpdateInstall             = Do you want to install this update?
 	UpdateInstallSel          = Yes, the above update will be installed\nNo, the update will not be installed

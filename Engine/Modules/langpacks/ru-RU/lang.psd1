@@ -36,13 +36,10 @@
 	DeployTask                = Задачи развертывания: \
 	Reboot                    = перезагрузите компьютер.
 
-	DeployPackerTips          = Доступны пакеты развертывания
-	DeployPackerTipsDone      = Пакет развертывания завершен.
-	DeployOfficeTips          = Доступен план развертывания Office
-	DeployOfficeTipsDone      = План развертывания Office завершен.
-
 	NetworkLocationWizard     = Мастер сетевого расположения
 	UserCancel                = Пользователь отменил операцию.
+	LangMul                   = Многоязычный
+	LangSingle                = Одноязычный
 	SetLang                   = Установить предпочтительный язык системы:
 	SetTimezone               = Установить часовой пояс:
 	KeyboardSequence          = последовательность клавиш:
@@ -81,6 +78,7 @@
 	UpdateNoPost              = Задача постобработки не найдена
 	UpdateUnpacking           = Распаковка:
 	UpdateDone                = Успешно обновлено!
+	UpdateDoneRefresh         = После завершения обновления выполните обработку функции.
 	UpdateUpdateStop          = Произошла ошибка при загрузке обновления, и процесс обновления был прерван.
 	UpdateInstall             = Вы хотите установить это обновление?
 	UpdateInstallSel          = Да, будет установлено вышеуказанное обновление \nНет, обновление не будет установлено

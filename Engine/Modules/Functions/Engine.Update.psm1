@@ -447,6 +447,13 @@ Function Update_And_Download
 		Write-Host "   - $($lang.Unpacking)".PadRight(28) -NoNewline
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\"
 		Modules_Refresh -Silent
+
+		<#
+			.Execute function processing, after the update is complete
+			.执行 函数处理，更新完成后
+		#>
+		Update_Done_Refresh_Process
+
 		Write-Host "`n   * $($lang.UpdatePostProc)"
 		if ($Global:IsProcess) {
 			Write-Host "   - $($lang.UpdateNotExecuted)" -ForegroundColor red
@@ -673,4 +680,20 @@ Function Test_URI
 			} else { $False }
 		}
 	}
+}
+
+<#
+	.Execute function processing, after the update is complete
+	.执行 函数处理，更新完成后
+#>
+Function Update_Done_Refresh_Process
+{
+	Write-Host "`n   $($lang.UpdateDoneRefresh)"
+	<#
+		.Add code from here
+		.从此处添加代码
+	#>
+
+
+	Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
 }

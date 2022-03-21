@@ -36,13 +36,10 @@
 	DeployTask                = 배포 작업: \
 	Reboot                    = 컴퓨터를 다시 시작합니다.
 
-	DeployPackerTips          = 사용 가능한 배포 패키지가 있습니다
-	DeployPackerTipsDone      = 배포 패키지가 완료되었습니다.
-	DeployOfficeTips          = Office 배포 계획 사용 가능
-	DeployOfficeTipsDone      = Office 배포 계획이 완료되었습니다.
-
 	NetworkLocationWizard     = 네트워크 위치 마법사
 	UserCancel                = 사용자가 작업을 취소했습니다.
+	LangMul                   = 다국어
+	LangSingle                = 단일 언어
 	SetLang                   = 시스템 기본 언어 설정: \
 	SetTimezone               = 시간대 설정: \
 	KeyboardSequence          = 키보드 시퀀스: \
@@ -81,6 +78,7 @@
 	UpdateNoPost              = 사후 처리 작업이 없습니다.
 	UpdateUnpacking           = 포장 풀기 :
 	UpdateDone                = 성공적으로 업데이트되었습니다!
+	UpdateDoneRefresh         = 업데이트 완료 후 기능 처리를 실행합니다.
 	UpdateUpdateStop          = 업데이트를 다운로드하는 동안 오류가 발생하여 업데이트 프로세스가 중단되었습니다.
 	UpdateInstall             = 이 업데이트를 설치 하시겠습니까?
 	UpdateInstallSel          = 예, 위 업데이트가 설치됩니다.\n아니요, 업데이트가 설치되지 않습니다.

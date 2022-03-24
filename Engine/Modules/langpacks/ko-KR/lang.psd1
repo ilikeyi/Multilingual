@@ -4,7 +4,7 @@
 	Update                    = 업데이트 확인
 	FirstExperience           = 첫 경험
 	Disable                   = 비활성화
-	Enable                    = 할 수있게하다
+	Enabled                   = 할 수있게하다
 	Done                      = 수행하다
 	OK                        = 결정
 	Cancel                    = 취소

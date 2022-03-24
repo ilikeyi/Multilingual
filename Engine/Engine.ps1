@@ -57,7 +57,7 @@ Requirements
 
 <#
 	.启用日志记录并将其保存在脚本文件夹中。
-	.Enable logging and save it in the script folder.
+	.Enabled logging and save it in the script folder.
 #>
 Logging
 

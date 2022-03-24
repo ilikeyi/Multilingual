@@ -4,7 +4,7 @@
 	Update                    = 检查更新
 	FirstExperience           = 首次体验
 	Disable                   = 禁用
-	Enable                    = 启用
+	Enabled                   = 启用
 	Done                      = 完成
 	OK                        = 确定
 	Cancel                    = 取消

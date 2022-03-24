@@ -4,7 +4,7 @@
 	Update                    = Check for updates
 	FirstExperience           = First Experience
 	Disable                   = Disabled
-	Enable                    = Enabled
+	Enabled                   = Enabled
 	Done                      = Complete
 	OK                        = OK
 	Cancel                    = Cancel

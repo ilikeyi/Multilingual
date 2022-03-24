@@ -4,7 +4,7 @@
 	Update                    = Проверить обновления
 	FirstExperience           = Первый опыт
 	Disable                   = Запрещать
-	Enable                    = включить
+	Enabled                   = включить
 	Done                      = выполнять
 	OK                        = определять
 	Cancel                    = отменить

@@ -60,7 +60,7 @@ Requirements
 
 <#
 	.启用日志记录并将其保存在脚本文件夹中。
-	.Enable logging and save it in the script folder.
+	.Enabled logging and save it in the script folder.
 #>
 Logging
 
@@ -479,14 +479,14 @@ Function Update_Create_Process_Add
 				$arguments = "a", "-tzip", "$TempFolderUpdate\$UpdateName.zip", "$ArchiveExcludeUp", "*.*", "-mcu=on", "-r", "-mx9";
 				Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
-				Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "    $($lang.Done)`n" -ForegroundColor Green
 			}
 			"tar" {
 				Write-Host "   * $($lang.Uping) $UpdateName.tar"
 				$arguments = "a", "$TempFolderUpdate\$UpdateName.tar", "$ArchiveExcludeUp", "*.*", "-r";
 				Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
-				Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "    $($lang.Done)`n" -ForegroundColor Green
 			}
 			"xz" {
 				Write-Host "  * $($lang.Uping) $UpdateName.tar.xz"
@@ -494,7 +494,7 @@ Function Update_Create_Process_Add
 					$arguments = "a", "$TempFolderUpdate\$UpdateName.tar.xz", "$TempFolderUpdate\$UpdateName.tar", "-mf=bcj", "-mx9";
 					Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
-					Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
+					Write-Host "    $($lang.Done)`n" -ForegroundColor Green
 				} else {
 					Write-Host "    - $($lang.SkipCreate) $UpdateName.tar`n"
 				}
@@ -505,7 +505,7 @@ Function Update_Create_Process_Add
 					$arguments = "a", "-tgzip", "$TempFolderUpdate\$UpdateName.tar.gz", "$TempFolderUpdate\$UpdateName.tar", "-mx9";
 					Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
-					Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
+					Write-Host "    $($lang.Done)`n" -ForegroundColor Green
 				} else {
 					Write-Host "   x $($lang.SkipCreate) $UpdateName.tar`n"
 				}
@@ -541,7 +541,7 @@ Function Update_Create_ASC
 			}
 
 			if (Test-Path "$($_.FullName).asc" -PathType Leaf) {
-				Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "    $($lang.Done)`n" -ForegroundColor Green
 			} else {
 				Write-Host "    - $($lang.Inoperable)`n"
 			}
@@ -561,7 +561,7 @@ Function Update_Create_SHA256
 		$calchash = (Get-FileHash $($fullnewpathFU) -Algorithm SHA256)
 		$calchash.hash + "  " + $_.Name | Out-File -FilePath $fullnewpath -Encoding ASCII
 
-		Write-Host "    - $($lang.Done)`n" -ForegroundColor Green
+		Write-Host "    $($lang.Done)`n" -ForegroundColor Green
 	}
 }
 

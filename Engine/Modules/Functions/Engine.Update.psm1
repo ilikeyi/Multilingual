@@ -461,7 +461,7 @@ Function Update_And_Download
 			if (Test-Path -Path $PPocess -PathType Leaf) {
 				Start-Process -FilePath $PPocess -wait -WindowStyle Minimized
 				remove-item -path $PPocess -force
-				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "   $($lang.Done))`n" -ForegroundColor Green
 			} else {
 				Write-Host "   - $($lang.UpdateNoPost)" -ForegroundColor red
 			}
@@ -469,7 +469,7 @@ Function Update_And_Download
 			if (Test-Path -Path $PsPocess -PathType Leaf) {
 				Start-Process powershell -ArgumentList "-file $($PsPocess)" -Wait -WindowStyle Minimized
 				remove-item -path $PsPocess -force
-				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "   $($lang.Done))`n" -ForegroundColor Green
 			} else {
 				Write-Host "   - $($lang.UpdateNoPost)`n" -ForegroundColor red
 			}
@@ -695,5 +695,5 @@ Function Update_Done_Refresh_Process
 	#>
 
 
-	Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+	Write-Host "   $($lang.Done))`n" -ForegroundColor Green
 }

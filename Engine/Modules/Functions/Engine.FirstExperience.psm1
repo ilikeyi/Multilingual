@@ -44,14 +44,14 @@ Function FirstExperience_Setting_UI
 
 		if ($GUIFELangAndKeyboard.Checked) {
 			Language_Setting
-			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.SettingLangAndKeyboard)"
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 
 		if ($GUIFEUtf8.Checked) {
-			Language_Use_UTF8 -Enable
+			Language_Use_UTF8 -Enabled
 		} else {
 			Write-Host "   $($lang.SettingUTF8)"
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
@@ -59,7 +59,7 @@ Function FirstExperience_Setting_UI
 
 		if ($GUIFELocale.Checked) {
 			Language_Region_Setting -Force
-			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.SettingLocale)"
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
@@ -68,7 +68,7 @@ Function FirstExperience_Setting_UI
 		Write-Host "   $($lang.DeployCleanup)"
 		if ($GUIFEDeployCleanup.Checked) {
 			Remove_Tree -Path "$($PSScriptRoot)\..\..\Deploy"
-			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
@@ -76,7 +76,7 @@ Function FirstExperience_Setting_UI
 		Write-Host "   $($lang.Reboot)"
 		if ($GUIFEReboot.Checked) {
 			Restart-Computer -Force
-			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
@@ -269,7 +269,7 @@ Function FirstExperience_Process
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
-		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 	} else {
 		Write-Host "   $($lang.Inoperable)"
 		FirstExperience_Deploy

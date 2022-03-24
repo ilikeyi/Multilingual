@@ -4,7 +4,7 @@
 	Update                    = ソリューション ツールボックス
 	FirstExperience           = 初体験
 	Disable                   = 無効にする
-	Enable                    = 有効
+	Enabled                   = 有効
 	Done                      = 実施する
 	OK                        = 決定する
 	Cancel                    = キャンセル

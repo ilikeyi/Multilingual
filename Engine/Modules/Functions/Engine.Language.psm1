@@ -101,7 +101,7 @@ Function Language_Setting
 		.Beta: Use Unicode UTF-8 for worldwide language support
 	#>
 	if (Deploy_Sync -Mark "UseUTF8") {
-		Language_Use_UTF8 -Enable
+		Language_Use_UTF8 -Enabled
 	} else {
 		Write-Host "   $($lang.SettingUTF8)"
 		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
@@ -202,7 +202,7 @@ Function Language_Region_Setting
 			if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
 				Write-Host "   - $($LanguageName)"
 				Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
-				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 				break
 			}
 		}
@@ -213,7 +213,7 @@ Function Language_Region_Setting
 	if ($Force) {
 		Write-Host "   - $((Get-Culture).Name)"
 		Set-WinSystemLocale (Get-Culture).Name -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 	} else {
 		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	}
@@ -223,17 +223,17 @@ Function Language_Use_UTF8
 {
 	param
 	(
-		[switch]$Enable,
+		[switch]$Enabled,
 		[switch]$Disable
 	)
 
 	Write-Host "   $($lang.SettingUTF8)"
-	if ($Enable) {
-		Write-Host "   $($lang.Enable)".PadRight(22) -NoNewline
+	if ($Enabled) {
+		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "ACP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "OEMCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "MACCP" -Type String -Value 65001 -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
 
 	if ($Disable) {
@@ -241,6 +241,6 @@ Function Language_Use_UTF8
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "ACP" -Type String -Value 936 -ErrorAction SilentlyContinue | Out-Null
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "OEMCP" -Type String -Value 936 -ErrorAction SilentlyContinue | Out-Null
 		Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Nls\CodePage" -Name "MACCP" -Type String -Value 10008 -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
 }

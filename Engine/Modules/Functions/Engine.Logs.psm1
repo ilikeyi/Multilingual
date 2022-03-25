@@ -2,7 +2,14 @@
 	.Logs are saved to
 	.日志保存到
 #>
-$Global:LogsSaveFolder = "$($PSScriptRoot)\..\..\Logs"
+$TestLogSaveFolder = "$($PSScriptRoot)\..\..\Logs"
+if (Test_Available_Disk -Path $TestLogSaveFolder) {
+	$Global:LogsSaveFolder = Convert-Path -Path $TestLogSaveFolder -ErrorAction SilentlyContinue
+} else {
+	$TestLogSaveFolder = "$($env:LOCALAPPDATA)\$($Global:UniqueID)\Logs"
+	Check_Folder -chkpath $TestLogSaveFolder
+	$Global:LogsSaveFolder = Convert-Path -Path $TestLogSaveFolder -ErrorAction SilentlyContinue
+}
 
 <#
 	.Clean up all logs from 7 days ago

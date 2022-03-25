@@ -8,7 +8,7 @@ if (Test_Available_Disk -Path $TestLogSaveFolder) {
 } else {
 	$TestLogSaveFolder = "$($env:LOCALAPPDATA)\$($Global:UniqueID)\Logs"
 	Check_Folder -chkpath $TestLogSaveFolder
-	$Global:LogsSaveFolder = Convert-Path -Path $TestLogSaveFolder -ErrorAction SilentlyContinue
+	$Global:LogsSaveFolder = $TestLogSaveFolder
 }
 
 <#

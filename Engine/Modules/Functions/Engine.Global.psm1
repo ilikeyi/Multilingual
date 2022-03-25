@@ -28,6 +28,37 @@ Function Save_Dynamic
 }
 
 <#
+	.Test whether the disk is readable and writable
+	.测试磁盘是否可读写
+#>
+Function Test_Available_Disk
+{
+	param
+	(
+		[string]$Path
+	)
+
+	try {
+		New-Item -Path $Path -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+
+		$RandomGuid = [guid]::NewGuid()
+		$test_tmp_filename = "writetest-$($RandomGuid)"
+		$test_filename = Join-Path -Path "$($Path)" -ChildPath "$($test_tmp_filename)" -ErrorAction SilentlyContinue
+
+		[io.file]::OpenWrite($test_filename).close()
+
+		if (Test-Path $test_filename -PathType Leaf)
+		{
+			Remove-Item $test_filename -ErrorAction SilentlyContinue
+			return $true
+		}
+		$false
+	} catch {
+		return $false
+	}
+}
+
+<#
 	.Verify the directory and create
 	.验证目录并创建
 #>

@@ -10,8 +10,7 @@ Available languages
 
 <details>
   <summary>United States - English</summary>
-Automatically add languages installed on Windows system
--
+  <h1>Automatically add languages installed on Windows system</h1>
 
 The main function:
 ```
@@ -72,8 +71,7 @@ Download template: Engine.Deploy.Rule.ISO
  
 <details>
   <summary>简体中文 - 中国</summary>
-全自动添加 Windows 系统已安装的语言
--
+  <h1>全自动添加 Windows 系统已安装的语言</h1>
 
 主要功能：
 ```

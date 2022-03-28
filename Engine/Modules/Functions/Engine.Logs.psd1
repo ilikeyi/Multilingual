@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  Logs
-
- .Description
-  Logs Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.Logs.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = '63ba7bc0-6ab0-4e2e-83dc-227dc846b80f'

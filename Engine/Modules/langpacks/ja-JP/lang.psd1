@@ -76,7 +76,7 @@
 	UpdatePostProc            = 後処理
 	UpdateNotExecuted         = 未実行
 	UpdateNoPost              = 後処理タスクが見つかりません
-	UpdateUnpacking           = 開梱:
+	UpdateUnpacking           = 開梱
 	UpdateDone                = 正常に更新されました！
 	UpdateDoneRefresh         = 更新が完了したら、関数処理を実行します。
 	UpdateUpdateStop          = 更新のダウンロード中にエラーが発生し、更新プロセスが中止されました。

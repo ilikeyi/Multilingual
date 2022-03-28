@@ -559,7 +559,7 @@ Function Update_Create_SHA256
 
 		Write-Host "   * $($lang.Uping) $($_.FullName).sha256"
 		$calchash = (Get-FileHash $($fullnewpathFU) -Algorithm SHA256)
-		$calchash.hash + "  " + $_.Name | Out-File -FilePath $fullnewpath -Encoding ASCII
+		"$($calchash.hash)  $($_.Name)" | Out-File -FilePath $fullnewpath -Encoding ASCII
 
 		Write-Host "    $($lang.Done)`n" -ForegroundColor Green
 	}

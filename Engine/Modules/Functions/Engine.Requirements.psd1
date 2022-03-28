@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  Requirements
-
- .Description
-  Requirements Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.Requirements.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = '22f0f4fb-874d-405f-ab60-e21cfe33c4b6'

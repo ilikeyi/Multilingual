@@ -47,7 +47,7 @@ Function Mainpage
 			Mainpage
 		}
 		"r" {
-			Modules_Refresh
+			Modules_Refresh -ToHomepage
 		}
 		"q" {
 			Modules_Import

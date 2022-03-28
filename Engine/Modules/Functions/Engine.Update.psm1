@@ -49,9 +49,9 @@ Function Update
 	
 	$Global:ServerList = @()
 	if ($IsProcess) {
-		$Global:IsProcess = $True
+		$Script:IsProcess = $True
 	} else {
-		$Global:IsProcess = $False
+		$Script:IsProcess = $False
 	}
 
 	Logo -Title $($lang.Update)
@@ -392,7 +392,6 @@ $($getSerVer.changelog.log)`n"
 						}
 						1 {
 							Write-Host "`n   $($lang.UserCancel)"
-							Modules_Refresh -Silent
 						}
 					}
 				}
@@ -432,51 +431,16 @@ Function Update_And_Download
 		$url
 	)
 
-	$output   = "$($PSScriptRoot)\..\..\latest.zip"
-	$PPocess  = "$($PSScriptRoot)\..\..\Post.Processing.bat"
-	$PsPocess = "$($PSScriptRoot)\..\..\Post.Processing.ps1"
+	$output = "$($PSScriptRoot)\..\..\latest.zip"
 
 	$start_time = Get-Date
 	remove-item -path $output -force -ErrorAction SilentlyContinue
-	Invoke-WebRequest -Uri $url -OutFile $output -ErrorAction SilentlyContinue
+	Start-BitsTransfer -Source $url -Destination $output -ErrorAction SilentlyContinue
 	Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
 
 	if (Test-Path -Path $output -PathType Leaf) {
-		Write-Host "`n   $($lang.UpdateUnpacking)$(Convert-Path -Path $output -ErrorAction SilentlyContinue)"
-
-		Write-Host "   - $($lang.Unpacking)".PadRight(28) -NoNewline
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\"
-		Modules_Refresh -Silent
-
-		<#
-			.Execute function processing, after the update is complete
-			.执行 函数处理，更新完成后
-		#>
-		Update_Done_Refresh_Process
-
-		Write-Host "`n   * $($lang.UpdatePostProc)"
-		if ($Global:IsProcess) {
-			Write-Host "   - $($lang.UpdateNotExecuted)" -ForegroundColor red
-		} else {
-			if (Test-Path -Path $PPocess -PathType Leaf) {
-				Start-Process -FilePath $PPocess -wait -WindowStyle Minimized
-				remove-item -path $PPocess -force
-				Write-Host "   $($lang.Done))`n" -ForegroundColor Green
-			} else {
-				Write-Host "   - $($lang.UpdateNoPost)" -ForegroundColor red
-			}
-
-			if (Test-Path -Path $PsPocess -PathType Leaf) {
-				Start-Process powershell -ArgumentList "-file $($PsPocess)" -Wait -WindowStyle Minimized
-				remove-item -path $PsPocess -force
-				Write-Host "   $($lang.Done))`n" -ForegroundColor Green
-			} else {
-				Write-Host "   - $($lang.UpdateNoPost)`n" -ForegroundColor red
-			}
-
-			Modules_Refresh -Silent
-			Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
-		}
+		Modules_Refresh -ToUnzipDone
 	} else {
 		Write-host "`n   $($lang.UpdateUpdateStop)"
 	}
@@ -498,8 +462,8 @@ Function Archive
 
 	Convert-Path $filename -ErrorAction SilentlyContinue | Out-Null
 
-	Write-Host "     $($filename)"
-	Write-Host "     $($lang.Unpacking)".PadRight(28) -NoNewline
+	Write-Host "   $($filename)"
+	Write-Host "   $($lang.UpdateUnpacking)".PadRight(28) -NoNewline
 	if (Compressing) {
 		if (([string]::IsNullOrEmpty($Password))) {
 			$arguments = "x ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
@@ -507,10 +471,10 @@ Function Archive
 			$arguments = "x ""-p$Password"" ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
 		}
 		Start-Process $Global:Zip "$arguments" -Wait -WindowStyle Minimized
-		Write-Host "     $($lang.Done)`n" -ForegroundColor Green
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	} else {
 		Expand-Archive -LiteralPath $filename -DestinationPath $to -force
-		Write-Host "     $($lang.Done)`n" -ForegroundColor Green
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
 }
 
@@ -683,6 +647,47 @@ Function Test_URI
 }
 
 <#
+	.Execute Function processing, after decompression is complete
+	.执行 函数处理，解压完成后
+#>
+Function Unzip_Done_Refresh_Process
+{
+	$PPocess  = "$($PSScriptRoot)\..\..\Post.Processing.bat"
+	$PsPocess = "$($PSScriptRoot)\..\..\Post.Processing.ps1"
+
+	<#
+		.Execute function processing, after the update is complete
+		.执行 函数处理，更新完成后
+	#>
+	Update_Done_Refresh_Process
+
+	Write-Host "`n   * $($lang.UpdatePostProc)"
+	if ($Script:IsProcess) {
+		Write-Host "   $($lang.UpdateNotExecuted)" -ForegroundColor red
+	} else {
+		Write-Host "`n   $($PPocess)"
+		if (Test-Path -Path $PPocess -PathType Leaf) {
+			Start-Process -FilePath $PPocess -wait -WindowStyle Minimized
+			remove-item -path $PPocess -force
+			Write-Host "   $($lang.Done)" -ForegroundColor Green
+		} else {
+			Write-Host "   $($lang.UpdateNoPost)" -ForegroundColor red
+		}
+
+		Write-Host "`n   $($PsPocess)"
+		if (Test-Path -Path $PsPocess -PathType Leaf) {
+			Start-Process powershell -ArgumentList "-file $($PsPocess)" -Wait -WindowStyle Minimized
+			remove-item -path $PsPocess -force
+			Write-Host "   $($lang.Done)" -ForegroundColor Green
+		} else {
+			Write-Host "   $($lang.UpdateNoPost)" -ForegroundColor red
+		}
+
+		Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
+	}
+}
+
+<#
 	.Execute function processing, after the update is complete
 	.执行 函数处理，更新完成后
 #>
@@ -694,6 +699,5 @@ Function Update_Done_Refresh_Process
 		.从此处添加代码
 	#>
 
-
-	Write-Host "   $($lang.Done))`n" -ForegroundColor Green
+	Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 }

@@ -76,7 +76,7 @@
 	UpdatePostProc            = Post-processing
 	UpdateNotExecuted         = Not executed
 	UpdateNoPost              = No post-processing task found
-	UpdateUnpacking           = Unpacking: \
+	UpdateUnpacking           = Unpacking
 	UpdateDone                = Successfully updated!
 	UpdateDoneRefresh         = After the update is complete, execute function processing.
 	UpdateUpdateStop          = An error occurred while downloading the update and the update process was aborted.

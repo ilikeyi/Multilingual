@@ -76,7 +76,7 @@
 	UpdatePostProc            = Постобработка
 	UpdateNotExecuted         = Не выполнено
 	UpdateNoPost              = Задача постобработки не найдена
-	UpdateUnpacking           = Распаковка:
+	UpdateUnpacking           = Распаковка
 	UpdateDone                = Успешно обновлено!
 	UpdateDoneRefresh         = После завершения обновления выполните обработку функции.
 	UpdateUpdateStop          = Произошла ошибка при загрузке обновления, и процесс обновления был прерван.

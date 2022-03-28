@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  FirstExperience
-
- .Description
-  FirstExperience Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.FirstExperience.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = 'ae43d7f7-2246-4be4-ad71-5630685dc0d9'

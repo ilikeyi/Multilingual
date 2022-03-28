@@ -408,15 +408,20 @@ Function Modules_Refresh
 {
 	param
 	(
-		[switch]$Silent
+		[switch]$ToHomepage,
+		[switch]$ToUnzipDone
 	)
 
 	Write-Host "`n   $($lang.RefreshModules)"
 	Language -Auto
 	Write-Host "   $($lang.Done)" -ForegroundColor Green
 
-	if (-not ($Silent)) {
+	if ($ToHomepage) {
 		ToMainpage -wait 2
+	}
+
+	if ($ToUnzipDone) {
+		Unzip_Done_Refresh_Process
 	}
 }
 
@@ -430,6 +435,12 @@ Function Modules_Import
 	(
 		[switch]$Import
 	)
+
+	<#
+		.Initialize global variables
+		.初始化全局变量
+	#>
+	$Global:Quit = $False
 
 	<#
 		.Remove all Engine modules

@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  First Experience Deploy Rule
-
- .Description
-  First Experience Deploy Rule Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.Deploy.Rule.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = 'a6c463a3-9f01-4a87-a190-52d6ae9ba644'

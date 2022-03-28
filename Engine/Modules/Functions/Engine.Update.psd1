@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  Online Update
-
- .Description
-  Online Update Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.Update.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = '01f84bd2-0511-445e-a00c-330ab0126f43'

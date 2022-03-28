@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  Page Homepage
-
- .Description
-  Page Homepage Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.HomePage.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = '14f0962f-f7dc-4d86-bb94-eaa51e916527'

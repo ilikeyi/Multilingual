@@ -76,7 +76,7 @@
 	UpdatePostProc            = 후 처리
 	UpdateNotExecuted         = 실행되지 않음
 	UpdateNoPost              = 사후 처리 작업이 없습니다.
-	UpdateUnpacking           = 포장 풀기 :
+	UpdateUnpacking           = 포장 풀기
 	UpdateDone                = 성공적으로 업데이트되었습니다!
 	UpdateDoneRefresh         = 업데이트 완료 후 기능 처리를 실행합니다.
 	UpdateUpdateStop          = 업데이트를 다운로드하는 동안 오류가 발생하여 업데이트 프로세스가 중단되었습니다.

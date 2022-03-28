@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  Language Setting
-
- .Description
-  Language Setting Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.Language.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = '16b509a8-65e2-4755-a75a-603900d76de7'

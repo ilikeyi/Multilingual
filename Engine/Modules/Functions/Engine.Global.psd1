@@ -1,12 +1,4 @@
-﻿<#
- .Synopsis
-  Global
-
- .Description
-  Global Feature Modules
-#>
-
-@{
+﻿@{
 	RootModule        = 'Engine.Global.psm1'
 	ModuleVersion     = '1.0.0.0'
 	GUID              = 'e6d198b9-825e-425e-8479-a7382f9b9489'

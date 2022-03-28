@@ -76,7 +76,7 @@
 	UpdatePostProc            = 后期处理
 	UpdateNotExecuted         = 不执行
 	UpdateNoPost              = 未找到后期处理任务
-	UpdateUnpacking           = 正在解压：
+	UpdateUnpacking           = 正在解压
 	UpdateDone                = 已成功更新！
 	UpdateDoneRefresh         = 更新完成后，执行函数处理。
 	UpdateUpdateStop          = 下载更新时发生错误，更新过程中止。

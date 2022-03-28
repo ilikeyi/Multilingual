@@ -435,7 +435,7 @@ Function Update_And_Download
 
 	$start_time = Get-Date
 	remove-item -path $output -force -ErrorAction SilentlyContinue
-	Start-BitsTransfer -Source $url -Destination $output -ErrorAction SilentlyContinue
+	Invoke-WebRequest -Uri $url -OutFile $output -Method GET -TimeoutSec 30 -DisableKeepAlive -UseBasicParsing -ErrorAction stop
 	Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
 
 	if (Test-Path -Path $output -PathType Leaf) {

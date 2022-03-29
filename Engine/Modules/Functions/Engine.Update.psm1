@@ -435,16 +435,16 @@ Function Update_And_Download
 
 	$start_time = Get-Date
 	remove-item -path $output -force -ErrorAction SilentlyContinue
-	Invoke-WebRequest -Uri $url -OutFile $output -Method GET -TimeoutSec 30 -DisableKeepAlive -UseBasicParsing -ErrorAction stop
-	Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
+	Invoke-WebRequest -Uri $url -OutFile $output -TimeoutSec 30 -DisableKeepAlive -ErrorAction stop
+	Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)`n"
 
 	if (Test-Path -Path $output -PathType Leaf) {
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\"
 		Modules_Refresh -ToUnzipDone
+		remove-item -path $output -force -ErrorAction SilentlyContinue
 	} else {
 		Write-host "`n   $($lang.UpdateUpdateStop)"
 	}
-	remove-item -path $output -force -ErrorAction SilentlyContinue
 }
 
 <#

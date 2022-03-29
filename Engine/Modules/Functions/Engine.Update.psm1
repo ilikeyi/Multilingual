@@ -440,7 +440,7 @@ Function Update_And_Download
 
 	if (Test-Path -Path $output -PathType Leaf) {
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\"
-		Modules_Refresh -ToUnzipDone
+		Modules_Refresh -Function "Unzip_Done_Refresh_Process"
 		remove-item -path $output -force -ErrorAction SilentlyContinue
 	} else {
 		Write-host "`n   $($lang.UpdateUpdateStop)"

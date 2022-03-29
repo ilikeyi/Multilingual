@@ -408,20 +408,17 @@ Function Modules_Refresh
 {
 	param
 	(
-		[switch]$ToHomepage,
-		[switch]$ToUnzipDone
+		[string[]]$Functions
 	)
 
 	Write-Host "`n   $($lang.RefreshModules)"
 	Language -Auto
 	Write-Host "   $($lang.Done)" -ForegroundColor Green
 
-	if ($ToHomepage) {
-		ToMainpage -wait 2
-	}
-
-	if ($ToUnzipDone) {
-		Unzip_Done_Refresh_Process
+	if ($Functions) {
+		foreach ($Function in $Functions) {
+			Invoke-Expression -Command $Function
+		}
 	}
 }
 

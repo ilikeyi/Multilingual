@@ -7,6 +7,7 @@ Function Logo
 	(
 		$Title
 	)
+
 	Clear-Host
 	$Host.UI.RawUI.WindowTitle = "$($Global:UniqueID)'s Solutions | $($Title)"
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
@@ -27,7 +28,7 @@ Function Mainpage
 	write-host "   1. $($lang.Update)
    2. $($lang.FirstExperience)" -ForegroundColor Green
 
-   write-host  "`n`n   L. $($lang.SwitchLanguage)
+   write-host  "`n   L. $($lang.SwitchLanguage)
    R. $($lang.RefreshModules)
    Q. $($lang.Exit)`n"
 
@@ -47,7 +48,7 @@ Function Mainpage
 			Mainpage
 		}
 		"r" {
-			Modules_Refresh -ToHomepage
+			Modules_Refresh -Function "ToMainpage -wait 2"
 		}
 		"q" {
 			Modules_Import

@@ -405,7 +405,7 @@ Function FirstExperience_Deploy
 	#>
 	if (Deploy_Sync -Mark "ClearEngine") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		Remove_Tree -Path "$($Global:MainFolder)"
+		Remove_Tree -Path "$($PSScriptRoot)\..\"
 	}
 
 	<#

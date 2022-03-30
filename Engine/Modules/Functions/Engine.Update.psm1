@@ -494,8 +494,8 @@ Function Compressing
 		return $true
 	}
 
-	if (Test-Path -Path "$(Get_Arch_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe" -PathType Leaf) {
-		$Global:Zip = "$(Get_Arch_Path -Path "$($Global:MainFolder)\AIO\7zPacker")\7z.exe"
+	if (Test-Path -Path "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\AIO\7zPacker")\7z.exe" -PathType Leaf) {
+		$Global:Zip = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\AIO\7zPacker")\7z.exe"
 		return $true
 	}
 	return $false

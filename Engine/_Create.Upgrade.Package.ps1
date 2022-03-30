@@ -236,14 +236,14 @@ Function Update_Create_UI
 					return
 				} else {
 					Save_Dynamic -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
-					$Global:secure_password = $GUIUpdateCreateASCPWD.Text
-					$Global:SignGpgKeyID = $GUIUpdateCreateASCSign.Text
+					$Script:secure_password = $GUIUpdateCreateASCPWD.Text
+					$Script:SignGpgKeyID = $GUIUpdateCreateASCSign.Text
 				}
 			}
 		}
 
 		$GUIUpdate.Hide()
-		Update_Create_Clear_Old
+		remove-item -path "$TempFolderUpdate" -Recurse -force -ErrorAction SilentlyContinue
 		Update_Create_Process
 
 		if ($GUIUpdateCreateASC.Enabled) {
@@ -326,7 +326,7 @@ Function Update_Create_UI
 	$GUIUpdateCreateASCPWD = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 22
 		Width          = 400
-		Text           = $($Global:secure_password)
+		Text           = $($Script:secure_password)
 		Location       = '42,25'
 	}
 	$GUIUpdateCreateASCSignName = New-Object system.Windows.Forms.Label -Property @{
@@ -450,11 +450,6 @@ Function Update_Create_UI
 	$GUIUpdate.ShowDialog() | Out-Null
 }
 
-Function Update_Create_Clear_Old
-{
-	remove-item -path "$TempFolderUpdate" -Recurse -force -ErrorAction SilentlyContinue
-}
-
 Function Update_Create_Process
 {
 	foreach ($item in $BuildTypeUp) {
@@ -534,10 +529,10 @@ Function Update_Create_ASC
 			Remove-Item -path "$($_.FullName).asc" -Force -ErrorAction SilentlyContinue
 
 			Write-Host "   * $($lang.Uping) $UpdateName.asc"
-			if (([string]::IsNullOrEmpty($Global:secure_password))) {
-				Start-Process $GpgLocalPath -argument "--local-user ""$Global:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
+			if (([string]::IsNullOrEmpty($Script:secure_password))) {
+				Start-Process $GpgLocalPath -argument "--local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			} else {
-				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase ""$Global:secure_password"" --local-user ""$Global:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
+				Start-Process $GpgLocalPath -argument "--pinentry-mode loopback --passphrase ""$Script:secure_password"" --local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			}
 
 			if (Test-Path "$($_.FullName).asc" -PathType Leaf) {
@@ -606,12 +601,12 @@ Function Update_Create_Version
 if ($Silent) {
 	$UpdateSaveTo = $SaveTo
 
-	Update_Create_Clear_Old
+	remove-item -path "$TempFolderUpdate" -Recurse -force -ErrorAction SilentlyContinue
 	Update_Create_Process
 
 	if ($PGP) {
-		$Global:secure_password = $PGPPWD
-		$Global:SignGpgKeyID = $PGPKEY
+		$Script:secure_password = $PGPPWD
+		$Script:SignGpgKeyID = $PGPKEY
 		Update_Create_ASC
 	}
 

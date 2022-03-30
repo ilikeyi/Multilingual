@@ -2,13 +2,9 @@
 	.about us
 	.关于我们
 #>
-Push-Location "$($PSScriptRoot)\..\..\"
-$Global:UniqueMainFolder = $(Get-Location)
-$Global:UniqueID = [IO.Path]::GetFileName($(Get-Location))
-
-Push-Location "$($PSScriptRoot)\..\"
-$Global:MainFolder = $(Get-Location)
+$Global:UniqueID  = "Yi"
 $Global:AuthorURL = "https://fengyi.tel"
+$Global:UniqueMainFolder = Convert-Path -Path "$($PSScriptRoot)\..\.." -ErrorAction SilentlyContinue
 
 <#
 	.Available languages

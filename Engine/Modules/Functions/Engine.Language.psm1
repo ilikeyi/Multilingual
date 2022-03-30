@@ -10,7 +10,7 @@ Function Language_Setting
 		.Current UI main language
 		.当前 UI 主语言
 	#>
-	$Global:UILanguage = (Get-Culture).Name
+	$Script:UILanguage = (Get-Culture).Name
 
 	<#
 		.Refresh all known languages installed
@@ -22,16 +22,16 @@ Function Language_Setting
 		.Reset the array and initialize the language
 		.重置数组和初始化语言
 	#>
-	$Global:GroupLanguage = @()
-	$Global:GroupLanguage = New-WinUserLanguageList $Global:UILanguage
-	$Global:GroupLanguage[0].InputMethodTips.Clear()
+	$Script:GroupLanguage = @()
+	$Script:GroupLanguage = New-WinUserLanguageList $Script:UILanguage
+	$Script:GroupLanguage[0].InputMethodTips.Clear()
 
 	<#
 		.Add current preferred language
 		.添加当前首选语言
 	#>
-	Write-Host "   - $($lang.SetLang)$($Global:UILanguage)" -ForegroundColor Green
-	Language_Process -NewLang $Global:UILanguage
+	Write-Host "   - $($lang.SetLang)$($Script:UILanguage)" -ForegroundColor Green
+	Language_Process -NewLang $Script:UILanguage
 
 	<#
 		.Specialized processing: monolingual, and non-monolingual
@@ -57,7 +57,7 @@ Function Language_Setting
 			.处理：其它不受限制版本
 		#>
 		foreach ($item in $Global:AvailableLanguages) {
-			if ($Global:UILanguage -ne $item) {
+			if ($Script:UILanguage -ne $item) {
 				Language_Process -NewLang $item
 				Write-Host "   $($lang.AddTo), $item"
 			}
@@ -68,7 +68,7 @@ Function Language_Setting
 		.Execute add language
 		.执行添加语言
 	#>
-	Set-WinUserLanguageList $Global:GroupLanguage -Force -ErrorAction SilentlyContinue | Out-Null
+	Set-WinUserLanguageList $Script:GroupLanguage -Force -ErrorAction SilentlyContinue | Out-Null
 
 	<#
 		.Set the default keyboard: English
@@ -113,7 +113,7 @@ Function Language_Setting
 	#>
 	if (Deploy_Sync -Mark "TimeZone") {
 		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-			if ($Global:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
+			if ($Script:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
 				Write-Host "`n   $($lang.SetTimezone)"
 				Write-Host "   $($Global:AvailableLanguages[$i][5])" -ForegroundColor Green
 				Set-TimeZone -Id $Global:AvailableLanguages[$i][5] -PassThru | Out-Null
@@ -151,10 +151,10 @@ Function Language_Process
 	if ($NewLang -eq "zh-CN" ) {
 		$FlagsNewLanguage = $True
 		Write-Host "   - $($lang.KeyboardSequence)$($lang.Pinyi)"
-		$Global:GroupLanguage[0].InputMethodTips.add('0804:{81D4E9C9-1D3B-41BC-9E6C-4B40BF79E35E}{FA550B04-5AD7-411f-A5AC-CA038EC515D7}')      # Pinyin
+		$Script:GroupLanguage[0].InputMethodTips.add('0804:{81D4E9C9-1D3B-41BC-9E6C-4B40BF79E35E}{FA550B04-5AD7-411f-A5AC-CA038EC515D7}')      # Pinyin
 
 		Write-Host "   - $($lang.KeyboardSequence)$($lang.Wubi)"
-		$Global:GroupLanguage[0].InputMethodTips.add('0804:{6a498709-e00b-4c45-a018-8f9e4081ae40}{82590C13-F4DD-44f4-BA1D-8667246FDF8E}')      # Wubi
+		$Script:GroupLanguage[0].InputMethodTips.add('0804:{6a498709-e00b-4c45-a018-8f9e4081ae40}{82590C13-F4DD-44f4-BA1D-8667246FDF8E}')      # Wubi
 	}
 
 	<#
@@ -162,7 +162,7 @@ Function Language_Process
 		.未匹配的语言，直接添加
 	#>
 	if (-not ($FlagsNewLanguage)) {
-		$Global:GroupLanguage.Add($NewLang)
+		$Script:GroupLanguage.Add($NewLang)
 	}
 }
 

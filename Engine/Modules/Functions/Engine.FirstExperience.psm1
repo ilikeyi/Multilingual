@@ -204,7 +204,7 @@ Function FirstExperience_Process
 		.Determine whether all languages currently installed are multilingual versions, and add known policies to multilingual versions
 		.获取已安装所有语言是否是多语版，多语版则添加已知策略
 	#>
-	if ($Global:AvailableLanguages.count -gt 0) {
+	if ($Global:AvailableLanguages.count -ge 2) {
 		Write-Host "   $($lang.LangMul) ( $($Global:AvailableLanguages.count) )"
 		<#
 			.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
@@ -228,7 +228,7 @@ Function FirstExperience_Process
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name "AllowLanguageFeaturesUninstall" -Type DWord -Value 0 -ErrorAction SilentlyContinue | Out-Null
 		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
 	} else {
-		Write-Host "   $($lang.LangSingle)"
+		Write-Host "   $($lang.LangSingle) ( $($Global:AvailableLanguages.count) )"
 	}
 
 	<#

@@ -83,13 +83,13 @@ $UpdateName = "latest"
   .Save the compressed package to
   .压缩包保存到
 #>
-$UpdateSaveTo = "$([Environment]::GetFolderPath("Desktop"))\$($Global:UniqueID).Solutions.Upgrade.Package"
+$UpdateSaveTo = "$([Environment]::GetFolderPath("Desktop"))\Multilingual.Upgrade.Package"
 
 <#
 	.Archive temporary directory
 	.压缩包临时目录
 #>
-$TempFolderUpdate = "$([Environment]::GetFolderPath("MyDocuments"))\Temp.$($Global:UniqueID).Solutions.Upgrade.Package"
+$TempFolderUpdate = "$([Environment]::GetFolderPath("MyDocuments"))\Temp.Multilingual.Upgrade.Package"
 
 <#
 	.Exclude files or directories from the compressed package

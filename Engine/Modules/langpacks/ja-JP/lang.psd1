@@ -3,6 +3,7 @@
 	Mainname                  = 問題解決
 	Update                    = ソリューション ツールボックス
 	FirstExperience           = 初体験
+	AddTo                     = 追加
 	Disable                   = 無効にする
 	Enabled                   = 有効
 	Done                      = 実施する

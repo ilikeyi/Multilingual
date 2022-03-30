@@ -3,6 +3,7 @@
 	Mainname                  = решение
 	Update                    = Проверить обновления
 	FirstExperience           = Первый опыт
+	AddTo                     = Добавить к
 	Disable                   = Запрещать
 	Enabled                   = включить
 	Done                      = выполнять

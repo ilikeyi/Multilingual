@@ -3,6 +3,7 @@
 	Mainname                  = Solutions
 	Update                    = Check for updates
 	FirstExperience           = First Experience
+	AddTo                     = Add
 	Disable                   = Disabled
 	Enabled                   = Enabled
 	Done                      = Complete

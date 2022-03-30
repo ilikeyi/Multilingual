@@ -3,6 +3,7 @@
 	Mainname                  = 解决方案
 	Update                    = 检查更新
 	FirstExperience           = 首次体验
+	AddTo                     = 添加
 	Disable                   = 禁用
 	Enabled                   = 启用
 	Done                      = 完成

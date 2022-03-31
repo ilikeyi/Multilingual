@@ -17,10 +17,10 @@ Function FirstExperience
 
 	if ($Force) {
 		if (Deploy_Sync -Mark "AutoUpdate") {
-			Write-Host "   - $($lang.ForceUpdate)"
+			Write-Host "   $($lang.ForceUpdate)"
 			Update -Auto -Force -IsProcess
 		} else {
-			Write-Host "   - $($lang.UpdateSkipUpdateCheck)"
+			Write-Host "   $($lang.UpdateSkipUpdateCheck)"
 		}
 
 		FirstExperience_Process
@@ -354,7 +354,7 @@ Function FirstExperience_Deploy
 		.搜索本地部署：Bat
 	#>
 	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | foreach-Object {
-		write-host	"   - $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
+		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process -FilePath "$($_.Fullname)"  -wait -WindowStyle Minimized
 	}
 
@@ -363,7 +363,7 @@ Function FirstExperience_Deploy
 		.搜索本地部署：ps1
 	#>
 	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
-		write-host	"   - $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
+		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)""" -Wait -WindowStyle Minimized
 	}
 
@@ -381,7 +381,8 @@ Function FirstExperience_Deploy
 	#>
 	if (Deploy_Sync -Mark "ClearSolutions") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		Remove_Tree -Path "$($Global:UniqueMainFolder)"
+		$UniqueMainFolder = Convert-Path -Path "$($PSScriptRoot)\..\.." -ErrorAction SilentlyContinue
+		Remove_Tree -Path $UniqueMainFolder
 
 		<#
 			.In order to prevent the solution from being unable to be cleaned up, the next time you log in, execute it again
@@ -390,7 +391,7 @@ Function FirstExperience_Deploy
 		Write-Host "   $($lang.NextDelete)`n" -ForegroundColor Green
 		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 		$regKey = "Clear $($Global:UniqueID) Folder"
-		$regValue = "cmd.exe /c rd /s /q ""$($Global:UniqueMainFolder)"""
+		$regValue = "cmd.exe /c rd /s /q ""$($UniqueMainFolder)"""
 		if (Test-Path $regPath) {
 			New-ItemProperty -Path $regPath -Name $regKey -Value $regValue -PropertyType STRING -Force | Out-Null
 		} else {

@@ -138,23 +138,8 @@ Function Get_Zip
 		return $True
 	}
 
-	if (Test-Path -Path "$($env:SystemDrive)\$($Global:UniqueID)\$($Global:UniqueID)\7zPacker\7z.exe" -PathType leaf) {
-		$Global:IsZipPath = "$($env:SystemDrive)\$($Global:UniqueID)\$($Global:UniqueID)\7zPacker\7z.exe"
-		return $True
-	}
-
-	if (Test-Path "$PSScriptRoot\AIO\7zPacker\x86\7z.exe" -PathType leaf) {
-		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\x86\7z.exe"
-		return $True
-	}
-
-	if (Test-Path "$PSScriptRoot\AIO\7zPacker\AMD64\7z.exe" -PathType leaf) {
-		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\AMD64\7z.exe"
-		return $True
-	}
-
-	if (Test-Path "$PSScriptRoot\AIO\7zPacker\arm64\7z.exe" -PathType leaf) {
-		$Global:IsZipPath = "$PSScriptRoot\AIO\7zPacker\arm64\7z.exe"
+	if (Test-Path -Path "$(Get_Arch_Path -Path "$($PSScriptRoot)\AIO\7zPacker")\7z.exe" -PathType leaf) {
+		$Global:IsZipPath = "$(Get_Arch_Path -Path "$($PSScriptRoot)\AIO\7zPacker")\7z.exe"
 		return $True
 	}
 

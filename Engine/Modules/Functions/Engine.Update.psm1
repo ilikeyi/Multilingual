@@ -295,18 +295,18 @@ Function Update_Process
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
-			Write-Host "   - $($lang.UpdateServeravailable)" -ForegroundColor Green
+			Write-Host "     $($lang.UpdateServeravailable)" -ForegroundColor Green
 			break
 		} else {
-			Write-Host "   - $($lang.UpdateServerUnavailable)`n" -ForegroundColor Red
+			Write-Host "     $($lang.UpdateServerUnavailable)`n" -ForegroundColor Red
 		}
 	}
 
 	if ($ServerTest) {
 		Write-Host "   ---------------------------------------------------"
-		Write-Host "   - $($lang.UpdatePriority)" -ForegroundColor Green
+		Write-Host "     $($lang.UpdatePriority)" -ForegroundColor Green
 	} else {
-		Write-Host "   - $($lang.UpdateServerTestFailed)" -ForegroundColor Red
+		Write-Host "     $($lang.UpdateServerTestFailed)" -ForegroundColor Red
 		Write-Host "   ---------------------------------------------------"
 		return
 	}
@@ -351,7 +351,7 @@ Function Update_Process
 			Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
 			Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
 			if (Test_URI $url) {
-				Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
+				Write-Host "     $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "   ---------------------------------------------------"
 
 				Write-host "`n   $($lang.UpdateCurrent)$((Get-Module -Name Engine).Version.ToString())
@@ -396,7 +396,7 @@ $($getSerVer.changelog.log)`n"
 					}
 				}
 			} else {
-				Write-Host "   - $($lang.UpdateUnavailable)" -ForegroundColor Red
+				Write-Host "     $($lang.UpdateUnavailable)" -ForegroundColor Red
 				Write-Host "   ---------------------------------------------------"
 				return
 			}
@@ -405,11 +405,11 @@ $($getSerVer.changelog.log)`n"
 				Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
 				Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
 				if (Test_URI $url) {
-					Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
+					Write-Host "     $($lang.UpdateAvailable)" -ForegroundColor Green
 					Write-Host "   ---------------------------------------------------"
 					Update_And_Download -url $url
 				} else {
-					Write-Host "   - $($lang.UpdateUnavailable)" -ForegroundColor Red
+					Write-Host "     $($lang.UpdateUnavailable)" -ForegroundColor Red
 					Write-Host "   ---------------------------------------------------"
 					return
 				}
@@ -560,14 +560,14 @@ Function Get_Arch_Path
 
 	switch ($env:PROCESSOR_ARCHITECTURE) {
 		"arm64" {
-			if (Test-Path -Path "$Path\arm64" -PathType Container) {
-				return Convert-Path -Path "$Path\arm64" -ErrorAction SilentlyContinue
+			if (Test-Path -Path "$($Path)\arm64\$($Global:IsLang)" -PathType Container) {
+				return Convert-Path -Path "$($Path)\arm64\$($Global:IsLang)" -ErrorAction SilentlyContinue
 			} else {
-				if (Test-Path -Path "$Path\AMD64" -PathType Container) {
-					return Convert-Path -Path "$Path\AMD64" -ErrorAction SilentlyContinue
+				if (Test-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -PathType Container) {
+					return Convert-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -ErrorAction SilentlyContinue
 				} else {
-					if (Test-Path -Path "$Path\x86" -PathType Container) {
-						return Convert-Path -Path "$Path\x86" -ErrorAction SilentlyContinue
+					if (Test-Path -Path "$($Path)\x86\$($Global:IsLang)" -PathType Container) {
+						return Convert-Path -Path "$($Path)\x86\$($Global:IsLang)" -ErrorAction SilentlyContinue
 					} else {
 						return $Path
 					}
@@ -575,19 +575,19 @@ Function Get_Arch_Path
 			}
 		}
 		"AMD64" {
-			if (Test-Path -Path "$Path\AMD64" -PathType Container) {
-				return Convert-Path -Path "$Path\AMD64" -ErrorAction SilentlyContinue
+			if (Test-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -PathType Container) {
+				return Convert-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -ErrorAction SilentlyContinue
 			} else {
-				if (Test-Path -Path "$Path\x86" -PathType Container) {
-					return Convert-Path -Path "$Path\x86" -ErrorAction SilentlyContinue
+				if (Test-Path -Path "$($Path)\x86\$($Global:IsLang)" -PathType Container) {
+					return Convert-Path -Path "$($Path)\x86\$($Global:IsLang)" -ErrorAction SilentlyContinue
 				} else {
 					return $Path
 				}
 			}
 		}
 		"x86" {
-			if (Test-Path -Path "$Path\x86" -PathType Container) {
-				return Convert-Path -Path "$Path\x86" -ErrorAction SilentlyContinue
+			if (Test-Path -Path "$($Path)\x86\$($Global:IsLang)" -PathType Container) {
+				return Convert-Path -Path "$($Path)\x86\$($Global:IsLang)" -ErrorAction SilentlyContinue
 			} else {
 				return $Path
 			}

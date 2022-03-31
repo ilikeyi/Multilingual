@@ -30,7 +30,7 @@ Function Language_Setting
 		.Add current preferred language
 		.添加当前首选语言
 	#>
-	Write-Host "   - $($lang.SetLang)$($Script:UILanguage)" -ForegroundColor Green
+	Write-Host "   $($lang.SetLang)$($Script:UILanguage)" -ForegroundColor Green
 	Language_Process -NewLang $Script:UILanguage
 
 	<#
@@ -95,6 +95,7 @@ Function Language_Setting
 		-Match | 匹配
 		-Force | 强行同步与当前系统主语言一致
 	#>
+	Language_Region_Setting -Force
 	Language_Region_Setting -Match
 
 	<#
@@ -150,10 +151,10 @@ Function Language_Process
 
 	if ($NewLang -eq "zh-CN" ) {
 		$FlagsNewLanguage = $True
-		Write-Host "   - $($lang.KeyboardSequence)$($lang.Pinyi)"
+		Write-Host "   $($lang.KeyboardSequence)$($lang.Pinyi)"
 		$Script:GroupLanguage[0].InputMethodTips.add('0804:{81D4E9C9-1D3B-41BC-9E6C-4B40BF79E35E}{FA550B04-5AD7-411f-A5AC-CA038EC515D7}')      # Pinyin
 
-		Write-Host "   - $($lang.KeyboardSequence)$($lang.Wubi)"
+		Write-Host "   $($lang.KeyboardSequence)$($lang.Wubi)"
 		$Script:GroupLanguage[0].InputMethodTips.add('0804:{6a498709-e00b-4c45-a018-8f9e4081ae40}{82590C13-F4DD-44f4-BA1D-8667246FDF8E}')      # Wubi
 	}
 
@@ -200,7 +201,7 @@ Function Language_Region_Setting
 			$LanguageName = $Global:AvailableLanguages[$i][2]
 
 			if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
-				Write-Host "   - $($LanguageName)"
+				Write-Host "   $($LanguageName)"
 				Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
 				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 				break
@@ -211,7 +212,7 @@ Function Language_Region_Setting
 	}
 
 	if ($Force) {
-		Write-Host "   - $((Get-Culture).Name)"
+		Write-Host "   $((Get-Culture).Name)"
 		Set-WinSystemLocale (Get-Culture).Name -ErrorAction SilentlyContinue | Out-Null
 		Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 	} else {

@@ -125,3 +125,151 @@ Function Join_MainFolder
 		return "$Path\"
 	}
 }
+
+<#
+	.Unzip
+	.解压缩
+#>
+Function Archive
+{
+	param
+	(
+		$Password,
+		$filename,
+		$to
+	)
+
+	Convert-Path $filename -ErrorAction SilentlyContinue | Out-Null
+
+	Write-Host "   $($filename)"
+	Write-Host "   $($lang.UpdateUnpacking)".PadRight(28) -NoNewline
+	if (Compressing) {
+		if (([string]::IsNullOrEmpty($Password))) {
+			$arguments = "x ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
+		} else {
+			$arguments = "x ""-p$Password"" ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
+		}
+		Start-Process $Global:Zip "$arguments" -Wait -WindowStyle Minimized
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+	} else {
+		Expand-Archive -LiteralPath $filename -DestinationPath $to -force
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+	}
+}
+
+<#
+	.Get compression software
+	.获取压缩软件
+#>
+Function Compressing
+{
+	if (Test-Path -Path "${env:ProgramFiles}\7-Zip\7z.exe" -PathType Leaf) {
+		$Global:Zip = "${env:ProgramFiles}\7-Zip\7z.exe"
+		return $true
+	}
+
+	if (Test-Path -Path "${env:ProgramFiles(x86)}\7-Zip\7z.exe" -PathType Leaf) {
+		$Global:Zip = "${env:ProgramFiles(x86)}\7-Zip\7z.exe"
+		return $true
+	}
+
+	if (Test-Path -Path "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\AIO\7zPacker")\7z.exe" -PathType Leaf) {
+		$Global:Zip = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\AIO\7zPacker")\7z.exe"
+		return $true
+	}
+	return $false
+}
+
+<#
+	.Processing: clean up packages by architecture
+	.处理：按架构清理软件包
+#>
+Function Clear_Arch_Path
+{
+	param
+	(
+		[string]$Path
+	)
+
+	switch ($env:PROCESSOR_ARCHITECTURE) {
+		"arm64" {
+			if (Test-Path -Path "$Path\arm64" -PathType Container) {
+				Remove_Tree -Path "$Path\AMD64"
+				Remove_Tree -Path "$Path\x86"
+			} else {
+				if (Test-Path -Path "$Path\AMD64" -PathType Container) {
+					Remove_Tree -Path "$Path\arm64"
+					Remove_Tree -Path "$Path\x86"
+				} else {
+					if (Test-Path -Path "$Path\x86" -PathType Container) {
+						Remove_Tree -Path "$Path\arm64"
+						Remove_Tree -Path "$Path\AMD64"
+					}
+				}
+			}
+		}
+		"AMD64" {
+			if (Test-Path -Path "$Path\AMD64" -PathType Container) {
+				Remove_Tree -Path "$Path\arm64"
+				Remove_Tree -Path "$Path\x86"
+			} else {
+				if (Test-Path -Path "$Path\x86" -PathType Container) {
+					Remove_Tree -Path "$Path\arm64"
+					Remove_Tree -Path "$Path\AMD64"
+				}
+			}
+		}
+		"x86" {
+			Remove_Tree -Path "$Path\arm64"
+			Remove_Tree -Path "$Path\AMD64"
+		}
+	}
+}
+
+<#
+	.Determine if architecture is available by path
+	.按路径来判断架构是否可用
+#>
+Function Get_Arch_Path
+{
+	param
+	(
+		[string]$Path
+	)
+
+	switch ($env:PROCESSOR_ARCHITECTURE) {
+		"arm64" {
+			if (Test-Path -Path "$($Path)\arm64\$($Global:IsLang)" -PathType Container) {
+				return Convert-Path -Path "$($Path)\arm64\$($Global:IsLang)" -ErrorAction SilentlyContinue
+			} else {
+				if (Test-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -PathType Container) {
+					return Convert-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -ErrorAction SilentlyContinue
+				} else {
+					if (Test-Path -Path "$($Path)\x86\$($Global:IsLang)" -PathType Container) {
+						return Convert-Path -Path "$($Path)\x86\$($Global:IsLang)" -ErrorAction SilentlyContinue
+					} else {
+						return $Path
+					}
+				}
+			}
+		}
+		"AMD64" {
+			if (Test-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -PathType Container) {
+				return Convert-Path -Path "$($Path)\AMD64\$($Global:IsLang)" -ErrorAction SilentlyContinue
+			} else {
+				if (Test-Path -Path "$($Path)\x86\$($Global:IsLang)" -PathType Container) {
+					return Convert-Path -Path "$($Path)\x86\$($Global:IsLang)" -ErrorAction SilentlyContinue
+				} else {
+					return $Path
+				}
+			}
+		}
+		"x86" {
+			if (Test-Path -Path "$($Path)\x86\$($Global:IsLang)" -PathType Container) {
+				return Convert-Path -Path "$($Path)\x86\$($Global:IsLang)" -ErrorAction SilentlyContinue
+			} else {
+				return $Path
+			}
+		}
+	}
+}

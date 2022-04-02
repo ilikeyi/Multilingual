@@ -381,7 +381,7 @@ Function FirstExperience_Deploy
 	#>
 	if (Deploy_Sync -Mark "ClearSolutions") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		$UniqueMainFolder = Convert-Path -Path "$($PSScriptRoot)\..\.." -ErrorAction SilentlyContinue
+		$UniqueMainFolder = Convert-Path -Path "$($PSScriptRoot)\..\..\.." -ErrorAction SilentlyContinue
 		Remove_Tree -Path $UniqueMainFolder
 
 		<#
@@ -406,7 +406,7 @@ Function FirstExperience_Deploy
 	#>
 	if (Deploy_Sync -Mark "ClearEngine") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		Remove_Tree -Path "$($PSScriptRoot)\..\"
+		Remove_Tree -Path "$($PSScriptRoot)\..\.."
 	}
 
 	<#

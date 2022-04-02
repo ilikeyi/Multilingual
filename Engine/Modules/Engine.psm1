@@ -10,7 +10,7 @@ $Global:AuthorURL = "https://fengyi.tel"
 	.可用语言
 
 	.Sorting rules: group type, regional language, short name, region name, time region
-	.排序规则：分组类型、区域语言、短名称、区域名称、时间区域
+	.排序规则：分组类型、区域 ID、区域语言、短名称、区域名称、时间区域
 
 	.Group type: 1. Language pack; 2. Language interface pack (LIP)
 	.分组类型：1、语言包；2、语言界面包（LIP）
@@ -27,49 +27,49 @@ $Global:AvailableLanguages = @(
                     Language/region tag
                                       ISO3166            Language/region                                   Timezone                             LIP ID
 	#>
-	("1",  "1025",  "ar-SA",          "ar",              "Arabic - Saudi Arabia",                          "Argentina Standard Time",           "9N4S78P86PKX"),
+	("1",  "1025",  "ar-SA",          "ar",              "Arabic (Saudi Arabia)",                          "Argentina Standard Time",           "9N4S78P86PKX"),
 	("1",  "1026",  "bg-BG",          "bg",              "Bulgarian (Bulgaria)",                           "FLE Standard Time",                 "9MX54588434F"),
-	("1",  "3076",  "zh-HK",          "hk",              "Chinese - Hong Kong SAR",                        "China Standard Time",               ""),
-	("1",  "2052",  "zh-CN",          "cn",              "Chinese - China",                                "China Standard Time",               "9NRMNT6GMZ70"),
-	("1",  "1028",  "zh-TW",          "tw",              "Chinese - Taiwan",                               "Taipei Standard Time",              "9PCJ4DHCQ1JQ"),
+	("1",  "3076",  "zh-HK",          "hk",              "Chinese (Traditional, Hong Kong SAR)",           "China Standard Time",               ""),
+	("1",  "2052",  "zh-CN",          "cn",              "Chinese (Simplified, China)",                    "China Standard Time",               "9NRMNT6GMZ70"),
+	("1",  "1028",  "zh-TW",          "tw",              "Chinese (Traditional, Taiwan)",                  "Taipei Standard Time",              "9PCJ4DHCQ1JQ"),
 	("1",  "1050",  "hr-HR",          "hr",              "Croatian (Croatia)",                             "Central European Standard Time",    "9NW01VND4LTW"),
 	("1",  "1029",  "cs-CZ",          "dz",              "Czech (Czech Republic)",                         "W. Central Africa Standard Time",   "9P3WXZ1KTM7C"),
 	("1",  "1030",  "da-DK",          "dk",              "Danish (Denmark)",                               "Romance Standard Time",             "9NDMT2VKSNL1"),
-	("1",  "1043",  "nl-NL",          "nl",              "Dutch - Netherlands",                            "W. Europe Standard Time",           "9PF1C9NB5PRV"),
-	("1",  "1033",  "en-US",          "en",              "English - United States",                        "Pacific Standard Time",             "9PDSCC711RVF"),
-	("1",  "2057",  "en-GB",          "gb",              "English - Great Britain",                        "GMT Standard Time",                 "9NT52VQ39BVN"),
+	("1",  "1043",  "nl-NL",          "nl",              "Dutch (Netherlands)",                            "W. Europe Standard Time",           "9PF1C9NB5PRV"),
+	("1",  "1033",  "en-US",          "en",              "English (United States)",                        "Pacific Standard Time",             "9PDSCC711RVF"),
+	("1",  "2057",  "en-GB",          "gb",              "English (United Kingdom)",                       "GMT Standard Time",                 "9NT52VQ39BVN"),
 	("1",  "1061",  "et-EE",          "ee",              "Estonian (Estonia)",                             "FLE Standard Time",                 "9NFBHFMCR30L"),
 	("1",  "1035",  "fi-FI",          "fi",              "Finnish (Finland)",                              "FLE Standard Time",                 "9MW3PQ7SD3QK"),
-	("1",  "3084",  "fr-CA",          "ca",              "French - Canada",                                "Eastern Standard Time",             "9MTP2VP0VL92"),
-	("1",  "1036",  "fr-FR",          "fr",              "French - France",                                "Central European Time",             "9NHMG4BJKMDG"),
-	("1",  "1031",  "de-DE",          "de",              "German - Germany",                               "W. Europe Standard Time",           "9P6CT0SLW589"),
+	("1",  "3084",  "fr-CA",          "ca",              "French (Canada)",                                "Eastern Standard Time",             "9MTP2VP0VL92"),
+	("1",  "1036",  "fr-FR",          "fr",              "French (France)",                                "Central European Time",             "9NHMG4BJKMDG"),
+	("1",  "1031",  "de-DE",          "de",              "German (Germany)",                               "W. Europe Standard Time",           "9P6CT0SLW589"),
 	("1",  "1032",  "el-GR",          "gr",              "Greek (Greece)",                                 "GTB Standard Time",                 "9N586B13PBLD"),
 	("1",  "1037",  "he-IL",          "il",              "Hebrew (Israel)",                                "Israel Standard Time",              "9NB6ZFND5HCQ"),
 	("1",  "1038",  "hu-HU",          "hu",              "Hungarian (Hungary)",                            "Central Europe Standard Time",      "9MWN3C58HL87"),
-	("1",  "1040",  "it-IT",          "it",              "Italian - Italy",                                "W. Europe Standard Time",           "9P8PQWNS6VJX"),
+	("1",  "1040",  "it-IT",          "it",              "Italian (Italy)",                                "W. Europe Standard Time",           "9P8PQWNS6VJX"),
 	("1",  "1041",  "ja-JP",          "jp",              "Japanese (Japan)",                               "Tokyo Standard Time",               "9N1W692FV4S1"),
 	("1",  "1042",  "ko-KR",          "kr",              "Korean (Korea)",                                 "Korea Standard Time",               "9N4TXPCVRNGF"),
 	("1",  "1062",  "lv-LV",          "lv",              "Latvian (Latvia)",                               "FLE Standard Time",                 "9N5CQDPH6SQT"),
 	("1",  "1063",  "lt-LT",          "lt",              "Lithuanian (Lithuania)",                         "FLE Standard Time",                 "9NWWD891H6HN"),
-	("1",  "1044",  "nb-NO",          "no",              "Norwegian (Bokm?l) (Norway)",                    "W. Europe Standard Time",           "9N6J0M5DHCK0"),
+	("1",  "1044",  "nb-NO",          "no",              "Norwegian, Bokmål (Norway)",                     "W. Europe Standard Time",           "9N6J0M5DHCK0"),
 	("1",  "1045",  "pl-PL",          "pl",              "Polish (Poland)",                                "Central European Standard Time",    "9NC5HW94R0LD"),
-	("1",  "1046",  "pt-BR",          "br",              "Portuguese - Brazil",                            "E. South America Standard Time",    "9P8LBDM4FW35"),
-	("1",  "2070",  "pt-PT",          "pt",              "Portuguese - Portugal",                          "GMT Standard Time",                 "9P7X8QJ7FL0X"),
+	("1",  "1046",  "pt-BR",          "br",              "Portuguese (Brazil)",                            "E. South America Standard Time",    "9P8LBDM4FW35"),
+	("1",  "2070",  "pt-PT",          "pt",              "Portuguese (Portugal)",                          "GMT Standard Time",                 "9P7X8QJ7FL0X"),
 	("1",  "1048",  "ro-RO",          "ro",              "Romanian (Romania)",                             "GTB Standard Time",                 "9MWXGPJ5PJ3H"),
 	("1",  "1049",  "ru-RU",          "ru",              "Russian (Russia)",                               "Russian Standard Time",             "9NMJCX77QKPX"),
 	("1",  "1051",  "sk-SK",          "sk",              "Slovak (Slovakia)",                              "Central Europe Standard Time",      "9N7LSNN099WB"),
 	("1",  "1060",  "sl-SI",          "si",              "Slovenian (Slovenia)",                           "Central Europe Standard Time",      "9NV27L34J4ST"),
 	("1",  "2058",  "es-MX",          "mx",              "Spanish (Mexico)",                               "Central Standard Time (Mexico)",    "9N8MCM1X3928"),
-	("1",  "3082",  "es-ES",          "es-ES",           "Spanish (Castilian)",                            "Romance Standard Time",             "9NWVGWLHPB1Z"),
+	("1",  "3082",  "es-ES",          "es-ES",           "Spanish (Spain)",                                "Romance Standard Time",             "9NWVGWLHPB1Z"),
 	("1",  "1053",  "sv-SE",          "se",              "Swedish (Sweden)",                               "W. Europe Standard Time",           "9P0HSNX08177"),
 	("1",  "1054",  "th-TH",          "th",              "Thai (Thailand)",                                "SE Asia Standard Time",             "9MSTWFRL0LR4"),
 	("1",  "1055",  "tr-TR",          "tr",              "Turkish (Turkey)",                               "Turkey Standard Time",              "9NL1D3T5HG9R"),
 	("1",  "1058",  "uk-UA",          "ua",              "Ukrainian (Ukraine)",                            "FLE Standard Time",                 "9PPPMZRSGHR8"),
-	("1",  "1027",  "ca-es",          "ca-es",           "Catalan (Spain)",                                "Romance Standard Time",             "9P6JMKJQZ9S7"),
-	("1",  "1069",  "eu-es",          "eu-es",           "Basque (Spain)",                                 "Romance Standard Time",             "9NMCHQHZ37HZ"),
-	("1",  "1110",  "gl-es",          "gl",              "Galician (Spain)",                               "Greenland Standard Time",           "9NXRNBRNJN9B"),
+	("1",  "1027",  "ca-es",          "ca-es",           "Catalan",                                        "Romance Standard Time",             "9P6JMKJQZ9S7"),
+	("1",  "1069",  "eu-es",          "eu-es",           "Basque (Basque)",                                "Romance Standard Time",             "9NMCHQHZ37HZ"),
+	("1",  "1110",  "gl-es",          "gl",              "Galician",                                       "Greenland Standard Time",           "9NXRNBRNJN9B"),
 	("1",  "1057",  "id-id",          "id",              "Indonesian (Indonesia)",                         "SE Asia Standard Time",             "9P4X3N4SDK8P"),
-	("1",  "1066",  "vi-vn",          "vi-vn",           "Vietnamese (Viet Nam)",                          "SE Asia Standard Time",             "9P0W68X0XZPT"),
+	("1",  "1066",  "vi-vn",          "vi-vn",           "Vietnamese",                                     "SE Asia Standard Time",             "9P0W68X0XZPT"),
 	("1",  "9242",  "sr-latn-rs",     "sr-latn-rs",      "Serbian (Latin, Serbia)",                        "Central Europe Standard Time",      "9NBZ0SJDPPVT"),
 
 	<#

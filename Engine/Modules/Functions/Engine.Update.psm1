@@ -314,7 +314,7 @@ Function Update_Process
 	Write-host "`n   $($lang.UpdateQueryingUpdate)"
 
 	$error.Clear()
-	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -ErrorAction SilentlyContinue }
+	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -TimeoutSec 15 -ErrorAction stop }
 
 	if ($error.Count -eq 0) {
 		Write-Host "`n   $($lang.UpdateQueryingTime -f $($time.TotalMilliseconds))"
@@ -421,7 +421,7 @@ $($getSerVer.changelog.log)`n"
 		Write-host "   $($lang.UpdateNotSatisfied -f $($Global:ChkLocalver), $($Global:UniqueID))"
 	}
 
-	Language -Auto
+	Modules_Refresh -Function "ToMainpage -wait 2"
 }
 
 Function Update_And_Download

@@ -3,7 +3,6 @@ Available languages
  * United States - English
  * 日本 - 日本語
  * 대한민국 - 한국어
- * Россия - Русский
  * 简体中文 - 中国
  * 繁體中文 - 中國
 

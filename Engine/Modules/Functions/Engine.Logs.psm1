@@ -63,6 +63,7 @@ Function Logs_Write
 	$callItem = (Get-PSCallstack)[1]
 	$data = [PSCustomObject][ordered]@{
 		Timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff'
+		Logs      = $Global:LogSaveTo
 		Level     = $Level
 		Tag       = $Tag -join ","
 		Line      = $callItem.ScriptLineNumber

@@ -29,7 +29,6 @@ $Global:AvailableLanguages = @(
 	#>
 	("1",  "1025",  "ar-SA",          "ar",              "Arabic (Saudi Arabia)",                          "Argentina Standard Time",           "9N4S78P86PKX"),
 	("1",  "1026",  "bg-BG",          "bg",              "Bulgarian (Bulgaria)",                           "FLE Standard Time",                 "9MX54588434F"),
-	("1",  "3076",  "zh-HK",          "hk",              "Chinese (Traditional, Hong Kong SAR)",           "China Standard Time",               ""),
 	("1",  "2052",  "zh-CN",          "cn",              "Chinese (Simplified, China)",                    "China Standard Time",               "9NRMNT6GMZ70"),
 	("1",  "1028",  "zh-TW",          "tw",              "Chinese (Traditional, Taiwan)",                  "Taipei Standard Time",              "9PCJ4DHCQ1JQ"),
 	("1",  "1050",  "hr-HR",          "hr",              "Croatian (Croatia)",                             "Central European Standard Time",    "9NW01VND4LTW"),
@@ -333,9 +332,9 @@ Function Language_Select_GUI
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 		if (Test-Path -Path "$($PSScriptRoot)\langpacks\$($Global:AvailableLanguages[$i][2])" -PathType Container) {
 			$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
-				Height  = 28
+				Height  = 40
 				Width   = 400
-				Text    = $Global:AvailableLanguages[$i][4]
+				Text    = "$($Global:AvailableLanguages[$i][4])`n$($Global:AvailableLanguages[$i][2])"
 				Tag     = $Global:AvailableLanguages[$i][2]
 			}
 

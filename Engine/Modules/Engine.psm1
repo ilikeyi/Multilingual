@@ -214,6 +214,7 @@ Function Language
 		Language_Select_GUI
 		if ($Global:Quit) {
 			Modules_Import
+			$Global:Quit = $False
 			exit
 		}
 	} else {
@@ -390,6 +391,7 @@ Function Language_Change
 			Write-Host "`n  There is no language pack locally, it will automatically exit after 6 seconds." -ForegroundColor Red
 			Start-Sleep -s 6
 			Modules_Import
+			$Global:Quit = $False
 			exit
 		}
 	}
@@ -427,12 +429,6 @@ Function Modules_Import
 	(
 		[switch]$Import
 	)
-
-	<#
-		.Initialize global variables
-		.初始化全局变量
-	#>
-	$Global:Quit = $False
 
 	<#
 		.Remove all Engine modules

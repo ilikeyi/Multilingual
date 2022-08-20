@@ -31,7 +31,7 @@ $PreServerList = @(
 	("$($Global:AuthorURL)",
 	 "/download/solutions/update/Multilingual/latest.json"),
 	("https://github.com",
-	 "/ilikeyi/solutions/raw/main/update/Multilingual/latest.json")
+	 "/ilikeyi/Multilingual/raw/main/update/latest.json")
 )
 
 <#

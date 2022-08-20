@@ -175,13 +175,13 @@ Function Update_Create_UI
 	)
 
 	Clear-Host
-	$Host.UI.RawUI.WindowTitle = "$($Global:UniqueID)'s Solutions | $($lang.UpdateCreate)"
+	$Host.UI.RawUI.WindowTitle = "$($Global:UniqueID)'s Solutions | $($Upgrade_Package.UpdateCreate)"
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
    buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.220201-1208`n"
 
-	Write-Host "   $($lang.UpdateCreate)`n   ---------------------------------------------------"
+	Write-Host "   $($Upgrade_Package.UpdateCreate)`n   ---------------------------------------------------"
 
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
@@ -217,7 +217,7 @@ Function Update_Create_UI
 		if ($GUIUpdateCreateASC.Enabled) {
 			if ($GUIUpdateCreateASC.Checked) {
 				if ([string]::IsNullOrEmpty($GUIUpdateCreateASCSign.Text)) {
-					$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError -f $($lang.CreateASCAuthorTips))"
+					$GUIUpdateErrorMsg.Text = "$($Upgrade_Package.SelectFromError -f $($Upgrade_Package.CreateASCAuthorTips))"
 					return
 				} else {
 					Save_Dynamic -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
@@ -249,7 +249,7 @@ Function Update_Create_UI
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 550
-		Text           = $lang.UpdateCreate
+		Text           = $Upgrade_Package.UpdateCreate
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False
@@ -266,7 +266,7 @@ Function Update_Create_UI
 		Location       = "12,30"
 		Height         = 22
 		Width          = 390
-		Text           = "$($lang.UpdateLow) $($Global:ChkLocalver)"
+		Text           = "$($Upgrade_Package.UpdateLow) $($Global:ChkLocalver)"
 	}
 
 	<#
@@ -276,7 +276,7 @@ Function Update_Create_UI
 		Location       = "12,352"
 		Height         = 22
 		Width          = 390
-		Text           = $lang.UpCreateRear
+		Text           = $Upgrade_Package.UpCreateRear
 	}
 	$GUIUpdateGroupASC = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
@@ -289,7 +289,7 @@ Function Update_Create_UI
 	$GUIUpdateCreateASC = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 470
-		Text           = $lang.UpCreateASC
+		Text           = $Upgrade_Package.UpCreateASC
 		Location       = '26,0'
 		Checked        = $True
 		add_Click      = $GUIUpdateCreateASCClick
@@ -306,7 +306,7 @@ Function Update_Create_UI
 		Location       = "42,0"
 		Height         = 22
 		Width          = 390
-		Text           = $lang.CreateASCPwd
+		Text           = $Upgrade_Package.CreateASCPwd
 	}
 	$GUIUpdateCreateASCPWD = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 22
@@ -318,7 +318,7 @@ Function Update_Create_UI
 		Location       = "42,60"
 		Height         = 22
 		Width          = 390
-		Text           = $lang.CreateASCAuthor
+		Text           = $Upgrade_Package.CreateASCAuthor
 	}
 	$GUIUpdateCreateASCSign = New-Object system.Windows.Forms.ComboBox -Property @{
 		Location       = "42,83"
@@ -331,7 +331,7 @@ Function Update_Create_UI
 	$GUIUpdateCreateSHA256 = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 470
-		Text           = $lang.UpCreateSHA256
+		Text           = $Upgrade_Package.UpCreateSHA256
 		Location       = '26,525'
 		Checked        = $True
 	}
@@ -386,7 +386,7 @@ Function Update_Create_UI
 	} else {
 		$GUIUpdateGroupASC.Enabled = $False
 		$GUIUpdateOK.Enabled = $False
-		$GUIUpdateErrorMsg.Text += $lang.ZipStatus
+		$GUIUpdateErrorMsg.Text += $Upgrade_Package.ZipStatus
 	}
 
 	<#
@@ -419,7 +419,7 @@ Function Update_Create_UI
 		}
 	} else {
 		$GUIUpdateGroupASC.Enabled = $False
-		$GUIUpdateErrorMsg.Text += $lang.ASCStatus
+		$GUIUpdateErrorMsg.Text += $Upgrade_Package.ASCStatus
 	}
 
 	switch ($Global:IsLang) {
@@ -455,44 +455,44 @@ Function Update_Create_Process_Add
 		Check_Folder -chkpath $TempFolderUpdate
 		switch ($Type) {
 			"zip" {
-				Write-Host "   * $($lang.Uping) $UpdateName.zip"
+				Write-Host "   * $($Upgrade_Package.Uping) $UpdateName.zip"
 				$arguments = "a", "-tzip", "$TempFolderUpdate\$UpdateName.zip", "$ArchiveExcludeUp", "*.*", "-mcu=on", "-r", "-mx9";
 				Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
 			"tar" {
-				Write-Host "   * $($lang.Uping) $UpdateName.tar"
+				Write-Host "   * $($Upgrade_Package.Uping) $UpdateName.tar"
 				$arguments = "a", "$TempFolderUpdate\$UpdateName.tar", "$ArchiveExcludeUp", "*.*", "-r";
 				Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
 			"xz" {
-				Write-Host "  * $($lang.Uping) $UpdateName.tar.xz"
+				Write-Host "  * $($Upgrade_Package.Uping) $UpdateName.tar.xz"
 				if (Test-Path -Path "$TempFolderUpdate\$UpdateName.tar" -PathType Leaf) {
 					$arguments = "a", "$TempFolderUpdate\$UpdateName.tar.xz", "$TempFolderUpdate\$UpdateName.tar", "-mf=bcj", "-mx9";
 					Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {
-					Write-Host "     $($lang.SkipCreate) $UpdateName.tar`n"
+					Write-Host "     $($Upgrade_Package.SkipCreate) $UpdateName.tar`n"
 				}
 			}
 			"gz" {
-				Write-Host "  * $($lang.Uping) $UpdateName.tar.gz"
+				Write-Host "  * $($Upgrade_Package.Uping) $UpdateName.tar.gz"
 				if (Test-Path -Path "$TempFolderUpdate\$UpdateName.tar" -PathType Leaf) {
 					$arguments = "a", "-tgzip", "$TempFolderUpdate\$UpdateName.tar.gz", "$TempFolderUpdate\$UpdateName.tar", "-mx9";
 					Start-Process $Global:IsZipPath "$arguments" -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {
-					Write-Host "     $($lang.SkipCreate) $UpdateName.tar`n"
+					Write-Host "     $($Upgrade_Package.SkipCreate) $UpdateName.tar`n"
 				}
 			}
 		}
 	} else {
-		Write-Host "     $($lang.ZipStatus)`n" -ForegroundColor Green
+		Write-Host "     $($Upgrade_Package.ZipStatus)`n" -ForegroundColor Green
 	}
 }
 
@@ -513,7 +513,7 @@ Function Update_Create_ASC
 			Remove-Item -path "$($_.FullName).sig" -Force -ErrorAction SilentlyContinue
 			Remove-Item -path "$($_.FullName).asc" -Force -ErrorAction SilentlyContinue
 
-			Write-Host "   * $($lang.Uping) $UpdateName.asc"
+			Write-Host "   * $($Upgrade_Package.Uping) $UpdateName.asc"
 			if (([string]::IsNullOrEmpty($Script:secure_password))) {
 				Start-Process $GpgLocalPath -argument "--local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			} else {
@@ -527,7 +527,7 @@ Function Update_Create_ASC
 			}
 		}
 	} else {
-		Write-Host "    $($lang.ASCStatus)" -ForegroundColor Red
+		Write-Host "    $($Upgrade_Package.ASCStatus)" -ForegroundColor Red
 	}
 }
 
@@ -537,7 +537,7 @@ Function Update_Create_SHA256
 		$fullnewpathFU = "$($_.FullName)"
 		$fullnewpath = "$($_.FullName).sha256"
 
-		Write-Host "   * $($lang.Uping) $($_.FullName).sha256"
+		Write-Host "   * $($Upgrade_Package.Uping) $($_.FullName).sha256"
 		$calchash = (Get-FileHash $($fullnewpathFU) -Algorithm SHA256)
 		"$($calchash.hash)  $($_.Name)" | Out-File -FilePath $fullnewpath -Encoding ASCII
 

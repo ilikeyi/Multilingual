@@ -30,8 +30,15 @@ Function Language_Setting
 		.Add current preferred language
 		.添加当前首选语言
 	#>
-	Write-Host "   $($lang.SetLang)$($Script:UILanguage)" -ForegroundColor Green
 	Language_Process -NewLang $Script:UILanguage
+
+	Write-Host "`n   $($lang.SetLang)"
+	Write-Host "   $($Script:UILanguage)" -ForegroundColor Green
+
+	Write-host "`n   $($lang.LanguageInstalled)"
+	foreach ($item in $Global:LanguagesAreInstalled) {
+		Write-Host "   $($item)" -ForegroundColor Green
+	}
 
 	<#
 		.Specialized processing: monolingual, and non-monolingual
@@ -46,20 +53,75 @@ Function Language_Setting
 		<#
 			.Processing: Single language
 			.处理：单语版
+
+			Rules:
+			规则：
+				If it is monolingual:
+				如果是单语：
+					Proceed to the next step.
+					·进行下一步。
+
+				If it is multilingual:
+				如果是多语：
+					.Determine whether there is en-US, and if there is, it is added as a second language first
+					·判断是否有 en-US，有则优先添加为第二语言，
+
+					 There is no en-US, and other languages are added randomly to mark as second languages.
+					 如果没有 en-US，随机添加其它语言标记为第二语言。
 		#>
-		if (($Global:AvailableLanguages) -Contains "en-US") {
-			Language_Process -NewLang "en-US"
-			Write-Host "   $($lang.AddTo), en-US"
+
+		<#
+			.Single language
+			.单语
+		#>
+		if ($Global:LanguagesAreInstalled.Count -le 1) {
+			write-host "`n   $($lang.LangSingle)"
+		} else {
+			<#
+				.Multilingual
+				.多语
+			#>
+			write-host "`n   $($lang.LangMul)"
+
+			<#
+				.There is no en-US, and other languages are added randomly to mark as second languages.
+				.没有 en-US，随机添加其它语言标记为第二语言。
+			#>
+			$initWaitRandomlyLang = @()
+			foreach ($item in $Global:LanguagesAreInstalled) {
+				if ($Script:UILanguage -ne $item) {
+					$initWaitRandomlyLang += $item
+				}
+			}
+
+			<#
+				.Determine whether there is en-US, and if there is, it is added as a second language first
+				.判断是否有 en-US，有则优先添加为第二语言
+			#>
+			if (($initWaitRandomlyLang) -Contains "en-US") {
+				Language_Process -NewLang "en-US"
+				Write-Host "`n   $($lang.AddTo): en-US"
+			} else {
+				Write-Host "`n   $($lang.RandomlyWaitSel)"
+				foreach ($item in $initWaitRandomlyLang) {
+					Write-Host "   $($item)"
+				}
+
+				write-host "`n   $($lang.RandomlySelResults)"
+				$RandomlySelectLang = $initWaitRandomlyLang | Get-Random
+				Write-Host "   $($RandomlySelectLang)" -ForegroundColor Green
+				Language_Process -NewLang $RandomlySelectLang
+			}
 		}
 	} else {
 		<#
 			.Processing: other unrestricted versions
 			.处理：其它不受限制版本
 		#>
-		foreach ($item in $Global:AvailableLanguages) {
+		foreach ($item in $Global:LanguagesAreInstalled) {
 			if ($Script:UILanguage -ne $item) {
 				Language_Process -NewLang $item
-				Write-Host "   $($lang.AddTo), $item"
+				Write-Host "   $($lang.AddTo): $item"
 			}
 		}
 	}
@@ -134,7 +196,7 @@ Function Language_Setting
 	.Specialize different languages, specify and add hidden input methods
 	.特殊化处理不同的语言，指定添加隐藏的输入法
 
-     https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs	
+     https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs
 #>
 Function Language_Process
 {
@@ -177,9 +239,9 @@ Function Language_Known_Available
 		.Get the language installed in the system and generate it into an array
 		.获取系统已安装语言，并生成到数组里
 	#>
-	$Global:AvailableLanguages = @()
+	$Global:LanguagesAreInstalled = @()
 	Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
-		$Global:AvailableLanguages += $_
+		$Global:LanguagesAreInstalled += $_
 	}
 }
 
@@ -200,7 +262,7 @@ Function Language_Region_Setting
 		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 			$LanguageName = $Global:AvailableLanguages[$i][2]
 
-			if (Test-Path -Path "$($PSScriptRoot)\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
+			if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
 				Write-Host "   $($LanguageName)"
 				Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
 				Write-Host "   $($lang.Done)`n" -ForegroundColor Green

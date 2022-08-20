@@ -333,7 +333,7 @@ Function Language_Select_GUI
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 		if (Test-Path -Path "$($PSScriptRoot)\langpacks\$($Global:AvailableLanguages[$i][2])" -PathType Container) {
 			$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
-				Height  = 40
+				Height  = 45
 				Width   = 400
 				Text    = "$($Global:AvailableLanguages[$i][4])`n$($Global:AvailableLanguages[$i][2])"
 				Tag     = $Global:AvailableLanguages[$i][2]
@@ -374,24 +374,29 @@ Function Language_Select_GUI
 #>
 Function Language_Change
 {
-	param
-	(
+	param (
 		[string]$lang
 	)
 
-	if (Test-Path -Path "$($PSScriptRoot)\langpacks\$lang\lang.psd1" -PathType Leaf) {
+	$Global:Lang = @()
+
+	if (Test-Path "$($PSScriptRoot)\langpacks\$($lang)\Lang.psd1" -PathType Leaf) {
 		$Global:IsLang = $lang
-		Import-LocalizedData -BindingVariable Global:Lang -UICulture $lang -FileName "lang.psd1" -BaseDirectory "$($PSScriptRoot)\langpacks\$lang"
+
+		Get-ChildItem –Path "$($PSScriptRoot)\langpacks\$($lang)" –Recurse -include "*.psd1" | ForEach-Object {
+			$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
+		}
 	} else {
-		if (Test-Path -Path "$($PSScriptRoot)\langpacks\en-US\lang.psd1" -PathType Leaf) {
+		if (Test-Path "$($PSScriptRoot)\langpacks\en-US\Lang.psd1" -PathType Leaf) {
 			$Global:IsLang = "en-US"
-			Import-LocalizedData -BindingVariable Global:Lang -UICulture $lang -FileName "lang.psd1" -BaseDirectory "$($PSScriptRoot)\langpacks\en-US"
+
+			Get-ChildItem –Path "$($PSScriptRoot)\langpacks\en-US" –Recurse -include "*.psd1" | ForEach-Object {
+				$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
+			}
 		} else {
 			Clear-Host
 			Write-Host "`n  There is no language pack locally, it will automatically exit after 6 seconds." -ForegroundColor Red
 			Start-Sleep -s 6
-			Modules_Import
-			$Global:Quit = $False
 			exit
 		}
 	}

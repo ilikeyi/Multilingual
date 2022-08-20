@@ -1,5 +1,4 @@
-﻿
-<#
+﻿<#
 	.Register user interface
 	.注册用户界面
 #>
@@ -67,7 +66,7 @@ Function FirstExperience_Setting_UI
 
 		Write-Host "   $($lang.DeployCleanup)"
 		if ($GUIFEDeployCleanup.Checked) {
-			Remove_Tree -Path "$($PSScriptRoot)\..\..\Deploy"
+			Remove_Tree -Path "$($PSScriptRoot)\..\..\..\..\Deploy"
 			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
@@ -204,8 +203,8 @@ Function FirstExperience_Process
 		.Determine whether all languages currently installed are multilingual versions, and add known policies to multilingual versions
 		.获取已安装所有语言是否是多语版，多语版则添加已知策略
 	#>
-	if ($Global:AvailableLanguages.count -ge 2) {
-		Write-Host "   $($lang.LangMul) ( $($Global:AvailableLanguages.count) )"
+	if ($Global:LanguagesAreInstalled.count -ge 2) {
+		Write-Host "   $($lang.LangMul) ( $($Global:LanguagesAreInstalled.count) )"
 		<#
 			.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
 			.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
@@ -228,7 +227,7 @@ Function FirstExperience_Process
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name "AllowLanguageFeaturesUninstall" -Type DWord -Value 0 -ErrorAction SilentlyContinue | Out-Null
 		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
 	} else {
-		Write-Host "   $($lang.LangSingle) ( $($Global:AvailableLanguages.count) )"
+		Write-Host "   $($lang.LangSingle) ( $($Global:LanguagesAreInstalled.count) )"
 	}
 
 	<#
@@ -265,7 +264,7 @@ Function FirstExperience_Process
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
 		}
 
-		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$((Convert-Path -Path "$($PSScriptRoot)\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"" -Functions \""FirstExperience_Deploy -Quit\""' -WindowStyle Minimized -Verb RunAs"""
+		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$((Convert-Path -Path "$($PSScriptRoot)\..\..\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"" -Functions \""FirstExperience_Deploy -Quit\""' -WindowStyle Minimized -Verb RunAs"""
 		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
@@ -317,9 +316,9 @@ Function FirstExperience_Deploy
 	if ($FlagsClearSolutionsRure) {
 		Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 	} else {
-		if (Test-Path "$($PSScriptRoot)\..\..\Deploy\PopupEngine" -PathType Leaf) {
+		if (Test-Path "$($PSScriptRoot)\..\..\..\..\Deploy\PopupEngine" -PathType Leaf) {
 			Write-Host "   $($lang.Operable)`n" -ForegroundColor Green
-			Start-Process powershell -ArgumentList "-file $((Convert-Path -Path "$($PSScriptRoot)\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"
+			Start-Process powershell -ArgumentList "-file $((Convert-Path -Path "$($PSScriptRoot)\..\..\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"
 		} else {
 			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
@@ -330,7 +329,7 @@ Function FirstExperience_Deploy
 		.允许首次预体验，按计划
 	#>
 	Write-Host "`n   $($lang.FirstExpFinishOnDemand)"
-	if (Test-Path "$($PSScriptRoot)\..\..\Deploy\FirstPreExperience" -PathType Leaf)
+	if (Test-Path "$($PSScriptRoot)\..\..\..\..\Deploy\FirstPreExperience" -PathType Leaf)
 	{
 		Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
@@ -353,7 +352,7 @@ Function FirstExperience_Deploy
 		.Search for local deployment: Bat
 		.搜索本地部署：Bat
 	#>
-	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | foreach-Object {
+	Get-ChildItem –Path "$($PSScriptRoot)\..\..\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | foreach-Object {
 		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process -FilePath "$($_.Fullname)"  -wait -WindowStyle Minimized
 	}
@@ -362,7 +361,7 @@ Function FirstExperience_Deploy
 		.Search for local deployment: ps1
 		.搜索本地部署：ps1
 	#>
-	Get-ChildItem –Path "$($PSScriptRoot)\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
+	Get-ChildItem –Path "$($PSScriptRoot)\..\..\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
 		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)""" -Wait -WindowStyle Minimized
 	}
@@ -381,7 +380,7 @@ Function FirstExperience_Deploy
 	#>
 	if (Deploy_Sync -Mark "ClearSolutions") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		$UniqueMainFolder = Convert-Path -Path "$($PSScriptRoot)\..\..\.." -ErrorAction SilentlyContinue
+		$UniqueMainFolder = Convert-Path -Path "$($PSScriptRoot)\..\..\..\.." -ErrorAction SilentlyContinue
 		Remove_Tree -Path $UniqueMainFolder
 
 		<#
@@ -406,14 +405,14 @@ Function FirstExperience_Deploy
 	#>
 	if (Deploy_Sync -Mark "ClearEngine") {
 		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		Remove_Tree -Path "$($PSScriptRoot)\..\.."
+		Remove_Tree -Path "$($PSScriptRoot)\..\..\..\.."
 	}
 
 	<#
 		.Clean up deployment configuration
 		.清理部署配置
 	#>
-	Remove_Tree -Path "$($PSScriptRoot)\..\..\Deploy"
+	Remove_Tree -Path "$($PSScriptRoot)\..\..\..\..\Deploy"
 
 	if ($Global:MarkRebootComputer) {
 		<#

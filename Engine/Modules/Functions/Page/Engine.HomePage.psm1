@@ -25,12 +25,12 @@ Function Mainpage
 	Logo -Title $($lang.Mainname)
 	Write-Host "   $($lang.Mainname)`n   ---------------------------------------------------"
 
-	write-host "   1. $($lang.Update)
-   2. $($lang.FirstExperience)" -ForegroundColor Green
+	write-host "     1  $($lang.Update)
+     2. $($lang.FirstExperience)" -ForegroundColor Green
 
-   write-host  "`n   L. $($lang.SwitchLanguage)
-   R. $($lang.RefreshModules)
-   Q. $($lang.Exit)`n"
+   write-host  "`n     L  $($lang.SwitchLanguage)
+     R  $($lang.RefreshModules)
+     Q  $($lang.Exit)`n"
 
 	$select = Read-Host "   $($lang.Choose)"
 	switch ($select)

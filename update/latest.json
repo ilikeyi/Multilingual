@@ -1,0 +1,16 @@
+{
+	"author": {
+		"name": "Yi",
+		"url":  "https://fengyi.tel"
+	},
+	"version": {
+		"buildstring": "1.1.0.0.bs_release.220201-1208",
+		"version":     "1.1.0.0",
+		"minau":       "1.1.0.0"
+	},
+	"changelog": {
+		"title": "Yi's Solutions - new autoupdate system",
+		"log":   "   - Latest *Update"
+	},
+	"url": "https://github.com/ilikeyi/Multilingual/raw/main/update/latest.zip"
+}

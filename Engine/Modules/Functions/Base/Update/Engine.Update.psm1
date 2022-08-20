@@ -65,6 +65,7 @@ Function Update
 		Update_Process -Force
 	} else {
 		Update_Setting_UI
+		Modules_Refresh -Function "ToMainpage -wait 2"
 	}
 }
 
@@ -420,8 +421,6 @@ $($getSerVer.changelog.log)`n"
 	} else {
 		Write-host "   $($lang.UpdateNotSatisfied -f $($Global:ChkLocalver), $($Global:UniqueID))"
 	}
-
-	Modules_Refresh -Function "ToMainpage -wait 2"
 }
 
 Function Update_And_Download

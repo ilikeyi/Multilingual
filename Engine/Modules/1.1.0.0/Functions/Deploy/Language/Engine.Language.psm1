@@ -262,7 +262,7 @@ Function Language_Region_Setting
 		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 			$LanguageName = $Global:AvailableLanguages[$i][2]
 
-			if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
+			if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\Region\$($LanguageName)" -PathType Leaf) {
 				Write-Host "   $($LanguageName)"
 				Set-WinSystemLocale $LanguageName -ErrorAction SilentlyContinue | Out-Null
 				Write-Host "   $($lang.Done)`n" -ForegroundColor Green

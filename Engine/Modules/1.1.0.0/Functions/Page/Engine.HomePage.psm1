@@ -26,7 +26,7 @@ Function Mainpage
 	Write-Host "   $($lang.Mainname)`n   ---------------------------------------------------"
 
 	write-host "     1  $($lang.Update)
-     2. $($lang.FirstExperience)" -ForegroundColor Green
+     2. $($lang.FirstDeployment)" -ForegroundColor Green
 
    write-host  "`n     L  $($lang.SwitchLanguage)
      R  $($lang.RefreshModules)

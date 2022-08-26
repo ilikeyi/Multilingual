@@ -8,7 +8,7 @@ Function Logging
 		.Logs are saved to
 		.日志保存到
 	#>
-	$TestLogSaveFolder = "$($PSScriptRoot)\..\..\..\..\Logs"
+	$TestLogSaveFolder = "$($PSScriptRoot)\..\..\..\..\..\Logs"
 
 	if (Test_Available_Disk -Path $TestLogSaveFolder) {
 		$Global:LogsSaveFolder = Convert-Path -Path $TestLogSaveFolder -ErrorAction SilentlyContinue

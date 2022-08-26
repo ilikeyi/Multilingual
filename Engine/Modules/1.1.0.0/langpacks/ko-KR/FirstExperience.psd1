@@ -1,16 +1,16 @@
 ﻿ConvertFrom-StringData -StringData @'
+	FirstDeployment           = 첫 경험 배포
+	FirstDeploymentPopup      = 메인 인터페이스 팝업
+	FirstExpFinishOnDemand    = 계획대로 첫 번째 사전 경험 허용
 	SettingLangAndKeyboard    = 시스템 언어 및 키보드 설정
 	SettingUTF8               = Beta 버전: 사용 Unicode UTF-8 글로벌 언어 지원 가능
 	SettingUTF8Tips           = 사용 후 새로운 문제를 일으킬 수 있습니다.
 	SettingLocale             = 시스템 로케일 설정
 	SettingLocaleTips         = 배포 영역 태그가 없을 때 유효합니다.
-	FirstExperience           = 첫 경험
+	Restricted                = Powershell 실행 정책 복구: 제한됨
 	DiskSearch                = 검색 계획:
 	DiskSearchFind            = 검색, 실행 중: {0}
 	DeployCleanup             = Deploy 디렉토리 정리
-	FirstDeployment           = 첫 경험 배포
-	FirstDeploymentPopup      = 메인 인터페이스 팝업
-	FirstExpFinishOnDemand    = 계획대로 첫 번째 사전 경험 허용
 	DeployTask                = 배포 작업: \
 	Reboot                    = 컴퓨터를 다시 시작합니다.
 	NetworkLocationWizard     = 네트워크 위치 마법사

@@ -1,16 +1,16 @@
 ﻿ConvertFrom-StringData -StringData @'
+	FirstDeployment           = 首次体验部署
+	FirstDeploymentPopup      = 弹出主界面
+	FirstExpFinishOnDemand    = 允许首次预体验，按计划
 	SettingLangAndKeyboard    = 设置系统语言和键盘
 	SettingUTF8               = Beta 版：使用 Unicode UTF-8 提供全球语言支持
 	SettingUTF8Tips           = 使用后也许会引发新问题。
 	SettingLocale             = 设置系统区域
 	SettingLocaleTips         = 不存在部署区域标记时有效。
-	FirstExperience           = 首次体验
+	Restricted                = 恢复 Powershell 执行策略：受限
 	DiskSearch                = 搜索计划：
 	DiskSearchFind            = 搜索到，正在运行中：{0}
 	DeployCleanup             = 清理 Deploy 目录
-	FirstDeployment           = 首次体验部署
-	FirstDeploymentPopup      = 弹出主界面
-	FirstExpFinishOnDemand    = 允许首次预体验，按计划
 	DeployTask                = 部署任务：
 	Reboot                    = 重新启动计算机
 	NetworkLocationWizard     = 网络位置向导

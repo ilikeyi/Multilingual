@@ -330,8 +330,9 @@ Function Language_Select_GUI
 		$FlagsDefaultLanguage = (Get-Culture).Name
 	}
 
+	$CurrentVersion = (Get-Module -Name Engine).Version
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-		if (Test-Path -Path "$($PSScriptRoot)\langpacks\$($Global:AvailableLanguages[$i][2])" -PathType Container) {
+		if (Test-Path -Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($Global:AvailableLanguages[$i][2])" -PathType Container) {
 			$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
 				Height  = 45
 				Width   = 400
@@ -379,18 +380,19 @@ Function Language_Change
 	)
 
 	$Global:Lang = @()
+	$CurrentVersion = (Get-Module -Name Engine).Version
 
-	if (Test-Path "$($PSScriptRoot)\langpacks\$($lang)\Lang.psd1" -PathType Leaf) {
+	if (Test-Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($lang)\Lang.psd1" -PathType Leaf) {
 		$Global:IsLang = $lang
 
-		Get-ChildItem –Path "$($PSScriptRoot)\langpacks\$($lang)" –Recurse -include "*.psd1" | ForEach-Object {
+		Get-ChildItem –Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($lang)" –Recurse -include "*.psd1" | ForEach-Object {
 			$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
 		}
 	} else {
-		if (Test-Path "$($PSScriptRoot)\langpacks\en-US\Lang.psd1" -PathType Leaf) {
+		if (Test-Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\en-US\Lang.psd1" -PathType Leaf) {
 			$Global:IsLang = "en-US"
 
-			Get-ChildItem –Path "$($PSScriptRoot)\langpacks\en-US" –Recurse -include "*.psd1" | ForEach-Object {
+			Get-ChildItem –Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\en-US" –Recurse -include "*.psd1" | ForEach-Object {
 				$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
 			}
 		} else {
@@ -435,6 +437,8 @@ Function Modules_Import
 		[switch]$Import
 	)
 
+	$CurrentVersion = (Get-Module -Name Engine).Version
+
 	<#
 		.Remove all Engine modules
 		.删除所有 Engine 模块
@@ -445,11 +449,12 @@ Function Modules_Import
 
 	if ($Import) {
 		Import-Module -Name $PSScriptRoot\..\Modules\Engine.psd1 -Scope Global -Force | Out-Null
+
 		<#
 			.Import all *.psd1
 			.导入所有 *.psd1
 		#>
-		Get-ChildItem –Path "$($PSScriptRoot)\Functions" –Recurse -include "Engine.*.psd1" | ForEach-Object {
+		Get-ChildItem –Path "$($PSScriptRoot)\$($CurrentVersion)\Functions" –Recurse -include "Engine.*.psd1" | ForEach-Object {
 			Import-Module -Name $_.FullName -Scope Global -Force
 		}
 	}

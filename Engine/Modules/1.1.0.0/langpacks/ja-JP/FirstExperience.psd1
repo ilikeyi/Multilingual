@@ -1,16 +1,16 @@
 ﻿ConvertFrom-StringData -StringData @'
+	FirstDeployment           = 初めての導入
+	FirstDeploymentPopup      = メインインターフェイスをポップアップします
+	FirstExpFinishOnDemand    = 計画どおり、最初の事前体験を許可する
 	SettingLangAndKeyboard    = システム言語とキーボードを設定する
 	SettingUTF8               = Beta バージョン：使用 Unicode UTF-8 利用可能なグローバル言語サポート
 	SettingUTF8Tips           = 使用後に新たな問題が発生する場合があります。
 	SettingLocale             = システムロケールを設定する
 	SettingLocaleTips         = 展開ゾーンタグが存在しない場合に有効です。
-	FirstExperience           = 初体験
+	Restricted                = Powershell 実行ポリシーの復元: 制限
 	DiskSearch                = 検索プラン：
 	DiskSearchFind            = 検索、実行中：{0}
 	DeployCleanup             = Deploy ディレクトリをクリーンアップします
-	FirstDeployment           = 初めての導入
-	FirstDeploymentPopup      = メインインターフェイスをポップアップします
-	FirstExpFinishOnDemand    = 計画どおり、最初の事前体験を許可する
 	DeployTask                = 展開タスク：
 	Reboot                    = コンピューターを再起動します
 	NetworkLocationWizard     = ネットワーク ロケーション ウィザード

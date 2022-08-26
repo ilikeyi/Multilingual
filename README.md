@@ -18,7 +18,21 @@ The main function:
 3. Implement deployment rules according to the description file;
 4. Get the installed language pack and add it automatically;
 5. During the adding process, the S and SN versions are automatically judged and added according to the rules;
-6. All conditions of "Language Overview" have been followed and met
+6. Processing mechanism:
+   a. When encountering a monolingual version,
+      Monolingual only,
+           Automatically add the current language as the global preferred;
+
+      When the monolingual version contains a multilingual pack,
+           After adding the preferred language, when en-US is obtained in the language waiting to be added, it is added as the second language first;
+           If en-US is not available, the installed language is randomly selected as the second language.
+
+      For example, monolingual version tags: CoreSingle Lagoon, CoreCountrySpecific
+
+   b. When encountering a multilingual version,
+      After you add a preferred language, all installed languages are automatically added as secondary.
+
+7. All conditions of "Language Overview" have been followed and met
    https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview
 ```
 The deployment engine is divided into multiple parts
@@ -79,7 +93,21 @@ Download template: Engine.Deploy.Rule.ISO
 3、根据描述文件来实现部署规则；
 4、获取已安装的语言包，自动添加；
 5、添加过程中，自动判断 S、SN 版，按规则添加；
-6、已遵循并满足“语言概述”的所有条件
+6、处理机制：
+   a. 遇到单语版时，
+      仅单语时，
+           自动添加当前语言为全局首选；
+
+      单语版包含多语言包时，
+           添加首选语言后，获取等待添加的语言里有 en-US 时，则优先添加为第二语言；
+           如果没有 en-US 时，随机选择已安装的语言为第二语言。
+
+      例如单语版本标记：CoreSingleLanguage, CoreCountrySpecific
+
+   b. 遇到多语版时，
+      添加首选语言后，自动添加已安装的所有语言。
+
+7、已遵循并满足“语言概述”的所有条件
    https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/languages-overview
 ```
 

@@ -49,7 +49,7 @@ Function Deploy_Sync
 		.Search for deployment tags, order: 1. Determine whether to allow global search tags; 2. Search in the script directory;
 		.搜索部署标记，顺序：1、判断是否允许全盘搜索标记；2、脚本目录下搜索；
 	#>
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\Deploy\Allow\IsMarkSync" -PathType Leaf) {
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\Allow\IsMarkSync" -PathType Leaf) {
 		$drives = Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | Where-Object { -not ((Join_MainFolder -Path $env:SystemDrive) -eq $_.Root) } | Select-Object -ExpandProperty 'Root'
 		foreach ($item in $drives) {
 			$TestDeployMarkNotAllowed = "$($item)$($Global:UniqueID)\Deploy\Not Allowed\$($Mark)"
@@ -67,11 +67,11 @@ Function Deploy_Sync
 		}
 	}
 	
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\Deploy\Not Allowed\$($Mark)" -PathType Leaf) {
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\Not Allowed\$($Mark)" -PathType Leaf) {
 		return $False
 	}
 
-	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\Deploy\Allow\$($Mark)" -PathType Leaf) {
+	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\Allow\$($Mark)" -PathType Leaf) {
 		return $True
 	}
 

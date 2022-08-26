@@ -222,7 +222,7 @@ Function Update_Setting_UI
 	foreach ($list in $PreServerList) {
 		$fullurl = $list[0] + $list[1]
 		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
-			Height  = 28
+			Height  = 35
 			Width   = 395
 			Text    = $list[0]
 			Tag     = $fullurl

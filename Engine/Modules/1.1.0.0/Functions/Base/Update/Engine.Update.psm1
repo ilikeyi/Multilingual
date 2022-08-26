@@ -2,7 +2,7 @@
 	.Update minimum version requirements
 	.更新最低版本要求
 #>
-$Global:ChkLocalver = "1.1.0.0"
+$Global:ChkLocalver = "1.0.0.0"
 
 <#
 	.Server test

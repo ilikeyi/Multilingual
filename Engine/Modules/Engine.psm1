@@ -284,7 +284,7 @@ Function Language_Select_GUI
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
-		Padding        = 6
+		Padding        = "16,6,0,0"
 		Dock           = 1
 	}
 	$GUISelectLanguageErrorMsg = New-Object system.Windows.Forms.Label -Property @{
@@ -334,9 +334,9 @@ Function Language_Select_GUI
 	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
 		if (Test-Path -Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($Global:AvailableLanguages[$i][2])" -PathType Container) {
 			$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
-				Height  = 45
-				Width   = 400
-				Text    = "$($Global:AvailableLanguages[$i][4])`n$($Global:AvailableLanguages[$i][2])"
+				Height  = 35
+				Width   = 485
+				Text    = "$($Global:AvailableLanguages[$i][4])"
 				Tag     = $Global:AvailableLanguages[$i][2]
 			}
 

@@ -139,9 +139,11 @@ Function Archive
 		$to
 	)
 
-	Convert-Path $filename -ErrorAction SilentlyContinue | Out-Null
+	$filename = Convert-Path $filename -ErrorAction SilentlyContinue | Out-Null
+	$to = Convert-Path $to -ErrorAction SilentlyContinue | Out-Null
 
 	Write-Host "   $($filename)"
+	Write-host "   $($to)"
 	Write-Host "   $($lang.UpdateUnpacking)".PadRight(28) -NoNewline
 	if (Compressing) {
 		if (([string]::IsNullOrEmpty($Password))) {

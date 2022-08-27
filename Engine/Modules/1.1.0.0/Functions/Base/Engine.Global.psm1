@@ -139,8 +139,8 @@ Function Archive
 		$to
 	)
 
-	$filename = Convert-Path $filename -ErrorAction SilentlyContinue | Out-Null
-	$to = Convert-Path $to -ErrorAction SilentlyContinue | Out-Null
+	$filename = Convert-Path $filename -ErrorAction SilentlyContinue
+	$to = Convert-Path $to -ErrorAction SilentlyContinue
 
 	Write-Host "   $($filename)"
 	Write-host "   $($to)"

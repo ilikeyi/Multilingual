@@ -385,14 +385,14 @@ Function Language_Change
 	if (Test-Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($lang)\Lang.psd1" -PathType Leaf) {
 		$Global:IsLang = $lang
 
-		Get-ChildItem –Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($lang)" –Recurse -include "*.psd1" | ForEach-Object {
+		Get-ChildItem -Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($lang)" -Recurse -include "*.psd1" | ForEach-Object {
 			$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
 		}
 	} else {
 		if (Test-Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\en-US\Lang.psd1" -PathType Leaf) {
 			$Global:IsLang = "en-US"
 
-			Get-ChildItem –Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\en-US" –Recurse -include "*.psd1" | ForEach-Object {
+			Get-ChildItem -Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\en-US" -Recurse -include "*.psd1" | ForEach-Object {
 				$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
 			}
 		} else {
@@ -454,7 +454,7 @@ Function Modules_Import
 			.Import all *.psd1
 			.导入所有 *.psd1
 		#>
-		Get-ChildItem –Path "$($PSScriptRoot)\$($CurrentVersion)\Functions" –Recurse -include "Engine.*.psd1" | ForEach-Object {
+		Get-ChildItem -Path "$($PSScriptRoot)\$($CurrentVersion)\Functions" -Recurse -include "Engine.*.psd1" | ForEach-Object {
 			Import-Module -Name $_.FullName -Scope Global -Force
 		}
 	}

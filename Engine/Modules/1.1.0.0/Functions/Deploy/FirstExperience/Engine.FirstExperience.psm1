@@ -352,7 +352,7 @@ Function FirstExperience_Deploy
 		.Search for local deployment: Bat
 		.搜索本地部署：Bat
 	#>
-	Get-ChildItem –Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | foreach-Object {
+	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | foreach-Object {
 		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process -FilePath "$($_.Fullname)"  -wait -WindowStyle Minimized
 	}
@@ -361,7 +361,7 @@ Function FirstExperience_Deploy
 		.Search for local deployment: ps1
 		.搜索本地部署：ps1
 	#>
-	Get-ChildItem –Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
+	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
 		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)""" -Wait -WindowStyle Minimized
 	}

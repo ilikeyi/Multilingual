@@ -19,8 +19,8 @@ Function Deploy_Guide
 		"$($env:SystemDrive)\Users\Public\Desktop"
 	)
 
-	foreach ($item in $DeploySearchGuide) {
-		foreach ($itemn in $SearchDiskPath) {
+	ForEach ($item in $DeploySearchGuide) {
+		ForEach ($itemn in $SearchDiskPath) {
 			if (Test-Path -Path "$($itemn)\$($item)" -PathType leaf) {
 				write-host "   $($lang.DeployTask)$($itemn)\$($item)"
 				if ($Global:MarkRebootComputer) {
@@ -51,7 +51,7 @@ Function Deploy_Sync
 	#>
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\Allow\IsMarkSync" -PathType Leaf) {
 		$drives = Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | Where-Object { -not ((Join_MainFolder -Path $env:SystemDrive) -eq $_.Root) } | Select-Object -ExpandProperty 'Root'
-		foreach ($item in $drives) {
+		ForEach ($item in $drives) {
 			$TestDeployMarkNotAllowed = "$($item)$($Global:UniqueID)\Deploy\Not Allowed\$($Mark)"
 			$TestDeployMarkAllow = "$($item)$($Global:UniqueID)\Deploy\Allow\$($Mark)"
 

@@ -420,7 +420,7 @@ Function Modules_Refresh
 	Write-Host "   $($lang.Done)" -ForegroundColor Green
 
 	if ($Functions) {
-		foreach ($Function in $Functions) {
+		ForEach ($Function in $Functions) {
 			Invoke-Expression -Command $Function
 		}
 	}

@@ -36,7 +36,7 @@ Function Language_Setting
 	Write-Host "   $($Script:UILanguage)" -ForegroundColor Green
 
 	Write-host "`n   $($lang.LanguageInstalled)"
-	foreach ($item in $Global:LanguagesAreInstalled) {
+	ForEach ($item in $Global:LanguagesAreInstalled) {
 		Write-Host "   $($item)" -ForegroundColor Green
 	}
 
@@ -88,7 +88,7 @@ Function Language_Setting
 				.没有 en-US，随机添加其它语言标记为第二语言。
 			#>
 			$initWaitRandomlyLang = @()
-			foreach ($item in $Global:LanguagesAreInstalled) {
+			ForEach ($item in $Global:LanguagesAreInstalled) {
 				if ($Script:UILanguage -ne $item) {
 					$initWaitRandomlyLang += $item
 				}
@@ -103,7 +103,7 @@ Function Language_Setting
 				Write-Host "`n   $($lang.AddTo): en-US"
 			} else {
 				Write-Host "`n   $($lang.RandomlyWaitSel)"
-				foreach ($item in $initWaitRandomlyLang) {
+				ForEach ($item in $initWaitRandomlyLang) {
 					Write-Host "   $($item)"
 				}
 
@@ -118,7 +118,7 @@ Function Language_Setting
 			.Processing: other unrestricted versions
 			.处理：其它不受限制版本
 		#>
-		foreach ($item in $Global:LanguagesAreInstalled) {
+		ForEach ($item in $Global:LanguagesAreInstalled) {
 			if ($Script:UILanguage -ne $item) {
 				Language_Process -NewLang $item
 				Write-Host "   $($lang.AddTo): $item"
@@ -240,7 +240,7 @@ Function Language_Known_Available
 		.获取系统已安装语言，并生成到数组里
 	#>
 	$Global:LanguagesAreInstalled = @()
-	Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | Foreach-Object {
+	Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -ExpandProperty MUILanguages | ForEach-Object {
 		$Global:LanguagesAreInstalled += $_
 	}
 }

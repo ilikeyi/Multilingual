@@ -6,16 +6,16 @@ Function Requirements
 {
 	Clear-Host
 	$Host.UI.RawUI.WindowTitle = "$($Global:UniqueID)'s Solutions | Prerequisites"
-	Write-Host "`n   Prerequisites`n   ---------------------------------------------------------------"
+	Write-Host "`n   Prerequisites`n   $('-' * 80)"
 
-	Write-Host -NoNewline "   Checking PS version 5.1 and above".PadRight(58)
+	Write-Host -NoNewline "   Checking PS version 5.1 and above".PadRight(75)
 	if ($PSVersionTable.PSVersion.major -ge "5") {
 		Write-Host -ForegroundColor Green "OK".PadLeft(8)
 	} else {
 		Write-Host -ForegroundColor Red " Failed".PadLeft(8)
 	}
 
-	Write-Host -NoNewline "   Checking Windows version > 10.0.16299.0".PadRight(58)
+	Write-Host -NoNewline "   Checking Windows version > 10.0.16299.0".PadRight(75)
 	$OSVer = [System.Environment]::OSVersion.Version;
 	if (($OSVer.Major -eq 10 -and $OSVer.Minor -eq 0 -and $OSVer.Build -ge 16299)) {
 		Write-Host -ForegroundColor Green "OK".PadLeft(8)
@@ -23,7 +23,7 @@ Function Requirements
 		Write-Host -ForegroundColor Red "Failed".PadLeft(8)
 	}
 
-	Write-Host -NoNewline "   Checking Must be elevated to higher authority".PadRight(58)
+	Write-Host -NoNewline "   Checking Must be elevated to higher authority".PadRight(75)
 	if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544") {
 		Write-Host -ForegroundColor Green "OK".PadLeft(8)
 	} else {

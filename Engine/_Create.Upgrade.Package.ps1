@@ -392,7 +392,7 @@ Function Update_Create_UI
 	<#
 		.初始化：PGP KEY-ID
 	#>
-	foreach ($item in $GpgKI) {
+	ForEach ($item in $GpgKI) {
 		$GUIUpdateCreateASCSign.Items.Add($item) | Out-Null
 	}
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue) {
@@ -437,7 +437,7 @@ Function Update_Create_UI
 
 Function Update_Create_Process
 {
-	foreach ($item in $BuildTypeUp) {
+	ForEach ($item in $BuildTypeUp) {
 		Push-Location $PSScriptRoot
 		Update_Create_Process_Add -Type $item
 		Update_Create_Version -SaveTo "$TempFolderUpdate" -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $Global:ChkLocalver
@@ -509,7 +509,7 @@ Function Update_Create_ASC
 	}
 
 	if ($FlagsCheckGPG) {
-		Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | Foreach-Object {
+		Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
 			Remove-Item -path "$($_.FullName).sig" -Force -ErrorAction SilentlyContinue
 			Remove-Item -path "$($_.FullName).asc" -Force -ErrorAction SilentlyContinue
 
@@ -533,7 +533,7 @@ Function Update_Create_ASC
 
 Function Update_Create_SHA256
 {
-	Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | Foreach-Object {
+	Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
 		$fullnewpathFU = "$($_.FullName)"
 		$fullnewpath = "$($_.FullName).sha256"
 

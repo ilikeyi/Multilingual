@@ -63,7 +63,7 @@ Logging
 
 # Go
 if ($Functions) {
-	foreach ($Function in $Functions) {
+	ForEach ($Function in $Functions) {
 		Invoke-Expression -Command $Function
 	}
 	Modules_Import

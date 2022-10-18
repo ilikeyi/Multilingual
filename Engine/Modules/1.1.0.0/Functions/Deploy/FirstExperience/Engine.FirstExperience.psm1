@@ -352,7 +352,7 @@ Function FirstExperience_Deploy
 		.Search for local deployment: Bat
 		.搜索本地部署：Bat
 	#>
-	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | foreach-Object {
+	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | ForEach-Object {
 		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process -FilePath "$($_.Fullname)"  -wait -WindowStyle Minimized
 	}
@@ -361,9 +361,51 @@ Function FirstExperience_Deploy
 		.Search for local deployment: ps1
 		.搜索本地部署：ps1
 	#>
-	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | foreach-Object {
+	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | ForEach-Object {
 		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
 		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)""" -Wait -WindowStyle Minimized
+	}
+
+	<#
+		.Full plan, search by rule: Bat
+		.全盘计划，按规则搜索：Bat
+	#>
+	$SearchBatFile = @(
+		"$($Global:UniqueID).bat"
+		"$($Global:UniqueID)\$($Global:UniqueID).bat"
+		"$($Global:UniqueID)\Deploy\Bat\$($Global:UniqueID).bat"
+	)
+	ForEach ($item in $SearchBatFile) {
+		Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | ForEach-Object {
+			$TempFilePath = Join-Path -Path "$($_.Root)" -ChildPath "$($item)" -ErrorAction SilentlyContinue
+
+			Write-Host "   $($TempFilePath)"
+			if (Test-Path $TempFilePath -PathType Leaf) {
+				write-host	"   $($lang.DiskSearchFind -f $($TempFilePath))`n" -ForegroundColor Gray
+				Start-Process -FilePath "$($TempFilePath)" -wait -WindowStyle Minimized
+			}
+		}
+	}
+
+	<#
+		.Full plan, search by rule: ps1
+		.全盘计划，按规则搜索：ps1
+	#>
+	$SearchPSFile = @(
+		"$($Global:UniqueID).ps1"
+		"$($Global:UniqueID)\$($Global:UniqueID).ps1"
+		"$($Global:UniqueID)\Deploy\PS1\$($Global:UniqueID).ps1"
+	)
+	ForEach ($item in $SearchPSFile) {
+		Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | ForEach-Object {
+			$TempFilePath = Join-Path -Path "$($_.Root)" -ChildPath "$($item)" -ErrorAction SilentlyContinue
+
+			Write-Host "   $TempFilePath"
+			if (Test-Path $TempFilePath -PathType Leaf) {
+				write-host	"   $($lang.DiskSearchFind -f $($TempFilePath))`n" -ForegroundColor Gray
+				Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$TempFilePath""" -Wait -WindowStyle Minimized
+			}
+		}
 	}
 
 	<#

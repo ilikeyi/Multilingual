@@ -58,7 +58,7 @@ Function Update
 	Write-Host "   $($lang.Update)`n   ---------------------------------------------------"
 
 	if ($Auto) {
-		foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
+		ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
 			$Global:ServerList += $item[0] + $item[1]
 		}
 
@@ -112,7 +112,7 @@ Function Update_Setting_UI
 
 		if ($GUIUpdateAuto.Checked) {
 			$GUIUpdate.Hide()
-			foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
+			ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
 				$Global:ServerList += $item[0] + $item[1]
 			}
 			Update_Process
@@ -219,7 +219,7 @@ Function Update_Setting_UI
 		$GUIUpdateCanel
 	))
 
-	foreach ($list in $PreServerList) {
+	ForEach ($list in $PreServerList) {
 		$fullurl = $list[0] + $list[1]
 		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
 			Height  = 35
@@ -291,7 +291,7 @@ Function Update_Process
 	Write-Host "   $($lang.UpdateCheckServerStatus -f $($Global:ServerList.Count))
    ---------------------------------------------------"
 
-	foreach ($item in $Global:ServerList) {
+	ForEach ($item in $Global:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress -f $($item))"
 		if (Test_URI $item) {
 			$PreServerVersion = $item

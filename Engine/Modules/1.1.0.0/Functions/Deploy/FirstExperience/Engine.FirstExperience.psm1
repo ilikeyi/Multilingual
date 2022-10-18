@@ -12,7 +12,7 @@ Function FirstExperience
 	if ($Quit) { $Global:QUIT = $true }
 
 	Logo -Title $($lang.FirstDeployment)
-	Write-Host "   $($lang.FirstDeployment)`n   ---------------------------------------------------"
+	Write-Host "   $($lang.FirstDeployment)`n   $('-' * 80)"
 
 	if ($Force) {
 		if (Deploy_Sync -Mark "AutoUpdate") {
@@ -285,7 +285,7 @@ Function FirstExperience_Deploy
 	if ($Quit) { $Global:QUIT = $true }
 
 	Logo -Title $($lang.FirstDeployment)
-	Write-Host "   $($lang.FirstDeployment)`n   ---------------------------------------------------"
+	Write-Host "   $($lang.FirstDeployment)`n   $('-' * 80)"
 
 	<#
 		.Prerequisite deployment rules

@@ -55,7 +55,7 @@ Function Update
 	}
 
 	Logo -Title $($lang.Update)
-	Write-Host "   $($lang.Update)`n   ---------------------------------------------------"
+	Write-Host "   $($lang.Update)`n   $('-' * 80)"
 
 	if ($Auto) {
 		ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
@@ -289,7 +289,7 @@ Function Update_Process
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Internet Explorer\Main" -Name "DisableFirstRunCustomize" -Value 2 -ErrorAction SilentlyContinue
 
 	Write-Host "   $($lang.UpdateCheckServerStatus -f $($Global:ServerList.Count))
-   ---------------------------------------------------"
+   $('-' * 80)"
 
 	ForEach ($item in $Global:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress -f $($item))"
@@ -304,11 +304,11 @@ Function Update_Process
 	}
 
 	if ($ServerTest) {
-		Write-Host "   ---------------------------------------------------"
+		Write-Host "   $('-' * 80)"
 		Write-Host "     $($lang.UpdatePriority)" -ForegroundColor Green
 	} else {
 		Write-Host "     $($lang.UpdateServerTestFailed)" -ForegroundColor Red
-		Write-Host "   ---------------------------------------------------"
+		Write-Host "   $('-' * 80)"
 		return
 	}
 
@@ -349,11 +349,11 @@ Function Update_Process
 		}
 
 		if ($IsUpdateAvailable) {
-			Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
+			Write-host "`n   $($lang.UpdateVerifyAvailable)`n   $('-' * 80)"
 			Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
 			if (Test_URI $url) {
 				Write-Host "     $($lang.UpdateAvailable)" -ForegroundColor Green
-				Write-Host "   ---------------------------------------------------"
+				Write-Host "   $('-' * 80)"
 
 				Write-host "`n   $($lang.UpdateCurrent)$((Get-Module -Name Engine).Version.ToString())
    $($lang.UpdateLatest)$($getSerVer.version.version)
@@ -398,20 +398,20 @@ $($getSerVer.changelog.log)`n"
 				}
 			} else {
 				Write-Host "     $($lang.UpdateUnavailable)" -ForegroundColor Red
-				Write-Host "   ---------------------------------------------------"
+				Write-Host "   $('-' * 80)"
 				return
 			}
 		} else {
 			if ($Global:UpdateAvailableReset) {
-				Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
+				Write-host "`n   $($lang.UpdateVerifyAvailable)`n   $('-' * 80)"
 				Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
 				if (Test_URI $url) {
 					Write-Host "     $($lang.UpdateAvailable)" -ForegroundColor Green
-					Write-Host "   ---------------------------------------------------"
+					Write-Host "   $('-' * 80)"
 					Update_And_Download -url $url
 				} else {
 					Write-Host "     $($lang.UpdateUnavailable)" -ForegroundColor Red
-					Write-Host "   ---------------------------------------------------"
+					Write-Host "   $('-' * 80)"
 					return
 				}
 			} else {

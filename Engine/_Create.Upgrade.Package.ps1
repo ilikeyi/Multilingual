@@ -181,7 +181,7 @@ Function Update_Create_UI
    From: $($Global:UniqueID)'s Solutions
    buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.220201-1208`n"
 
-	Write-Host "   $($lang.UpdateCreate)`n   ---------------------------------------------------"
+	Write-Host "   $($lang.UpdateCreate)`n   $('-' * 80)"
 
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing

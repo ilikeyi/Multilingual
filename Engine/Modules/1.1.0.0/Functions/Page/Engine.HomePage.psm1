@@ -23,7 +23,7 @@ Function Logo
 Function Mainpage
 {
 	Logo -Title $($lang.Mainname)
-	Write-Host "   $($lang.Mainname)`n   ---------------------------------------------------"
+	Write-Host "   $($lang.Mainname)`n   $('-' * 80)"
 
 	write-host "     1  $($lang.Update)
      2. $($lang.FirstDeployment)" -ForegroundColor Green

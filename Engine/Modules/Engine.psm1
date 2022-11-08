@@ -18,8 +18,8 @@ $Global:AuthorURL = "https://fengyi.tel"
 	.Starting from Windows 11, five new types have been added, totaling 43 types ( ca-ES, eu-ES, gl-ES, id-ID, vi-VN )
 	.从 Windows 11 开始，新增五种，共计 43 种（ca-ES、eu-ES、gl-ES、id-ID、vi-VN）
 
-	https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows
-	https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11
+	https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows?view=windows-11
+	https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11
 #>
 $Global:AvailableLanguages = @(
 	<#

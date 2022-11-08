@@ -196,7 +196,7 @@ Function Language_Setting
 	.Specialize different languages, specify and add hidden input methods
 	.特殊化处理不同的语言，指定添加隐藏的输入法
 
-     https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs
+     https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs?view=windows-11
 #>
 Function Language_Process
 {

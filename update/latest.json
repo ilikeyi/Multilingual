@@ -6,7 +6,7 @@
 	"version": {
 		"buildstring": "1.0.0.1.bs_release.230429-1208",
 		"version":     "1.0.0.1",
-		"minau":       "1.0.0.1"
+		"minau":       "1.0.0.0"
 	},
 	"changelog": {
 		"title": "Yi's Solutions - new autoupdate system",

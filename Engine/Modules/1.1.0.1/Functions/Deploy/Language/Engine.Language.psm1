@@ -32,7 +32,7 @@ Function Language_Setting
 	#>
 	Language_Process -NewLang $Script:UILanguage
 
-	Write-Host "`n   $($lang.SetLang)"
+	Write-Host "   $($lang.SetLang)"
 	Write-Host "   $($Script:UILanguage)" -ForegroundColor Green
 
 	Write-host "`n   $($lang.LanguageInstalled)"
@@ -121,7 +121,7 @@ Function Language_Setting
 		ForEach ($item in $Global:LanguagesAreInstalled) {
 			if ($Script:UILanguage -ne $item) {
 				Language_Process -NewLang $item
-				Write-Host "   $($lang.AddTo): $item"
+				Write-Host "   $($lang.AddTo): $($item)"
 			}
 		}
 	}
@@ -174,22 +174,22 @@ Function Language_Setting
 		.Setting time
 		.设置时间
 	#>
-	if (Deploy_Sync -Mark "Time_Zone") {
-		for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
-			if ($Script:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
-				Write-Host "`n   $($lang.SetTimezone)"
-				Write-Host "   $($Global:AvailableLanguages[$i][5])" -ForegroundColor Green
-				Set-TimeZone -Id $Global:AvailableLanguages[$i][5] -PassThru | Out-Null
-				break
-			}
+	for ($i=0; $i -lt $Global:AvailableLanguages.Count; $i++) {
+		if ($Script:UILanguage -eq $Global:AvailableLanguages[$i][2]) {
+			Write-Host "`n   $($lang.SetTimezone)"
+			Write-Host "   $($Global:AvailableLanguages[$i][5])" -ForegroundColor Green
+			Set-TimeZone -Id $Global:AvailableLanguages[$i][5] -PassThru | Out-Null
+			break
 		}
-
-		<#
-			.Resynchronize time
-			.重新同步时间
-		#>
-		W32tm /resync /force | Out-Null
 	}
+
+	<#
+		.Resynchronize time
+		.重新同步时间
+	#>
+	Start-Service "W32Time"
+	Get-Service "W32Time"
+	W32tm /resync /force
 }
 
 <#

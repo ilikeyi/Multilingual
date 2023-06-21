@@ -383,34 +383,45 @@ Function FirstExperience_Process
 			Cleanup_Appx_Tasks -Disable
 		} else {
 			Write-Host "   $($lang.PreAppxCleanup)"
-			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
-		}
-
-		<#
-			.Prevent cleaning of unused language packs
-			.阻止清理未使用的语言包
-		#>
-		if (Deploy_Sync -Mark "Disable_Cleanup_On_Demand_Language") {
-			Write-Host "   $($lang.Operable)" -ForegroundColor Green
-			Cleanup_On_Demand_Language -Disable
-		} else {
-			Write-Host "   $($lang.LanguageCleanup)"
-			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 
 		<#
 			.Prevent cleanup of unused feature-on-demand language packs
 			.阻止清理未使用的按需功能语言包
 		#>
+		if (Deploy_Sync -Mark "Disable_Cleanup_On_Demand_Language") {
+			Write-Host "   $($lang.Operable)" -ForegroundColor Green
+			Cleanup_On_Demand_Language -Disable
+		} else {
+			Write-Host "   $($lang.CleanupOndemandLP)"
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+		}
+
+		<#
+			.Prevent cleaning of unused language packs
+			.阻止清理未使用的语言包
+		#>
 		if (Deploy_Sync -Mark "Disable_Cleanup_Unsed_Language") {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
 			Cleanup_Unsed_Language -Disable
 		} else {
-			Write-Host "   $($lang.LanguageCleanup)"
-			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
+			Write-Host "   $($lang.CleanupUnusedLP)"
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 	} else {
 		Write-Host "   $($lang.LangSingle) ( $($Global:LanguagesAreInstalled.count) )"
+	}
+
+	<#
+		.Network Location Wizard
+		.网络位置向导
+	#>
+	if (Deploy_Sync -Mark "Disable_Network_Location_Wizard") {
+		Network_Location_Wizard -Disable
+	} else {
+		Write-Host "   $($lang.NetworkLocationWizard)"
+		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 	}
 
 	<#
@@ -421,13 +432,6 @@ Function FirstExperience_Process
 	if (Test-Path -Path "$($env:SystemDrive)\Users\Public\Desktop\Office" -PathType Container) {
 		Get-ChildItem "$($env:SystemDrive)\Users\Public\Desktop\Office" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
 	}
-
-	<#
-		.Close the pop-up after entering the system for the first time: Network Location Wizard
-		.关闭第一次进入系统后弹出：网络位置向导
-	#>
-	Write-Host "`n   $($lang.Disable) $($lang.NetworkLocationWizard)"
-	New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force -ErrorAction SilentlyContinue | Out-Null
 
 	<#
 		.Set system language, keyboard, etc.
@@ -695,6 +699,7 @@ Function Cleanup_On_Demand_Language
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		Enable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
+
 		Remove-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name 'BlockCleanupOfUnusedPreinstalledLangPacks' -Force -ErrorAction SilentlyContinue | out-null
 		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
@@ -702,6 +707,10 @@ Function Cleanup_On_Demand_Language
 	if ($Disable) {
 		Write-Host "   $($lang.Disable)".PadRight(22) -NoNewline
 		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
+
+		If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) {
+			New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null
+		}
 		Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
 		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
@@ -723,14 +732,45 @@ Function Cleanup_Unsed_Language
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		Enable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
-		Remove-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name 'AllowLanguageFeaturesUninstall' -Force -ErrorAction SilentlyContinue | out-null
+
+		Remove-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name 'AllowLanguageFeaturesUninstall' -Force -ErrorAction SilentlyContinue | out-null
 		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
 	
 	if ($Disable) {
 		Write-Host "   $($lang.Disable)".PadRight(22) -NoNewline
 		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
+
+		If (-not (Test-Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput")) {
+			New-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Force | Out-Null
+		}
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name "AllowLanguageFeaturesUninstall" -Type DWord -Value 0 -ErrorAction SilentlyContinue | Out-Null
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+	}
+}
+
+<#
+	.Network Location Wizard
+	.网络位置向导
+#>
+Function Network_Location_Wizard
+{
+	param
+	(
+		[switch]$Enabled,
+		[switch]$Disable
+	)
+	
+	Write-Host "   $($lang.NetworkLocationWizard)"
+	if ($Enabled) {
+		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
+		Remove-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
+		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+	}
+	
+	if ($Disable) {
+		Write-Host "   $($lang.Disable)".PadRight(22) -NoNewline
+		New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force -ErrorAction SilentlyContinue | Out-Null
 		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
 }

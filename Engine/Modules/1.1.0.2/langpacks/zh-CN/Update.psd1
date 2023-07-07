@@ -1,5 +1,5 @@
 ﻿ConvertFrom-StringData -StringData @'
-	Update                    = 检查更新
+	ChkUpdate                 = 检查更新
 	UpdateServerSelect        = 自动选择服务器或自定义选择
 	UpdateServerNoSelect      = 请选择可用的服务器
 	UpdateSilent              = 有可用更新时，静默更新

@@ -375,7 +375,8 @@ Function Language_Select_GUI
 #>
 Function Language_Change
 {
-	param (
+	param
+	(
 		[string]$lang
 	)
 

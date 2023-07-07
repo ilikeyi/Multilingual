@@ -1,5 +1,5 @@
 ﻿ConvertFrom-StringData -StringData @'
-	Update                    = 檢查更新
+	ChkUpdate                 = 檢查更新
 	UpdateServerSelect        = 自動選擇服務器或自定義選擇
 	UpdateServerNoSelect      = 請選擇可用的服務器
 	UpdateSilent              = 有可用更新時，靜默更新

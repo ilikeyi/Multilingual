@@ -1,5 +1,5 @@
 ﻿ConvertFrom-StringData -StringData @'
-	Update                    = ソリューション ツールボックス
+	ChkUpdate                 = ソリューション ツールボックス
 	UpdateServerSelect        = 自動サーバー選択またはカスタム選択
 	UpdateServerNoSelect      = 利用可能なサーバーを選択してください
 	UpdateSilent              = アップデートが利用可能な場合、サイレントアップデート

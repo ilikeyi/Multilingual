@@ -54,8 +54,8 @@ Function Update
 		$Script:IsProcess = $False
 	}
 
-	Logo -Title $($lang.Update)
-	Write-Host "   $($lang.Update)`n   $('-' * 80)"
+	Logo -Title $($lang.ChkUpdate)
+	Write-Host "   $($lang.ChkUpdate)`n   $('-' * 80)"
 
 	if ($Auto) {
 		ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
@@ -65,7 +65,6 @@ Function Update
 		Update_Process -Force
 	} else {
 		Update_Setting_UI
-		Modules_Refresh -Function "ToMainpage -wait 2"
 	}
 }
 
@@ -141,7 +140,7 @@ Function Update_Setting_UI
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 550
-		Text           = $lang.Update
+		Text           = $lang.ChkUpdate
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False

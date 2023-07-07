@@ -13,7 +13,7 @@ Function Logo
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
-   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.220201-1208`n"
+   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.230429-1208`n"
 }
 
 <#
@@ -25,7 +25,7 @@ Function Mainpage
 	Logo -Title $($lang.Mainname)
 	Write-Host "   $($lang.Mainname)`n   $('-' * 80)"
 
-	write-host "     1  $($lang.Update)
+	write-host "     1  $($lang.ChkUpdate)
      2. $($lang.FirstDeployment)" -ForegroundColor Green
 
    write-host  "`n     L  $($lang.SwitchLanguage)
@@ -37,7 +37,7 @@ Function Mainpage
 	{
 		"1" {
 			Update
-			ToMainpage -wait 2
+			Modules_Refresh -Function "ToMainpage -wait 2"
 		}
 		"2" {
 			FirstExperience

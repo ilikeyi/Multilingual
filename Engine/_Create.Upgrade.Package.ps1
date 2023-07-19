@@ -126,18 +126,20 @@ Enum Archive
 
 Function Get_Zip
 {
+	param
+	(
+		$Run
+	)
+
 	$Local_Zip_Path = @(
-		"${env:ProgramFiles}\7-Zip\7z.exe"
-		"${env:ProgramFiles(x86)}\7-Zip\7z.exe"
-		"$(Get_Arch_Path -Path "$($PSScriptRoot)\AIO\7zPacker")\7z.exe"
+		"${env:ProgramFiles}\7-Zip\$($Run)"
+		"${env:ProgramFiles(x86)}\7-Zip\$($Run)"
+		"$(Get_Arch_Path -Path "$($PSScriptRoot)\AIO\7zPacker")\$($Run)"
 	)
 
 	ForEach ($item in $Local_Zip_Path) {
 		if (Test-Path -Path $item -PathType leaf) {
-			return @{
-				IsInstall = $True
-				Path  = $item
-			}
+			return $item
 		}
 	}
 
@@ -146,17 +148,19 @@ Function Get_Zip
 
 Function Get_ASC
 {
+	param
+	(
+		$Run
+	)
+
 	$Local_Zip_Path = @(
-		"${env:ProgramFiles}\GnuPG\bin\gpg.exe"
-		"${env:ProgramFiles(x86)}\GnuPG\bin\gpg.exe"
+		"${env:ProgramFiles}\GnuPG\bin\$($Run)"
+		"${env:ProgramFiles(x86)}\GnuPG\bin\$($Run)"
 	)
 
 	ForEach ($item in $Local_Zip_Path) {
 		if (Test-Path -Path $item -PathType leaf) {
-			return @{
-				IsInstall = $True
-				Path  = $item
-			}
+			return $item
 		}
 	}
 
@@ -381,8 +385,8 @@ Function Update_Create_UI
 		$GUIUpdateCreateASCSign
 	))
 
-	$Verify_Install_Path = Get_Zip
-	if ($Verify_Install_Path.IsInstall) {
+	$Verify_Install_Path = Get_Zip -Run "7z.exe"
+	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		$GUIUpdateOK.Enabled = $True
 	} else {
 		$GUIUpdateGroupASC.Enabled = $False
@@ -400,8 +404,8 @@ Function Update_Create_UI
 		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue
 	}
 
-	$Verify_Install_Path = Get_ASC
-	if ($Verify_Install_Path.IsInstall) {
+	$Verify_Install_Path = Get_ASC -Run "gpg.exe"
+	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		$GUIUpdateGroupASC.Enabled = $True
 		
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "IsPGP" -ErrorAction SilentlyContinue) {
@@ -453,21 +457,21 @@ Function Update_Create_Process_Add
 		[string]$Type
 	)
 
-	$Verify_Install_Path = Get_Zip
-	if ($Verify_Install_Path.IsInstall) {
+	$Verify_Install_Path = Get_Zip -Run "7z.exe"
+	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		Check_Folder -chkpath $TempFolderUpdate
 		switch ($Type) {
 			"zip" {
 				Write-Host "   * $($lang.Uping) $UpdateName.zip"
 				$arguments = "a", "-tzip", "$TempFolderUpdate\$UpdateName.zip", "$ArchiveExcludeUp", "*.*", "-mcu=on", "-r", "-mx9";
-				Start-Process $Verify_Install_Path.Path "$arguments" -Wait -WindowStyle Minimized
+				Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
 			"tar" {
 				Write-Host "   * $($lang.Uping) $UpdateName.tar"
 				$arguments = "a", "$TempFolderUpdate\$UpdateName.tar", "$ArchiveExcludeUp", "*.*", "-r";
-				Start-Process $Verify_Install_Path.Path "$arguments" -Wait -WindowStyle Minimized
+				Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
@@ -475,7 +479,7 @@ Function Update_Create_Process_Add
 				Write-Host "  * $($lang.Uping) $UpdateName.tar.xz"
 				if (Test-Path -Path "$TempFolderUpdate\$UpdateName.tar" -PathType Leaf) {
 					$arguments = "a", "$TempFolderUpdate\$UpdateName.tar.xz", "$TempFolderUpdate\$UpdateName.tar", "-mf=bcj", "-mx9";
-					Start-Process $Verify_Install_Path.Path "$arguments" -Wait -WindowStyle Minimized
+					Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {
@@ -486,7 +490,7 @@ Function Update_Create_Process_Add
 				Write-Host "  * $($lang.Uping) $UpdateName.tar.gz"
 				if (Test-Path -Path "$TempFolderUpdate\$UpdateName.tar" -PathType Leaf) {
 					$arguments = "a", "-tgzip", "$TempFolderUpdate\$UpdateName.tar.gz", "$TempFolderUpdate\$UpdateName.tar", "-mx9";
-					Start-Process $Verify_Install_Path.Path "$arguments" -Wait -WindowStyle Minimized
+					Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {
@@ -501,17 +505,17 @@ Function Update_Create_Process_Add
 
 Function Update_Create_ASC
 {
-	$Verify_Install_Path = Get_ASC
-	if ($Verify_Install_Path.IsInstall) {
+	$Verify_Install_Path = Get_ASC -Run "gpg.exe"
+	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
 			Remove-Item -path "$($_.FullName).sig" -Force -ErrorAction SilentlyContinue
 			Remove-Item -path "$($_.FullName).asc" -Force -ErrorAction SilentlyContinue
 
 			Write-Host "   * $($lang.Uping) $UpdateName.asc"
 			if (([string]::IsNullOrEmpty($Script:secure_password))) {
-				Start-Process $Verify_Install_Path.Path -argument "--local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
+				Start-Process $Verify_Install_Path -argument "--local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			} else {
-				Start-Process $Verify_Install_Path.Path -argument "--pinentry-mode loopback --passphrase ""$Script:secure_password"" --local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
+				Start-Process $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase ""$Script:secure_password"" --local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			}
 
 			if (Test-Path "$($_.FullName).asc" -PathType Leaf) {

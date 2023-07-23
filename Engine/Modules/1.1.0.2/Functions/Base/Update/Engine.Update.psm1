@@ -26,7 +26,7 @@ $IsCorrectAuVer = $false
 		  "/download/solutions/update/Multilingual/latest.json")
 	)
 #>
-$Global:ServerList = @()
+$Script:ServerList = @()
 $PreServerList = @(
 	("$($Global:AuthorURL)",
 	 "/download/solutions/update/Multilingual/latest.json"),
@@ -47,7 +47,7 @@ Function Update
 		[switch]$IsProcess
 	)
 	
-	$Global:ServerList = @()
+	$Script:ServerList = @()
 	if ($IsProcess) {
 		$Script:IsProcess = $True
 	} else {
@@ -59,7 +59,7 @@ Function Update
 
 	if ($Auto) {
 		ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
-			$Global:ServerList += $item[0] + $item[1]
+			$Script:ServerList += $item[0] + $item[1]
 		}
 
 		Update_Process -Force
@@ -87,47 +87,45 @@ Function Update_Setting_UI
 	}
 	$GUIUpdateCanelClick = {
 		$GUIUpdate.Hide()
-		$Global:ServerList = @()
-		$Global:UpdateAvailableSilent = $False
-		$Global:UpdateAvailableReset = $False
+		$Script:ServerList = @()
+		$Script:UpdateAvailableSilent = $False
+		$Script:UpdateAvailableReset = $False
 
 		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
 		$GUIUpdate.Close()
 	}
 	$GUIUpdateOKClick = {
-		$Global:ServerList = @()
+		$Script:ServerList = @()
 
 		if ($GUIUpdateSilent.Checked) {
-			$Global:UpdateAvailableSilent = $True
+			$Script:UpdateAvailableSilent = $True
 		} else {
-			$Global:UpdateAvailableSilent = $False
+			$Script:UpdateAvailableSilent = $False
 		}
 
 		if ($GUIUpdateReset.Checked) {
-			$Global:UpdateAvailableReset = $True
+			$Script:UpdateAvailableReset = $True
 		} else {
-			$Global:UpdateAvailableReset = $False
+			$Script:UpdateAvailableReset = $False
 		}
 
 		if ($GUIUpdateAuto.Checked) {
 			$GUIUpdate.Hide()
 			ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
-				$Global:ServerList += $item[0] + $item[1]
+				$Script:ServerList += $item[0] + $item[1]
 			}
 			Update_Process
 			$GUIUpdate.Close()
 		} else {
-			$FlagsVerifyServerlist = $False
 			$GUIUpdatePanel.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					if ($_.Checked) {
-						$FlagsVerifyServerlist = $true
-						$Global:ServerList += $_.Tag
+						$Script:ServerList += $_.Tag
 					}
 				}
 			}
 
-			if ($FlagsVerifyServerlist) {
+			if ($Script:ServerList.Count -gt 0) {
 				$GUIUpdate.Hide()
 				Update_Process
 				$GUIUpdate.Close()
@@ -287,10 +285,10 @@ Function Update_Process
 	#>
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Internet Explorer\Main" -Name "DisableFirstRunCustomize" -Value 2 -ErrorAction SilentlyContinue
 
-	Write-Host "   $($lang.UpdateCheckServerStatus -f $($Global:ServerList.Count))
+	Write-Host "   $($lang.UpdateCheckServerStatus -f $($Script:ServerList.Count))
    $('-' * 80)"
 
-	ForEach ($item in $Global:ServerList) {
+	ForEach ($item in $Script:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress -f $($item))"
 		if (Test_URI $item) {
 			$PreServerVersion = $item
@@ -368,11 +366,11 @@ $($getSerVer.changelog.log)`n"
 					$FlagsCheckForceUpdate = $True
 				}
 
-				if ($Global:UpdateAvailableSilent) {
+				if ($Script:UpdateAvailableSilent) {
 					$FlagsCheckForceUpdate = $True
 				}
 	
-				if ($Global:UpdateAvailableReset) {
+				if ($Script:UpdateAvailableReset) {
 					$FlagsCheckForceUpdate = $True
 				}
 	
@@ -401,7 +399,7 @@ $($getSerVer.changelog.log)`n"
 				return
 			}
 		} else {
-			if ($Global:UpdateAvailableReset) {
+			if ($Script:UpdateAvailableReset) {
 				Write-host "`n   $($lang.UpdateVerifyAvailable)`n   $('-' * 80)"
 				Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
 				if (Test_URI $url) {

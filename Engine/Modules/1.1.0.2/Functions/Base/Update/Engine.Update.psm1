@@ -21,17 +21,14 @@ $IsCorrectAuVer = $false
        Only one URL address must be added in front of the, number, multiple addresses do not need to be added, example:
        只有一个 URL 地址必须在前面添加 , 号，多地址不用添加，示例：
 
-	$PreServerList = @(
-		,("$($Global:AuthorURL)",
-		  "/download/solutions/update/Multilingual/latest.json")
+	$Script:PreServerList = @(
+		,("https://fengyi.tel/download/solutions/update/Multilingual/latest.json")
 	)
 #>
 $Script:ServerList = @()
-$PreServerList = @(
-	("$($Global:AuthorURL)",
-	 "/download/solutions/update/Multilingual/latest.json"),
-	("https://github.com",
-	 "/ilikeyi/Multilingual/raw/main/update/latest.json")
+$Script:PreServerList = @(
+	("https://fengyi.tel/download/solutions/update/Multilingual/latest.json"),
+	("https://github.com/ilikeyi/Multilingual/raw/main/update/latest.json")
 )
 
 <#
@@ -58,8 +55,8 @@ Function Update
 	Write-Host "   $($lang.ChkUpdate)`n   $('-' * 80)"
 
 	if ($Auto) {
-		ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
-			$Script:ServerList += $item[0] + $item[1]
+		ForEach ($item in $Script:PreServerList | Sort-Object { Get-Random } ) {
+			$Script:ServerList += $item
 		}
 
 		Update_Process -Force
@@ -111,8 +108,8 @@ Function Update_Setting_UI
 
 		if ($GUIUpdateAuto.Checked) {
 			$GUIUpdate.Hide()
-			ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
-				$Script:ServerList += $item[0] + $item[1]
+			ForEach ($item in $Script:PreServerList | Sort-Object { Get-Random } ) {
+				$Script:ServerList += $item
 			}
 			Update_Process
 			$GUIUpdate.Close()
@@ -216,13 +213,13 @@ Function Update_Setting_UI
 		$GUIUpdateCanel
 	))
 
-	ForEach ($list in $PreServerList) {
-		$fullurl = $list[0] + $list[1]
+	ForEach ($itemLink in $Script:PreServerList) {
+		$url2 = $itemLink.split("/")
 		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
 			Height  = 35
 			Width   = 395
-			Text    = $list[0]
-			Tag     = $fullurl
+			Text    = "$($url2[0])//$($url2[2])"
+			Tag     = $itemLink
 			Checked = $true
 		}
 		$GUIUpdatePanel.controls.AddRange($CheckBox)

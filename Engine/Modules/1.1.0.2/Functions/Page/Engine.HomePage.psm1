@@ -29,8 +29,7 @@ Function Mainpage
      2. $($lang.FirstDeployment)" -ForegroundColor Green
 
    write-host  "`n     L  $($lang.SwitchLanguage)
-     R  $($lang.RefreshModules)
-     Q  $($lang.Exit)`n"
+     R  $($lang.RefreshModules)`n"
 
 	$select = Read-Host "   $($lang.Choose)"
 	switch ($select)

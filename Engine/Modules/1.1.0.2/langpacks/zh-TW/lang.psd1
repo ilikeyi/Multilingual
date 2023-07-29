@@ -6,7 +6,6 @@
 	Done                      = 完成
 	OK                        = 確定
 	Cancel                    = 取消
-	Exit                      = 退出
 	AllSel                    = 選擇所有
 	AllClear                  = 清除所有
 	Operable                  = 可操作

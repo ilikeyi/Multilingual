@@ -6,7 +6,6 @@
 	Done                      = 実施する
 	OK                        = 決定する
 	Cancel                    = キャンセル
-	Exit                      = 脱落
 	AllSel                    = すべて選択
 	AllClear                  = すべてクリア
 	Operable                  = 操作可能

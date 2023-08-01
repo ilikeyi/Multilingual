@@ -446,6 +446,19 @@ Function FirstExperience_Process
 	Write-Host "   $($lang.Reboot)"
 	if (Deploy_Sync -Mark "Prerequisites_Reboot") {
 		Write-Host "   $($lang.Operable)".PadRight(28) -NoNewline
+
+		<#
+			.Setting: Forcibly bypass UAC prompts
+			.设置：强行绕过 UAC 提示
+		#>
+		$Uac_Bypass = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
+		if (Get-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin" -ErrorAction SilentlyContinue) {
+			$GetLanguagePrompt = Get-ItemPropertyValue -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin"
+			Set-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin_Bak" -Value $GetLanguagePrompt -ErrorAction SilentlyContinue
+
+			Set-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin" -Value 0 -ErrorAction SilentlyContinue
+		}
+
 		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
 		if (-not (Test-Path $regPath)) {
 			New-Item -Path $regPath -Force -ErrorAction SilentlyContinue | Out-Null
@@ -462,6 +475,10 @@ Function FirstExperience_Process
 	}
 }
 
+<#
+	.First Deployment
+	.首次部署
+#>
 Function FirstExperience_Deploy
 {
 	param
@@ -493,6 +510,18 @@ Function FirstExperience_Deploy
 	}
 	if (Deploy_Sync -Mark "Clear_Engine") {
 		$FlagsClearSolutionsRure = $True
+	}
+
+	<#
+		.Restore last setting: Bypass the UAC prompt
+		.恢复上次设置：绕过 UAC 提示
+	#>
+	$Uac_Bypass = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
+	if (Get-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin_Bak" -ErrorAction SilentlyContinue) {
+		$GetLanguagePrompt = Get-ItemPropertyValue -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin_Bak"
+		Set-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin" -Value $GetLanguagePrompt -ErrorAction SilentlyContinue
+
+		Remove-ItemProperty -LiteralPath $Uac_Bypass -Name 'ConsentPromptBehaviorAdmin_Bak' -Force -ErrorAction SilentlyContinue | Out-Null
 	}
 
 	<#

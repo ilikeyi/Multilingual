@@ -191,64 +191,6 @@ Function Update_Create_UI
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
  
-	$GUIUpdateCreateASCClick = {
-		if ($GUIUpdateCreateASC.Checked) {
-			$GUIUpdateCreateASCPanel.Enabled = $True
-			Save_Dynamic -regkey "Engine" -name "IsPGP" -value "True" -String
-		} else {
-			$GUIUpdateCreateASCPanel.Enabled = $False
-			Save_Dynamic -regkey "Engine" -name "IsPGP" -value "False" -String
-		}
-	}
-
-	<#
-		.Event: canceled
-		.事件：取消
-	#>
-	$GUIUpdateCanelClick = {
-		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
-		$GUIUpdate.Close()
-	}
-
-	<#
-		.Event: Ok
-		.事件：确认
-	#>
-	$GUIUpdateOKClick = {
-		<#
-			.搜索到后生成 PGP
-		#>
-		if ($GUIUpdateCreateASC.Enabled) {
-			if ($GUIUpdateCreateASC.Checked) {
-				if ([string]::IsNullOrEmpty($GUIUpdateCreateASCSign.Text)) {
-					$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError -f $($lang.CreateASCAuthorTips))"
-					return
-				} else {
-					Save_Dynamic -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
-					$Script:secure_password = $GUIUpdateCreateASCPWD.Text
-					$Script:SignGpgKeyID = $GUIUpdateCreateASCSign.Text
-				}
-			}
-		}
-
-		$GUIUpdate.Hide()
-		remove-item -path "$TempFolderUpdate" -Recurse -force -ErrorAction SilentlyContinue
-		Update_Create_Process
-
-		if ($GUIUpdateCreateASC.Enabled) {
-			if ($GUIUpdateCreateASC.Checked) {
-				Update_Create_ASC
-			}
-		}
-
-		if ($GUIUpdateCreateSHA256.Enabled) {
-			if ($GUIUpdateCreateSHA256.Checked) {
-				Update_Create_SHA256
-			}
-		}
-		Update_Create_MoveTo
-		$GUIUpdate.Close()
-	}
 	$GUIUpdate         = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
 		Height         = 720
@@ -293,10 +235,18 @@ Function Update_Create_UI
 	$GUIUpdateCreateASC = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 470
-		Text           = $lang.UpCreateASC
 		Location       = '26,0'
+		Text           = $lang.UpCreateASC
 		Checked        = $True
-		add_Click      = $GUIUpdateCreateASCClick
+		add_Click      = {
+			if ($GUIUpdateCreateASC.Checked) {
+				$GUIUpdateCreateASCPanel.Enabled = $True
+				Save_Dynamic -regkey "Engine" -name "IsPGP" -value "True" -String
+			} else {
+				$GUIUpdateCreateASCPanel.Enabled = $False
+				Save_Dynamic -regkey "Engine" -name "IsPGP" -value "False" -String
+			}
+		}
 	}
 	$GUIUpdateCreateASCPanel = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
@@ -348,19 +298,56 @@ Function Update_Create_UI
 	}
 	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "8,595"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUIUpdateOKClick
+		Location       = "8,595"
 		Text           = $lang.OK
+		add_Click      = {
+			<#
+				.搜索到后生成 PGP
+			#>
+			if ($GUIUpdateCreateASC.Enabled) {
+				if ($GUIUpdateCreateASC.Checked) {
+					if ([string]::IsNullOrEmpty($GUIUpdateCreateASCSign.Text)) {
+						$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError -f $($lang.CreateASCAuthorTips))"
+						return
+					} else {
+						Save_Dynamic -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
+						$Script:secure_password = $GUIUpdateCreateASCPWD.Text
+						$Script:SignGpgKeyID = $GUIUpdateCreateASCSign.Text
+					}
+				}
+			}
+
+			$GUIUpdate.Hide()
+			remove-item -path "$TempFolderUpdate" -Recurse -force -ErrorAction SilentlyContinue
+			Update_Create_Process
+
+			if ($GUIUpdateCreateASC.Enabled) {
+				if ($GUIUpdateCreateASC.Checked) {
+					Update_Create_ASC
+				}
+			}
+
+			if ($GUIUpdateCreateSHA256.Enabled) {
+				if ($GUIUpdateCreateSHA256.Checked) {
+					Update_Create_SHA256
+				}
+			}
+			Update_Create_MoveTo
+			$GUIUpdate.Close()
+		}
 	}
 	$GUIUpdateCanel = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "8,635"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUIUpdateCanelClick
+		Location       = "8,635"
 		Text           = $lang.Cancel
+		add_Click      = {
+			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+			$GUIUpdate.Close()
+		}
 	}
 	$GUIUpdate.controls.AddRange((
 		$GUIUpdateVersion,

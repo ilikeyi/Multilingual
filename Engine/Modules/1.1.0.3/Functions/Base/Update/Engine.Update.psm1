@@ -75,62 +75,6 @@ Function Update_Setting_UI
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
 
-	$GUIUpdateAutoClick = {
-		if ($GUIUpdateAuto.Checked) {
-			$GUIUpdatePanel.Enabled = $False
-		} else {
-			$GUIUpdatePanel.Enabled = $True
-		}
-	}
-	$GUIUpdateCanelClick = {
-		$GUIUpdate.Hide()
-		$Script:ServerList = @()
-		$Script:UpdateAvailableSilent = $False
-		$Script:UpdateAvailableReset = $False
-
-		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
-		$GUIUpdate.Close()
-	}
-	$GUIUpdateOKClick = {
-		$Script:ServerList = @()
-
-		if ($GUIUpdateSilent.Checked) {
-			$Script:UpdateAvailableSilent = $True
-		} else {
-			$Script:UpdateAvailableSilent = $False
-		}
-
-		if ($GUIUpdateReset.Checked) {
-			$Script:UpdateAvailableReset = $True
-		} else {
-			$Script:UpdateAvailableReset = $False
-		}
-
-		if ($GUIUpdateAuto.Checked) {
-			$GUIUpdate.Hide()
-			ForEach ($item in $Script:PreServerList | Sort-Object { Get-Random } ) {
-				$Script:ServerList += $item
-			}
-			Update_Process
-			$GUIUpdate.Close()
-		} else {
-			$GUIUpdatePanel.Controls | ForEach-Object {
-				if ($_ -is [System.Windows.Forms.CheckBox]) {
-					if ($_.Checked) {
-						$Script:ServerList += $_.Tag
-					}
-				}
-			}
-
-			if ($Script:ServerList.Count -gt 0) {
-				$GUIUpdate.Hide()
-				Update_Process
-				$GUIUpdate.Close()
-			} else {
-				$GUIUpdateErrorMsg.Text = "$($lang.UpdateServerNoSelect)"
-			}
-		}
-	}
 	$GUIUpdate         = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
 		Height         = 720
@@ -145,10 +89,16 @@ Function Update_Setting_UI
 	$GUIUpdateAuto     = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 505
-		Text           = $lang.UpdateServerSelect
 		Location       = '10,6'
-		add_Click      = $GUIUpdateAutoClick
+		Text           = $lang.UpdateServerSelect
 		Checked        = $True
+		add_Click      = {
+			if ($GUIUpdateAuto.Checked) {
+				$GUIUpdatePanel.Enabled = $False
+			} else {
+				$GUIUpdatePanel.Enabled = $True
+			}
+		}
 	}
 	$GUIUpdatePanel    = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		Height         = 415
@@ -188,19 +138,66 @@ Function Update_Setting_UI
 	}
 	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "8,595"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUIUpdateOKClick
+		Location       = "8,595"
 		Text           = $lang.OK
+		add_Click      = {
+			$Script:ServerList = @()
+
+			if ($GUIUpdateSilent.Checked) {
+				$Script:UpdateAvailableSilent = $True
+			} else {
+				$Script:UpdateAvailableSilent = $False
+			}
+
+			if ($GUIUpdateReset.Checked) {
+				$Script:UpdateAvailableReset = $True
+			} else {
+				$Script:UpdateAvailableReset = $False
+			}
+
+			if ($GUIUpdateAuto.Checked) {
+				$GUIUpdate.Hide()
+				ForEach ($item in $Script:PreServerList | Sort-Object { Get-Random } ) {
+					$Script:ServerList += $item
+				}
+				Update_Process
+				$GUIUpdate.Close()
+			} else {
+				$GUIUpdatePanel.Controls | ForEach-Object {
+					if ($_ -is [System.Windows.Forms.CheckBox]) {
+						if ($_.Checked) {
+							$Script:ServerList += $_.Tag
+						}
+					}
+				}
+
+				if ($Script:ServerList.Count -gt 0) {
+					$GUIUpdate.Hide()
+					Update_Process
+					$GUIUpdate.Close()
+				} else {
+					$GUIUpdateErrorMsg.Text = "$($lang.UpdateServerNoSelect)"
+				}
+			}
+		}
 	}
 	$GUIUpdateCanel    = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "8,635"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUIUpdateCanelClick
+		Location       = "8,635"
 		Text           = $lang.Cancel
+		add_Click      = {
+			$GUIUpdate.Hide()
+			$Script:ServerList = @()
+			$Script:UpdateAvailableSilent = $False
+			$Script:UpdateAvailableReset = $False
+
+			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+			$GUIUpdate.Close()
+		}
 	}
 	$GUIUpdate.controls.AddRange((
 		$GUIUpdateAuto,
@@ -229,7 +226,8 @@ Function Update_Setting_UI
 		.Add right-click menu: select all, clear button
 		.添加右键菜单：全选、清除按钮
 	#>
-	$GUIUpdateAllSelClick = {
+	$GUIUpdateMenu = New-Object System.Windows.Forms.ContextMenuStrip
+	$GUIUpdateMenu.Items.Add($lang.AllSel).add_Click({
 		$GUIUpdatePanel.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
 				if ($_.Enabled) {
@@ -237,8 +235,8 @@ Function Update_Setting_UI
 				}
 			}
 		}
-	}
-	$GUIUpdateAllClearClick = {
+	})
+	$GUIUpdateMenu.Items.Add($lang.AllClear).add_Click({
 		$GUIUpdatePanel.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
 				if ($_.Enabled) {
@@ -246,10 +244,7 @@ Function Update_Setting_UI
 				}
 			}
 		}
-	}
-	$GUIUpdateMenu = New-Object System.Windows.Forms.ContextMenuStrip
-	$GUIUpdateMenu.Items.Add($lang.AllSel).add_Click($GUIUpdateAllSelClick)
-	$GUIUpdateMenu.Items.Add($lang.AllClear).add_Click($GUIUpdateAllClearClick)
+	})
 	$GUIUpdatePanel.ContextMenuStrip = $GUIUpdateMenu
 
 	switch ($Global:IsLang) {

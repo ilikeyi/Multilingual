@@ -34,92 +34,6 @@ Function FirstExperience_Setting_UI
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
 
-	$GUIFECanelClick = {
-		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
-		$GUIFE.Close()
-	}
-	$GUIFEOKClick = {
-		$GUIFE.Hide()
-
-		if ($GUIFEPreAppxCleanup.Checked) {
-			if ($GUIFEPreAppxCleanupEnabled.Checked) {
-				Cleanup_Appx_Tasks -Enabled
-			}
-
-			if ($GUIFEPreAppxCleanupDisable.Checked) {
-				Cleanup_Appx_Tasks -Disable
-			}
-		} else {
-			Write-Host "   $($lang.PreAppxCleanup)"
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-
-		if ($GUIFELanguageComponents.Checked) {
-			if ($GUIFELanguageComponentsEnabled.Checked) {
-				Cleanup_Unsed_Language -Enabled
-			}
-
-			if ($GUIFELanguageComponentsDisable.Checked) {
-				Cleanup_Unsed_Language -Disable
-			}
-		} else {
-			Write-Host "   $($lang.CleanupOndemandLP)"
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-		
-		if ($GUIFECleanupUnusedLP.Checked) {
-			if ($GUIFECleanupUnusedLPEnabled.Checked) {
-				Cleanup_On_Demand_Language -Enabled
-			}
-
-			if ($GUIFECleanupUnusedLPDisable.Checked) {
-				Cleanup_On_Demand_Language -Disable
-			}
-		} else {
-			Write-Host "   $($lang.CleanupUnusedLP)"
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-
-		if ($GUIFELangAndKeyboard.Checked) {
-			Language_Setting
-			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
-		} else {
-			Write-Host "   $($lang.SettingLangAndKeyboard)"
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-
-		if ($GUIFEUtf8.Checked) {
-			Language_Use_UTF8 -Enabled
-		} else {
-			Write-Host "   $($lang.SettingUTF8)"
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-
-		if ($GUIFELocale.Checked) {
-			Language_Region_Setting -Force
-			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
-		} else {
-			Write-Host "   $($lang.SettingLocale)"
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-
-		Write-Host "   $($lang.DeployCleanup)"
-		if ($GUIFEDeployCleanup.Checked) {
-			Remove_Tree -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy"
-			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
-		} else {
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-
-		Write-Host "   $($lang.Reboot)"
-		if ($GUIFEReboot.Checked) {
-			Restart-Computer -Force
-			Write-Host "   $($lang.Done)`n" -ForegroundColor Green
-		} else {
-			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
-		}
-		$GUIFE.Close()
-	}
 	$GUIFE             = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
 		Height         = 720
@@ -280,19 +194,103 @@ Function FirstExperience_Setting_UI
 	}
 	$GUIFEOK           = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "8,595"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUIFEOKClick
+		Location       = "8,595"
 		Text           = $lang.OK
+		add_Click      = {
+			$GUIFE.Hide()
+
+			if ($GUIFEPreAppxCleanup.Checked) {
+				if ($GUIFEPreAppxCleanupEnabled.Checked) {
+					Cleanup_Appx_Tasks -Enabled
+				}
+
+				if ($GUIFEPreAppxCleanupDisable.Checked) {
+					Cleanup_Appx_Tasks -Disable
+				}
+			} else {
+				Write-Host "   $($lang.PreAppxCleanup)"
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+
+			if ($GUIFELanguageComponents.Checked) {
+				if ($GUIFELanguageComponentsEnabled.Checked) {
+					Cleanup_Unsed_Language -Enabled
+				}
+
+				if ($GUIFELanguageComponentsDisable.Checked) {
+					Cleanup_Unsed_Language -Disable
+				}
+			} else {
+				Write-Host "   $($lang.CleanupOndemandLP)"
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+
+			if ($GUIFECleanupUnusedLP.Checked) {
+				if ($GUIFECleanupUnusedLPEnabled.Checked) {
+					Cleanup_On_Demand_Language -Enabled
+				}
+
+				if ($GUIFECleanupUnusedLPDisable.Checked) {
+					Cleanup_On_Demand_Language -Disable
+				}
+			} else {
+				Write-Host "   $($lang.CleanupUnusedLP)"
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+
+			if ($GUIFELangAndKeyboard.Checked) {
+				Language_Setting
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			} else {
+				Write-Host "   $($lang.SettingLangAndKeyboard)"
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+
+			if ($GUIFEUtf8.Checked) {
+				Language_Use_UTF8 -Enabled
+			} else {
+				Write-Host "   $($lang.SettingUTF8)"
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+
+			if ($GUIFELocale.Checked) {
+				Language_Region_Setting -Force
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			} else {
+				Write-Host "   $($lang.SettingLocale)"
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+
+			Write-Host "   $($lang.DeployCleanup)"
+			if ($GUIFEDeployCleanup.Checked) {
+				Remove_Tree -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy"
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			} else {
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+
+			Write-Host "   $($lang.Reboot)"
+			if ($GUIFEReboot.Checked) {
+				Restart-Computer -Force
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			} else {
+				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+			}
+			$GUIFE.Close()
+		}
 	}
 	$GUIFECanel        = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "8,635"
 		Height         = 36
 		Width          = 515
-		add_Click      = $GUIFECanelClick
+		Location       = "8,635"
 		Text           = $lang.Cancel
+		add_Click      = {
+			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+			$GUIFE.Close()
+		}
 	}
 	$GUIFE.controls.AddRange((
 		$GUIFEPanel,

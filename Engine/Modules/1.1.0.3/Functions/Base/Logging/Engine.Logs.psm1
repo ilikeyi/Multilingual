@@ -29,7 +29,7 @@ Function Logging
 		.Operation record
 		.操作记录
 	#>
-	Start-Transcript -Path "$($Global:LogsSaveFolder)\$($Global:LogSaveTo)\Logging.log" -Force -ErrorAction SilentlyContinue
+	Start-Transcript -Path "$($Global:LogsSaveFolder)\$($Global:LogSaveTo)\Logging.log" -Force -ErrorAction SilentlyContinue | Out-Null
 }
 
 <#

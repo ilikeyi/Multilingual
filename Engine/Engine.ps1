@@ -67,7 +67,7 @@ if ($Functions) {
 		Invoke-Expression -Command $Function
 	}
 	Modules_Import
-	$Global:Quit = $False
+	Stop-Process $PID
 	exit
 }
 

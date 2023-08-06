@@ -241,10 +241,10 @@ Function Update_Create_UI
 		add_Click      = {
 			if ($GUIUpdateCreateASC.Checked) {
 				$GUIUpdateCreateASCPanel.Enabled = $True
-				Save_Dynamic -regkey "Engine" -name "IsPGP" -value "True" -String
+				Save_Dynamic -regkey "Multilingual" -name "IsPGP" -value "True" -String
 			} else {
 				$GUIUpdateCreateASCPanel.Enabled = $False
-				Save_Dynamic -regkey "Engine" -name "IsPGP" -value "False" -String
+				Save_Dynamic -regkey "Multilingual" -name "IsPGP" -value "False" -String
 			}
 		}
 	}
@@ -312,7 +312,7 @@ Function Update_Create_UI
 						$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError -f $($lang.CreateASCAuthorTips))"
 						return
 					} else {
-						Save_Dynamic -regkey "Engine" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
+						Save_Dynamic -regkey "Multilingual" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
 						$Script:secure_password = $GUIUpdateCreateASCPWD.Text
 						$Script:SignGpgKeyID = $GUIUpdateCreateASCSign.Text
 					}
@@ -387,16 +387,16 @@ Function Update_Create_UI
 	ForEach ($item in $GpgKI) {
 		$GUIUpdateCreateASCSign.Items.Add($item) | Out-Null
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue) {
-		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "PGP" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue) {
+		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue
 	}
 
 	$Verify_Install_Path = Get_ASC -Run "gpg.exe"
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		$GUIUpdateGroupASC.Enabled = $True
 		
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "IsPGP" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Engine" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
 				"True" {
 					$GUIUpdateCreateASC.Checked = $True
 					$GUIUpdateCreateASCPanel.Enabled = $True

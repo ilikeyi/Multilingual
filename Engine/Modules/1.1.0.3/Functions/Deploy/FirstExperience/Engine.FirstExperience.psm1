@@ -6,10 +6,8 @@ Function FirstExperience
 {
 	param
 	(
-		[switch]$Force,
-		[switch]$Quit
+		[switch]$Force
 	)
-	if ($Quit) { $Global:QUIT = $true }
 
 	Logo -Title $($lang.FirstDeployment)
 	Write-Host "   $($lang.FirstDeployment)`n   $('-' * 80)"
@@ -25,6 +23,10 @@ Function FirstExperience
 		FirstExperience_Process
 	} else {
 		FirstExperience_Setting_UI
+	}
+
+	if ($Quit) {
+		Stop-Process $PID
 	}
 }
 
@@ -481,10 +483,8 @@ Function FirstExperience_Deploy
 {
 	param
 	(
-		[switch]$Force,
 		[switch]$Quit
 	)
-	if ($Quit) { $Global:QUIT = $true }
 
 	Logo -Title $($lang.FirstDeployment)
 	Write-Host "   $($lang.FirstDeployment)`n   $('-' * 80)"
@@ -681,6 +681,10 @@ Function FirstExperience_Deploy
 			.重启计算机
 		#>
 		Restart-Computer -Force
+	}
+
+	if ($Quit) {
+		Stop-Process $PID
 	}
 }
 

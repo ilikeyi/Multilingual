@@ -54,7 +54,8 @@ Function Update
 	Logo -Title $($lang.ChkUpdate)
 	Write-Host "   $($lang.ChkUpdate)`n   $('-' * 80)"
 
-	if ($Auto) {
+	if ($Auto)
+	{
 		ForEach ($item in $Script:PreServerList | Sort-Object { Get-Random } ) {
 			$Script:ServerList += $item
 		}

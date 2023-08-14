@@ -271,6 +271,14 @@ Function Language_Select_GUI
 			}
 		}
 	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
+		$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt"
+		switch ($GetLanguagePrompt) {
+			"True" { $GUISelectLanguageDontPrompt.Checked = $True }
+			"False" { $GUISelectLanguageDontPrompt.Checked = $False }
+		}
+	}
+
 	$GUISelectLanguageOK = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Height         = 36
@@ -337,14 +345,6 @@ Function Language_Select_GUI
 			}
 
 			$GUISelectLanguagePanel.controls.AddRange($CheckBox)
-		}
-	}
-
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
-		$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt"
-		switch ($GetLanguagePrompt) {
-			"True" { $GUISelectLanguageDontPrompt.Checked = $True }
-			"False" { $GUISelectLanguageDontPrompt.Checked = $False }
 		}
 	}
 

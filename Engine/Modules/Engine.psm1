@@ -1,11 +1,4 @@
 ﻿<#
-	.about us
-	.关于我们
-#>
-$Global:UniqueID  = "Yi"
-$Global:AuthorURL = "https://fengyi.tel"
-
-<#
 	.Available languages
 	.可用语言
 
@@ -156,7 +149,7 @@ Function Language
 		[switch]$Reset,
 		[switch]$Auto
 	)
-	$Host.UI.RawUI.WindowTitle = "$($Global:UniqueID)'s Solutions | Choose your country or region."
+	$Host.UI.RawUI.WindowTitle = "$((Get-Module -Name Engine).Author)'s Solutions | Choose your country or region."
 
 	<#
 		.Reset
@@ -166,11 +159,11 @@ Function Language
 	{
 		$Global:IsLang = $null
 	} else {
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
-			$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt"
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
+			$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt"
 			if ($GetLanguagePrompt -eq "True") {
-				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
-					$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "Language"
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
+					$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
 					Language_Change -lang $GetLanguage
 					Modules_Import -Import
 					return
@@ -185,8 +178,8 @@ Function Language
 	#>
 	if ($Auto)
 	{
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
-			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "Language"
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
+			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
 			Language_Change -lang $GetLanguage
 		} else {
 			Language_Change -lang (Get-Culture).Name
@@ -220,7 +213,7 @@ Function Language
 
 Function Language_Select_GUI
 {
-	$Path = "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual"
+	$Path = "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual"
 	if (-not (Test-Path $Path)) {
 		New-Item -Path $Path -Force -ErrorAction SilentlyContinue | Out-Null
 	}
@@ -271,8 +264,8 @@ Function Language_Select_GUI
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
-		$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "LanguagePrompt"
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
+		$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt"
 		switch ($GetLanguagePrompt) {
 			"True" { $GUISelectLanguageDontPrompt.Checked = $True }
 			"False" { $GUISelectLanguageDontPrompt.Checked = $False }
@@ -324,8 +317,8 @@ Function Language_Select_GUI
 		$GUISelectLanguageCanel
 	))
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
-		$FlagsDefaultLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "Language"
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
+		$FlagsDefaultLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
 	} else {
 		$FlagsDefaultLanguage = (Get-Culture).Name
 	}

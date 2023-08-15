@@ -428,7 +428,7 @@ Function FirstExperience_Process
 		.After using the $OEM$ mode to add files, the default is read-only. Change all files to: Normal.
 		.使用 $OEM$ 模式添加文件后默认为只读，更改所有文件为：正常。
 	#>
-	Get-ChildItem "$($env:SystemDrive)\$($Global:UniqueID)" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
+	Get-ChildItem "$($env:SystemDrive)\$((Get-Module -Name Engine).Author)" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
 	if (Test-Path -Path "$($env:SystemDrive)\Users\Public\Desktop\Office" -PathType Container) {
 		Get-ChildItem "$($env:SystemDrive)\Users\Public\Desktop\Office" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
 	}
@@ -465,7 +465,7 @@ Function FirstExperience_Process
 		}
 
 		$regValue = "cmd /c start /min """" powershell -Command ""Start-Process 'Powershell' -Argument '-ExecutionPolicy ByPass -File ""$((Convert-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Engine.ps1" -ErrorAction SilentlyContinue))"" -Functions \""FirstExperience_Deploy -Quit\""' -WindowStyle Minimized -Verb RunAs"""
-		New-ItemProperty -Path $regPath -Name "$($Global:UniqueID)" -Value $regValue -PropertyType STRING -Force | Out-Null
+		New-ItemProperty -Path $regPath -Name "$((Get-Module -Name Engine).Author)" -Value $regValue -PropertyType STRING -Force | Out-Null
 
 		Restart-Computer -Force
 		Write-Host "   $($lang.Done)`n" -ForegroundColor Green
@@ -585,9 +585,9 @@ Function FirstExperience_Deploy
 		.全盘计划，按规则搜索：Bat
 	#>
 	$SearchBatFile = @(
-		"$($Global:UniqueID).bat"
-		"$($Global:UniqueID)\$($Global:UniqueID).bat"
-		"$($Global:UniqueID)\Deploy\Bat\$($Global:UniqueID).bat"
+		"$((Get-Module -Name Engine).Author).bat"
+		"$((Get-Module -Name Engine).Author)\$((Get-Module -Name Engine).Author).bat"
+		"$((Get-Module -Name Engine).Author)\Deploy\Bat\$((Get-Module -Name Engine).Author).bat"
 	)
 	ForEach ($item in $SearchBatFile) {
 		Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | ForEach-Object {
@@ -606,9 +606,9 @@ Function FirstExperience_Deploy
 		.全盘计划，按规则搜索：ps1
 	#>
 	$SearchPSFile = @(
-		"$($Global:UniqueID).ps1"
-		"$($Global:UniqueID)\$($Global:UniqueID).ps1"
-		"$($Global:UniqueID)\Deploy\PS1\$($Global:UniqueID).ps1"
+		"$((Get-Module -Name Engine).Author).ps1"
+		"$((Get-Module -Name Engine).Author)\$((Get-Module -Name Engine).Author).ps1"
+		"$((Get-Module -Name Engine).Author)\Deploy\PS1\$((Get-Module -Name Engine).Author).ps1"
 	)
 	ForEach ($item in $SearchPSFile) {
 		Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | ForEach-Object {
@@ -650,7 +650,7 @@ Function FirstExperience_Deploy
 		#>
 		Write-Host "   $($lang.NextDelete)`n" -ForegroundColor Green
 		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
-		$regKey = "Clear $($Global:UniqueID) Folder"
+		$regKey = "Clear $((Get-Module -Name Engine).Author) Folder"
 		$regValue = "cmd.exe /c rd /s /q ""$($UniqueMainFolder)"""
 		if (Test-Path $regPath) {
 			New-ItemProperty -Path $regPath -Name $regKey -Value $regValue -PropertyType STRING -Force | Out-Null

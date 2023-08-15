@@ -179,10 +179,10 @@ Function Update_Create_UI
 	)
 
 	Clear-Host
-	$Host.UI.RawUI.WindowTitle = "$($Global:UniqueID)'s Solutions | $($lang.UpdateCreate)"
-	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
+	$Host.UI.RawUI.WindowTitle = "$((Get-Module -Name Engine).Author)'s Solutions | $($lang.UpdateCreate)"
+	Write-Host "`n   Author: $((Get-Module -Name Engine).Author) ( $((Get-Module -Name Engine).HelpInfoURI) )
 
-   From: $($Global:UniqueID)'s Solutions
+   From: $((Get-Module -Name Engine).Author)'s Solutions
    buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.230429-1208`n"
 
 	Write-Host "   $($lang.UpdateCreate)`n   $('-' * 80)"
@@ -387,16 +387,16 @@ Function Update_Create_UI
 	ForEach ($item in $GpgKI) {
 		$GUIUpdateCreateASCSign.Items.Add($item) | Out-Null
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue) {
-		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue) {
+		$GUIUpdateCreateASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue
 	}
 
 	$Verify_Install_Path = Get_ASC -Run "gpg.exe"
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		$GUIUpdateGroupASC.Enabled = $True
 		
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:UniqueID)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
 				"True" {
 					$GUIUpdateCreateASC.Checked = $True
 					$GUIUpdateCreateASCPanel.Enabled = $True
@@ -551,8 +551,8 @@ Function Update_Create_Version
 @"
 {
 	"author": {
-		"name": "$($Global:UniqueID)",
-		"url":  "$($Global:AuthorURL)"
+		"name": "$((Get-Module -Name Engine).Author)",
+		"url":  "$((Get-Module -Name Engine).HelpInfoURI)"
 	},
 	"version": {
 		"buildstring": "$($CurrentVersion).bs_release.230429-1208",
@@ -560,10 +560,10 @@ Function Update_Create_Version
 		"minau":       "$($LowVer)"
 	},
 	"changelog": {
-		"title": "$($Global:UniqueID)'s Solutions - new autoupdate system",
+		"title": "$((Get-Module -Name Engine).Author)'s Solutions - new autoupdate system",
 		"log":   "   - Latest *Update"
 	},
-	"url": "$($Global:AuthorURL)/download/solutions/update/Multilingual/latest.zip"
+	"url": "$((Get-Module -Name Engine).HelpInfoURI)/download/solutions/update/Multilingual/latest.zip"
 }
 "@ | Out-File -FilePath "$($SaveTo)\latest.json" -Encoding Ascii
 }

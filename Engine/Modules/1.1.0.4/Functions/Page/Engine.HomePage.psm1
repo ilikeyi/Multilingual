@@ -9,10 +9,10 @@ Function Logo
 	)
 
 	Clear-Host
-	$Host.UI.RawUI.WindowTitle = "$($Global:UniqueID)'s Solutions | $($Title)"
-	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
+	$Host.UI.RawUI.WindowTitle = "$((Get-Module -Name Engine).Author)'s Solutions | $($Title)"
+	Write-Host "`n   Author: $((Get-Module -Name Engine).Author) ( $((Get-Module -Name Engine).HelpInfoURI) )
 
-   From: $($Global:UniqueID)'s Solutions
+   From: $((Get-Module -Name Engine).Author)'s Solutions
    buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.230429-1208`n"
 }
 

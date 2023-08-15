@@ -405,11 +405,11 @@ $($getSerVer.changelog.log)`n"
 					return
 				}
 			} else {
-				Write-host "   $($lang.UpdateNoUpdateAvailable -f $($Global:UniqueID))"
+				Write-host "   $($lang.UpdateNoUpdateAvailable -f $((Get-Module -Name Engine).Author))"
 			}
 		}
 	} else {
-		Write-host "   $($lang.UpdateNotSatisfied -f $($Global:ChkLocalver), $($Global:UniqueID))"
+		Write-host "   $($lang.UpdateNotSatisfied -f $($Global:ChkLocalver), $((Get-Module -Name Engine).Author))"
 	}
 }
 
@@ -524,7 +524,7 @@ Function Unzip_Done_Refresh_Process
 			Write-Host "   $($lang.UpdateNoPost)" -ForegroundColor red
 		}
 
-		Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
+		Write-host "`n   $((Get-Module -Name Engine).Author)'s Solutions $($lang.UpdateDone)`n"
 	}
 }
 

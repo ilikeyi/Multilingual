@@ -81,8 +81,12 @@ Download template: Engine.Deploy.Rule.ISO
 |-------------------------------|-----------------------|---|
 | \Deploy\{allow, Not Allowed}  | Auto_Update           | Allow automatic updates |
 | \Deploy\{allow, Not Allowed}  | Use_UTF8              | Beta: Use Unicode UTF-8 to provide global language support |
-| \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | Restart the computer<br>Restarting the computer after completing the prerequisite deployment can solve the problem that needs to be restarted to take effect. |
 | \Deploy\Regional              | Zone marker           | Change system locale |
+| \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | Network Location Wizard |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Appx_Tasks | Appx cleanup maintenance tasks |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_On_Demand_Language | Prevent cleanup of unused feature-on-demand language packs |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | Prevent cleaning of unused language packs |
+| \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | Restart the computer<br>Restarting the computer after completing the prerequisite deployment can solve the problem that needs to be restarted to take effect. |
 
 
 * Part 2: Complete the first deployment
@@ -92,10 +96,6 @@ Download template: Engine.Deploy.Rule.ISO
 | \Deploy\{allow, Not Allowed}  | Popup_Engine          | Allow the main interface of the deployment engine to pop up for the first time |
 | \Deploy\{allow, Not Allowed}  | Allow_First_Pre_Experience | Allow the first pre-experience, as planned |
 | \Deploy\{allow, Not Allowed}  | Reset_Execution_Policy | Recovery PowerShell execution strategy: restricted |
-| \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | Network Location Wizard |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Appx_Tasks | Appx cleanup maintenance tasks |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_On_Demand_Language | Prevent cleanup of unused feature-on-demand language packs |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | Prevent cleaning of unused language packs |
 | \Deploy\{allow, Not Allowed}  | Clear_Solutions       | Delete the entire solution |
 | \Deploy\{allow, Not Allowed}  | Clear_Engine          | Delete the deployment engine, keep the others |
 | \Deploy\{allow, Not Allowed}  | First_Experience_Reboot | Restart the computer<br>After the deployment is complete, there are no important events. It is recommended that you cancel. |
@@ -178,8 +178,12 @@ Download template: Engine.Deploy.Rule.ISO
 |-------------------------------|-----------------------|---|
 | \Deploy\{allow, Not Allowed}  | Auto_Update           | 允许自动更新 |
 | \Deploy\{allow, Not Allowed}  | Use_UTF8              | Beta 版：使用 Unicode UTF-8 提供全球语言支持 |
-| \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。 |
 | \Deploy\Regional              | 区域标记               | 更改系统区域设置 |
+| \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | 网络位置向导 |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Appx_Tasks | Appx 清理维护任务 |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_On_Demand_Language | 阻止清理未使用的按需功能语言包 |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | 阻止清理未使用的语言包 |
+| \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。|
 
 
 * 第二部分：完成首次部署
@@ -189,10 +193,6 @@ Download template: Engine.Deploy.Rule.ISO
 | \Deploy\{allow, Not Allowed}  | Popup_Engine          | 允许首次弹出部署引擎主界面 |
 | \Deploy\{allow, Not Allowed}  | Allow_First_Pre_Experience | 允许首次预体验，按计划 |
 | \Deploy\{allow, Not Allowed}  | Reset_Execution_Policy | 恢复 PowerShell 执行策略：受限 |
-| \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | 网络位置向导 |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Appx_Tasks | Appx 清理维护任务 |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_On_Demand_Language | 阻止清理未使用的按需功能语言包 |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | 阻止清理未使用的语言包 |
 | \Deploy\{allow, Not Allowed}  | Clear_Solutions       | 删除整个解决方案 |
 | \Deploy\{allow, Not Allowed}  | Clear_Engine          | 删除部署引擎，保留其它 |
 | \Deploy\{allow, Not Allowed}  | First_Experience_Reboot | 重新启动计算机<br>部署完成后没有重要的事件，建议您取消。 |

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Desktop
+	multilingual
+	Consumer.Semi.xml
+
+	Template GUID: d0879941-0153-4700-ab1e-426ab2ebaddf
+	GUID: 07a597c9-400f-4851-87ff-e9c7b182c71a
+-->
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+	<settings pass="windowsPE">
+		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<SetupUILanguage>
+				<UILanguage>%OSDUILanguage%</UILanguage>
+				<WillShowUI>Always</WillShowUI>
+			</SetupUILanguage>
+			<InputLocale>%OSDInputLocale%</InputLocale>
+			<SystemLocale>%OSDSystemLocale%</SystemLocale>
+			<UILanguage>%OSDUILanguage%</UILanguage>
+			<UILanguageFallback>%OSDUILanguageFallback%</UILanguageFallback>
+			<UserLocale>%OSDUserLocale%</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<SetupUILanguage>
+				<UILanguage>%OSDUILanguage%</UILanguage>
+				<WillShowUI>Always</WillShowUI>
+			</SetupUILanguage>
+			<InputLocale>%OSDInputLocale%</InputLocale>
+			<SystemLocale>%OSDSystemLocale%</SystemLocale>
+			<UILanguage>%OSDUILanguage%</UILanguage>
+			<UILanguageFallback>%OSDUILanguageFallback%</UILanguageFallback>
+			<UserLocale>%OSDUserLocale%</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="arm64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<SetupUILanguage>
+				<UILanguage>%OSDUILanguage%</UILanguage>
+				<WillShowUI>Always</WillShowUI>
+			</SetupUILanguage>
+			<InputLocale>%OSDInputLocale%</InputLocale>
+			<SystemLocale>%OSDSystemLocale%</SystemLocale>
+			<UILanguage>%OSDUILanguage%</UILanguage>
+			<UILanguageFallback>%OSDUILanguageFallback%</UILanguageFallback>
+			<UserLocale>%OSDUserLocale%</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<DiskConfiguration>
+				<WillShowUI>Always</WillShowUI>
+			</DiskConfiguration>
+			<ImageInstall>
+				<OSImage>
+					<WillShowUI>Always</WillShowUI>
+				</OSImage>
+			</ImageInstall>
+			<Diagnostics>
+				<OptIn>false</OptIn>
+			</Diagnostics>
+			<DynamicUpdate>
+				<Enable>false</Enable>
+				<WillShowUI>OnError</WillShowUI>
+			</DynamicUpdate>
+			<UserData>
+				<ProductKey>
+					<WillShowUI>Always</WillShowUI>
+				</ProductKey>
+				<AcceptEula>true</AcceptEula>
+			</UserData>
+			<!-- Local PE deployment Command -->
+		</component>
+		<component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<DiskConfiguration>
+				<WillShowUI>Always</WillShowUI>
+			</DiskConfiguration>
+			<ImageInstall>
+				<OSImage>
+					<WillShowUI>Always</WillShowUI>
+				</OSImage>
+			</ImageInstall>
+			<Diagnostics>
+				<OptIn>false</OptIn>
+			</Diagnostics>
+			<DynamicUpdate>
+				<Enable>false</Enable>
+				<WillShowUI>OnError</WillShowUI>
+			</DynamicUpdate>
+			<UserData>
+				<ProductKey>
+					<WillShowUI>Always</WillShowUI>
+				</ProductKey>
+				<AcceptEula>true</AcceptEula>
+			</UserData>
+			<!-- Local PE deployment Command -->
+		</component>
+		<component name="Microsoft-Windows-Setup" processorArchitecture="arm64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<DiskConfiguration>
+				<WillShowUI>Always</WillShowUI>
+			</DiskConfiguration>
+			<ImageInstall>
+				<OSImage>
+					<WillShowUI>Always</WillShowUI>
+				</OSImage>
+			</ImageInstall>
+			<Diagnostics>
+				<OptIn>false</OptIn>
+			</Diagnostics>
+			<DynamicUpdate>
+				<Enable>false</Enable>
+				<WillShowUI>OnError</WillShowUI>
+			</DynamicUpdate>
+			<UserData>
+				<ProductKey>
+					<WillShowUI>Always</WillShowUI>
+				</ProductKey>
+				<AcceptEula>true</AcceptEula>
+			</UserData>
+			<!-- Local PE deployment Command -->
+		</component>
+	</settings>
+	<settings pass="oobeSystem">
+		<component name="Microsoft-Windows-International-Core" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<InputLocale>%OSDInputLocale%</InputLocale>
+			<SystemLocale>%OSDSystemLocale%</SystemLocale>
+			<UILanguage>%OSDUILanguage%</UILanguage>
+			<UILanguageFallback>%OSDUILanguageFallback%</UILanguageFallback>
+			<UserLocale>%OSDUserLocale%</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<InputLocale>%OSDInputLocale%</InputLocale>
+			<SystemLocale>%OSDSystemLocale%</SystemLocale>
+			<UILanguage>%OSDUILanguage%</UILanguage>
+			<UILanguageFallback>%OSDUILanguageFallback%</UILanguageFallback>
+			<UserLocale>%OSDUserLocale%</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-International-Core" processorArchitecture="arm64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<InputLocale>%OSDInputLocale%</InputLocale>
+			<SystemLocale>%OSDSystemLocale%</SystemLocale>
+			<UILanguage>%OSDUILanguage%</UILanguage>
+			<UILanguageFallback>%OSDUILanguageFallback%</UILanguageFallback>
+			<UserLocale>%OSDUserLocale%</UserLocale>
+		</component>
+		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OOBE>
+				<HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+				<HideLocalAccountScreen>true</HideLocalAccountScreen>
+				<NetworkLocation>Other</NetworkLocation>
+				<SkipMachineOOBE>true</SkipMachineOOBE>
+				<SkipUserOOBE>true</SkipUserOOBE>
+				<HideEULAPage>true</HideEULAPage>
+				<ProtectYourPC>3</ProtectYourPC>
+				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+			</OOBE>
+
+			<!-- initial account -->
+			<UserAccounts>
+				<LocalAccounts>
+					<LocalAccount wcm:action="add">
+						<Password>
+							<Value></Value>
+							<PlainText>true</PlainText>
+						</Password>
+						<Description>Administrator</Description>
+						<DisplayName>Administrator</DisplayName>
+						<Group>Administrators</Group>
+						<Name>Administrator</Name>
+					</LocalAccount>
+				</LocalAccounts>
+			</UserAccounts>
+
+			<!-- Automatic login by default -->
+			<AutoLogon>
+				<Password>
+					<Value></Value>
+					<PlainText>true</PlainText>
+				</Password>
+				<Enabled>true</Enabled>
+				<Username>Administrator</Username>
+			</AutoLogon>
+
+			<!-- Local deployment Command -->
+			<FirstLogonCommands>
+				<SynchronousCommand wcm:action="add">
+					<Order>1</Order>
+					<CommandLine>powershell -Command "Set-ExecutionPolicy -Scope 'LocalMachine' -ExecutionPolicy 'RemoteSigned' -Force"</CommandLine>
+				</SynchronousCommand>
+ 				<SynchronousCommand wcm:action="add">
+					<Order>2</Order>
+					<CommandLine>PowerShell -ExecutionPolicy Bypass -File "%SystemDrive%\Yi\Engine\Engine.ps1" -Force</CommandLine>
+				</SynchronousCommand>
+			</FirstLogonCommands>
+		</component>
+		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OOBE>
+				<HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+				<HideLocalAccountScreen>true</HideLocalAccountScreen>
+				<NetworkLocation>Other</NetworkLocation>
+				<SkipMachineOOBE>true</SkipMachineOOBE>
+				<SkipUserOOBE>true</SkipUserOOBE>
+				<HideEULAPage>true</HideEULAPage>
+				<ProtectYourPC>3</ProtectYourPC>
+				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+			</OOBE>
+
+			<!-- initial account -->
+			<UserAccounts>
+				<LocalAccounts>
+					<LocalAccount wcm:action="add">
+						<Password>
+							<Value></Value>
+							<PlainText>true</PlainText>
+						</Password>
+						<Description>Administrator</Description>
+						<DisplayName>Administrator</DisplayName>
+						<Group>Administrators</Group>
+						<Name>Administrator</Name>
+					</LocalAccount>
+				</LocalAccounts>
+			</UserAccounts>
+
+			<!-- Automatic login by default -->
+			<AutoLogon>
+				<Password>
+					<Value></Value>
+					<PlainText>true</PlainText>
+				</Password>
+				<Enabled>true</Enabled>
+				<Username>Administrator</Username>
+			</AutoLogon>
+
+			<!-- Local deployment Command -->
+			<FirstLogonCommands>
+				<SynchronousCommand wcm:action="add">
+					<Order>1</Order>
+					<CommandLine>powershell -Command "Set-ExecutionPolicy -Scope 'LocalMachine' -ExecutionPolicy 'RemoteSigned' -Force"</CommandLine>
+				</SynchronousCommand>
+ 				<SynchronousCommand wcm:action="add">
+					<Order>2</Order>
+					<CommandLine>PowerShell -ExecutionPolicy Bypass -File "%SystemDrive%\Yi\Engine\Engine.ps1" -Force</CommandLine>
+				</SynchronousCommand>
+			</FirstLogonCommands>
+		</component>
+		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="arm64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OOBE>
+				<HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+				<HideLocalAccountScreen>true</HideLocalAccountScreen>
+				<NetworkLocation>Other</NetworkLocation>
+				<SkipMachineOOBE>true</SkipMachineOOBE>
+				<SkipUserOOBE>true</SkipUserOOBE>
+				<HideEULAPage>true</HideEULAPage>
+				<ProtectYourPC>3</ProtectYourPC>
+				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+			</OOBE>
+
+			<!-- initial account -->
+			<UserAccounts>
+				<LocalAccounts>
+					<LocalAccount wcm:action="add">
+						<Password>
+							<Value></Value>
+							<PlainText>true</PlainText>
+						</Password>
+						<Description>Administrator</Description>
+						<DisplayName>Administrator</DisplayName>
+						<Group>Administrators</Group>
+						<Name>Administrator</Name>
+					</LocalAccount>
+				</LocalAccounts>
+			</UserAccounts>
+
+			<!-- Automatic login by default -->
+			<AutoLogon>
+				<Password>
+					<Value></Value>
+					<PlainText>true</PlainText>
+				</Password>
+				<Enabled>true</Enabled>
+				<Username>Administrator</Username>
+			</AutoLogon>
+
+			<!-- Local deployment Command -->
+			<FirstLogonCommands>
+				<SynchronousCommand wcm:action="add">
+					<Order>1</Order>
+					<CommandLine>powershell -Command "Set-ExecutionPolicy -Scope 'LocalMachine' -ExecutionPolicy 'RemoteSigned' -Force"</CommandLine>
+				</SynchronousCommand>
+ 				<SynchronousCommand wcm:action="add">
+					<Order>2</Order>
+					<CommandLine>PowerShell -ExecutionPolicy Bypass -File "%SystemDrive%\Yi\Engine\Engine.ps1" -Force</CommandLine>
+				</SynchronousCommand>
+			</FirstLogonCommands>
+		</component>
+	</settings>
+</unattend>

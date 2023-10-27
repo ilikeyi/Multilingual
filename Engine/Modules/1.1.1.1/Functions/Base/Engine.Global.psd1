@@ -1,7 +1,7 @@
 ﻿@{
-	RootModule        = 'Engine.psm1'
-	ModuleVersion     = '1.1.1.1'
-	GUID              = '881d5082-017d-48e6-9422-0049a1f60e8d'
+	RootModule        = 'Engine.Global.psm1'
+	ModuleVersion     = '1.0.0.0'
+	GUID              = 'e6d198b9-825e-425e-8479-a7382f9b9489'
 	Author            = 'Yi'
 	Copyright         = 'FengYi, Inc. All rights reserved.'
 	Description       = ''
@@ -14,12 +14,11 @@
 
 	PrivateData = @{
 		PSData = @{
-			Tags = @("Multilingual")
+			# Tags = @()
 			# LicenseUri   = ''
 			ProjectUri   = 'https://github.com/ilikeyi/Multilingual'
 			# IconUri      = ''
 			# ReleaseNotes = ''
-			MinimumVersion = '1.0.0.0'
 		}
 	}
 	HelpInfoURI = 'https://fengyi.tel'

@@ -203,39 +203,38 @@ Function Update_Create_UI
 		BackColor      = "#ffffff"
 	}
 	$GUIUpdateVersion  = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "12,5"
-		Height         = 22
+		Location       = "12,15"
+		Height         = 30
 		Width          = 390
 		Text           = "$($lang.UpdateCurrent) $((Get-Module -Name Engine).Version.ToString())"
 	}
 	$GUIUpdateLowVersion = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "12,30"
-		Height         = 22
+		Location       = "12,50"
+		Height         = 30
 		Width          = 390
-		Text           = "$($lang.UpdateLow) $($Global:ChkLocalver)"
+		Text           = "$($lang.UpdateLow) $((Get-Module -Name Engine).PrivateData.PSData.MinimumVersion)"
 	}
 
 	<#
 		.创建升级包后需要做些什么
 	#>
 	$GUIUpdateRearTips = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "12,352"
-		Height         = 22
+		Location       = "12,245"
+		Height         = 30
 		Width          = 390
 		Text           = $lang.UpCreateRear
 	}
-	$GUIUpdateGroupASC = New-Object system.Windows.Forms.Panel -Property @{
+	$GUIUpdateGroupASC = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
-		Height         = 140
+		Height         = 270
 		Width          = 520
 		autoSizeMode   = 1
-		Padding        = "8,0,8,0"
-		Location       = '0,376'
+		Padding        = "26,0,8,0"
+		Location       = '0,276'
 	}
 	$GUIUpdateCreateASC = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 22
+		Height         = 30
 		Width          = 470
-		Location       = '26,0'
 		Text           = $lang.UpCreateASC
 		Checked        = $True
 		add_Click      = {
@@ -248,34 +247,33 @@ Function Update_Create_UI
 			}
 		}
 	}
-	$GUIUpdateCreateASCPanel = New-Object system.Windows.Forms.Panel -Property @{
+	$GUIUpdateCreateASCPanel = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
-		Height         = 115
-		Width          = 530
+		autosize       = 1
 		autoSizeMode   = 1
-		Padding        = "0,0,0,0"
-		Location       = "0,25"
+		Padding        = "14,0,0,0"
+		autoScroll     = $False
 	}
 	$GUIUpdateCreateASCPWDName = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "42,0"
-		Height         = 22
+		Height         = 30
 		Width          = 390
 		Text           = $lang.CreateASCPwd
 	}
 	$GUIUpdateCreateASCPWD = New-Object System.Windows.Forms.TextBox -Property @{
-		Height         = 22
+		Height         = 30
 		Width          = 400
 		Text           = $($Script:secure_password)
-		Location       = '42,25'
+	}
+	$UI_Add_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 20
+		Width          = 410
 	}
 	$GUIUpdateCreateASCSignName = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "42,60"
-		Height         = 22
+		Height         = 30
 		Width          = 390
 		Text           = $lang.CreateASCAuthor
 	}
 	$GUIUpdateCreateASCSign = New-Object system.Windows.Forms.ComboBox -Property @{
-		Location       = "42,83"
 		Height         = 55
 		Width          = 400
 		Text           = ""
@@ -283,16 +281,15 @@ Function Update_Create_UI
 	}
 
 	$GUIUpdateCreateSHA256 = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 22
+		Height         = 30
 		Width          = 470
 		Text           = $lang.UpCreateSHA256
-		Location       = '26,525'
 		Checked        = $True
 	}
 
 	$GUIUpdateErrorMsg = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "10,570"
-		Height         = 22
+		Location       = "10,565"
+		Height         = 30
 		Width          = 390
 		Text           = ""
 	}
@@ -354,13 +351,13 @@ Function Update_Create_UI
 		$GUIUpdateLowVersion,
 		$GUIUpdateRearTips,
 		$GUIUpdateGroupASC,
-		$GUIUpdateCreateSHA256,
 		$GUIUpdateErrorMsg,
 		$GUIUpdateOK,
 		$GUIUpdateCanel
 	))
 
 	$GUIUpdateGroupASC.controls.AddRange((
+		$GUIUpdateCreateSHA256,
 		$GUIUpdateCreateASC,
 		$GUIUpdateCreateASCPanel
 	))
@@ -368,6 +365,7 @@ Function Update_Create_UI
 	$GUIUpdateCreateASCPanel.controls.AddRange((
 		$GUIUpdateCreateASCPWDName,
 		$GUIUpdateCreateASCPWD,
+		$UI_Add_End_Wrap,
 		$GUIUpdateCreateASCSignName,
 		$GUIUpdateCreateASCSign
 	))
@@ -376,7 +374,8 @@ Function Update_Create_UI
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		$GUIUpdateOK.Enabled = $True
 	} else {
-		$GUIUpdateGroupASC.Enabled = $False
+		$GUIUpdateCreateASC.Enabled = $False
+		$GUIUpdateCreateASCPanel.Enabled = $False
 		$GUIUpdateOK.Enabled = $False
 		$GUIUpdateErrorMsg.Text += $lang.ZipStatus
 	}
@@ -393,7 +392,8 @@ Function Update_Create_UI
 
 	$Verify_Install_Path = Get_ASC -Run "gpg.exe"
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
-		$GUIUpdateGroupASC.Enabled = $True
+		$GUIUpdateCreateASC.Enabled = $True
+		$GUIUpdateCreateASCPanel.Enabled = $True
 		
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
 			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
@@ -411,7 +411,8 @@ Function Update_Create_UI
 			$GUIUpdateCreateASCPanel.Enabled = $False
 		}
 	} else {
-		$GUIUpdateGroupASC.Enabled = $False
+		$GUIUpdateCreateASC.Enabled = $False
+		$GUIUpdateCreateASCPanel.Enabled = $False
 		$GUIUpdateErrorMsg.Text += $lang.ASCStatus
 	}
 
@@ -433,7 +434,7 @@ Function Update_Create_Process
 	ForEach ($item in $BuildTypeUp) {
 		Push-Location $PSScriptRoot
 		Update_Create_Process_Add -Type $item
-		Update_Create_Version -SaveTo "$TempFolderUpdate" -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $Global:ChkLocalver
+		Update_Create_Version -SaveTo "$TempFolderUpdate" -CurrentVersion (Get-Module -Name Engine).Version.ToString() -LowVer $((Get-Module -Name Engine).PrivateData.PSData.MinimumVersion)
 	}
 }
 
@@ -450,23 +451,44 @@ Function Update_Create_Process_Add
 		switch ($Type) {
 			"zip" {
 				Write-Host "   * $($lang.Uping) $UpdateName.zip"
-				$arguments = "a", "-tzip", "$TempFolderUpdate\$UpdateName.zip", "$ArchiveExcludeUp", "*.*", "-mcu=on", "-r", "-mx9";
-				Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
+				$arguments = @(
+					"a",
+					"-tzip",
+					"$($TempFolderUpdate)\$($UpdateName).zip",
+					"$($ArchiveExcludeUp)",
+					"*.*",
+					"-mcu=on",
+					"-r",
+					"-mx9";
+				)
+				Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
 			"tar" {
 				Write-Host "   * $($lang.Uping) $UpdateName.tar"
-				$arguments = "a", "$TempFolderUpdate\$UpdateName.tar", "$ArchiveExcludeUp", "*.*", "-r";
-				Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
+				$arguments = @(
+					"a",
+					"$($TempFolderUpdate)\$($UpdateName).tar",
+					"$($ArchiveExcludeUp)",
+					"*.*",
+					"-r";
+				)
+				Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 				remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
 			"xz" {
 				Write-Host "  * $($lang.Uping) $UpdateName.tar.xz"
 				if (Test-Path -Path "$TempFolderUpdate\$UpdateName.tar" -PathType Leaf) {
-					$arguments = "a", "$TempFolderUpdate\$UpdateName.tar.xz", "$TempFolderUpdate\$UpdateName.tar", "-mf=bcj", "-mx9";
-					Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
+					$arguments = @(
+						"a",
+						"$($TempFolderUpdate)\$($UpdateName).tar.xz",
+						"$($TempFolderUpdate)\$($UpdateName).tar",
+						"-mf=bcj",
+						"-mx9";
+					)
+					Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {
@@ -476,8 +498,14 @@ Function Update_Create_Process_Add
 			"gz" {
 				Write-Host "  * $($lang.Uping) $UpdateName.tar.gz"
 				if (Test-Path -Path "$TempFolderUpdate\$UpdateName.tar" -PathType Leaf) {
-					$arguments = "a", "-tgzip", "$TempFolderUpdate\$UpdateName.tar.gz", "$TempFolderUpdate\$UpdateName.tar", "-mx9";
-					Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
+					$arguments = @(
+						"a",
+						"-tgzip",
+						"$($TempFolderUpdate)\$($UpdateName).tar.gz",
+						"$($TempFolderUpdate)\$($UpdateName).tar",
+						"-mx9";
+					)
+					Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 					remove-item -path "$TempFolderUpdate\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {

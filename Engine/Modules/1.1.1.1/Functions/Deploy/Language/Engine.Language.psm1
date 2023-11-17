@@ -249,9 +249,9 @@ Function Language_Region_Setting
 					.Setting time
 					.设置时间
 				#>
-				Write-Host "`n   $($lang.SetTimezone)"
-				Write-Host "   $($itemRegion.Timezone)" -ForegroundColor Green
-				Set-TimeZone -Id $itemRegion.Timezone -PassThru | Out-Null
+#				Write-Host "`n   $($lang.SetTimezone)"
+#				Write-Host "   $($itemRegion.Timezone)" -ForegroundColor Green
+#				Set-TimeZone -Id $itemRegion.Timezone -PassThru | Out-Null
 
 				<#
 					.Resynchronize time

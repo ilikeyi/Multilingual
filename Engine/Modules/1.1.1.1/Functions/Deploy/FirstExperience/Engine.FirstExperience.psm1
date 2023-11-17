@@ -626,7 +626,7 @@ Function FirstExperience_Deploy
 		.Recovery PowerShell strategy
 		.恢复 PowerShell 策略
 	#>
-	Write-Host "   $($lang.Restricted)`n" -ForegroundColor Green
+	Write-Host "`n   $($lang.Restricted)`n" -ForegroundColor Green
 	if (Deploy_Sync -Mark "Reset_Execution_Policy") {
 		Write-Host "   $($lang.Operable)" -ForegroundColor Green
 		Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -ErrorAction SilentlyContinue
@@ -700,17 +700,17 @@ Function Cleanup_Appx_Tasks
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.PreAppxCleanup)"
+	Write-Host "`n   $($lang.PreAppxCleanup)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		Enable-ScheduledTask -TaskPath "\Microsoft\Windows\AppxDeploymentClient\" -TaskName "Pre-staged app cleanup" -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 
 	if ($Disable) {
 		Write-Host "   $($lang.Disable)".PadRight(22) -NoNewline
 		Disable-ScheduledTask -TaskPath "\Microsoft\Windows\AppxDeploymentClient\" -TaskName "Pre-staged app cleanup" -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 }
 
@@ -726,13 +726,13 @@ Function Cleanup_On_Demand_Language
 		[switch]$Disable
 	)
 	
-	Write-Host "   $($lang.CleanupUnusedLP)"
+	Write-Host "`n   $($lang.CleanupUnusedLP)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		Enable-ScheduledTask -TaskPath "\Microsoft\Windows\MUI\" -TaskName "LPRemove" -ErrorAction SilentlyContinue | Out-Null
 
 		Remove-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name 'BlockCleanupOfUnusedPreinstalledLangPacks' -Force -ErrorAction SilentlyContinue | out-null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 	
 	if ($Disable) {
@@ -743,7 +743,7 @@ Function Cleanup_On_Demand_Language
 			New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null
 		}
 		Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 }
 
@@ -759,13 +759,13 @@ Function Cleanup_Unsed_Language
 		[switch]$Disable
 	)
 	
-	Write-Host "   $($lang.CleanupOndemandLP)"
+	Write-Host "`n   $($lang.CleanupOndemandLP)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		Enable-ScheduledTask -TaskPath "\Microsoft\Windows\LanguageComponentsInstaller" -TaskName "Uninstallation" -ErrorAction SilentlyContinue | Out-Null
 
 		Remove-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name 'AllowLanguageFeaturesUninstall' -Force -ErrorAction SilentlyContinue | out-null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 	
 	if ($Disable) {
@@ -776,7 +776,7 @@ Function Cleanup_Unsed_Language
 			New-Item -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Force | Out-Null
 		}
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput" -Name "AllowLanguageFeaturesUninstall" -Type DWord -Value 0 -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 }
 
@@ -792,16 +792,16 @@ Function Network_Location_Wizard
 		[switch]$Disable
 	)
 	
-	Write-Host "   $($lang.NetworkLocationWizard)"
+	Write-Host "`n   $($lang.NetworkLocationWizard)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		Remove-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 	
 	if ($Disable) {
 		Write-Host "   $($lang.Disable)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force -ErrorAction SilentlyContinue | Out-Null
-		Write-Host "$($lang.Done)`n" -ForegroundColor Green
+		Write-Host $lang.Done -ForegroundColor Green
 	}
 }

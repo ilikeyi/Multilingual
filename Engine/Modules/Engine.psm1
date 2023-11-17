@@ -1543,7 +1543,7 @@ $Global:Languages_Available = @(
 		LIP      = "9PCJ4DHCQ1JQ"
 		Expand   = @(
 			@{
-				RegionID = "1028"
+				RegionID = "3076"
 				Region   = "zh-HK"
 				Tag      = "hk"
 				Name     = "Chinese (Traditional, Hong Kong SAR)"

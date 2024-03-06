@@ -20,24 +20,31 @@ Available languages
 
    4.3. 部署时自动添加机制：
 
-<ul>
-   <dd>a. 遇到单语版时，</dd>
-   <dl>仅单语时，</dl>
-   <dl>自动添加当前语言为全局首选；</dl>
-   <dl>单语版包含多语言包时，</dl>
-   <dl>添加首选语言后，获取等待添加的语言里有 en-US 时，则优先添加为第二语言；</dl>
-   <dl>如果没有 en-US 时，随机选择已安装的语言为第二语言。</dl>
-   <dl>例如单语版本标记：CoreSingleLanguage, CoreCountrySpecific</dl>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. 遇到单语版时，
 
-   <dd>b. 遇到多语版时，
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加首选语言后，自动添加已安装的所有语言。</dd>
-</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅单语时，
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自动添加当前语言为全局首选；
 
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单语版包含多语言包时，
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加首选语言后，获取等待添加的语言里有 en-US 时，则优先添加为第二语言；
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果没有 en-US 时，随机选择已安装的语言为第二语言。
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如单语版本标记：CoreSingleLanguage, CoreCountrySpecific
+
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. 遇到多语版时，
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加首选语言后，自动添加已安装的所有语言。
+
+<br>
 5. 如何自定义创建升级包
-
-## 
-
+-
   a、继续使用当前版本请跳过修改，例如当前版本号：1.0.0.0，创建为新的版本号：2.0.0.0，
      打开 \Multilingual\Modules\Engine.psd1，修改“ModuleVersion”为：2.0.0.0
 

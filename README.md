@@ -10,18 +10,15 @@ Available languages
 主要功能：
 -
 1. 支持在线升级；
-
 2. 修改脚本后支持热刷新；
-
 3. 根据描述文件来实现部署规则；
-
 4. 自定义部署：
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1.&nbsp;&nbsp;&nbsp;&nbsp;获取已安装的语言包，自动添加；
+   4.1. 获取已安装的语言包，自动添加；
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2.&nbsp;&nbsp;&nbsp;&nbsp;添加过程中，自动判断 S、SN 版，按规则添加；
+   4.2. 添加过程中，自动判断 S、SN 版，按规则添加；
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3.&nbsp;&nbsp;&nbsp;&nbsp;部署时自动添加机制：
+   4.3. 部署时自动添加机制：
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. 遇到单语版时，
 

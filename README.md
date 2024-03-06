@@ -11,40 +11,44 @@ Available languages
 <ul>1. 支持在线升级；</ul>
 <ul>2. 修改脚本后支持热刷新；</ul>
 <ul>3. 根据描述文件来实现部署规则；</ul>
-<ul>4. 自定义部署：
+<ul>4. 如何自定义创建升级包</ul>
+<ul></ul>
+<ul></ul>
+
+<ul>5. 自定义部署：
    <dl>
       <dd>4.1. 获取已安装的语言包，自动添加；</dd>
       <dd>4.2. 添加过程中，自动判断 S、SN 版，按规则添加；</dd>
-      <dd>4.3. 部署时自动添加机制：</dd>
+      <dd>4.3. 部署时自动添加机制：
+         <dl>
+            <dd>a. 遇到单语版时，
+               <dl>
+                  <dd>仅单语时，自动添加当前语言为全局首选；</dd>
+                  <dd>单语版包含多语言包时，
+                     <dl>
+                        <dd>添加首选语言后，获取等待添加的语言里有 en-US 时，则优先添加为第二语言；</dd>
+                        <dd>如果没有 en-US 时，随机选择已安装的语言为第二语言。</dd>
+                        <dd>例如单语版本标记：CoreSingleLanguage, CoreCountrySpecific</dd>
+                     </dl>
+                  </dd>
+               </dl>
+            </dd>
+            <dd>b. 遇到多语版时，
+               <dl>
+                  <dd>添加首选语言后，自动添加已安装的所有语言。</dd>
+               </dl>
+            </dd>
+         </dl>
+      </dd>
    </dl>
 </ul>
-<ul>5. 如何自定义创建升级包</ul>
-<ul></ul>
-<ul></ul>
 <br>
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. 遇到单语版时，
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅单语时，
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自动添加当前语言为全局首选；
 
 <br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单语版包含多语言包时，
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加首选语言后，获取等待添加的语言里有 en-US 时，则优先添加为第二语言；
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果没有 en-US 时，随机选择已安装的语言为第二语言。
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如单语版本标记：CoreSingleLanguage, CoreCountrySpecific
-
-<br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. 遇到多语版时，
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加首选语言后，自动添加已安装的所有语言。
 
 <br>
 

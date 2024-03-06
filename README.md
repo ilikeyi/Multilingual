@@ -6,7 +6,7 @@ Available languages
  * 简体中文 - 中国
  * 繁體中文 - 中國
 
-
+<br>
 <details>
   <summary>United States - English</summary>
   <h1>Automatically add languages installed on Windows system</h1>
@@ -55,7 +55,7 @@ The deployment engine is divided into multiple parts
 You can intervene in the deployment process by adding more deployment tags, activate the first deployment:
 .\Engine.ps1 -Force
 
-
+<br>
 * Shared deployment tags
 
 | Path             | Deployment tag        | Description |
@@ -74,7 +74,7 @@ When full disk search and synchronization of deployment tags are not allowed, on
 
 Download template: Engine.Deploy.Rule.ISO
 
-
+<br>
 * Part 1: Prerequisite deployment
 
 | Assignable path               | Deployment tag        | Description |
@@ -88,7 +88,7 @@ Download template: Engine.Deploy.Rule.ISO
 | \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | Prevent cleaning of unused language packs |
 | \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | Restart the computer<br>Restarting the computer after completing the prerequisite deployment can solve the problem that needs to be restarted to take effect. |
 
-
+<br>
 * Part 2: Complete the first deployment
 
 | Assignable path               | Deployment tag        | Description |
@@ -152,7 +152,7 @@ Download template: Engine.Deploy.Rule.ISO
 可通过添加更多的部署标记来进行干预部署过程，激活首次部署：
 .\Engine.ps1 -Force
 
-
+<br>
 * 共享部署标记
 
 | 路径             | 部署标记               | 描述 |
@@ -171,7 +171,7 @@ Download template: Engine.Deploy.Rule.ISO
 
 下载模板：Engine.Deploy.Rule.ISO
 
-
+<br>
 * 第一部分：先决部署
 
 | 可分配路径                     | 部署标记               | 描述 |
@@ -185,7 +185,7 @@ Download template: Engine.Deploy.Rule.ISO
 | \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | 阻止清理未使用的语言包 |
 | \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。|
 
-
+<br>
 * 第二部分：完成首次部署
 
 | 可分配路径                     | 部署标记               | 描述 |

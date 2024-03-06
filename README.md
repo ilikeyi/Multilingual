@@ -22,12 +22,13 @@ Available languages
             <dd>c.2  重新指定更新服务器：$PreServerList。</dd>
          </dl>
       </dd>
+
+<br>
       <dd>4.4. 运行：.\_Create.Upgrade.Package.ps1</dd>
    </dl>
 </ul>
 
-
-
+<br>
 <ul>5. 自定义部署：
    <dl>
       <dd>4.1. 获取已安装的语言包，自动添加；</dd>
@@ -57,8 +58,8 @@ Available languages
       </dd>
    </dl>
 </ul>
-<br>
 
+<br>
 <ul>5. 如何自定义创建升级包</ul>
 <ul></ul>
 

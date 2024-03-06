@@ -11,9 +11,22 @@ Available languages
 <ul>1. 支持在线升级；</ul>
 <ul>2. 修改脚本后支持热刷新；</ul>
 <ul>3. 根据描述文件来实现部署规则；</ul>
-<ul>4. 如何自定义创建升级包</ul>
-<ul></ul>
-<ul></ul>
+<ul>4. 如何自定义创建升级包
+   <dl>
+      <dd>4.1. 继续使用当前版本请跳过修改，例如当前版本号：1.0.0.0，创建为新的版本号：2.0.0.0，打开 \Multilingual\Modules\Engine.psd1，修改“ModuleVersion”为：2.0.0.0</dd>
+      <dd>4.2. 将 Modules\1.0.0.0 目录修改为 2.0.0.0，注意：1.0.0.0 请根据每版本号进行更改。</dd>
+      <dd>4.3. 重新指定升级服务器，修改 URL 连接：
+         <dl>
+            <dd>打开：Modules\1.0.0.0\Functions\Base\Update\Engine.Update.psm1，更改：</dd>
+            <dd>c.1  修改最低要求版本号：$Global:ChkLocalver，如果支持滑行升级可从 1.0.0.0 开始，如果脚本最低要求 2.0.0.0 开始，请更改为 2.0.0.0；</dd>
+            <dd>c.2  重新指定更新服务器：$PreServerList。</dd>
+         </dl>
+      </dd>
+      <dd>4.4. 运行：.\_Create.Upgrade.Package.ps1</dd>
+   </dl>
+</ul>
+
+
 
 <ul>5. 自定义部署：
    <dl>
@@ -21,7 +34,7 @@ Available languages
       <dd>4.2. 添加过程中，自动判断 S、SN 版，按规则添加；</dd>
       <dd>4.3. 部署时自动添加机制：
          <dl>
-            <dd>a. 遇到单语版时，
+            <dd>4.3.1. 遇到单语版时，
                <dl>
                   <dd>仅单语时，自动添加当前语言为全局首选；</dd>
                   <dd>单语版包含多语言包时，
@@ -33,7 +46,9 @@ Available languages
                   </dd>
                </dl>
             </dd>
-            <dd>b. 遇到多语版时，
+
+<br>
+            <dd>4.3.2. 遇到多语版时，
                <dl>
                   <dd>添加首选语言后，自动添加已安装的所有语言。</dd>
                </dl>
@@ -44,27 +59,13 @@ Available languages
 </ul>
 <br>
 
+<ul>5. 如何自定义创建升级包</ul>
+<ul></ul>
 
 
 <br>
 
 
-
-<br>
-
-5. 如何自定义创建升级包
-
-   5.1. 继续使用当前版本请跳过修改，例如当前版本号：1.0.0.0，创建为新的版本号：2.0.0.0，
-     打开 \Multilingual\Modules\Engine.psd1，修改“ModuleVersion”为：2.0.0.0
-
-   5.2. 将 Modules\1.0.0.0 目录修改为 2.0.0.0，注意：1.0.0.0 请根据每版本号进行更改。
-
-   5.3. 重新指定升级服务器，修改 URL 连接：
-     打开：Modules\1.0.0.0\Functions\Base\Update\Engine.Update.psm1，更改：
-     c.1  修改最低要求版本号：$Global:ChkLocalver，如果支持滑行升级可从 1.0.0.0 开始，如果脚本最低要求 2.0.0.0 开始，请更改为 2.0.0.0；
-     c.2  重新指定更新服务器：$PreServerList。
-
-   5.4. 运行：.\_Create.Upgrade.Package.ps1
 
 
 部署引擎分为多部分

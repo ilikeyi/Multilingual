@@ -1,7 +1,7 @@
 Available languages
 -
  * United States - English
- * 简体中文 - 中国
+ * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/Learn/DeploymentTag/Readme.zh-CN.md)
 
 <br>
 <h4><pre>The deployment engine is divided into multiple parts</pre></h4>

@@ -1,22 +1,22 @@
 Available languages
 -
  * United States - English
- * 简体中文 - 中国
+ * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Custom.upgrade.package/Readme.zh-CN.md)
 
-<h4><pre>如何自定义创建升级包</pre></h4>
+<h4><pre>How to custom create an upgrade package</pre></h4>
 
-<ul>1. 继续使用当前版本请跳过修改，例如当前版本号：1.0.0.0，创建为新的版本号：2.0.0.0，打开 \Multilingual\Modules\Engine.psd1，修改“ModuleVersion”为：2.0.0.0</ul>
-<ul>2. 将 Modules\1.0.0.0 目录修改为 2.0.0.0，注意：1.0.0.0 请根据每版本号进行更改。</ul>
-<ul>3. 重新指定升级服务器，修改 URL 连接：
+<ul>1. Please skip the modification to continue using the current version. For example, the current version number: 1.0.0.0, create a new version number: 2.0.0.0, open \Multilingual\Modules\Engine.psd1, modify "ModuleVersion" to: 2.0.0.0</ul>
+<ul>2. Modify the Modules\1.0.0.0 directory to 2.0.0.0. Note: Please change 1.0.0.0 according to each version number.</ul>
+<ul>3. Re-specify the upgrade server and modify the URL connection:
    <dl>
-      <dd>打开：Modules\1.0.0.0\Functions\Base\Update\Engine.Update.psm1，更改：</dd>
-      <dd>3.1.  修改最低要求版本号：MinimumVersion，如果支持滑行升级可从 1.0.0.0 开始，如果脚本最低要求 2.0.0.0 开始，请更改为 2.0.0.0；</dd>
-      <dd>3.2.  重新指定更新服务器：$PreServerList。</dd>
+      <dd>Open: Modules\1.0.0.0\Functions\Base\Update\Engine.Update.psm1, change:</dd>
+      <dd>3.1.  Modify the minimum required version number: MinimumVersion. If sliding upgrade is supported, it can start from 1.0.0.0. If the script requires minimum 2.0.0.0, please change it to 2.0.0.0;</dd>
+      <dd>3.2.  Respecify update server: $PreServerList.</dd>
    </dl>
 </ul>
 
 <br>
-<ul>4. 运行：.\_Create.Upgrade.Package.ps1</ul>
+<ul>4. Run: .\_Create.Upgrade.Package.ps1</ul>
 
 ## License
 

@@ -18,11 +18,11 @@ Available languages
 </ul>
 
 <br>
-<ul>5. 自定义部署：
+<ul>5. 自定义部署机制
    <dl>
       <dd>4.1. 获取已安装的语言包，自动添加；</dd>
       <dd>4.2. 添加过程中，自动判断 S、SN 版，按规则添加；</dd>
-      <dd>4.3. 部署时自动添加机制：
+      <dd>4.3. 自动添加机制：
          <dl>
             <dd>4.3.1. 遇到单语版时，
                <dl>
@@ -49,7 +49,7 @@ Available languages
 </ul>
 
 <br>
-<ul>6. 部署标记</ul>
+<ul>6. 自定义部署标记</ul>
 <ul>
 
 [学习：使用部署标记干预部署过程](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)</ul>

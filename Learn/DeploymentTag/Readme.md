@@ -1,3 +1,9 @@
+Available languages
+-
+ * United States - English
+ * 简体中文 - 中国
+
+<br>
 <h4><pre>The deployment engine is divided into multiple parts</pre></h4>
 <ul>You can intervene in the deployment process by adding more deployment tags to activate the first deployment: .\Engine.ps1 -Force</ul>
 

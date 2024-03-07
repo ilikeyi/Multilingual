@@ -1,46 +1,46 @@
 Available languages
 -
  * United States - English
- * 简体中文 - 中国
+ * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/Readme.zh-CN.md)
 
 <br>
 
-全自动添加 Windows 系统已安装的语言
+Fully automatic addition of languages already installed on Windows systems
 
-<h4><pre>主要功能：</pre></h4>
-<ul>1. 支持在线升级；</ul>
-<ul>2. 修改脚本后支持热刷新；</ul>
-<ul>3. 根据描述文件来实现部署规则；</ul>
-<ul>4. 自定义创建升级包</ul>
+<h4><pre>The main function: </pre></h4>
+<ul>1. Support online upgrade;</ul>
+<ul>2. Support hot refresh after modifying the script;</ul>
+<ul>3. Implement deployment rules according to description files;</ul>
+<ul>4. Customized creation of upgrade packages</ul>
 <ul>
 
-[学习：如何创建自定义升级包](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Custom.upgrade.package/Readme.md)
+[Learn: How to create a custom upgrade package](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Custom.upgrade.package/Readme.md)
 </ul>
 
 <br>
-<ul>5. 自定义部署机制
+<ul>5. Custom deployment mechanism
    <dl>
-      <dd>4.1. 获取已安装的语言包，自动添加；</dd>
-      <dd>4.2. 添加过程中，自动判断 S、SN 版，按规则添加；</dd>
-      <dd>4.3. 自动添加机制：
+      <dd>4.1. Get the installed language pack and add it automatically;</dd>
+      <dd>4.2. During the adding process, the S and SN versions are automatically determined and added according to the rules;</dd>
+      <dd>4.3. Automatic addition mechanism: 
          <dl>
-            <dd>4.3.1. 遇到单语版时，
+            <dd>4.3.1. When encountering the monolingual version, 
                <dl>
-                  <dd>仅单语时，自动添加当前语言为全局首选；</dd>
-                  <dd>单语版包含多语言包时，
+                  <dd>When only single language is used, the current language is automatically added as the global preferred language; </dd>
+                  <dd>When the monolingual version contains multi-language packages, 
                      <dl>
-                        <dd>添加首选语言后，获取等待添加的语言里有 en-US 时，则优先添加为第二语言；</dd>
-                        <dd>如果没有 en-US 时，随机选择已安装的语言为第二语言。</dd>
-                        <dd>例如单语版本标记：CoreSingleLanguage, CoreCountrySpecific</dd>
+                        <dd>After adding the preferred language, if en-US is among the languages waiting to be added, it will be added as the second language first;</dd>
+                        <dd>If there is no en-US, the installed language is randomly selected as the second language.</dd>
+                        <dd>For example, monolingual version markup: CoreSingleLanguage, CoreCountrySpecific</dd>
                      </dl>
                   </dd>
                </dl>
             </dd>
 
 <br>
-            <dd>4.3.2. 遇到多语版时，
+            <dd>4.3.2. When encountering the multilingual version,
                <dl>
-                  <dd>添加首选语言后，自动添加已安装的所有语言。</dd>
+                  <dd>After adding your preferred language, all installed languages are automatically added.</dd>
                </dl>
             </dd>
          </dl>
@@ -49,10 +49,10 @@ Available languages
 </ul>
 
 <br>
-<ul>6. 自定义部署标记</ul>
+<ul>6. Custom deployment tags</ul>
 <ul>
 
-[学习：使用部署标记干预部署过程](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)</ul>
+[Learn: Use deployment tags to intervene in the deployment process](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)</ul>
 
 <br>
 

@@ -1,3 +1,10 @@
+Available languages
+-
+ * [United States - English](https://github.com/ilikeyi/Multilingual/blob/main/Learn/DeploymentTag/Readme.md)
+ * 简体中文 - 中国
+
+<br>
+
 <h4><pre>部署引擎分为多部分</pre></h4>
 <ul>可通过添加更多的部署标记来进行干预部署过程，激活首次部署：.\Engine.ps1 -Force</ul>
 

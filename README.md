@@ -60,28 +60,22 @@ Available languages
 </ul>
 
 <br>
-<ul>5. 如何自定义创建升级包</ul>
-<ul></ul>
 
-
-<br>
-
-
-
-
-部署引擎分为多部分
--
-可通过添加更多的部署标记来进行干预部署过程，激活首次部署：
-.\Engine.ps1 -Force
+<h4><pre>部署引擎分为多部分</pre></h4>
+<ul>可通过添加更多的部署标记来进行干预部署过程，激活首次部署：.\Engine.ps1 -Force</ul>
 
 <br>
 * 共享部署标记
+<br>
+<dl><dd>
 
 | 路径             | 部署标记               | 描述 |
 |------------------|-----------------------|---|
 | \Deploy\Allow    | Is_Mark_Sync          | 允许全盘搜索并同步部署标记 |
 
+
 允许全盘搜索并同步部署标记时，你可以在其它任意磁盘存放部署标记，可允许部署和不允许部署，例如：
+
    1、优先判断部署标记为：
       D:\Yi\Deploy\Not Allowed\Auto_Update
 
@@ -93,8 +87,12 @@ Available languages
 
 下载模板：Engine.Deploy.Rule.ISO
 
+</dl></dl>
+
 <br>
 * 第一部分：先决部署
+<br>
+<dl><dd>
 
 | 可分配路径                     | 部署标记               | 描述 |
 |-------------------------------|-----------------------|---|
@@ -107,8 +105,13 @@ Available languages
 | \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | 阻止清理未使用的语言包 |
 | \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。|
 
+<dd></dl>
+
 <br>
 * 第二部分：完成首次部署
+<br>
+
+<dl><dd>
 
 | 可分配路径                     | 部署标记               | 描述 |
 |-------------------------------|-----------------------|---|
@@ -119,6 +122,7 @@ Available languages
 | \Deploy\{allow, Not Allowed}  | Clear_Engine          | 删除部署引擎，保留其它 |
 | \Deploy\{allow, Not Allowed}  | First_Experience_Reboot | 重新启动计算机<br>部署完成后没有重要的事件，建议您取消。 |
 
+<dd></dl>
 
 
 ## License

@@ -18,7 +18,7 @@ Available languages
       <dd>4.3. 重新指定升级服务器，修改 URL 连接：
          <dl>
             <dd>打开：Modules\1.0.0.0\Functions\Base\Update\Engine.Update.psm1，更改：</dd>
-            <dd>c.1  修改最低要求版本号：$Global:ChkLocalver，如果支持滑行升级可从 1.0.0.0 开始，如果脚本最低要求 2.0.0.0 开始，请更改为 2.0.0.0；</dd>
+            <dd>c.1  修改最低要求版本号：MinimumVersion，如果支持滑行升级可从 1.0.0.0 开始，如果脚本最低要求 2.0.0.0 开始，请更改为 2.0.0.0；</dd>
             <dd>c.2  重新指定更新服务器：$PreServerList。</dd>
          </dl>
       </dd>

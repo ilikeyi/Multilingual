@@ -1,63 +1,63 @@
-<h4><pre>部署引擎分为多部分</pre></h4>
-<ul>可通过添加更多的部署标记来进行干预部署过程，激活首次部署：.\Engine.ps1 -Force</ul>
+<h4><pre>The deployment engine is divided into multiple parts</pre></h4>
+<ul>You can intervene in the deployment process by adding more deployment tags to activate the first deployment: .\Engine.ps1 -Force</ul>
 
 <br>
-* 共享部署标记
+* Shared deployment tags
 <br>
 <dl><dd>
 
-| 路径             | 部署标记               | 描述 |
+| Path | Deployment tag | Description |
 |------------------|-----------------------|---|
-| \Deploy\Allow    | Is_Mark_Sync          | 允许全盘搜索并同步部署标记 |
+| \Deploy\Allow    | Is_Mark_Sync          | Allow global search and synchronization of deployment tags |
 
 
-允许全盘搜索并同步部署标记时，你可以在其它任意磁盘存放部署标记，可允许部署和不允许部署，例如：
+When allowing full disk search and synchronization of deployment marks, you can store deployment marks on any other disk, allowing deployment or disallowing deployment, for example:
 
-   1、优先判断部署标记为：
+   1. Prioritize the deployment mark as:
       D:\Yi\Deploy\Not Allowed\Auto_Update
 
-   2、继续判断：D:\Yi\Deploy\Allow\Auto_Update
+   2. Continue to judge: D:\Yi\Deploy\Allow\Auto_Update
 
-   3、继续判断部署引擎脚本存放目录下的 Deploy 目录。
+   3. Continue to determine the Deploy directory under the directory where the deployment engine script is stored.
 
-不允许全盘搜索并同步部署标记时，仅识别部署引擎脚本存放目录下的 Deploy 目录。
+When full search and deployment mark synchronization are not allowed, only the Deploy directory under the directory where the deployment engine script is stored is recognized.
 
-下载模板：Engine.Deploy.Rule.ISO
+Download template: Engine.Deploy.Rule.ISO
 
 </dl></dl>
 
 <br>
-* 第一部分：先决部署
+* Part 1: Prerequisite deployment
 <br>
 <dl><dd>
 
-| 可分配路径                     | 部署标记               | 描述 |
+| Assignable path               | Deployment tag        | Description |
 |-------------------------------|-----------------------|---|
-| \Deploy\{allow, Not Allowed}  | Auto_Update           | 允许自动更新 |
-| \Deploy\{allow, Not Allowed}  | Use_UTF8              | Beta 版：使用 Unicode UTF-8 提供全球语言支持 |
-| \Deploy\Regional              | 区域标记               | 更改系统区域设置 |
-| \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | 网络位置向导 |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Appx_Tasks | Appx 清理维护任务 |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_On_Demand_Language | 阻止清理未使用的按需功能语言包 |
-| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | 阻止清理未使用的语言包 |
-| \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | 重新启动计算机<br>完成先决部署后重新启动计算机，可解决需重启才生效的问题。|
+| \Deploy\{allow, Not Allowed}  | Auto_Update           | Allow automatic updates |
+| \Deploy\{allow, Not Allowed}  | Use_UTF8              | Beta: Use Unicode UTF-8 to provide global language support |
+| \Deploy\Regional              | Zone marker           | Change system locale |
+| \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | Network Location Wizard |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Appx_Tasks | Appx cleanup maintenance tasks |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_On_Demand_Language | Prevent cleanup of unused feature-on-demand language packs |
+| \Deploy\{allow, Not Allowed}  | Disable_Cleanup_Unsed_Language | Prevent cleaning of unused language packs |
+| \Deploy\{allow, Not Allowed}  | Prerequisites_Reboot  | Restart the computer<br>Restarting the computer after completing the prerequisite deployment can solve the problem that needs to be restarted to take effect. |
 
 <dd></dl>
 
 <br>
-* 第二部分：完成首次部署
+* Part 2: Complete the first deployment
 <br>
 
 <dl><dd>
 
-| 可分配路径                     | 部署标记               | 描述 |
+| Assignable path               | Deployment tag        | Description |
 |-------------------------------|-----------------------|---|
-| \Deploy\{allow, Not Allowed}  | Popup_Engine          | 允许首次弹出部署引擎主界面 |
-| \Deploy\{allow, Not Allowed}  | Allow_First_Pre_Experience | 允许首次预体验，按计划 |
-| \Deploy\{allow, Not Allowed}  | Reset_Execution_Policy | 恢复 PowerShell 执行策略：受限 |
-| \Deploy\{allow, Not Allowed}  | Clear_Solutions       | 删除整个解决方案 |
-| \Deploy\{allow, Not Allowed}  | Clear_Engine          | 删除部署引擎，保留其它 |
-| \Deploy\{allow, Not Allowed}  | First_Experience_Reboot | 重新启动计算机<br>部署完成后没有重要的事件，建议您取消。 |
+| \Deploy\{allow, Not Allowed}  | Popup_Engine          | Allow the main interface of the deployment engine to pop up for the first time |
+| \Deploy\{allow, Not Allowed}  | Allow_First_Pre_Experience | Allow the first pre-experience, as planned |
+| \Deploy\{allow, Not Allowed}  | Reset_Execution_Policy | Recovery PowerShell execution strategy: restricted |
+| \Deploy\{allow, Not Allowed}  | Clear_Solutions       | Delete the entire solution |
+| \Deploy\{allow, Not Allowed}  | Clear_Engine          | Delete the deployment engine, keep the others |
+| \Deploy\{allow, Not Allowed}  | First_Experience_Reboot | Restart the computer<br>After the deployment is complete, there are no important events. It is recommended that you cancel. |
 
 <dd></dl>
 

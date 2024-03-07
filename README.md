@@ -47,6 +47,8 @@ Available languages
       </dd>
    </dl>
 </ul>
+<ul>6. 部署标记</ul>
+<ul>[学习：使用部署标记干预部署过程](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)</ul>
 
 <br>
 

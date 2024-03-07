@@ -5,8 +5,8 @@ Available languages
 
 <br>
 
-<h4><pre>部署引擎分为多部分</pre></h4>
-<ul>可通过添加更多的部署标记来进行干预部署过程，激活首次部署：.\Engine.ps1 -Force</ul>
+<h4><pre>使用部署标记干预部署过程</pre></h4>
+<ul>部署引擎分为多部分，可通过添加更多的部署标记来进行干预部署过程，激活首次部署：.\Engine.ps1 -Force</ul>
 
 <br>
 * 共享部署标记

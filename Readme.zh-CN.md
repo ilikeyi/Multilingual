@@ -13,6 +13,8 @@ Available languages
 * PowerShell 5.1
     * 需要 Windows 11、Windows 10、Windows Server 2022、Windows Server vNext 或系统默认自带的 5.1 版本，可选升级最新版 PowerShell 7。
 
+<br>
+
 * PowerShell 7
     * 获取最新版，前往 https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows 后，选择需要下载的版本，下载后并安装。
 
@@ -37,10 +39,10 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 <ul>1. 支持在线升级；</ul>
 <ul>2. 修改脚本后支持热刷新；</ul>
 <ul>3. 自定义创建升级包</ul>
-<ul>
+<ul><dl><dd>
 
 [学习：如何创建自定义升级包](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Custom.upgrade.package/Readme.md)
-</ul>
+</ul></dl></dd>
 
 <br>
 <ul>4. 自定义部署机制
@@ -76,9 +78,10 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
 <br>
 <ul>5. 自定义部署标记</ul>
-<ul>
+<ul><dl><dd>
 
-[学习：使用部署标记干预部署过程](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)</ul>
+[学习：使用部署标记干预部署过程](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)
+</ul></dl></dd>
 
 <br>
 

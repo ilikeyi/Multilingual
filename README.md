@@ -13,6 +13,8 @@ Fully automatic addition of languages already installed on Windows systems
 * PowerShell 5.1
     * Requires Windows 11, Windows 10, Windows Server 2022, Windows Server vNext or the 5.1 version that comes with the system by default. You can optionally upgrade to the latest version of PowerShell 7.
 
+<br>
+
 * PowerShell 7
     * To get the latest version, go to https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows, select the version you want to download, download and install.
 
@@ -37,10 +39,10 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 <ul>1. Support online upgrade;</ul>
 <ul>2. Support hot refresh after modifying the script;</ul>
 <ul>3. Customized creation of upgrade packages</ul>
-<ul>
+<ul><dl><dd>
 
 [Learn: How to create a custom upgrade package](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Custom.upgrade.package/Readme.md)
-</ul>
+</ul></dl></dd>
 
 <br>
 <ul>4. Custom deployment mechanism
@@ -76,9 +78,10 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
 <br>
 <ul>5. Custom deployment tags</ul>
-<ul>
+<ul><dl><dd>
 
-[Learn: Use deployment tags to intervene in the deployment process](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)</ul>
+[Learn: Use deployment tags to intervene in the deployment process](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Deployment.Tag)
+</ul></dl></dd>
 
 <br>
 

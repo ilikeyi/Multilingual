@@ -7,6 +7,36 @@ Available languages
 
 Fully automatic addition of languages already installed on Windows systems
 
+<br>
+
+Yi's Optimiz Private
+
+<h4><pre>要求：</pre></h4>
+<p>PowerShell 版本</p>
+
+* PowerShell 5.1
+    * 需要 Windows 11、Windows 10、Windows Server 2022、Windows Server vNext 或系统默认自带的 5.1 版本，可选升级最新版 PowerShell 7。
+
+* PowerShell 7
+    * 获取最新版，前往 https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows 后，选择需要下载的版本，下载后并安装。
+
+<br>
+
+<h4><pre>命令行</pre></h4>
+
+* 可选“Terminal ”或“PowerShell ISE”，未安装“Terminal”，请前往 https://github.com/microsoft/terminal/releases 后下载；
+
+* 以管理员身份打开“Terminal”或“PowerShell ISE”，设置 PowerShell 执行策略：绕过，PS 命令行：
+
+```
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+```
+
+   * 下载完成后，解压到任意盘，例如解压到：D:\Yi.Optimiz.Private
+
+   * 找到 D:\Yi.Optimiz.Private\Engine\Engine.ps1 后，点击文件右键，选择以 PowerShell 运行，或复制路径，粘贴到“Terminal ”或“PowerShell ISE”里运行，带冒号的路径，在命令行添加  & 字符，示例：& "D:\Yi.Optimiz.Private\Engine\Engine.ps1"
+
+<br>
 <h4><pre>The main function: </pre></h4>
 <ul>1. Support online upgrade;</ul>
 <ul>2. Support hot refresh after modifying the script;</ul>

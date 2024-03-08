@@ -7,10 +7,6 @@ Available languages
 
 Fully automatic addition of languages already installed on Windows systems
 
-<br>
-
-Yi's Optimiz Private
-
 <h4><pre>Require</pre></h4>
 <p>PowerShell Version</p>
 

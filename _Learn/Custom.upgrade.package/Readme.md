@@ -5,7 +5,7 @@ Available languages
 
 <h4><pre>How to custom create an upgrade package</pre></h4>
 
-<ul>1. Please skip the modification to continue using the current version. For example, the current version number: 1.0.0.0, create a new version number: 2.0.0.0, open \Multilingual\Modules\Engine.psd1, modify "ModuleVersion" to: 2.0.0.0</ul>
+<ul>1. Please skip the modification to continue using the current version. For example, the current version number: 1.0.0.0, create a new version number: 2.0.0.0, open \Modules\Engine.psd1, modify "ModuleVersion" to: 2.0.0.0</ul>
 <ul>2. Modify the Modules\1.0.0.0 directory to 2.0.0.0. Note: Please change 1.0.0.0 according to each version number.</ul>
 <ul>3. Re-specify the upgrade server and modify the URL connection:
    <dl>

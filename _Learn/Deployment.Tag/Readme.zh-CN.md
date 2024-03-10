@@ -1,6 +1,6 @@
 Available languages
 -
- * [United States - English](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Deployment.Tag/Readme.md)
+ * [United States - English](https://github.com/ilikeyi/Multilingual/blob/main/_Learn/Deployment.Tag/Readme.md)
  * 简体中文 - 中国
 
 <br>

@@ -1,7 +1,7 @@
 Available languages
 -
  * United States - English
- * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Deployment.Tag/Readme.zh-CN.md)
+ * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/_Learn/Deployment.Tag/Readme.zh-CN.md)
 
 <br>
 <h4><pre>Intervene in the deployment process using deployment tags</pre></h4>

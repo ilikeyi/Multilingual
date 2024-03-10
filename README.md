@@ -1,7 +1,7 @@
 Available languages
 -
  * United States - English
- * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/Readme.zh-CN.md)
+ * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/_Learn/Readme.zh-CN.md)
 
 <br>
 

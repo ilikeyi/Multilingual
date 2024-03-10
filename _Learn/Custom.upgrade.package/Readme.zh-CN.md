@@ -5,7 +5,7 @@ Available languages
 
 <h4><pre>如何自定义创建升级包</pre></h4>
 
-<ul>1. 继续使用当前版本请跳过修改，例如当前版本号：1.0.0.0，创建为新的版本号：2.0.0.0，打开 \Multilingual\Modules\Engine.psd1，修改“ModuleVersion”为：2.0.0.0</ul>
+<ul>1. 继续使用当前版本请跳过修改，例如当前版本号：1.0.0.0，创建为新的版本号：2.0.0.0，打开 \\Modules\Engine.psd1，修改“ModuleVersion”为：2.0.0.0</ul>
 <ul>2. 将 Modules\1.0.0.0 目录修改为 2.0.0.0，注意：1.0.0.0 请根据每版本号进行更改。</ul>
 <ul>3. 重新指定升级服务器，修改 URL 连接：
    <dl>

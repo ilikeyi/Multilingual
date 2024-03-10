@@ -1,7 +1,7 @@
 Available languages
 -
  * United States - English
- * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/Learn/Custom.upgrade.package/Readme.zh-CN.md)
+ * [简体中文 - 中国](https://github.com/ilikeyi/Multilingual/blob/main/_Learn/Custom.upgrade.package/Readme.zh-CN.md)
 
 <h4><pre>How to custom create an upgrade package</pre></h4>
 

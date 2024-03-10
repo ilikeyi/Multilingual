@@ -1,6 +1,6 @@
 Available languages
 -
- * [United States - English](https://github.com/ilikeyi/Multilingual/tree/main/Learn/Custom.upgrade.package)
+ * [United States - English](https://github.com/ilikeyi/Multilingual/tree/main/_Learn/Custom.upgrade.package)
  * 简体中文 - 中国
 
 <h4><pre>如何自定义创建升级包</pre></h4>

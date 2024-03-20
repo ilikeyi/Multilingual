@@ -56,7 +56,7 @@ Language -Auto
 	.Prerequisites
 	.先决条件
 #>
-Requirements
+Prerequisite
 
 <#
 	.启用日志记录并将其保存在脚本文件夹中。
@@ -183,7 +183,7 @@ Function Update_Create_UI
 	Write-Host "`n   Author: $((Get-Module -Name Engine).Author) ( $((Get-Module -Name Engine).HelpInfoURI) )
 
    From: $((Get-Module -Name Engine).Author)'s Solutions
-   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.230429-1208`n"
+   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.2024.04.18`n"
 
 	Write-Host "   $($lang.UpdateCreate)`n   $('-' * 80)"
 
@@ -201,6 +201,7 @@ Function Update_Create_UI
 		MinimizeBox    = $False
 		ControlBox     = $False
 		BackColor      = "#ffffff"
+		FormBorderStyle = "Fixed3D"
 	}
 	$GUIUpdateVersion  = New-Object system.Windows.Forms.Label -Property @{
 		Location       = "12,15"
@@ -425,7 +426,6 @@ Function Update_Create_UI
 		}
 	}
 
-	$GUIUpdate.FormBorderStyle = 'Fixed3D'
 	$GUIUpdate.ShowDialog() | Out-Null
 }
 
@@ -583,7 +583,7 @@ Function Update_Create_Version
 		"url":  "$((Get-Module -Name Engine).HelpInfoURI)"
 	},
 	"version": {
-		"buildstring": "$($CurrentVersion).bs_release.230429-1208",
+		"buildstring": "$($CurrentVersion).bs_release.2024.04.18",
 		"version":     "$($CurrentVersion)",
 		"minau":       "$($LowVer)"
 	},

@@ -1694,7 +1694,7 @@ Function Language_Region
 	$LanguageFull = @()
 
 	ForEach ($item in $Global:Languages_Available) {
-		if (($LanguageFull.Region) -NotContains $item.Region) {
+		if ($LanguageFull.Region -NotContains $item.Region) {
 			$LanguageFull += @{
 				RegionID = $item.RegionID
 				Region   = $item.Region
@@ -1707,7 +1707,7 @@ Function Language_Region
 
 		if ($item.Expand.Count -gt 0) {
 			ForEach ($itemExpand in $item.Expand) {
-				if (($LanguageFull.Region) -NotContains $itemExpand.Region) {
+				if ($LanguageFull.Region -NotContains $itemExpand.Region) {
 					$LanguageFull += @{
 						RegionID = $itemExpand.RegionID
 						Region   = $itemExpand.Region
@@ -1822,6 +1822,7 @@ Function Language_Select_GUI
 		MinimizeBox    = $False
 		ControlBox     = $False
 		BackColor      = "#ffffff"
+		FormBorderStyle = "Fixed3D"
 	}
 	$GUISelectLanguagePanel = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		Height         = 530
@@ -1938,7 +1939,6 @@ Function Language_Select_GUI
 		}
 	}
 
-	$GUISelectLanguage.FormBorderStyle = 'Fixed3D'
 	$GUISelectLanguage.ShowDialog() | Out-Null
 }
 

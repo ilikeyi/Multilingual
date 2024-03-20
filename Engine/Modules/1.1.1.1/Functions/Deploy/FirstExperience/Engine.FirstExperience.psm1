@@ -46,6 +46,7 @@ Function FirstExperience_Setting_UI
 		MinimizeBox    = $False
 		ControlBox     = $False
 		BackColor      = "#ffffff"
+		FormBorderStyle = "Fixed3D"
 	}
 	$GUIFEPanel        = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		Height         = 520
@@ -351,7 +352,6 @@ Function FirstExperience_Setting_UI
 		}
 	}
 
-	$GUIFE.FormBorderStyle = 'Fixed3D'
 	$GUIFE.ShowDialog() | Out-Null
 }
 

@@ -98,7 +98,7 @@ Function Language_Setting
 				.Determine whether there is en-US, and if there is, it is added as a second language first
 				.判断是否有 en-US，有则优先添加为第二语言
 			#>
-			if (($initWaitRandomlyLang) -Contains "en-US") {
+			if ($initWaitRandomlyLang -Contains "en-US") {
 				Language_Process -NewLang "en-US"
 				Write-Host "`n   $($lang.AddTo): en-US"
 			} else {

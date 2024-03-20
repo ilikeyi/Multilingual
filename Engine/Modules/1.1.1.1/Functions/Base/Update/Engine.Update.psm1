@@ -80,6 +80,7 @@ Function Update_Setting_UI
 		MinimizeBox    = $False
 		ControlBox     = $False
 		BackColor      = "#ffffff"
+		FormBorderStyle = "Fixed3D"
 	}
 	$UI_Main_Auto_Select = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
@@ -251,7 +252,6 @@ Function Update_Setting_UI
 		}
 	}
 
-	$UI_Main.FormBorderStyle = 'Fixed3D'
 	$UI_Main.ShowDialog() | Out-Null
 }
 

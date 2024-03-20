@@ -162,7 +162,10 @@ Function Archive
 	)
 
 	$filename = Convert-Path $filename -ErrorAction SilentlyContinue
-	$to = Convert-Path $to -ErrorAction SilentlyContinue
+
+	if (Test-Path -Path $to -PathType leaf) {
+		$to = Convert-Path $to -ErrorAction SilentlyContinue
+	}
 
 	Write-Host "   $($filename)"
 	Write-host "   $($to)"
@@ -171,12 +174,30 @@ Function Archive
 	$Verify_Install_Path = Get_Zip -Run "7z.exe"
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		if (([string]::IsNullOrEmpty($Password))) {
-			$arguments = "x ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
+			$arguments = @(
+				"x",
+				"-r",
+				"-tzip",
+				$filename,
+				"-o""$($to)""",
+				"-y";
+			)
+
+			Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 		} else {
-			$arguments = "x ""-p$Password"" ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
+			$arguments = @(
+				"x",
+				"-p$($Password)"
+				"-r",
+				"-tzip",
+				$filename,
+				"-o""$($to)""",
+				"-y";
+			)
+
+			Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 		}
 
-		Start-Process $Verify_Install_Path "$arguments" -Wait -WindowStyle Minimized
 		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	} else {
 		Expand-Archive -LiteralPath $filename -DestinationPath $to -force

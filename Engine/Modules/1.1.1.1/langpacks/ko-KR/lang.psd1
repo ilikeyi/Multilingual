@@ -12,7 +12,7 @@
 	Inoperable                = 작동 불가
 	SwitchLanguage            = 언어 전환
 	RefreshModules            = 모듈 다시로드
-	Choose                    = 선택하세요
+	PleaseChoose              = 선택하세요
 	FailedCreateFolder        = 디렉터리 생성 실패:
 	ToMsg                     = \n   {0} 몇 초 후 자동으로 주 메뉴로 돌아갑니다.
 	ToQuit                    = \n   {0} 몇 초 안에 메인 메뉴를 종료합니다.

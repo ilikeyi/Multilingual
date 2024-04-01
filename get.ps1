@@ -374,12 +374,7 @@ ForEach ($item in $Script:PreServerList) {
 			if (TestArchive -Path $NewFilePath) {
 				Archive -filename $NewFilePath -to $New_Root_Disk_Full_Solutions
 
-				$Route_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\Modules\Router\Yi.ps1" -ErrorAction SilentlyContinue
-				if (Test-Path -Path $Route_PS -PathType leaf) {
-					powershell -file $Route_PS -Add
-				}
-
-				$Solutions_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\_Sip.ps1" -ErrorAction SilentlyContinue
+				$Solutions_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "Engine.ps1" -ErrorAction SilentlyContinue
 				if (Test-Path -Path $Solutions_PS -PathType leaf) {
 					powershell -file $Solutions_PS
 				}

@@ -21,7 +21,7 @@ irm https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 | iex
 
 b) Prioritize downloading from Yi node
 ```
-irm https://fengyi.tel/download/solutions/update/Multilingual/get.ps1 | iex
+irm https://fengyi.tel/mul | iex
 ```
 
 <p>When it cannot be downloaded, it will be automatically downloaded from other nodes and run automatically after the download is completed.</p>

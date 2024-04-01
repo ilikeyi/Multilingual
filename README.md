@@ -3,9 +3,17 @@ QUICK DOWNLOAD GUIDE
 
 Open "Terminal" or "PowerShell ISE" as an administrator, paste the following command line into the "Terminal" dialog box, and press Enter to start running;
 
-a) Prioritize downloading from Github node
+<br>
+
+Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+```
+
+<br>
+
+a) Prioritize downloading from Github node
+```
 irm https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 | iex
 ```
 
@@ -13,7 +21,6 @@ irm https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 | iex
 
 b) Prioritize downloading from Yi node
 ```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://fengyi.tel/download/solutions/update/Multilingual/get.ps1 | iex
 ```
 

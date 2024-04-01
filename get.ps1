@@ -327,7 +327,7 @@ Function TestArchive {
 }
 
 $New_Root_Disk = Install_Init_Disk_To
-$New_Root_Disk_Full_Solutions = "$($New_Root_Disk)YiSolutions"
+$New_Root_Disk_Full_Solutions = "$($New_Root_Disk)Multilingual"
 
 write-host "`n   Save to: " -ForegroundColor Yellow
 Write-Host "   $('-' * 80)"

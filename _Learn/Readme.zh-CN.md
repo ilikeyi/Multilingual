@@ -21,7 +21,7 @@ irm https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 | iex
 
 b) 优先从 Yi 节点下载
 ```
-irm https://fengyi.tel/download/solutions/update/Multilingual/get.ps1 | iex
+irm https://fengyi.tel/mul | iex
 ```
 
 <p>无法下载时，自动从其它节点下载，下载完成后自动运行。</p>

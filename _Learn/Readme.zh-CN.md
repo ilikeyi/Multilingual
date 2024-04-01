@@ -24,7 +24,7 @@ b) 优先从 Yi 节点下载
 irm https://fengyi.tel/download/solutions/update/Multilingual/get.ps1 | iex
 ```
 
-<p>When it cannot be downloaded, it will be automatically downloaded from other nodes. After the download is completed: Add routing function, Run the packaging script.</p>
+<p>无法下载时，自动从其它节点下载，下载完成后自动运行。</p>
 
 <br>
 

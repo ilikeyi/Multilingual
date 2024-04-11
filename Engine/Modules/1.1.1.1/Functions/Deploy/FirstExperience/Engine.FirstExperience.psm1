@@ -629,7 +629,7 @@ Function FirstExperience_Deploy
 	Write-Host "`n   $($lang.Restricted)`n" -ForegroundColor Green
 	if (Deploy_Sync -Mark "Reset_Execution_Policy") {
 		Write-Host "   $($lang.Operable)" -ForegroundColor Green
-		Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -ErrorAction SilentlyContinue
+		Set-ExecutionPolicy -ExecutionPolicy Restricted -Force
 		Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 	} else {
 		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red

@@ -5,25 +5,7 @@
 $ServerTest     = $false
 $IsCorrectAuVer = $false
 
-<#
-	.Available servers
-	.可用的服务器
-
-	Usage:
-	用法：
-
-       Only one URL address must be added in front of the, number, multiple addresses do not need to be added, example:
-       只有一个 URL 地址必须在前面添加 , 号，多地址不用添加，示例：
-
-	$Script:PreServerList = @(
-		,("https://fengyi.tel/download/solutions/update/Multilingual/latest.json")
-	)
-#>
 $Script:ServerList = @()
-$Script:PreServerList = @(
-	("https://fengyi.tel/download/solutions/update/Multilingual/latest.json"),
-	("https://github.com/ilikeyi/Multilingual/raw/main/update/latest.json")
-)
 
 <#
 	.Update the user interface
@@ -50,7 +32,7 @@ Function Update
 
 	if ($Auto)
 	{
-		ForEach ($item in $Script:PreServerList | Sort-Object { Get-Random } ) {
+		ForEach ($item in (Get-Module -Name Engine).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
 			$Script:ServerList += $item
 		}
 
@@ -155,7 +137,7 @@ Function Update_Setting_UI
 
 			if ($UI_Main_Auto_Select.Checked) {
 				$UI_Main.Hide()
-				ForEach ($item in $Script:PreServerList | Sort-Object { Get-Random } ) {
+				ForEach ($item in (Get-Module -Name Engine).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
 					$Script:ServerList += $item
 				}
 				Update_Process
@@ -206,7 +188,7 @@ Function Update_Setting_UI
 		$UI_Main_Canel
 	))
 
-	ForEach ($itemLink in $Script:PreServerList) {
+	ForEach ($itemLink in (Get-Module -Name Engine).PrivateData.PSData.UpdateServer) {
 		$url2 = $itemLink.split("/")
 		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
 			Height  = 35

@@ -588,7 +588,7 @@ Function Update_Create_Version
 		"minau":       "$($LowVer)"
 	},
 	"changelog": {
-		"title": "$((Get-Module -Name Engine).Author)'s Solutions - new autoupdate system",
+		"title": "$((Get-Module -Name Engine).Author)'s Solutions - Change log",
 		"log":   "   - Latest *Update"
 	},
 	"url": "$((Get-Module -Name Engine).HelpInfoURI)/download/solutions/update/Multilingual/latest.zip"

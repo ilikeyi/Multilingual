@@ -14,12 +14,16 @@
 
 	PrivateData = @{
 		PSData = @{
-			Tags = @("Multilingual")
-			# LicenseUri   = ''
+			Tags           = @("Multilingual")
+			LicenseUri   = 'https://opensource.org/license/mit'
 			ProjectUri   = 'https://github.com/ilikeyi/Multilingual'
 			# IconUri      = ''
 			# ReleaseNotes = ''
 			MinimumVersion = '1.0.0.0'
+			UpdateServer = @(
+				"https://fengyi.tel/download/solutions/update/Multilingual/latest.json"
+				"https://github.com/ilikeyi/Multilingual/raw/main/update/latest.json"
+			)
 		}
 	}
 	HelpInfoURI = 'https://fengyi.tel'

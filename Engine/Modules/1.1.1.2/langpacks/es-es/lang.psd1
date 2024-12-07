@@ -6,6 +6,7 @@
 	Mainname                  = Motor de implementación: agrega de forma totalmente automática los idiomas instalados en los sistemas Windows
 	Learn                     = Estudiar
 	AddTo                     = Añadir
+	Del                       = Borrar
 	Disable                   = Desactivar
 	Enabled                   = Permitir
 	Done                      = Finalizar
@@ -24,7 +25,7 @@
 	RefreshModules            = Actualización en caliente de todos los módulos
 	PleaseChoose              = Por favor seleccione
 	PleaseChooseMain          = Acceso directo o selección
-	FailedCreateFolder        = No se pudo crear el directorio:
+	FailedCreateFolder        = No se pudo crear el directorio
 	Failed                    = Fallar
 	ToMsg                     = \n   {0} Regresa automáticamente al menú principal después de unos segundos.
 	ToQuit                    = \n   {0} Salga del menú principal después de unos segundos.

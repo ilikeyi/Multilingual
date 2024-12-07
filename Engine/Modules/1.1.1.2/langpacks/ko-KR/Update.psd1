@@ -6,6 +6,7 @@
 	UpdateServerSelect        = 자동 서버 선택 또는 사용자 지정 선택
 	UpdateServerNoSelect      = 사용 가능한 서버를 선택하십시오
 	UpdateSilent              = 사용 가능한 업데이트가있을 때 자동 업데이트
+	UpdateClean               = 여가 시간에 이전 버전 청소 허용
 	ForceUpdate               = 강제 확인 및 업데이트
 	UpdateReset               = 이 솔루션 재설정
 	UpdateResetTips           = 다운로드 주소를 사용할 수 있으면 자동으로 다운로드 및 업데이트해야합니다.

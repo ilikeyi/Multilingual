@@ -83,7 +83,7 @@ Function Update_Setting_UI
 		}
 	}
 	$UI_Main_Menu      = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 365
+		Height         = 330
 		Width          = 530
 		Location       = "0,45"
 		BorderStyle    = 0
@@ -96,9 +96,15 @@ Function Update_Setting_UI
 	$UI_Main_Silent    = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 505
-		Location       = '12,435'
+		Location       = '12,400'
 		Text           = $lang.UpdateSilent
 		Checked        = $True
+	}
+	$UI_Main_Clean     = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 505
+		Location       = '12,435'
+		Text           = $lang.UpdateClean
 	}
 	$UI_Main_Reset     = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
@@ -137,18 +143,6 @@ Function Update_Setting_UI
 
 			$Script:ServerList = @()
 
-			if ($UI_Main_Silent.Checked) {
-				$Script:UpdateAvailableSilent = $True
-			} else {
-				$Script:UpdateAvailableSilent = $False
-			}
-
-			if ($UI_Main_Reset.Checked) {
-				$Script:UpdateAvailableReset = $True
-			} else {
-				$Script:UpdateAvailableReset = $False
-			}
-
 			if ($UI_Main_Auto_Select.Checked) {
 				$UI_Main.Hide()
 				ForEach ($item in (Get-Module -Name Engine).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
@@ -184,10 +178,6 @@ Function Update_Setting_UI
 		Text           = $lang.Cancel
 		add_Click      = {
 			$UI_Main.Hide()
-			$Script:ServerList = @()
-			$Script:UpdateAvailableSilent = $False
-			$Script:UpdateAvailableReset = $False
-
 			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
 			$UI_Main.Close()
 		}
@@ -196,6 +186,7 @@ Function Update_Setting_UI
 		$UI_Main_Auto_Select,
 		$UI_Main_Menu,
 		$UI_Main_Silent,
+		$UI_Main_Clean,
 		$UI_Main_Reset,
 		$UI_Main_Reset_Tips,
 		$UI_Main_Error_Icon,
@@ -356,19 +347,19 @@ $($getSerVer.changelog.log)`n"
 					$FlagsCheckForceUpdate = $True
 				}
 
-				if ($Script:UpdateAvailableSilent) {
+				if ($UI_Main_Silent.Checked) {
 					$FlagsCheckForceUpdate = $True
 				}
 	
-				if ($Script:UpdateAvailableReset) {
+				if ($UI_Main_Reset.Checked) {
 					$FlagsCheckForceUpdate = $True
 				}
 	
 				If ($FlagsCheckForceUpdate) {
 					Update_And_Download -url $url
 				} else {
-					$title = "$($lang.UpdateInstall)"
-					$message = "$($lang.UpdateInstallSel)"
+					$title = $lang.UpdateInstall
+					$message = $lang.UpdateInstallSel
 					$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Yes"
 					$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "No"
 					$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
@@ -389,7 +380,7 @@ $($getSerVer.changelog.log)`n"
 				return
 			}
 		} else {
-			if ($Script:UpdateAvailableReset) {
+			if ($UI_Main_Reset.Checked) {
 				Write-Host "`n   $($lang.UpdateVerifyAvailable)" -ForegroundColor Yellow
 				Write-Host "   $('-' * 80)"
 				Write-Host "   * $($lang.UpdateDownloadAddress): " -NoNewline -ForegroundColor Yellow
@@ -429,8 +420,27 @@ Function Update_And_Download
 
 	if (Test-Path -Path $output -PathType Leaf) {
 		Archive -filename $output -to "$($PSScriptRoot)\..\..\..\..\.."
+
+		$SaveOldVersionShort = (Get-Module -Name Engine).Version.ToString().Replace('.', '')
+		$SaveOldVersion = (Get-Module -Name Engine).Version.ToString()
+
 		Modules_Refresh -Function "Unzip_Done_Refresh_Process"
 		remove-item -path $output -force -ErrorAction SilentlyContinue
+
+		$SaveNewVersion = (Get-Module -Name Engine).Version.ToString().Replace('.', '')
+
+		Write-Host "`n   $($lang.UpdateClean)" -ForegroundColor Yellow
+		if ($UI_Main_Clean.Checked) {
+			if ($SaveOldVersionShort -eq $SaveNewVersion) {
+				Write-Host "   $($lang.UpdateNotExecuted)"
+			} else {
+				Write-host "   $($lang.AddTo)".PadRight(22) -NoNewline -ForegroundColor Green
+				Save_Dynamic -regkey "Multilingual" -name "IsUpdate_Clean" -value $SaveOldVersion -String
+				Write-host $lang.Done
+			}
+		} else {
+			Write-Host "   $($lang.Inoperable)"
+		}
 	} else {
 		Write-Host "`n   $($lang.UpdateUpdateStop)"
 	}

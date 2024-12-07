@@ -6,6 +6,7 @@
 	Mainname                  = Diegimo variklis: visiškai automatiškai prideda kalbas, įdiegtas Windows sistemose
 	Learn                     = Studijuoti
 	AddTo                     = Pridėti prie
+	Del                       = Ištrinti
 	Disable                   = Išjungti
 	Enabled                   = Įjungti
 	Done                      = Baigti
@@ -24,7 +25,7 @@
 	RefreshModules            = Karštas visų modulių atnaujinimas
 	PleaseChoose              = Prašome pasirinkti
 	PleaseChooseMain          = Spartusis klavišas arba pasirinkimas
-	FailedCreateFolder        = Nepavyko sukurti katalogo:
+	FailedCreateFolder        = Nepavyko sukurti katalogo
 	Failed                    = Nepavyks
 	ToMsg                     = \n   {0} Po sekundžių automatiškai grįžkite į pagrindinį meniu.
 	ToQuit                    = \n   {0} Po kelių sekundžių išeikite iš pagrindinio meniu.

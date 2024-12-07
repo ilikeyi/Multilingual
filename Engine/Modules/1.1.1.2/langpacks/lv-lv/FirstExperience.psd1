@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Novērst neizmantoto valodu pakotņu tīrīšanu
 	Restricted                = Atjaunot Powershell izpildes politiku: ierobežota
 	DiskSearch                = Meklēšanas plāns:
-	DiskSearchFind            = Meklēta un darbojas: {0}
+	DiskSearchFind            = Meklēta un darbojas
 	DeployCleanup             = Iztīriet izvietošanas direktoriju
 	DeployTask                = Izvietošanas uzdevumi
 	Reboot                    = Restartējiet datoru

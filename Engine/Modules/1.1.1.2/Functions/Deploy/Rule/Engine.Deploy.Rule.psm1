@@ -60,12 +60,14 @@ Function Deploy_Sync
 			$TestDeployMarkAllow = "$($item)$((Get-Module -Name Engine).Author)\Deploy\Allow\$($Mark)"
 
 			if (Test-Path -Path $TestDeployMarkNotAllowed -PathType Leaf) {
-				Write-Host "   $($lang.DiskSearchFind -f $TestDeployMarkNotAllowed)"
+				Write-Host	"   $($lang.DiskSearchFind): " -NoNewline
+				Write-host $TestDeployMarkNotAllowed -ForegroundColor Green
 				return $False
 			}
 
 			if (Test-Path -Path $TestDeployMarkAllow -PathType Leaf) {
-				Write-Host "   $($lang.DiskSearchFind -f $TestDeployMarkAllow)"
+				Write-Host	"   $($lang.DiskSearchFind): " -NoNewline
+				Write-host $TestDeployMarkAllow -ForegroundColor Green
 				return $True
 			}
 		}

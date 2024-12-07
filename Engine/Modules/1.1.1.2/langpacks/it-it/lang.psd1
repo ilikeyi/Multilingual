@@ -6,6 +6,7 @@
 	Mainname                  = Motore di distribuzione: aggiunge in modo completamente automatico le lingue installate sui sistemi Windows
 	Learn                     = Studio
 	AddTo                     = Aggiungere a
+	Del                       = Eliminare
 	Disable                   = Disabilita
 	Enabled                   = Abilitare
 	Done                      = Fine
@@ -24,7 +25,7 @@
 	RefreshModules            = Aggiornamento a caldo di tutti i moduli
 	PleaseChoose              = Seleziona
 	PleaseChooseMain          = Collegamento o selezione
-	FailedCreateFolder        = Impossibile creare la directory:
+	FailedCreateFolder        = Impossibile creare la directory
 	Failed                    = Fallire
 	ToMsg                     = \n   {0} Ritorna automaticamente al menu principale dopo secondi.
 	ToQuit                    = \n   {0} Uscire dal menu principale dopo secondi.

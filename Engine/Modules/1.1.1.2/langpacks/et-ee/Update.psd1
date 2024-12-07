@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automaatne serveri valik või kohandatud valik
 	UpdateServerNoSelect      = Valige saadaolev server
 	UpdateSilent              = Värskendage vaikselt, kui värskendused on saadaval
+	UpdateClean               = Lubage vabal ajal vanu versioone puhastada
 	ForceUpdate               = Sunnige kontrollimine ja värskendamine
 	UpdateReset               = Lähtestage see lahendus
 	UpdateResetTips           = Kui allalaadimisaadress on saadaval, siis allalaadimine sunnitakse ja seda värskendatakse automaatselt.

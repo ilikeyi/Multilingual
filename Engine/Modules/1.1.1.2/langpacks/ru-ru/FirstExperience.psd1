@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Запретить очистку неиспользуемых языковых пакетов
 	Restricted                = Восстановление политики выполнения Powershell: ограничено
 	DiskSearch                = План поиска:
-	DiskSearchFind            = Поиск и запуск: {0}
+	DiskSearchFind            = Поиск и запуск
 	DeployCleanup             = Очистите каталог развертывания
 	DeployTask                = Задачи развертывания
 	Reboot                    = Перезагрузите компьютер

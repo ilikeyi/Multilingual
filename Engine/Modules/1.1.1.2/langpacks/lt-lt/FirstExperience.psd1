@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Neleiskite išvalyti nenaudojamų kalbų paketų
 	Restricted                = Atkurti "Powershell" vykdymo politiką: apribota
 	DiskSearch                = Paieškos planas:
-	DiskSearchFind            = Ieškota ir paleista: {0}
+	DiskSearchFind            = Ieškota ir paleista
 	DeployCleanup             = Išvalykite diegimo katalogą
 	DeployTask                = Diegimo užduotys
 	Reboot                    = Iš naujo paleiskite kompiuterį

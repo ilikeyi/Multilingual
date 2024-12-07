@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Undgå rengøring af ubrugte sprogpakker
 	Restricted                = Gendan Powershell-udførelsespolitik: begrænset
 	DiskSearch                = Søgeplan:
-	DiskSearchFind            = Søgte og kører: {0}
+	DiskSearchFind            = Søgte og kører
 	DeployCleanup             = Ryd op i Deploy-mappen
 	DeployTask                = Implementeringsopgaver
 	Reboot                    = Genstart din computer

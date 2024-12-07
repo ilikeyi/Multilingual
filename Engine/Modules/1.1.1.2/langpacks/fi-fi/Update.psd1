@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automaattinen palvelimen valinta tai mukautettu valinta
 	UpdateServerNoSelect      = Valitse käytettävissä oleva palvelin
 	UpdateSilent              = Päivitä hiljaa, kun päivityksiä on saatavilla
+	UpdateClean               = Salli vanhojen versioiden puhdistaminen vapaa-ajalla
 	ForceUpdate               = Pakota tarkistus ja päivitys
 	UpdateReset               = Nollaa tämä ratkaisu
 	UpdateResetTips           = Kun latausosoite on saatavilla, lataus pakotetaan ja päivitetään automaattisesti.

@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Kullanılmayan dil paketlerinin temizlenmesini önleyin
 	Restricted                = Powershell yürütme politikasını geri yükle: kısıtlı
 	DiskSearch                = Arama planı:
-	DiskSearchFind            = Arandı ve çalıştırılıyor: {0}
+	DiskSearchFind            = Arandı ve çalıştırılıyor
 	DeployCleanup             = Dağıtım dizinini temizleyin
 	DeployTask                = Dağıtım görevleri
 	Reboot                    = Bilgisayarınızı yeniden başlatın

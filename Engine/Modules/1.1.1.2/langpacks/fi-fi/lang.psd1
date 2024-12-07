@@ -6,6 +6,7 @@
 	Mainname                  = Käyttöönottomoottori: lisää täysin automaattisesti Windows-järjestelmiin asennetut kielet
 	Learn                     = Opiskella
 	AddTo                     = Lisää
+	Del                       = Poistaa
 	Disable                   = Poista käytöstä
 	Enabled                   = Ota käyttöön
 	Done                      = Valmis
@@ -24,7 +25,7 @@
 	RefreshModules            = Päivitä kaikki moduulit kuumana
 	PleaseChoose              = Ole hyvä ja valitse
 	PleaseChooseMain          = Pikakuvake tai valinta
-	FailedCreateFolder        = Hakemiston luominen epäonnistui:
+	FailedCreateFolder        = Hakemiston luominen epäonnistui
 	Failed                    = Epäonnistua
 	ToMsg                     = \n   {0} Palaa automaattisesti päävalikkoon sekunnin kuluttua.
 	ToQuit                    = \n   {0} Poistu päävalikosta sekunnin kuluttua.

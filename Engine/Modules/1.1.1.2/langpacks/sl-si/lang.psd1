@@ -6,6 +6,7 @@
 	Mainname                  = Mehanizem za uvajanje: popolnoma samodejno doda jezike, nameščene v sistemih Windows
 	Learn                     = Študija
 	AddTo                     = Dodaj v
+	Del                       = Izbrisati
 	Disable                   = Onemogoči
 	Enabled                   = Omogočiti
 	Done                      = Končaj
@@ -24,7 +25,7 @@
 	RefreshModules            = Vroča osvežitev vseh modulov
 	PleaseChoose              = Prosim izberite
 	PleaseChooseMain          = Bližnjica ali izbor
-	FailedCreateFolder        = Imenika ni bilo mogoče ustvariti:
+	FailedCreateFolder        = Imenika ni bilo mogoče ustvariti
 	Failed                    = Spodleteti
 	ToMsg                     = \n   {0} Samodejna vrnitev v glavni meni po nekaj sekundah.
 	ToQuit                    = \n   {0} Po nekaj sekundah zapustite glavni meni.

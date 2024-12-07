@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = 未使用の言語パックのクリーニングを防止する
 	Restricted                = Powershell 実行ポリシーの復元: 制限
 	DiskSearch                = 検索プラン：
-	DiskSearchFind            = 検索、実行中：{0}
+	DiskSearchFind            = 検索、実行中
 	DeployCleanup             = Deploy ディレクトリをクリーンアップします
 	DeployTask                = 展開タスク
 	Reboot                    = コンピューターを再起動します

@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Impedir a limpeza de pacotes de idiomas não utilizados
 	Restricted                = Política de execução de restauração do Powershell: restrita
 	DiskSearch                = Plano de pesquisa:
-	DiskSearchFind            = Pesquisado e em execução: {0}
+	DiskSearchFind            = Pesquisado e em execução
 	DeployCleanup             = Limpe o diretório de implantação
 	DeployTask                = Tarefas de implantação
 	Reboot                    = Reinicie seu computador

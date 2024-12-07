@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automatinis serverio pasirinkimas arba pasirinktinis pasirinkimas
 	UpdateServerNoSelect      = Pasirinkite pasiekiamą serverį
 	UpdateSilent              = Atnaujinkite tyliai, kai yra naujinių
+	UpdateClean               = Laisvalaikiu leiskite valyti senas versijas
 	ForceUpdate               = Priverstinai tikrinti ir atnaujinti
 	UpdateReset               = Iš naujo nustatykite šį sprendimą
 	UpdateResetTips           = Kai atsisiuntimo adresas yra pasiekiamas, atsisiuntimas yra priverstinis ir atnaujinamas automatiškai.

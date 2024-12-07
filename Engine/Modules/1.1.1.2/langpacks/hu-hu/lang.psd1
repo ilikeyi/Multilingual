@@ -6,6 +6,7 @@
 	Mainname                  = Motor za implementaciju: potpuno automatski dodaje jezike instalirane na Windows sustavima
 	Learn                     = Studija
 	AddTo                     = Dodaj u
+	Del                       = Töröl
 	Disable                   = Onemogući
 	Enabled                   = Omogućiti
 	Done                      = Završiti
@@ -24,7 +25,7 @@
 	RefreshModules            = Vruće osvježite sve module
 	PleaseChoose              = Odaberite
 	PleaseChooseMain          = Prečac ili odabir
-	FailedCreateFolder        = Nije uspjelo stvaranje imenika:
+	FailedCreateFolder        = Nije uspjelo stvaranje imenika
 	Failed                    = Uspjeti
 	ToMsg                     = \n   {0} Automatski povratak na glavni izbornik nakon nekoliko sekundi.
 	ToQuit                    = \n   {0} Izađite iz glavnog izbornika nakon nekoliko sekundi.

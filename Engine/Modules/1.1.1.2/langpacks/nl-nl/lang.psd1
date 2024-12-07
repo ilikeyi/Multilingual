@@ -6,6 +6,7 @@
 	Mainname                  = Implementatie-engine: voegt volledig automatisch talen toe die op Windows-systemen zijn geïnstalleerd
 	Learn                     = Studie
 	AddTo                     = Toevoegen aan
+	Del                       = Verwijderen
 	Disable                   = Uitzetten
 	Enabled                   = Inschakelen
 	Done                      = Finish
@@ -24,7 +25,7 @@
 	RefreshModules            = Heet vernieuw alle modules
 	PleaseChoose              = Selecteer alstublieft
 	PleaseChooseMain          = Snelkoppeling of selectie
-	FailedCreateFolder        = Kan map niet maken:
+	FailedCreateFolder        = Kan map niet maken
 	Failed                    = Mislukking
 	ToMsg                     = \n   {0} Keer na enkele seconden automatisch terug naar het hoofdmenu.
 	ToQuit                    = \n   {0} Verlaat het hoofdmenu na enkele seconden.

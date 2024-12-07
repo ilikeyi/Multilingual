@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Voorkom het opschonen van ongebruikte taalpakketten
 	Restricted                = Powershell-uitvoeringsbeleid herstellen: beperkt
 	DiskSearch                = Zoekplan:
-	DiskSearchFind            = Gezocht en actief: {0}
+	DiskSearchFind            = Gezocht en actief
 	DeployCleanup             = Ruim de Deploy-directory op
 	DeployTask                = Implementatietaken
 	Reboot                    = Start uw computer opnieuw op

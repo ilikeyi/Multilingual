@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = 阻止清理未使用的语言包
 	Restricted                = 恢复 Powershell 执行策略：受限
 	DiskSearch                = 搜索计划：
-	DiskSearchFind            = 搜索到，正在运行中：{0}
+	DiskSearchFind            = 搜索到，正在运行中
 	DeployCleanup             = 清理 Deploy 目录
 	DeployTask                = 部署任务
 	Reboot                    = 重新启动计算机

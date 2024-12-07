@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Preveniți curățarea pachetelor de limbi neutilizate
 	Restricted                = Restabiliți politica de execuție Powershell: restricționată
 	DiskSearch                = Plan de căutare:
-	DiskSearchFind            = Căutare și rulare: {0}
+	DiskSearchFind            = Căutare și rulare
 	DeployCleanup             = Curățați directorul Deploy
 	DeployTask                = Sarcini de implementare
 	Reboot                    = Reporniți computerul

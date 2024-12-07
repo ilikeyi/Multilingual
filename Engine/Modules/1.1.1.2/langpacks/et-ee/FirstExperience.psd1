@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Vältige kasutamata keelepakettide puhastamist
 	Restricted                = Powershelli täitmispoliitika taastamine: piiratud
 	DiskSearch                = Otsinguplaan:
-	DiskSearchFind            = Otsitud ja töötab: {0}
+	DiskSearchFind            = Otsitud ja töötab
 	DeployCleanup             = Puhastage juurutamise kataloog
 	DeployTask                = Kasutuselevõtu ülesanded
 	Reboot                    = Taaskäivitage arvuti

@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automātiska servera izvēle vai pielāgota izvēle
 	UpdateServerNoSelect      = Lūdzu, atlasiet pieejamu serveri
 	UpdateSilent              = Atjauniniet klusi, kad ir pieejami atjauninājumi
+	UpdateClean               = Atļaujiet veco versiju tīrīšanu brīvajā laikā
 	ForceUpdate               = Piespiedu pārbaude un atjaunināšana
 	UpdateReset               = Atiestatiet šo risinājumu
 	UpdateResetTips           = Kad lejupielādes adrese ir pieejama, lejupielāde tiek piespiesta un atjaunināta automātiski.

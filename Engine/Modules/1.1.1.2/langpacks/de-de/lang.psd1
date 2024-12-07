@@ -6,6 +6,7 @@
 	Mainname                  = Bereitstellungs-Engine: Fügt auf Windows-Systemen installierte Sprachen vollautomatisch hinzu
 	Learn                     = Studie
 	AddTo                     = Hinzufügen zu
+	Del                       = Löschen
 	Disable                   = Deaktivieren
 	Enabled                   = aktivieren
 	Done                      = Beenden
@@ -24,7 +25,7 @@
 	RefreshModules            = Hot-Refresh aller Module
 	PleaseChoose              = Bitte auswählen
 	PleaseChooseMain          = Verknüpfung oder Auswahl
-	FailedCreateFolder        = Verzeichnis konnte nicht erstellt werden:
+	FailedCreateFolder        = Verzeichnis konnte nicht erstellt werden
 	Failed                    = scheitern
 	ToMsg                     = \n   {0} Automatische Rückkehr zum Hauptmenü nach Sekunden.
 	ToQuit                    = \n   {0} Verlassen Sie das Hauptmenü nach Sekunden.

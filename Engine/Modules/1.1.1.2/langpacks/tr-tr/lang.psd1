@@ -6,6 +6,7 @@
 	Mainname                  = Dağıtım motoru: Windows sistemlerinde yüklü olan dilleri tam otomatik olarak ekler
 	Learn                     = Çalışmak
 	AddTo                     = A ekle
+	Del                       = Silmek
 	Disable                   = Devre dışı bırakmak
 	Enabled                   = Olanak vermek
 	Done                      = Sona ermek
@@ -24,7 +25,7 @@
 	RefreshModules            = Tüm modülleri sıcak yenileme
 	PleaseChoose              = Lütfen seçin
 	PleaseChooseMain          = Kısayol veya seçim
-	FailedCreateFolder        = Dizin oluşturulamadı:
+	FailedCreateFolder        = Dizin oluşturulamadı
 	Failed                    = Hata
 	ToMsg                     = \n   {0} Saniyeler sonra otomatik olarak ana menüye dönün.
 	ToQuit                    = \n   {0} Saniyeler sonra ana menüden çıkın.

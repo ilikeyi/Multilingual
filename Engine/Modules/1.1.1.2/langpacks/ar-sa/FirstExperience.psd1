@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = منع تنظيف حزم اللغات غير المستخدمة
 	Restricted                = استعادة سياسة تنفيذ Powershell: مقيدة
 	DiskSearch                = خطة البحث:
-	DiskSearchFind            = تم البحث والتشغيل: {0}
+	DiskSearchFind            = تم البحث والتشغيل
 	DeployCleanup             = تنظيف دليل النشر
 	DeployTask                = مهام النشر
 	Reboot                    = أعد تشغيل جهاز الكمبيوتر الخاص بك

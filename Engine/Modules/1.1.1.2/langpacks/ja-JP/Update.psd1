@@ -6,6 +6,7 @@
 	UpdateServerSelect        = 自動サーバー選択またはカスタム選択
 	UpdateServerNoSelect      = 利用可能なサーバーを選択してください
 	UpdateSilent              = アップデートが利用可能な場合、サイレントアップデート
+	UpdateClean               = 古いバージョンを自由にクリーニングできるようにする
 	ForceUpdate               = 強制的にチェックして更新します
 	UpdateReset               = このソリューションをリセットする
 	UpdateResetTips           = ダウンロードアドレスが利用可能になると、自動的にダウンロードして更新するように強制されます。

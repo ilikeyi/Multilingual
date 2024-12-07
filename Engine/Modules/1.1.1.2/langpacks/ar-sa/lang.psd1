@@ -6,6 +6,7 @@
 	Mainname                  = محرك النشر: يضيف تلقائيًا اللغات المثبتة على أنظمة Windows
 	Learn                     = يذاكر
 	AddTo                     = اضف إليه
+	Del                       = يمسح
 	Disable                   = إبطال
 	Enabled                   = يُمكَِن
 	Done                      = ينهي
@@ -24,7 +25,7 @@
 	RefreshModules            = التحديث الساخن لجميع الوحدات
 	PleaseChoose              = الرجاء التحديد
 	PleaseChooseMain          = الاختصار أو الاختيار
-	FailedCreateFolder        = فشل في إنشاء الدليل:
+	FailedCreateFolder        = فشل في إنشاء الدليل
 	Failed                    = يفشل
 	ToMsg                     = \n   {0} العودة تلقائيا إلى القائمة الرئيسية بعد ثواني.
 	ToQuit                    = \n   {0} الخروج من القائمة الرئيسية بعد ثواني.

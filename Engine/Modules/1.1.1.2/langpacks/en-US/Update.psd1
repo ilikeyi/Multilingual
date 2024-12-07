@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automatic server selection or custom selection
 	UpdateServerNoSelect      = Please select an available server
 	UpdateSilent              = When updates are available, update silently
+	UpdateClean               = Allows cleaning up old versions during idle time
 	ForceUpdate               = Tving kontrol og opdatering
 	UpdateReset               = Reset this solution
 	UpdateResetTips           = When the download address is available, it is forced to download and update automatically.

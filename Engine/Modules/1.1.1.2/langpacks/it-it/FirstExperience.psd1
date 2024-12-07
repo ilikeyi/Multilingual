@@ -15,7 +15,7 @@
 	CleanupUnusedLP           = Impedire la pulizia dei pacchetti lingua inutilizzati
 	Restricted                = Ripristina criterio di esecuzione di PowerShell: limitato
 	DiskSearch                = Piano di ricerca:
-	DiskSearchFind            = Cercato e in esecuzione: {0}
+	DiskSearchFind            = Cercato e in esecuzione
 	DeployCleanup             = Pulisci la directory Deploy
 	DeployTask                = Attività di distribuzione
 	Reboot                    = Riavvia il computer

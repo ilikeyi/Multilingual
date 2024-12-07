@@ -6,6 +6,7 @@
 	Mainname                  = Moteur de déploiement: ajoute de manière entièrement automatique les langues installées sur les systèmes Windows
 	Learn                     = Étude
 	AddTo                     = Ajouter à
+	Del                       = Supprimer
 	Disable                   = Désactiver
 	Enabled                   = Activer
 	Done                      = Finition
@@ -24,7 +25,7 @@
 	RefreshModules            = Actualiser à chaud tous les modules
 	PleaseChoose              = Veuillez sélectionner
 	PleaseChooseMain          = Raccourci ou sélection
-	FailedCreateFolder        = Échec de la création du répertoire:
+	FailedCreateFolder        = Échec de la création du répertoire
 	Failed                    = Échouer
 	ToMsg                     = \n   {0} Retour automatique au menu principal après quelques secondes.
 	ToQuit                    = \n   {0} Quittez le menu principal après quelques secondes.

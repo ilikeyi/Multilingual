@@ -6,6 +6,7 @@
 	Mainname                  = Silnik wdrażania: w pełni automatycznie dodaje języki zainstalowane w systemach Windows
 	Learn                     = Badanie
 	AddTo                     = Dodaj do
+	Del                       = Usuwać
 	Disable                   = Wyłączyć
 	Enabled                   = Włączać
 	Done                      = Skończyć
@@ -24,7 +25,7 @@
 	RefreshModules            = Gorące odświeżenie wszystkich modułów
 	PleaseChoose              = Proszę wybrać
 	PleaseChooseMain          = Skrót lub wybór
-	FailedCreateFolder        = Nie udało się utworzyć katalogu:
+	FailedCreateFolder        = Nie udało się utworzyć katalogu
 	Failed                    = Ponieść porażkę
 	ToMsg                     = \n   {0} Automatycznie powróć do menu głównego po sekundach.
 	ToQuit                    = \n   {0} Wyjdź z menu głównego po kilku sekundach.

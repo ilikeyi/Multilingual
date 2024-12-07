@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Sélection automatique du serveur ou sélection personnalisée
 	UpdateServerNoSelect      = Veuillez choisir un serveur disponible
 	UpdateSilent              = Mettre à jour silencieusement lorsque des mises à jour sont disponibles
+	UpdateClean               = Permettre le nettoyage des anciennes versions à loisir
 	ForceUpdate               = Forcer la vérification et la mise à jour
 	UpdateReset               = Réinitialiser cette solution
 	UpdateResetTips           = Lorsque l'adresse de téléchargement est disponible, le téléchargement est forcé et mis à jour automatiquement.

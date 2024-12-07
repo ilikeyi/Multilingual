@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automatski odabir poslužitelja ili prilagođeni odabir
 	UpdateServerNoSelect      = Odaberite dostupni poslužitelj
 	UpdateSilent              = Tiho ažurirajte kada su ažuriranja dostupna
+	UpdateClean               = Szabadidőben engedje meg a régi verziók tisztítását
 	ForceUpdate               = Prisilna provjera i ažuriranje
 	UpdateReset               = Resetirajte ovo rješenje
 	UpdateResetTips           = Kada je adresa za preuzimanje dostupna, preuzimanje se nameće i ažurira automatski.

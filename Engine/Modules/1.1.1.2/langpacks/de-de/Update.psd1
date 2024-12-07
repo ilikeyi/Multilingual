@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automatische Serverauswahl oder benutzerdefinierte Auswahl
 	UpdateServerNoSelect      = Bitte wählen Sie einen verfügbaren Server aus
 	UpdateSilent              = Aktualisieren Sie im Hintergrund, wenn Updates verfügbar sind
+	UpdateClean               = Lassen Sie die Reinigung alter Versionen in Ruhe zu
 	ForceUpdate               = Überprüfung und Aktualisierung erzwingen
 	UpdateReset               = Setzen Sie diese Lösung zurück
 	UpdateResetTips           = Wenn die Download-Adresse verfügbar ist, wird der Download erzwungen und automatisch aktualisiert.

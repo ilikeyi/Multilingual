@@ -6,6 +6,7 @@
 	UpdateServerSelect        = בחירת שרת אוטומטית או בחירה מותאמת אישית
 	UpdateServerNoSelect      = אנא בחר שרת זמין
 	UpdateSilent              = עדכן בשקט כאשר עדכונים זמינים
+	UpdateClean               = אפשר ניקוי של גרסאות ישנות בשעות הפנאי
 	ForceUpdate               = כפה בדיקה ועדכון
 	UpdateReset               = אפס את הפתרון הזה
 	UpdateResetTips           = כאשר כתובת ההורדה זמינה, ההורדה נאלצת ומתעדכנת אוטומטית.

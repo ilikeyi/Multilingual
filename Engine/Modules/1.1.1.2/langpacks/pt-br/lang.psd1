@@ -6,6 +6,7 @@
 	Mainname                  = Mecanismo de implantação: adiciona automaticamente idiomas instalados em sistemas Windows
 	Learn                     = Estudar
 	AddTo                     = Adicionar à
+	Del                       = Excluir
 	Disable                   = Desativar
 	Enabled                   = Habilitar
 	Done                      = Terminar
@@ -24,7 +25,7 @@
 	RefreshModules            = Atualização a quente de todos os módulos
 	PleaseChoose              = Selecione
 	PleaseChooseMain          = Atalho ou seleção
-	FailedCreateFolder        = Falha ao criar diretório:
+	FailedCreateFolder        = Falha ao criar diretório
 	Failed                    = Falhar
 	ToMsg                     = \n   {0} Retorne automaticamente ao menu principal após segundos.
 	ToQuit                    = \n   {0} Saia do menu principal após segundos.

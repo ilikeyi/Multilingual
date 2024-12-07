@@ -6,6 +6,7 @@
 	Mainname                  = Deployment engine: plně automaticky přidává jazyky nainstalované v systémech Windows
 	Learn                     = Studie
 	AddTo                     = Přidat do
+	Del                       = Vymazat
 	Disable                   = Zakázat
 	Enabled                   = Umožnit
 	Done                      = Dokončit
@@ -24,7 +25,7 @@
 	RefreshModules            = Hot aktualizovat všechny moduly
 	PleaseChoose              = Vyberte prosím
 	PleaseChooseMain          = Zkratka nebo výběr
-	FailedCreateFolder        = Nepodařilo se vytvořit adresář:
+	FailedCreateFolder        = Nepodařilo se vytvořit adresář
 	Failed                    = Selhat
 	ToMsg                     = \n   {0} Po několika sekundách se automaticky vrátí do hlavní nabídky.
 	ToQuit                    = \n   {0} Po několika sekundách opusťte hlavní nabídku.

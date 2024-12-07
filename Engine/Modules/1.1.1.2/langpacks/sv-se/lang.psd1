@@ -6,6 +6,7 @@
 	Mainname                  = Implementeringsmotor: lägger helt automatiskt till språk installerade på Windows-system
 	Learn                     = Studera
 	AddTo                     = Lägg till
+	Del                       = Radera
 	Disable                   = Inaktivera
 	Enabled                   = Aktivera
 	Done                      = Avsluta
@@ -24,7 +25,7 @@
 	RefreshModules            = Varmuppdatera alla moduler
 	PleaseChoose              = Vänligen välj
 	PleaseChooseMain          = Genväg eller val
-	FailedCreateFolder        = Det gick inte att skapa katalogen:
+	FailedCreateFolder        = Det gick inte att skapa katalogen
 	Failed                    = Misslyckas
 	ToMsg                     = \n   {0} Återgå automatiskt till huvudmenyn efter några sekunder.
 	ToQuit                    = \n   {0} Stäng huvudmenyn efter sekunder.

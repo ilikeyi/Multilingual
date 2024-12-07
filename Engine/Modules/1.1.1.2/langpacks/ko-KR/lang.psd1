@@ -6,6 +6,7 @@
 	Mainname                  = 배포 엔진: Windows 시스템에 설치된 언어를 완전 자동으로 추가합니다
 	Learn                     = 공부하다
 	AddTo                     = 에 추가
+	Del                       = 삭제
 	Disable                   = 비활성화
 	Enabled                   = 할 수있게하다
 	Done                      = 수행하다
@@ -24,7 +25,7 @@
 	RefreshModules            = 모든 모듈을 핫 리프레시
 	PleaseChoose              = 선택하세요
 	PleaseChooseMain          = 바로가기 또는 옵션
-	FailedCreateFolder        = 디렉터리 생성 실패:
+	FailedCreateFolder        = 디렉터리 생성 실패
 	Failed                    = 실패했습니다
 	ToMsg                     = \n   {0} 몇 초 후 자동으로 주 메뉴로 돌아갑니다.
 	ToQuit                    = \n   {0} 몇 초 안에 메인 메뉴를 종료합니다.

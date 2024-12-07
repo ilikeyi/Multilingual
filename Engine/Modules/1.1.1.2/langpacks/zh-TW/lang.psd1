@@ -6,6 +6,7 @@
 	Mainname                  = 部署引擎：全自動新增 Windows 系統已安裝的語言
 	Learn                     = 學習
 	AddTo                     = 添加
+	Del                       = 删除
 	Disable                   = 禁用
 	Enabled                   = 啟用
 	Done                      = 完成
@@ -24,7 +25,7 @@
 	RefreshModules            = 熱刷新所有模組
 	PleaseChoose              = 請選擇
 	PleaseChooseMain          = 快速指令或選擇
-	FailedCreateFolder        = 創建目錄失敗：
+	FailedCreateFolder        = 創建目錄失敗
 	Failed                    = 失敗
 	ToMsg                     = \n   {0} 秒後自動返回到主菜單。
 	ToQuit                    = \n   {0} 秒後退出主菜單。

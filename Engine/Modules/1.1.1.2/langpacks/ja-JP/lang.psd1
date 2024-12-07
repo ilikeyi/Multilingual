@@ -6,6 +6,7 @@
 	Mainname                  = 展開エンジン: Windows システムにインストールされている言語を完全に自動的に追加します
 	Learn                     = 勉強
 	AddTo                     = 追加
+	Del                       = 消去
 	Disable                   = 無効にする
 	Enabled                   = 有効
 	Done                      = 実施する
@@ -24,7 +25,7 @@
 	RefreshModules            = すべてのモジュールをホットリフレッシュします
 	PleaseChoose              = 選んでください
 	PleaseChooseMain          = 바로가기 또는 옵션
-	FailedCreateFolder        = ディレクトリの作成に失敗しました:
+	FailedCreateFolder        = ディレクトリの作成に失敗しました
 	Failed                    = 失敗
 	ToMsg                     = \n   {0} 数秒後、自動的にメインメニューに戻ります。
 	ToQuit                    = \n   {0} 数秒でメイン メニューを終了します。

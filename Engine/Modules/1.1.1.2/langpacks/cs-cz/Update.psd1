@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Automatický výběr serveru nebo vlastní výběr
 	UpdateServerNoSelect      = Vyberte dostupný server
 	UpdateSilent              = Aktualizujte tiše, když jsou dostupné aktualizace
+	UpdateClean               = Umožněte čištění starých verzí v klidu
 	ForceUpdate               = Vynutit kontrolu a aktualizaci
 	UpdateReset               = Resetujte toto řešení
 	UpdateResetTips           = Když je k dispozici adresa pro stahování, stahování je vynuceno a automaticky aktualizováno.

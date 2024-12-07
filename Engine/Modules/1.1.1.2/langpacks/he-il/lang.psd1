@@ -6,6 +6,7 @@
 	Mainname                  = מנוע פריסה: מוסיף באופן אוטומטי לחלוטין שפות המותקנות במערכות Windows
 	Learn                     = לִלמוֹד
 	AddTo                     = הוסף ל
+	Del                       = לִמְחוֹק
 	Disable                   = השבת
 	Enabled                   = לְאַפשֵׁר
 	Done                      = סִיוּם
@@ -24,7 +25,7 @@
 	RefreshModules            = רענון חם של כל המודולים
 	PleaseChoose              = נא לבחור
 	PleaseChooseMain          = קיצור או בחירה
-	FailedCreateFolder        = יצירת הספרייה נכשלה:
+	FailedCreateFolder        = יצירת הספרייה נכשלה
 	Failed                    = לְהִכָּשֵׁל
 	ToMsg                     = \n   {0} חזור אוטומטית לתפריט הראשי לאחר שניות.
 	ToQuit                    = \n   {0} צא מהתפריט הראשי לאחר שניות.

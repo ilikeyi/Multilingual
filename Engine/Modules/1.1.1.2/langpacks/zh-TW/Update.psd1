@@ -6,6 +6,7 @@
 	UpdateServerSelect        = 自動選擇服務器或自定義選擇
 	UpdateServerNoSelect      = 請選擇可用的服務器
 	UpdateSilent              = 有可用更新時，靜默更新
+	UpdateClean               = 允許空閒時清理舊版本
 	ForceUpdate               = 強行檢查並更新
 	UpdateReset               = 重置此解決方案
 	UpdateResetTips           = 下載地址可用時，強制下載並自動更新。

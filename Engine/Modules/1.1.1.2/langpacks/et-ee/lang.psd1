@@ -6,6 +6,7 @@
 	Mainname                  = Juurutusmootor: lisab Windowsi süsteemidesse installitud keeled täielikult automaatselt
 	Learn                     = Uuring
 	AddTo                     = Lisa juurde
+	Del                       = Kustutada
 	Disable                   = Keela
 	Enabled                   = Lubada
 	Done                      = Lõpeta
@@ -24,7 +25,7 @@
 	RefreshModules            = Kõigi moodulite kuumvärskendus
 	PleaseChoose              = Palun valige
 	PleaseChooseMain          = Otsetee või valik
-	FailedCreateFolder        = Kataloogi loomine ebaõnnestus:
+	FailedCreateFolder        = Kataloogi loomine ebaõnnestus
 	Failed                    = Ebaõnnestuda
 	ToMsg                     = \n   {0} Naaske sekundite pärast automaatselt peamenüüsse.
 	ToQuit                    = \n   {0} Väljuge peamenüüst mõne sekundi pärast.

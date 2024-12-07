@@ -6,6 +6,7 @@
 	Mainname                  = Motor de implementare: adaugă complet automat limbi instalate pe sistemele Windows
 	Learn                     = Studiu
 	AddTo                     = Adaugă la
+	Del                       = Şterge
 	Disable                   = Dezactivați
 	Enabled                   = Permite
 	Done                      = Termina
@@ -24,7 +25,7 @@
 	RefreshModules            = Actualizează la cald toate modulele
 	PleaseChoose              = Vă rugăm să selectați
 	PleaseChooseMain          = Comandă rapidă sau selecție
-	FailedCreateFolder        = Nu s-a putut crea directorul:
+	FailedCreateFolder        = Nu s-a putut crea directorul
 	Failed                    = Eșuează
 	ToMsg                     = \n   {0} Reveniți automat la meniul principal după câteva secunde.
 	ToQuit                    = \n   {0} Ieșiți din meniul principal după câteva secunde.

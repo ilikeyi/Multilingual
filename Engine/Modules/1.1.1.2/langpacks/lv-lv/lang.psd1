@@ -6,6 +6,7 @@
 	Mainname                  = Izvietošanas dzinējs: pilnībā automātiski pievieno Windows sistēmās instalētās valodas
 	Learn                     = Pētījums
 	AddTo                     = Pievienot
+	Del                       = Dzēst
 	Disable                   = Atspējot
 	Enabled                   = Iespējot
 	Done                      = Pabeigt
@@ -24,7 +25,7 @@
 	RefreshModules            = Visu moduļu karstā atsvaidzināšana
 	PleaseChoose              = Lūdzu, atlasiet
 	PleaseChooseMain          = Īsceļš vai atlase
-	FailedCreateFolder        = Neizdevās izveidot direktoriju:
+	FailedCreateFolder        = Neizdevās izveidot direktoriju
 	Failed                    = Neizdoties
 	ToMsg                     = \n   {0} Pēc sekundēm automātiski atgriezieties galvenajā izvēlnē.
 	ToQuit                    = \n   {0} Pēc dažām sekundēm izejiet no galvenās izvēlnes.

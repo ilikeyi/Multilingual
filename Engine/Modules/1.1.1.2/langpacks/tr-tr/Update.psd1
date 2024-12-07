@@ -6,6 +6,7 @@
 	UpdateServerSelect        = Otomatik sunucu seçimi veya özel seçim
 	UpdateServerNoSelect      = Lütfen kullanılabilir bir sunucu seçin
 	UpdateSilent              = Güncellemeler mevcut olduğunda sessizce güncelleyin
+	UpdateClean               = Eski sürümlerin boş zamanlarında temizlenmesine izin ver
 	ForceUpdate               = Kontrolü ve güncellemeyi zorla
 	UpdateReset               = Bu çözümü sıfırla
 	UpdateResetTips           = İndirme adresi mevcut olduğunda indirme otomatik olarak zorunlu hale getirilir ve güncellenir.

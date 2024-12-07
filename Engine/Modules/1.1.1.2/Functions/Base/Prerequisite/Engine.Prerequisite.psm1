@@ -72,14 +72,14 @@ Function Prerequisite
 	}
 
 	Write-Host "   $($lang.UpdateClean): " -NoNewline
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsUpdate_Clean" -ErrorAction SilentlyContinue) {
-		$GetOldVersion = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsUpdate_Clean"
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual\Update" -Name "IsUpdate_Clean" -ErrorAction SilentlyContinue) {
+		$GetOldVersion = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual\Update" -Name "IsUpdate_Clean"
 		$SaveCurrentVersion = (Get-Module -Name Engine).Version.ToString()
 
 		if ($GetOldVersion -eq $SaveCurrentVersion) {
 			Write-Host " $($lang.UpdateNotExecuted) " -BackgroundColor DarkGreen -ForegroundColor White
 			Write-host "   $($lang.Del)".PadRight(22) -NoNewline -ForegroundColor Green
-			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsUpdate_Clean" -Force -ErrorAction SilentlyContinue | out-null
+			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual\Update" -Name "IsUpdate_Clean" -Force -ErrorAction SilentlyContinue | out-null
 			Write-host $lang.Done
 		} else {
 			Write-Host " $($lang.Del) " -BackgroundColor DarkRed -ForegroundColor White
@@ -92,7 +92,7 @@ Function Prerequisite
 			if (Test-Path -Path $Wait_Clean_Folder_Full -PathType Container) {
 				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
 			} else {
-				Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "IsUpdate_Clean" -Force -ErrorAction SilentlyContinue | out-null
+				Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual\Update" -Name "IsUpdate_Clean" -Force -ErrorAction SilentlyContinue | out-null
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			}
 		}

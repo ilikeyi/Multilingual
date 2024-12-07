@@ -87,7 +87,7 @@ Function Prerequisite
 			$Wait_Clean_Folder_Full = Join-Path -Path "$($PSScriptRoot)\..\..\..\.." -ChildPath $GetOldVersion
 
 			Write-host "   $($lang.Del): $($GetOldVersion): " -NoNewline -ForegroundColor Green
-			remove-item -path $Wait_Clean_Folder_Full -force -ErrorAction SilentlyContinue
+			remove-item -path $Wait_Clean_Folder_Full -Recurse -force -ErrorAction SilentlyContinue
 
 			if (Test-Path -Path $Wait_Clean_Folder_Full -PathType Container) {
 				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White

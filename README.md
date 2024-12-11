@@ -15,7 +15,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 a) Prioritize downloading from Github node
 ```
 curl https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 -o get.ps1; .\get.ps1;
-wget https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 -o get.ps1; .\get.ps1;
+wget https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 -O get.ps1; .\get.ps1;
 iwr https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 -out get.ps1; .\get.ps1;
 Invoke-WebRequest https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 -OutFile get.ps1; .\get.ps1;
 ```
@@ -25,7 +25,7 @@ Invoke-WebRequest https://github.com/ilikeyi/Multilingual/raw/main/get.ps1 -OutF
 b) Prioritize downloading from Yi node
 ```
 curl https://fengyi.tel/mul -o get.ps1; .\get.ps1;
-wget https://fengyi.tel/mul -o get.ps1; .\get.ps1;
+wget https://fengyi.tel/mul -O get.ps1; .\get.ps1;
 iwr https://fengyi.tel/mul -out get.ps1; .\get.ps1;
 Invoke-WebRequest https://fengyi.tel/mul -OutFile get.ps1; .\get.ps1;
 ```

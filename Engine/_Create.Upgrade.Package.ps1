@@ -400,6 +400,50 @@ Function Update_Create_UI
 
 Function Update_Create_Process
 {
+	$CurrentAio = Join-Path -Path $(Convert-Path -Path $PSScriptRoot) -ChildPath "AIO"
+	$PublicAio  = Join-Path -Path $(Convert-Path -Path "$($PSScriptRoot)\..\..\..\Modules") -ChildPath "AIO"
+
+	$AIOPackage = @{
+		Name = "7zPacker";
+		Exclude = @(
+			"7zG.exe"
+		)
+	}
+
+	<#
+		.删除旧的包
+	#>
+	ForEach ($item in $AIOPackage) {
+		$NewPath = Join-Path -Path $CurrentAio -ChildPath $item.Name
+		write-host "   $($lang.FileName): " -NoNewline
+		write-host $NewPath -ForegroundColor Green
+		Write-Host "   $('-' * 80)"
+
+		write-host "   $($lang.Del)".PadRight(28) -NoNewline
+		remove-item -path $NewPath -Recurse -force -ErrorAction SilentlyContinue
+		Write-host $lang.Done -ForegroundColor Green
+		write-host
+	}
+
+	<#
+		.复制新的包
+	#>
+	ForEach ($item in $AIOPackage) {
+		$PublicAioItem = Join-Path -Path $PublicAio -ChildPath $item.Name
+		write-host "   $($lang.FileName): " -NoNewline
+		write-host $PublicAioItem -ForegroundColor Green
+
+		$CurrentAioSaveTo = Join-Path -Path $CurrentAio -ChildPath $item.Name
+		write-host "   $($lang.SaveTo): " -NoNewline
+		write-host $CurrentAioSaveTo -ForegroundColor Green
+		Write-Host "   $('-' * 80)"
+
+		write-host "   $($lang.AddTo)".PadRight(28) -NoNewline
+		Copy-Item -Path $PublicAioItem -Destination $CurrentAioSaveTo -Recurse -Force -Exclude $item.Exclude -ErrorAction SilentlyContinue
+		Write-host $lang.Done -ForegroundColor Green
+		write-host
+	}
+
 	ForEach ($item in $BuildTypeUp) {
 		Push-Location $PSScriptRoot
 		Update_Create_Process_Add -Type $item

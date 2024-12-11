@@ -401,28 +401,13 @@ Function Update_Create_UI
 Function Update_Create_Process
 {
 	$CurrentAio = Join-Path -Path $(Convert-Path -Path $PSScriptRoot) -ChildPath "AIO"
-	$PublicAio  = Join-Path -Path $(Convert-Path -Path "$($PSScriptRoot)\..\..\..\Modules") -ChildPath "AIO"
+	$PublicAio  = Join-Path -Path "$($PSScriptRoot)\..\..\..\Modules" -ChildPath "AIO"
 
 	$AIOPackage = @{
 		Name = "7zPacker";
 		Exclude = @(
 			"7zG.exe"
 		)
-	}
-
-	<#
-		.删除旧的包
-	#>
-	ForEach ($item in $AIOPackage) {
-		$NewPath = Join-Path -Path $CurrentAio -ChildPath $item.Name
-		write-host "   $($lang.FileName): " -NoNewline
-		write-host $NewPath -ForegroundColor Green
-		Write-Host "   $('-' * 80)"
-
-		write-host "   $($lang.Del)".PadRight(28) -NoNewline
-		remove-item -path $NewPath -Recurse -force -ErrorAction SilentlyContinue
-		Write-host $lang.Done -ForegroundColor Green
-		write-host
 	}
 
 	<#
@@ -439,8 +424,15 @@ Function Update_Create_Process
 		Write-Host "   $('-' * 80)"
 
 		write-host "   $($lang.AddTo)".PadRight(28) -NoNewline
-		Copy-Item -Path $PublicAioItem -Destination $CurrentAioSaveTo -Recurse -Force -Exclude $item.Exclude -ErrorAction SilentlyContinue
-		Write-host $lang.Done -ForegroundColor Green
+		if (Test-Path -Path $PublicAioItem -PathType Container) {
+			remove-item -path $CurrentAioSaveTo -Recurse -force -ErrorAction SilentlyContinue
+
+			Copy-Item -Path $PublicAioItem -Destination $CurrentAio -Recurse -Force -Exclude $item.Exclude -ErrorAction SilentlyContinue
+			Write-host $lang.Done -ForegroundColor Green
+		} else {
+			Write-host $lang.Failed -ForegroundColor Red
+		}
+
 		write-host
 	}
 

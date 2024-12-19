@@ -25,7 +25,6 @@
 	LanguageCode              = ゾーンマーカー
 	RefreshModules            = すべてのモジュールをホットリフレッシュします
 	PleaseChoose              = 選んでください
-	PleaseChooseMain          = 바로가기 또는 옵션
 	FailedCreateFolder        = ディレクトリの作成に失敗しました
 	Failed                    = 失敗
 	ToMsg                     = \n   {0} 数秒後、自動的にメインメニューに戻ります。
@@ -33,4 +32,5 @@
 	Help                      = ヘルプ
 	WorkDone                  = 完了し, メインインターフェイスに戻って任意のキーを押します...
 	Short_Cmd                 = ショートカットコマンド
+	Options                   = オプション
 '@

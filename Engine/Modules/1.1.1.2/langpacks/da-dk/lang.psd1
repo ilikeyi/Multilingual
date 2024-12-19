@@ -25,7 +25,6 @@
 	LanguageCode              = Zonemærke
 	RefreshModules            = Hot opdater alle moduler
 	PleaseChoose              = Vælg venligst
-	PleaseChooseMain          = Genvej eller valg
 	FailedCreateFolder        = Kunne ikke oprette mappe
 	Failed                    = Svigte
 	ToMsg                     = \n   {0} Vend automatisk tilbage til hovedmenuen efter sekunder.
@@ -33,4 +32,5 @@
 	Help                      = Hjælp
 	WorkDone                  = Fuldført, tryk på en vilkårlig tast for at vende tilbage til hovedgrænsefladen...
 	Short_Cmd                 = Genveje
+	Options                   = Valgmuligheder
 '@

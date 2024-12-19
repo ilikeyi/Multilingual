@@ -23,6 +23,7 @@ Function Logo
 	}
 
 	if ($Global:Developers_Mode) {
+		$Host.UI.RawUI.WindowTitle += " | $($lang.Developers_Mode)"
 		Write-Host " $($lang.Developers_Mode) " -NoNewline -BackgroundColor White -ForegroundColor Black
 		Write-Host " Dev " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	}
@@ -82,8 +83,15 @@ Function Mainpage
 	Write-Host "   " -NoNewline
 	Write-Host " H'elp " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host " $($lang.Help) " -NoNewline -BackgroundColor White -ForegroundColor Black
-	Write-Host " " -NoNewline
-	switch -Wildcard (Read-Host $lang.PleaseChooseMain)
+	Write-Host ", " -NoNewline
+
+	Write-Host " $($lang.Short_Cmd) " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host ", " -NoNewline
+
+	Write-Host " $($lang.Options) " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host ": " -NoNewline
+
+	switch -Wildcard (Read-Host)
 	{
 		"Dev" {
 			Write-Host "`n   $($lang.Developers_Mode)" -ForegroundColor Yellow

@@ -25,7 +25,6 @@
 	LanguageCode              = Oznaka zone
 	RefreshModules            = Vruće osvježite sve module
 	PleaseChoose              = Odaberite
-	PleaseChooseMain          = Prečac ili odabir
 	FailedCreateFolder        = Nije uspjelo stvaranje imenika
 	Failed                    = Uspjeti
 	ToMsg                     = \n   {0} Automatski povratak na glavni izbornik nakon nekoliko sekundi.
@@ -33,4 +32,5 @@
 	Help                      = Pomoć
 	WorkDone                  = Završeno, pritisnite bilo koju tipku za povratak na glavno sučelje...
 	Short_Cmd                 = Prečaci
+	Options                   = Mogućnosti
 '@

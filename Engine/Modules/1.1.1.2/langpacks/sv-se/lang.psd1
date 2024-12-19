@@ -25,7 +25,6 @@
 	LanguageCode              = Zonmärke
 	RefreshModules            = Varmuppdatera alla moduler
 	PleaseChoose              = Vänligen välj
-	PleaseChooseMain          = Genväg eller val
 	FailedCreateFolder        = Det gick inte att skapa katalogen
 	Failed                    = Misslyckas
 	ToMsg                     = \n   {0} Återgå automatiskt till huvudmenyn efter några sekunder.
@@ -33,4 +32,5 @@
 	Help                      = Hjälp
 	WorkDone                  = Slutfört, tryck på valfri tangent för att återgå till huvudgränssnittet...
 	Short_Cmd                 = Genvägar
+	Options                   = Alternativ
 '@

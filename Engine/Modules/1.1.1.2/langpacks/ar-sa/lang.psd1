@@ -25,7 +25,6 @@
 	LanguageCode              = علامة المنطقة
 	RefreshModules            = التحديث الساخن لجميع الوحدات
 	PleaseChoose              = الرجاء التحديد
-	PleaseChooseMain          = الاختصار أو الاختيار
 	FailedCreateFolder        = فشل في إنشاء الدليل
 	Failed                    = يفشل
 	ToMsg                     = \n   {0} العودة تلقائيا إلى القائمة الرئيسية بعد ثواني.
@@ -33,4 +32,5 @@
 	Help                      = يساعد
 	WorkDone                  = اكتمل، اضغط على أي مفتاح للعودة إلى الواجهة الرئيسية...
 	Short_Cmd                 = الاختصارات
+	Options                   = خيارات
 '@

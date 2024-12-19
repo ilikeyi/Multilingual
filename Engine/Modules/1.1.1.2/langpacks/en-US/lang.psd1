@@ -25,7 +25,6 @@
 	LanguageCode              = Region tag
 	RefreshModules            = Hot refresh all modules
 	PleaseChoose              = Please select
-	PleaseChooseMain          = shortcuts or options
 	FailedCreateFolder        = Failed to create directory
 	Failed                    = Failed
 	ToMsg                     = \n   Automatically return to the main menu after {0} seconds.
@@ -33,4 +32,5 @@
 	Help                      = Help
 	WorkDone                  = Finish, press any key to return to the main interface...
 	Short_Cmd                 = Shortcut command
+	Options                   = Options
 '@

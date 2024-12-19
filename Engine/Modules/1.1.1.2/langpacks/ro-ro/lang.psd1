@@ -25,7 +25,6 @@
 	LanguageCode              = Marcajul zonei
 	RefreshModules            = Actualizează la cald toate modulele
 	PleaseChoose              = Vă rugăm să selectați
-	PleaseChooseMain          = Comandă rapidă sau selecție
 	FailedCreateFolder        = Nu s-a putut crea directorul
 	Failed                    = Eșuează
 	ToMsg                     = \n   {0} Reveniți automat la meniul principal după câteva secunde.
@@ -33,4 +32,5 @@
 	Help                      = Ajutor
 	WorkDone                  = Finalizat, apăsați orice tastă pentru a reveni la interfața principală...
 	Short_Cmd                 = Comenzi rapide
+	Options                   = Opțiuni
 '@

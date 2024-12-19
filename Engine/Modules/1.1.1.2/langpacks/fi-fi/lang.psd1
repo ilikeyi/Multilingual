@@ -25,7 +25,6 @@
 	LanguageCode              = Vyöhykemerkki
 	RefreshModules            = Päivitä kaikki moduulit kuumana
 	PleaseChoose              = Ole hyvä ja valitse
-	PleaseChooseMain          = Pikakuvake tai valinta
 	FailedCreateFolder        = Hakemiston luominen epäonnistui
 	Failed                    = Epäonnistua
 	ToMsg                     = \n   {0} Palaa automaattisesti päävalikkoon sekunnin kuluttua.
@@ -33,4 +32,5 @@
 	Help                      = Auttaa
 	WorkDone                  = Valmis, palaa pääliittymään painamalla mitä tahansa näppäintä...
 	Short_Cmd                 = Pikanäppäimet
+	Options                   = Vaihtoehdot
 '@

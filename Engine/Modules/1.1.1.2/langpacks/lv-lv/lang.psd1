@@ -25,7 +25,6 @@
 	LanguageCode              = Zonas atzīme
 	RefreshModules            = Visu moduļu karstā atsvaidzināšana
 	PleaseChoose              = Lūdzu, atlasiet
-	PleaseChooseMain          = Īsceļš vai atlase
 	FailedCreateFolder        = Neizdevās izveidot direktoriju
 	Failed                    = Neizdoties
 	ToMsg                     = \n   {0} Pēc sekundēm automātiski atgriezieties galvenajā izvēlnē.
@@ -33,4 +32,5 @@
 	Help                      = Palīdzēt
 	WorkDone                  = Pabeigts, nospiediet jebkuru taustiņu, lai atgrieztos galvenajā saskarnē...
 	Short_Cmd                 = Īsceļi
+	Options                   = Iespējas
 '@

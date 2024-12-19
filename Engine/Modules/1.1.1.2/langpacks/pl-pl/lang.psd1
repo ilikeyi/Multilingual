@@ -25,7 +25,6 @@
 	LanguageCode              = Znak strefy
 	RefreshModules            = Gorące odświeżenie wszystkich modułów
 	PleaseChoose              = Proszę wybrać
-	PleaseChooseMain          = Skrót lub wybór
 	FailedCreateFolder        = Nie udało się utworzyć katalogu
 	Failed                    = Ponieść porażkę
 	ToMsg                     = \n   {0} Automatycznie powróć do menu głównego po sekundach.
@@ -33,4 +32,5 @@
 	Help                      = Pomoc
 	WorkDone                  = Zakończono, naciśnij dowolny klawisz, aby powrócić do głównego interfejsu...
 	Short_Cmd                 = Skróty
+	Options                   = Opcje
 '@

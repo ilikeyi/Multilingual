@@ -25,7 +25,6 @@
 	LanguageCode              = Sonemerke
 	RefreshModules            = Varm oppdater alle moduler
 	PleaseChoose              = Vennligst velg
-	PleaseChooseMain          = Snarvei eller valg
 	FailedCreateFolder        = Kunne ikke opprette katalog
 	Failed                    = Mislykkes
 	ToMsg                     = \n   {0} Gå automatisk tilbake til hovedmenyen etter sekunder.
@@ -33,4 +32,5 @@
 	Help                      = Hjelp
 	WorkDone                  = Fullført, trykk på en tast for å gå tilbake til hovedgrensesnittet...
 	Short_Cmd                 = Snarveier
+	Options                   = Alternativer
 '@

@@ -25,7 +25,6 @@
 	LanguageCode              = Marque de zone
 	RefreshModules            = Rafraîchir à chaud tous les modules
 	PleaseChoose              = Veuillez choisir
-	PleaseChooseMain          = Raccourci ou sélection
 	FailedCreateFolder        = Échec de la création du répertoire
 	Failed                    = Échouer
 	ToMsg                     = \n   {0} Retour automatique au menu principal après quelques secondes.
@@ -33,4 +32,5 @@
 	Help                      = Aide
 	WorkDone                  = Terminé, appuyez sur n'importe quelle touche pour retourner à l'interface principale...
 	Short_Cmd                 = Raccourcis
+	Options                   = Possibilités
 '@

@@ -25,7 +25,6 @@
 	LanguageCode              = 区域标记
 	RefreshModules            = 热刷新所有模块
 	PleaseChoose              = 请选择
-	PleaseChooseMain          = 快捷指令或选择
 	FailedCreateFolder        = 创建目录失败
 	Failed                    = 失败
 	ToMsg                     = \n   {0} 秒后自动返回到主菜单。
@@ -33,4 +32,5 @@
 	Help                      = 帮助
 	WorkDone                  = 完成，按任意键返回主界面...
 	Short_Cmd                 = 快捷指令
+	Options                   = 选项
 '@

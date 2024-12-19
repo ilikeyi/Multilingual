@@ -25,7 +25,6 @@
 	LanguageCode              = Conska oznaka
 	RefreshModules            = Vroča osvežitev vseh modulov
 	PleaseChoose              = Prosim izberite
-	PleaseChooseMain          = Bližnjica ali izbor
 	FailedCreateFolder        = Imenika ni bilo mogoče ustvariti
 	Failed                    = Spodleteti
 	ToMsg                     = \n   {0} Samodejna vrnitev v glavni meni po nekaj sekundah.
@@ -33,4 +32,5 @@
 	Help                      = Pomoč
 	WorkDone                  = Končano, pritisnite katero koli tipko za vrnitev v glavni vmesnik ...
 	Short_Cmd                 = Bližnjice
+	Options                   = Možnosti
 '@

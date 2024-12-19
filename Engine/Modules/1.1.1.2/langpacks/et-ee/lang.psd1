@@ -25,7 +25,6 @@
 	LanguageCode              = Tsooni märk
 	RefreshModules            = Kõigi moodulite kuumvärskendus
 	PleaseChoose              = Palun valige
-	PleaseChooseMain          = Otsetee või valik
 	FailedCreateFolder        = Kataloogi loomine ebaõnnestus
 	Failed                    = Ebaõnnestuda
 	ToMsg                     = \n   {0} Naaske sekundite pärast automaatselt peamenüüsse.
@@ -33,4 +32,5 @@
 	Help                      = Abi
 	WorkDone                  = Lõpetatud, vajutage põhiliidesele naasmiseks suvalist klahvi...
 	Short_Cmd                 = Otseteed
+	Options                   = Valikud
 '@

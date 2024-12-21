@@ -5,7 +5,7 @@
 	},
 	"version": {
 		"buildstring": "bs_release.2024.12.08",
-		"version":     "1.1.1.2",
+		"version":     "1.1.1.3",
 		"minau":       "1.0.0.0"
 	},
 	"changelog": {

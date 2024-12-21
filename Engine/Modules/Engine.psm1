@@ -1,17 +1,23 @@
 ﻿<#
 	.Available languages
 	.可用语言
+
+	https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows?view=windows-11
+	https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-time-zones?view=windows-11
+
+	https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oe376/6c085406-a698-4e12-9d4d-c3b0ee3dbc4a
+	https://www.venea.net/web/culture_code
+	https://helpdesk.atril.com/hc/en-us/articles/360010413820--Language-Abbreviations-and-Language-Code-Identifiers-LCID-
+
+	RegionID = Decimal ID, ISO3166
+	Region   = Language/region
+	Tag      = Language/region tag
+	Name     = Name
+	Timezone = Timezone
+	LIP      = LIP ID
+	Expand   = Expand language
 #>
 $Global:Languages_Available = @(
-	<#
-		RegionID = Decimal ID, ISO3166
-		Region   = Language/region
-		Tag      = Language/region tag
-		Name     = Name
-		Timezone = Timezone
-		LIP      = LIP ID
-		Expand   = Expand language
-	#>
 	@{
 		RegionID = "1078"
 		Region   = "af-za"
@@ -835,7 +841,7 @@ $Global:Languages_Available = @(
 		LIP      = ""
 		Expand   = @()
 	}
- 	@{
+	@{
 		RegionID = "1037"
 		Region   = "he-IL"
 		Tag      = "il"
@@ -1797,52 +1803,176 @@ Function Language
 
 Function Language_Select_GUI
 {
-	$Path = "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual"
-	if (-not (Test-Path $Path)) {
-		New-Item -Path $Path -Force -ErrorAction SilentlyContinue | Out-Null
-	}
-
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
-	
+
 	Clear-Host
-	Write-Host "`n   Choose your country or region."
-	Write-Host "   $('-' * 80)"
-	
+	Write-Host "`n  $($lang.LanguageSelRegion)" -ForegroundColor Yellow
+	Write-Host "  $('-' * 80)"
+
+	Function Language_Refresh_Search
+	{
+		$UI_Main_Menu.controls.Clear()
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
+			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
+			$FlagsDefaultLanguage = $GetLanguage
+		} else {
+			$FlagsDefaultLanguage = (Get-Culture).Name
+		}
+
+		$CurrentVersion = (Get-Module -Name Engine).Version
+
+		$Region = Language_Region
+		If ([String]::IsNullOrEmpty($UI_Main_Search.Text)) {
+			ForEach ($item in $Region) {
+				if (Test-Path -Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($item.Region)" -PathType Container) {
+					$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
+						Height  = 35
+						Width   = 485
+						Text    = $item.Name
+						Tag     = $item.Region
+					}
+
+					if ($item.Region -eq $FlagsDefaultLanguage) {
+						$CheckBox.Checked = $True
+					}
+
+					$UI_Main_Menu.controls.AddRange($CheckBox)
+				}
+			}
+		} else {
+			$MatchLanguage = @()
+			$MatchLanguageResult = @()
+			ForEach ($item in $Region) {
+				$IsMatch = $True
+				if ($IsMatch) {
+					if ($item.Name -match $UI_Main_Search.Text) {
+						$IsMatch = $False
+						$MatchLanguage += $item.Region
+					}
+				}
+
+				if ($IsMatch) {
+					if ($item.Region -match $UI_Main_Search.Text) {
+						$IsMatch = $False
+						$MatchLanguage += $item.Region
+					}
+				}
+
+				if ($IsMatch) {
+					if ($item.RegionID -match $UI_Main_Search.Text) {
+						$IsMatch = $False
+						$MatchLanguage += $item.Region
+					}
+				}
+			}
+
+			if ($MatchLanguage.count -gt 0) {
+				ForEach ($item in $MatchLanguage) {
+					if (Test-Path -Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($item)" -PathType Container) {
+						$MatchLanguageResult += $item
+					}
+				}
+			}
+
+			$MatchLanguageResult = $MatchLanguageResult | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
+			if ($MatchLanguageResult.count -gt 0) {
+				ForEach ($item in $Region) {
+					if ($MatchLanguageResult -contains $item.Region) {
+						$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
+							Height  = 35
+							Width   = 485
+							Text    = $item.Name
+							Tag     = $item.Region
+						}
+
+						if ($item.Region -eq $FlagsDefaultLanguage) {
+							$CheckBox.Checked = $True
+						}
+
+						$UI_Main_Menu.controls.AddRange($CheckBox)
+					}
+				}
+			} else {
+				$UI_Main_Other_Rule_Not_Find = New-Object system.Windows.Forms.Label -Property @{
+					Height         = 40
+					Width          = 485
+					Text           = $lang.LanguageSearchNo
+				}
+				$UI_Main_Menu.controls.AddRange($UI_Main_Other_Rule_Not_Find)
+			}
+		}
+	}
+
 	$UI_Main           = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 550
-		Text           = "Choose your country or region."
+		Text           = $lang.LanguageSelRegion
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
 		MinimizeBox    = $False
 		ControlBox     = $False
 		BackColor      = "#ffffff"
 		FormBorderStyle = "Fixed3D"
-		Font           = New-Object System.Drawing.Font("Segoe UI", 9, [System.Drawing.FontStyle]::Regular)
+		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 	}
+
+	$UI_Main_Search    = New-Object System.Windows.Forms.TextBox -Property @{
+		Height         = 30
+		Width          = 375
+		Location       = "20,22"
+		Text           = ""
+		add_Click      = {
+			$This.BackColor = "#FFFFFF"
+			$UI_Main_Error_Icon.Image = $null
+			$UI_Main_Error.ForeColor = "Black"
+		}
+	}
+
+	<#
+		.搜索或匹配
+	#>
+	$UI_Main_Search_Refresh = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "400,15"
+		Height         = 36
+		Width          = 120
+		Text           = $lang.Search
+		add_Click      = { Language_Refresh_Search }
+	}
+
 	$UI_Main_Menu      = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 545
-		Width          = 550
+		Height         = 480
+		Width          = 528
+		Location       = "0,60"
 		BorderStyle    = 0
-		autoSizeMode   = 0
+		autoSizeMode   = 1
 		autoScroll     = $True
 		Padding        = "16,6,0,0"
-		Dock           = 1
+	}
+
+	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
+		Location       = "10,568"
+		Height         = 20
+		Width          = 20
+		SizeMode       = "StretchImage"
 	}
 	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "8,570"
-		Height         = 22
-		Width          = 508
+		Height         = 30
+		Width          = 465
+		Location       = "35,570"
 		Text           = ""
 	}
 	$UI_Main_Dont_Prompt = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 22
+		Height         = 30
 		Width          = 508
-		Location       = '10,596'
-		Text           = "&Remember the chosen language"
+		Location       = '12,596'
+		Text           = $lang.LanguageRemember
 		add_Click      = {
 			if ($UI_Main_Dont_Prompt.Checked) {
 				Save_Dynamic -regkey "Multilingual" -name "LanguagePrompt" -value "True" -String
@@ -1864,16 +1994,20 @@ Function Language_Select_GUI
 		Height         = 36
 		Width          = 255
 		Location       = "8,635"
-		Text           = "&OK"
+		Text           = $lang.Ok
 		add_Click      = {
 			$FlagsLanguageCheck = $False
 			$UI_Main_Menu.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.RadioButton]) {
-					if ($_.Checked) {
-						$FlagsLanguageCheck = $True
-						Save_Dynamic -regkey "Multilingual" -name "Language" -value $_.Tag -String
-						Language_Change -lang $_.Tag
-						Modules_Import -Import
+					if ($_.Enabled) {
+						if ($_.Checked) {
+							Write-host "  $($_.Text)" -ForegroundColor Green
+
+							$FlagsLanguageCheck = $True
+							Save_Dynamic -regkey "Multilingual" -name "Language" -value $_.Tag -String
+							Language_Change -lang $_.Tag
+							Modules_Import -Import
+						}
 					}
 				}
 			}
@@ -1881,7 +2015,8 @@ Function Language_Select_GUI
 			if ($FlagsLanguageCheck) {
 				$UI_Main.Close()
 			} else {
-				$UI_Main_Error.Text = "Please select your preferred language"
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\$((Get-Module -Name Engine).Version)\Assets\icon\Error.ico")
+				$UI_Main_Error.Text = $lang.LanguageNoSel
 			}
 		}
 	}
@@ -1890,45 +2025,25 @@ Function Language_Select_GUI
 		Height         = 36
 		Width          = 255
 		Location       = "268,635"
-		Text           = "&Cancel"
+		Text           = $lang.Cancel
 		add_Click      = {
+			Write-Host "  $($lang.UserCancel)" -ForegroundColor Red
 			$UI_Main.Close()
 			Stop-Process $PID
 		}
 	}
 	$UI_Main.controls.AddRange((
+		$UI_Main_Search,
+		$UI_Main_Search_Refresh,
 		$UI_Main_Menu,
 		$UI_Main_Dont_Prompt,
+		$UI_Main_Error_Icon,
 		$UI_Main_Error,
 		$UI_Main_OK,
 		$UI_Main_Canel
 	))
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
-		$FlagsDefaultLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
-	} else {
-		$FlagsDefaultLanguage = (Get-Culture).Name
-	}
-
-	$CurrentVersion = (Get-Module -Name Engine).Version
-	$Region = Language_Region
-	ForEach ($itemRegion in $Region) {
-		if (Test-Path -Path "$($PSScriptRoot)\$($CurrentVersion)\langpacks\$($itemRegion.Region)" -PathType Container) {
-			$CheckBox   = New-Object System.Windows.Forms.RadioButton -Property @{
-				Height  = 35
-				Width   = 485
-				Text    = $itemRegion.Name
-				Tag     = $itemRegion.Region
-			}
-
-			if ($itemRegion.Region -eq $FlagsDefaultLanguage) {
-				$CheckBox.Checked = $True
-			}
-
-			$UI_Main_Menu.controls.AddRange($CheckBox)
-		}
-	}
-
+	Language_Refresh_Search
 	$UI_Main.ShowDialog() | Out-Null
 }
 
@@ -1961,7 +2076,7 @@ Function Language_Change
 			}
 		} else {
 			Clear-Host
-			Write-Host "`n  There is no language pack locally, it will automatically exit after 6 seconds." -ForegroundColor Red
+			Write-Host "`n  $($lang.LanguageNoPack)" -ForegroundColor Red
 			Start-Sleep -s 6
 			exit
 		}
@@ -1979,9 +2094,9 @@ Function Modules_Refresh
 		[string[]]$Functions
 	)
 
-	Write-Host "`n   $($lang.RefreshModules)"
+	Write-Host "`n  $($lang.RefreshModules)" -ForegroundColor Yellow
 	Language -Auto
-	Write-Host "   $($lang.Done)" -ForegroundColor Green
+	Write-Host "  $($lang.Done)" -ForegroundColor Green
 
 	if ($Functions) {
 		ForEach ($Function in $Functions) {
@@ -2004,8 +2119,8 @@ Function Modules_Import
 	$CurrentVersion = (Get-Module -Name Engine).Version
 
 	<#
-		.Remove all Engine modules
-		.删除所有 Engine 模块
+		.Remove all Multilingual modules
+		.删除所有 Multilingual 模块
 	#>
 	Get-Module -Name Engine* | Where-Object -Property Name -like "Engine*" | ForEach-Object {
 		Remove-Module -Name $_.Name -Force -ErrorAction Ignore

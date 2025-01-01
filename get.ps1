@@ -2612,7 +2612,7 @@ Function Verify_Available_Size
 	$TempCheckVerify = $false
 
 	Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | Where-Object { ((Join_MainFolder -Path $Disk) -eq $_.Root) } | ForEach-Object {
-		if ($_.Free -gt (Convert_Size -From GB -To Bytes $Size)) {
+		if ($_.Free -gt (Convert_Size -From GB -To Bytes -Size $Size)) {
 			$TempCheckVerify = $True
 		} else {
 			$TempCheckVerify = $false
@@ -2631,27 +2631,27 @@ Function Convert_Size
 		[validateset("Bytes","KB","MB","GB","TB")]
 		[string]$To,
 		[Parameter(Mandatory=$true)]
-		[double]$Value,
+		[double]$Size,
 		[int]$Precision = 4
 	)
 
 	switch($From) {
-		"Bytes" { $value = $Value }
-		"KB" { $value = $Value * 1024 }
-		"MB" { $value = $Value * 1024 * 1024 }
-		"GB" { $value = $Value * 1024 * 1024 * 1024 }
-		"TB" { $value = $Value * 1024 * 1024 * 1024 * 1024 }
+		"Bytes" { $Size = $Size }
+		"KB" { $Size = $Size * 1024 }
+		"MB" { $Size = $Size * 1024 * 1024 }
+		"GB" { $Size = $Size * 1024 * 1024 * 1024 }
+		"TB" { $Size = $Size * 1024 * 1024 * 1024 * 1024 }
 	}
 
 	switch ($To) {
-		"Bytes" { return $value }
-		"KB" { $Value = $Value/1KB }
-		"MB" { $Value = $Value/1MB }
-		"GB" { $Value = $Value/1GB }
-		"TB" { $Value = $Value/1TB }
+		"Bytes" { return $Size }
+		"KB" { $Size = $Size/1KB }
+		"MB" { $Size = $Size/1MB }
+		"GB" { $Size = $Size/1GB }
+		"TB" { $Size = $Size/1TB }
 	}
 
-	return [Math]::Round($value, $Precision, [MidPointRounding]::AwayFromZero)
+	return [Math]::Round($Size, $Precision, [MidPointRounding]::AwayFromZero)
 }
 
 Function Test_Available_Disk

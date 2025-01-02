@@ -2,6 +2,6 @@
 	# fr-CA
 	# French (Canada)
 
-	Developers_Mode                 = Mode de développement
+	Developers_Mode                 = Mode développeur
 	Developers_Mode_Location        = Positionnement des codes
 '@

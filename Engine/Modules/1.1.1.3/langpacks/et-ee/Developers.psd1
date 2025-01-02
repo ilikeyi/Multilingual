@@ -2,6 +2,6 @@
 	# et-EE
 	# Estonian (Estonia)
 
-	Developers_Mode                 = Arendusrežiim
+	Developers_Mode                 = Arendaja režiim
 	Developers_Mode_Location        = Koodi positsioneerimine
 '@

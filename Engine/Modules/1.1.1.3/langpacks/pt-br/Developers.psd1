@@ -2,6 +2,6 @@
 	# pt-BR
 	# Portuguese (Brazil)
 
-	Developers_Mode                 = Modo de desenvolvimento
+	Developers_Mode                 = Modo de desenvolvedor
 	Developers_Mode_Location        = Posicionamento de código
 '@

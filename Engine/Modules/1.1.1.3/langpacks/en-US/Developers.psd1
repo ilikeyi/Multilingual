@@ -2,6 +2,6 @@
 	# en-US
 	# English (United States)
 
-	Developers_Mode                 = Development mode
+	Developers_Mode                 = Developer Mode
 	Developers_Mode_Location        = Code positioning
 '@

@@ -2,6 +2,6 @@
 	# th-TH
 	# Thai (Thailand)
 
-	Developers_Mode                 = โหมดการพัฒนา
+	Developers_Mode                 = โหมดนักพัฒนา
 	Developers_Mode_Location        = การวางตำแหน่งโค้ด
 '@

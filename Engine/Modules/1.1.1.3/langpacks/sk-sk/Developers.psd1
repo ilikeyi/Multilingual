@@ -2,6 +2,6 @@
 	# sk-SK
 	# Slovak (Slovakia)
 
-	Developers_Mode                 = Rozvojový režim
+	Developers_Mode                 = Režim vývojára
 	Developers_Mode_Location        = Umiestnenie kódu
 '@

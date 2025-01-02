@@ -21,7 +21,7 @@
 			)
 #			IconUri      = ''
 #			ReleaseNotes = ''
-			Buildstring    = 'bs_release.2024.12.08'
+			Buildstring    = 'yi_release.2025.1.7'
 			MinimumVersion = '1.0.0.0'
 			UpdateServer = @(
 				"https://fengyi.tel/download/solutions/update/Multilingual/latest.json"

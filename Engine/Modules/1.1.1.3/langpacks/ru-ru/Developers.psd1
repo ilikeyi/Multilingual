@@ -2,6 +2,6 @@
 	# ru-RU
 	# Russian (Russia)
 
-	Developers_Mode                 = Режим разработки
+	Developers_Mode                 = Режим разработчика
 	Developers_Mode_Location        = Позиционирование кода
 '@

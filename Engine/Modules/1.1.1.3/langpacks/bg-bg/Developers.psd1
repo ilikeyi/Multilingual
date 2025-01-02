@@ -2,6 +2,6 @@
 	# bg-BG
 	# Bulgarian (Bulgaria)
 
-	Developers_Mode                 = Режим на развитие
+	Developers_Mode                 = Режим за програмисти
 	Developers_Mode_Location        = Кодово позициониране
 '@

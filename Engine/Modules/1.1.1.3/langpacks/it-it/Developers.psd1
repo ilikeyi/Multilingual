@@ -2,6 +2,6 @@
 	# it-IT
 	# Italian (Italy)
 
-	Developers_Mode                 = Modalità di sviluppo
+	Developers_Mode                 = Modalità sviluppatore
 	Developers_Mode_Location        = Posizionamento del codice
 '@

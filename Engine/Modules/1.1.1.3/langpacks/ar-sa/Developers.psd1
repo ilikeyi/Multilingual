@@ -2,6 +2,6 @@
 	# ar-SA
 	# Arabic (Saudi Arabia)
 
-	Developers_Mode                 = وضع التطوير
+	Developers_Mode                 = وضع المطور
 	Developers_Mode_Location        = حديد موضع الكود
 '@

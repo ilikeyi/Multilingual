@@ -2,6 +2,6 @@
 	# de-DE
 	# German (Germany)
 
-	Developers_Mode                 = Entwicklungsmodus
+	Developers_Mode                 = Entwicklermodus
 	Developers_Mode_Location        = Codepositionierung
 '@

@@ -12,8 +12,6 @@
 	UpdateResetTips           = När nedladdningsadressen är tillgänglig, tvingas nedladdningen och uppdateras automatiskt.
 	UpdateCheckServerStatus   = Kontrollera serverstatus ( {0} tillgängliga alternativ )
 	UpdateServerAddress       = Serveradress
-	UpdateServeravailable     = Status: Tillgänglig
-	UpdateServerUnavailable   = Status: Ej tillgängligt
 	UpdatePriority            = Redan prioriterat
 	UpdateServerTestFailed    = Misslyckades med serverstatustest
 	UpdateQueryingUpdate      = Frågar efter uppdateringar...

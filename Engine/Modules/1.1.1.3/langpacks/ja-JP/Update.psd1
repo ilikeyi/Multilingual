@@ -12,8 +12,6 @@
 	UpdateResetTips           = ダウンロードアドレスが利用可能になると、自動的にダウンロードして更新するように強制されます。
 	UpdateCheckServerStatus   = サーバーのステータスを確認します ( 合計 {0} オプション )
 	UpdateServerAddress       = サーバーアドレス
-	UpdateServeravailable     = ステータス: 利用可能
-	UpdateServerUnavailable   = ステータス: 利用不可
 	UpdatePriority            = 優先的に設定されています
 	UpdateServerTestFailed    = 失敗したサーバー ステータス テスト
 	UpdateQueryingUpdate      = 更新をクエリしています...

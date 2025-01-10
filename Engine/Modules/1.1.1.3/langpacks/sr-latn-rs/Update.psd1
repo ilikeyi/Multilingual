@@ -12,8 +12,6 @@
 	UpdateResetTips           = Када је адреса за преузимање доступна, преузимање је принудно и аутоматски се ажурира.
 	UpdateCheckServerStatus   = Проверите статус сервера ( доступних опција: {0} )
 	UpdateServerAddress       = Адреса сервера
-	UpdateServeravailable     = Статус: Доступан
-	UpdateServerUnavailable   = Статус: Није доступно
 	UpdatePriority            = Већ постављено као приоритет
 	UpdateServerTestFailed    = Тест статуса сервера није успео
 	UpdateQueryingUpdate      = Упит за ажурирања...

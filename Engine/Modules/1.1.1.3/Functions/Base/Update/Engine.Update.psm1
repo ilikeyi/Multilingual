@@ -261,8 +261,8 @@ Function Update_Process
 	#>
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Internet Explorer\Main" -Name "DisableFirstRunCustomize" -Value 2 -ErrorAction SilentlyContinue
 
-	write-host "  $($lang.UpdateCheckServerStatus -f $Script:ServerList.Count)
-   $('-' * 80)"
+	write-host "  $($lang.UpdateCheckServerStatus -f $Script:ServerList.Count)"
+	write-host "  $('-' * 80)"
 
 	ForEach ($item in $Script:ServerList) {
 		write-host "  * $($lang.UpdateServerAddress): " -NoNewline -ForegroundColor Yellow
@@ -271,10 +271,10 @@ Function Update_Process
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
-			write-host "    $($lang.UpdateServeravailable)" -ForegroundColor Green
+			write-host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 			break
 		} else {
-			write-host "    $($lang.UpdateServerUnavailable)`n" -ForegroundColor Red
+			write-host "    $($lang.UpdateUnavailable)`n" -ForegroundColor Red
 		}
 	}
 

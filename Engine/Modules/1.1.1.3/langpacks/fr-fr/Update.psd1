@@ -12,8 +12,6 @@
 	UpdateResetTips           = Lorsque l'adresse de téléchargement est disponible, le téléchargement est forcé et mis à jour automatiquement.
 	UpdateCheckServerStatus   = Vérifier l'état du serveur ( {0} options disponibles )
 	UpdateServerAddress       = Adresse du serveur
-	UpdateServeravailable     = Statut: Disponible
-	UpdateServerUnavailable   = Statut: Non disponible
 	UpdatePriority            = Déjà défini comme priorité
 	UpdateServerTestFailed    = Échec du test d'état du serveur
 	UpdateQueryingUpdate      = Recherche de mises à jour...

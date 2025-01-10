@@ -12,8 +12,6 @@
 	UpdateResetTips           = Când adresa de descărcare este disponibilă, descărcarea este forțată și actualizată automat.
 	UpdateCheckServerStatus   = Verificați starea serverului ( {0} opțiuni disponibile )
 	UpdateServerAddress       = Adresa serverului
-	UpdateServeravailable     = Stare: Disponibil
-	UpdateServerUnavailable   = Stare: Indisponibil
 	UpdatePriority            = Deja setat ca prioritate
 	UpdateServerTestFailed    = Testul de stare a serverului a eșuat
 	UpdateQueryingUpdate      = Se solicită actualizări...

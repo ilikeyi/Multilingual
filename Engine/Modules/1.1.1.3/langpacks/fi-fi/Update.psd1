@@ -12,8 +12,6 @@
 	UpdateResetTips           = Kun latausosoite on saatavilla, lataus pakotetaan ja päivitetään automaattisesti.
 	UpdateCheckServerStatus   = Tarkista palvelimen tila ( {0} vaihtoehtoa käytettävissä )
 	UpdateServerAddress       = Palvelimen osoite
-	UpdateServeravailable     = Tila: Saatavilla
-	UpdateServerUnavailable   = Tila: Ei saatavilla
 	UpdatePriority            = Jo asetettu prioriteetiksi
 	UpdateServerTestFailed    = Palvelimen tilatesti epäonnistui
 	UpdateQueryingUpdate      = Haetaan päivityksiä...

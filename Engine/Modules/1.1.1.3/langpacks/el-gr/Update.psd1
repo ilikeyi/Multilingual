@@ -12,8 +12,6 @@
 	UpdateResetTips           = Όταν η διεύθυνση λήψης είναι διαθέσιμη, η λήψη επιβάλλεται και ενημερώνεται αυτόματα.
 	UpdateCheckServerStatus   = Ελέγξτε την κατάσταση του διακομιστή ( {0} διαθέσιμες επιλογές )
 	UpdateServerAddress       = Διεύθυνση διακομιστή
-	UpdateServeravailable     = Κατάσταση: Διαθέσιμο
-	UpdateServerUnavailable   = Κατάσταση: Μη διαθέσιμο
 	UpdatePriority            = Έχει ήδη οριστεί ως προτεραιότητα
 	UpdateServerTestFailed    = Αποτυχία δοκιμής κατάστασης διακομιστή
 	UpdateQueryingUpdate      = Ερώτημα για ενημερώσεις...

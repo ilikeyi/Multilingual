@@ -12,8 +12,6 @@
 	UpdateResetTips           = عندما يتوفر عنوان التنزيل، يتم فرض التنزيل وتحديثه تلقائيًا.
 	UpdateCheckServerStatus   = التحقق من حالة الخادم (يتوفر {0} من الخيارات)
 	UpdateServerAddress       = عنوان الخادم
-	UpdateServeravailable     = الحالة: متاح
-	UpdateServerUnavailable   = الحالة: غير متوفر
 	UpdatePriority            = تم تعيينها بالفعل كأولوية
 	UpdateServerTestFailed    = فشل اختبار حالة الخادم
 	UpdateQueryingUpdate      = الاستعلام عن التحديثات...

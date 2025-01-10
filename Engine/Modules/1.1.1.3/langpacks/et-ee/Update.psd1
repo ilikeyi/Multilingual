@@ -12,8 +12,6 @@
 	UpdateResetTips           = Kui allalaadimisaadress on saadaval, siis allalaadimine sunnitakse ja seda värskendatakse automaatselt.
 	UpdateCheckServerStatus   = Kontrolli serveri olekut ( saadaval on {0} valikut )
 	UpdateServerAddress       = Serveri aadress
-	UpdateServeravailable     = Olek: saadaval
-	UpdateServerUnavailable   = Olek: Pole saadaval
 	UpdatePriority            = Juba seatud prioriteediks
 	UpdateServerTestFailed    = Serveri oleku test ebaõnnestus
 	UpdateQueryingUpdate      = Värskenduste päring...

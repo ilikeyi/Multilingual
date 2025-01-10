@@ -12,8 +12,6 @@
 	UpdateResetTips           = 다운로드 주소를 사용할 수 있으면 자동으로 다운로드 및 업데이트해야합니다.
 	UpdateCheckServerStatus   = 서버 상태 확인 ( 총 {0} 선택 사항 )
 	UpdateServerAddress       = 서버 주소
-	UpdateServeravailable     = 상태: 사용 가능
-	UpdateServerUnavailable   = 상태: 사용할 수 없음
 	UpdatePriority            = 우선 순위로 설정 됨
 	UpdateServerTestFailed    = 서버 상태 테스트 실패
 	UpdateQueryingUpdate      = 업데이트 쿼리 중 ...

@@ -12,8 +12,6 @@
 	UpdateResetTips           = כאשר כתובת ההורדה זמינה, ההורדה נאלצת ומתעדכנת אוטומטית.
 	UpdateCheckServerStatus   = בדוק את סטטוס השרת ( {0} אפשרויות זמינות )
 	UpdateServerAddress       = כתובת שרת
-	UpdateServeravailable     = סטטוס: זמין
-	UpdateServerUnavailable   = סטטוס: לא זמין
 	UpdatePriority            = כבר הוגדר בעדיפות
 	UpdateServerTestFailed    = בדיקת מצב השרת נכשלה
 	UpdateQueryingUpdate      = מבקש עדכונים...

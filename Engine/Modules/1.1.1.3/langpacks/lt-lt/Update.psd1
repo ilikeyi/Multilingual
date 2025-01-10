@@ -12,8 +12,6 @@
 	UpdateResetTips           = Kai atsisiuntimo adresas yra pasiekiamas, atsisiuntimas yra priverstinis ir atnaujinamas automatiškai.
 	UpdateCheckServerStatus   = Patikrinkite serverio būseną ( galimos {0} parinktys )
 	UpdateServerAddress       = Serverio adresas
-	UpdateServeravailable     = Būsena: Yra
-	UpdateServerUnavailable   = Būsena: nėra
 	UpdatePriority            = Jau nustatytas kaip prioritetas
 	UpdateServerTestFailed    = Nepavyko patikrinti serverio būsenos
 	UpdateQueryingUpdate      = Užklausa dėl atnaujinimų...

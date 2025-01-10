@@ -12,8 +12,6 @@
 	UpdateResetTips           = Kad lejupielādes adrese ir pieejama, lejupielāde tiek piespiesta un atjaunināta automātiski.
 	UpdateCheckServerStatus   = Pārbaudiet servera statusu ( pieejamas {0} opcijas )
 	UpdateServerAddress       = Servera adrese
-	UpdateServeravailable     = Statuss: pieejams
-	UpdateServerUnavailable   = Statuss: Nav pieejams
 	UpdatePriority            = Jau iestatīta kā prioritāte
 	UpdateServerTestFailed    = Servera statusa pārbaude neizdevās
 	UpdateQueryingUpdate      = Notiek atjauninājumu vaicājums...

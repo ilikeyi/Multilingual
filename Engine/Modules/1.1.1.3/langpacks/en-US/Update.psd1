@@ -12,8 +12,6 @@
 	UpdateResetTips           = When the download address is available, it is forced to download and update automatically.
 	UpdateCheckServerStatus   = Check server status ( total {0} optional )
 	UpdateServerAddress       = Server address
-	UpdateServeravailable     = Status: Available
-	UpdateServerUnavailable   = Status: Unavailable
 	UpdatePriority            = has been set as priority
 	UpdateServerTestFailed    = Failed server status test
 	UpdateQueryingUpdate      = Querying and updating...

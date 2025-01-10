@@ -12,8 +12,6 @@
 	UpdateResetTips           = İndirme adresi mevcut olduğunda indirme otomatik olarak zorunlu hale getirilir ve güncellenir.
 	UpdateCheckServerStatus   = Sunucu durumunu kontrol edin ( {0} seçenek mevcut )
 	UpdateServerAddress       = Sunucu adresi
-	UpdateServeravailable     = Durum: Mevcut
-	UpdateServerUnavailable   = Durum: Mevcut değil
 	UpdatePriority            = Zaten öncelikli olarak ayarlandı
 	UpdateServerTestFailed    = Başarısız sunucu durumu testi
 	UpdateQueryingUpdate      = Güncellemeler sorgulanıyor...

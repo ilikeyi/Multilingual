@@ -12,8 +12,6 @@
 	UpdateResetTips           = Когато адресът за изтегляне е наличен, изтеглянето се принуждава и актуализира автоматично.
 	UpdateCheckServerStatus   = Проверете състоянието на сървъра ( налични са {0} опции )
 	UpdateServerAddress       = Адрес на сървъра
-	UpdateServeravailable     = Статус: Наличен
-	UpdateServerUnavailable   = Състояние: Не е налично
 	UpdatePriority            = Вече е зададен като приоритет
 	UpdateServerTestFailed    = Неуспешен тест за състояние на сървъра
 	UpdateQueryingUpdate      = Извършва се заявка за актуализации...

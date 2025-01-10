@@ -12,8 +12,6 @@
 	UpdateResetTips           = Kada je adresa za preuzimanje dostupna, preuzimanje se nameće i ažurira automatski.
 	UpdateCheckServerStatus   = Provjerite status poslužitelja ( dostupno {0} opcija )
 	UpdateServerAddress       = Adresa poslužitelja
-	UpdateServeravailable     = Status: Dostupan
-	UpdateServerUnavailable   = Status: Nije dostupno
 	UpdatePriority            = Već je postavljeno kao prioritet
 	UpdateServerTestFailed    = Neuspjeli test statusa poslužitelja
 	UpdateQueryingUpdate      = Upit za ažuriranja...

@@ -12,8 +12,6 @@
 	UpdateResetTips           = Коли адреса завантаження доступна, завантаження примусово оновлюється автоматично.
 	UpdateCheckServerStatus   = Перевірити статус сервера ( доступні варіанти: {0} )
 	UpdateServerAddress       = Адреса сервера
-	UpdateServeravailable     = Статус: Є
-	UpdateServerUnavailable   = Статус: недоступний
 	UpdatePriority            = Вже встановлено як пріоритет
 	UpdateServerTestFailed    = Невдала перевірка стану сервера
 	UpdateQueryingUpdate      = Запит на оновлення...

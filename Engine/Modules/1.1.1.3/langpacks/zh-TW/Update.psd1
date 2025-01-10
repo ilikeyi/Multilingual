@@ -12,8 +12,6 @@
 	UpdateResetTips           = 下載地址可用時，強制下載並自動更新。
 	UpdateCheckServerStatus   = 檢查服務器狀態 ( 共 {0} 個可選 )
 	UpdateServerAddress       = 服務器地址
-	UpdateServeravailable     = 狀態：可用
-	UpdateServerUnavailable   = 狀態：不可用
 	UpdatePriority            = 已設置為優先級
 	UpdateServerTestFailed    = 未通過服務器狀態測試
 	UpdateQueryingUpdate      = 正在查詢更新中...

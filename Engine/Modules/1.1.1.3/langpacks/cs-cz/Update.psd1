@@ -12,8 +12,6 @@
 	UpdateResetTips           = Když je k dispozici adresa pro stahování, stahování je vynuceno a automaticky aktualizováno.
 	UpdateCheckServerStatus   = Zkontrolujte stav serveru ( dostupné možnosti: {0} )
 	UpdateServerAddress       = Adresa serveru
-	UpdateServeravailable     = Stav: K dispozici
-	UpdateServerUnavailable   = Stav: Není k dispozici
 	UpdatePriority            = Již nastaveno jako priorita
 	UpdateServerTestFailed    = Neúspěšný test stavu serveru
 	UpdateQueryingUpdate      = Dotaz na aktualizace...

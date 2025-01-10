@@ -12,8 +12,6 @@
 	UpdateResetTips           = Wanneer het downloadadres beschikbaar is, wordt de download geforceerd en automatisch bijgewerkt.
 	UpdateCheckServerStatus   = Controleer de serverstatus ( {0} opties beschikbaar )
 	UpdateServerAddress       = Serveradres
-	UpdateServeravailable     = Status: Beschikbaar
-	UpdateServerUnavailable   = Status: Niet beschikbaar
 	UpdatePriority            = Al ingesteld als prioriteit
 	UpdateServerTestFailed    = Mislukte serverstatustest
 	UpdateQueryingUpdate      = Vragen om updates...

@@ -12,8 +12,6 @@
 	UpdateResetTips           = เมื่อที่อยู่ดาวน์โหลดพร้อมใช้งาน การดาวน์โหลดจะถูกบังคับและอัปเดตโดยอัตโนมัติ
 	UpdateCheckServerStatus   = ตรวจสอบสถานะเซิร์ฟเวอร์ ( มีตัวเลือก {0} รายการ )
 	UpdateServerAddress       = ที่อยู่เซิร์ฟเวอร์
-	UpdateServeravailable     = สถานะ: มีจำหน่าย
-	UpdateServerUnavailable   = สถานะ: ไม่สามารถใช้ได้
 	UpdatePriority            = ตั้งเป็นลำดับความสำคัญแล้ว
 	UpdateServerTestFailed    = การทดสอบสถานะเซิร์ฟเวอร์ล้มเหลว
 	UpdateQueryingUpdate      = กำลังค้นหาการอัปเดต...

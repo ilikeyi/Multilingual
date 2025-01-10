@@ -12,8 +12,6 @@
 	UpdateResetTips           = Ko je naslov za prenos na voljo, se prenos vsili in samodejno posodobi.
 	UpdateCheckServerStatus   = Preverite stanje strežnika ( na voljo je {0} možnosti )
 	UpdateServerAddress       = Naslov strežnika
-	UpdateServeravailable     = Status: Na voljo
-	UpdateServerUnavailable   = Status: Ni na voljo
 	UpdatePriority            = Že nastavljen kot prednostni
 	UpdateServerTestFailed    = Neuspešen preizkus stanja strežnika
 	UpdateQueryingUpdate      = Poizvedovanje za posodobitve ...

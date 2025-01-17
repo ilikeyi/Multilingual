@@ -427,6 +427,8 @@ Function Update_Create_Process
 		if (Test-Path -Path $PublicAioItem -PathType Container) {
 			remove-item -path $CurrentAioSaveTo -Recurse -force -ErrorAction SilentlyContinue
 
+			New-Item -Path $CurrentAioSaveTo -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+
 			Copy-Item -Path $PublicAioItem -Destination $CurrentAio -Recurse -Force -Exclude $item.Exclude -ErrorAction SilentlyContinue
 			Write-host $lang.Done -ForegroundColor Green
 		} else {

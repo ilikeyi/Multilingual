@@ -78,15 +78,18 @@ Function Prerequisite
 
 		if ($GetOldVersion -eq $SaveCurrentVersion) {
 			Write-Host " $($lang.UpdateNotExecuted) " -BackgroundColor DarkGreen -ForegroundColor White
-			write-host "  $($lang.Del)".PadRight(22) -NoNewline -ForegroundColor Green
+
+			write-host "  " -NoNewline 
+			write-host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual\Update" -Name "IsUpdate_Clean" -Force -ErrorAction SilentlyContinue | out-null
-			Write-host $lang.Done
+			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 		} else {
 			Write-Host " $($lang.Del) " -BackgroundColor DarkRed -ForegroundColor White
 
 			$Wait_Clean_Folder_Full = Join-Path -Path "$($PSScriptRoot)\..\..\..\.." -ChildPath $GetOldVersion
 
-			write-host "  $($lang.Del): $($GetOldVersion): " -NoNewline -ForegroundColor Green
+			write-host "  " -NoNewline 
+			write-host " $($lang.Del): $($GetOldVersion) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			remove-item -path $Wait_Clean_Folder_Full -Recurse -force -ErrorAction SilentlyContinue
 
 			if (Test-Path -Path $Wait_Clean_Folder_Full -PathType Container) {

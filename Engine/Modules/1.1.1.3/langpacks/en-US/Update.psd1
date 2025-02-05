@@ -25,7 +25,7 @@
 	UpdateCurrent             = \  Currently used version: \
 	UpdateLatest              = Latest version available: \
 	UpdateNewLatest           = Found a new version available!
-	UpdateSkipUpdateCheck     = Forudkonfigureret politik for ikke at tillade automatiske opdateringer at køre for første gang.
+	UpdateSkipUpdateCheck     = Preconfigure policy to not allow automatic updates to run for the first time.
 	UpdateTimeUsed            = Time used: \
 	UpdatePostProc            = Post-processing
 	UpdateNotExecuted         = Not executed

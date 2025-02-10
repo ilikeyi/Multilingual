@@ -2783,7 +2783,13 @@ Function Installation_interface_UI
 		}
 
 		Save_Dynamic -regkey "Multilingual\Get" -name "InstlTo" -value "AutoSelectDisk" -String
-		$drives = Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | Where-Object { -not ((Join_MainFolder -Path $env:SystemDrive) -eq $_.Root) } | Select-Object -ExpandProperty 'Root'
+		$ExcludeDisk = @(
+			Join_MainFolder -Path $env:SystemDrive
+			"A:\"
+			"B:\"
+		)
+
+		$drives = Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Where-Object { $ExcludeDisk -notcontains $_.Root } | Select-Object -ExpandProperty 'Root'
 		$FlagsSearchNewDisk = $False
 		ForEach ($item in $drives) {
 			if (Test_Available_Disk -Path $item) {

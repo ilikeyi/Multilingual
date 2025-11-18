@@ -14,6 +14,6 @@
 	How_solve                       = 해결 방법
 	UpdatePSVersion                 = 최신 PowerShell 버전을 설치하세요.
 	UpdateOSVersion                 = 1. 최신 버전의 운영 체제를 다운로드하려면 Microsoft 공식 웹사이트로 이동하세요.\n   2. 최신 버전의 운영 체제를 설치하고 다시 시도해 보세요.
-	HigherTermail                   = 1. 터미널 또는 PowerShell ISE를 관리자로 열고, \n      PowerShell 실행 정책 설정: 우회, PS 명령줄:\n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n\n   2. 해결되면 명령을 다시 실행하십시오.
+	HigherTermail                   = 1. 터미널 또는 PowerShell ISE를 관리자로 열고, \n      PowerShell 실행 정책 설정: 우회, PS 명령줄:\n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force\n\n   2. 해결되면 명령을 다시 실행하십시오.
 	HigherTermailAdmin              = 1. 터미널 또는 PowerShell ISE를 관리자로 엽니다.\n    2. 해결되면 명령을 다시 실행하십시오.
 '@

@@ -14,6 +14,6 @@
 	How_solve                       = Nasıl çözülür?
 	UpdatePSVersion                 = Lütfen en son PowerShell sürümünü yükleyin
 	UpdateOSVersion                 = 1. İşletim sisteminin en son sürümünü indirmek için Microsoft'un resmi web sitesine gidin\n   2. İşletim sisteminin en son sürümünü yükleyin ve tekrar deneyin
-	HigherTermail                   = 1. Terminal veya PowerShell ISE'yi yönetici olarak açın, \n      PowerShell yürütme politikasını ayarlayın: Baypas, PS komut satırı: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n\n   2. Çözüldükten sonra komutu yeniden çalıştırın.
+	HigherTermail                   = 1. Terminal veya PowerShell ISE'yi yönetici olarak açın, \n      PowerShell yürütme politikasını ayarlayın: Baypas, PS komut satırı: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force\n\n   2. Çözüldükten sonra komutu yeniden çalıştırın.
 	HigherTermailAdmin              = 1. Terminal veya PowerShell ISE'yi yönetici olarak açın. \n    2. Çözüldükten sonra komutu yeniden çalıştırın.
 '@

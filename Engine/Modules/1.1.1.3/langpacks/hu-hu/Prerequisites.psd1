@@ -14,6 +14,6 @@
 	How_solve                       = Kako riješiti
 	UpdatePSVersion                 = Instalirajte najnoviju verziju PowerShell-a
 	UpdateOSVersion                 = 1. Idite na Microsoftovo službeno web mjesto kako biste preuzeli najnoviju verziju operativnog sustava\n   2. Instalirajte najnoviju verziju operativnog sustava i pokušajte ponovno
-	HigherTermail                   = 1. Otvorite terminal ili PowerShell ISE kao administrator, \n      Postavite politiku izvršavanja PowerShell-a: Zaobiđite, PS naredbeni redak: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n\n   2. Kad se riješi, ponovno pokrenite naredbu.
+	HigherTermail                   = 1. Otvorite terminal ili PowerShell ISE kao administrator, \n      Postavite politiku izvršavanja PowerShell-a: Zaobiđite, PS naredbeni redak: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force\n\n   2. Kad se riješi, ponovno pokrenite naredbu.
 	HigherTermailAdmin              = 1. Otvorite terminal ili PowerShell ISE kao administrator. \n    2. Kad se riješi, ponovno pokrenite naredbu.
 '@

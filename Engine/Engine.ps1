@@ -5,7 +5,7 @@
 	.Open "Terminal" or "PowerShell ISE" as an administrator,
 	 set PowerShell execution policy: Bypass, PS command line: 
 
-	 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+	 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
 
 	.Example
 	 PS C:\> .\Engine.ps1

@@ -14,6 +14,6 @@
 	How_solve                       = Miten ratkaista
 	UpdatePSVersion                 = Asenna uusin PowerShell-versio
 	UpdateOSVersion                 = 1. Lataa käyttöjärjestelmän uusin versio siirtymällä Microsoftin viralliselle verkkosivustolle\n   2. Asenna käyttöjärjestelmän uusin versio ja yritä uudelleen
-	HigherTermail                   = 1. Avaa Terminal tai PowerShell ISE järjestelmänvalvojana, \n      Aseta PowerShell-suorituskäytäntö: Ohitus, PS-komentorivi: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n\n   2. Kun se on ratkaistu, suorita komento uudelleen.
+	HigherTermail                   = 1. Avaa Terminal tai PowerShell ISE järjestelmänvalvojana, \n      Aseta PowerShell-suorituskäytäntö: Ohitus, PS-komentorivi: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force\n\n   2. Kun se on ratkaistu, suorita komento uudelleen.
 	HigherTermailAdmin              = 1. Avaa Terminal tai PowerShell ISE järjestelmänvalvojana. \n    2. Kun se on ratkaistu, suorita komento uudelleen.
 '@

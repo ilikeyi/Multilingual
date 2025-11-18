@@ -14,6 +14,6 @@
 	How_solve                       = Ako vyriešiť
 	UpdatePSVersion                 = Nainštalujte si najnovšiu verziu prostredia PowerShell
 	UpdateOSVersion                 = 1. Prejdite na oficiálnu webovú stránku spoločnosti Microsoft a stiahnite si najnovšiu verziu operačného systému\n   2. Nainštalujte najnovšiu verziu operačného systému a skúste to znova
-	HigherTermail                   = 1. Otvorte terminál alebo PowerShell ISE ako správca, \n      Nastaviť politiku vykonávania prostredia PowerShell: Obísť, príkazový riadok PS: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n\n   2. Po vyriešení príkaz znova spustite.
+	HigherTermail                   = 1. Otvorte terminál alebo PowerShell ISE ako správca, \n      Nastaviť politiku vykonávania prostredia PowerShell: Obísť, príkazový riadok PS: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force\n\n   2. Po vyriešení príkaz znova spustite.
 	HigherTermailAdmin              = 1. Otvorte terminál alebo PowerShell ISE ako správca. \n    2. Po vyriešení príkaz znova spustite.
 '@

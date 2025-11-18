@@ -14,6 +14,6 @@
 	How_solve                       = 如何解决
 	UpdatePSVersion                 = 请安装最新的 PowerShell 版本
 	UpdateOSVersion                 = 1. 前往微软官方网站下载最新版本的操作系统\n   2. 安装最新版本的操作系统并重试
-	HigherTermail                   = 1. 以管理员身份打开"终端”或"PowerShell ISE”，\n      设置 PowerShell 执行策略：绕过，PS命令行：\n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n\n   2. 解决后，重新运行命令。
+	HigherTermail                   = 1. 以管理员身份打开"终端”或"PowerShell ISE”，\n      设置 PowerShell 执行策略：绕过，PS命令行：\n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force\n\n   2. 解决后，重新运行命令。
 	HigherTermailAdmin              = 1. 以管理员身份打开"终端”或"PowerShell ISE”。\n    2. 解决后，重新运行命令。
 '@

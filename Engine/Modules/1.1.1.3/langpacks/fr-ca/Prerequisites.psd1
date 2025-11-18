@@ -14,6 +14,6 @@
 	How_solve                       = Comment résoudre
 	UpdatePSVersion                 = Veuillez installer la dernière version de PowerShell
 	UpdateOSVersion                 = 1. Accédez au site officiel de Microsoft pour télécharger la dernière version du système d'exploitation\n   2. Installez la dernière version du système d'exploitation et réessayez
-	HigherTermail                   = 1. Ouvrez Terminal ou PowerShell ISE en tant qu'administrateur, \n      Définir la politique d'exécution PowerShell: contourner, ligne de commande PS: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n\n   2. Une fois résolu, relancez la commande.
+	HigherTermail                   = 1. Ouvrez Terminal ou PowerShell ISE en tant qu'administrateur, \n      Définir la politique d'exécution PowerShell: contourner, ligne de commande PS: \n\n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force\n\n   2. Une fois résolu, relancez la commande.
 	HigherTermailAdmin              = 1. Ouvrez Terminal ou PowerShell ISE en tant qu'administrateur. \n    2. Une fois résolu, relancez la commande.
 '@

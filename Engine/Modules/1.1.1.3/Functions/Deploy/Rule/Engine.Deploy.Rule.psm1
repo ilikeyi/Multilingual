@@ -56,8 +56,8 @@ Function Deploy_Sync
 	if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\Allow\Is_Mark_Sync" -PathType Leaf) {
 		$drives = Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | Where-Object { -not ((Join_MainFolder -Path $env:SystemDrive) -eq $_.Root) } | Select-Object -ExpandProperty 'Root'
 		ForEach ($item in $drives) {
-			$TestDeployMarkNotAllowed = "$($item)$((Get-Module -Name Engine).Author)\Deploy\Not Allowed\$($Mark)"
-			$TestDeployMarkAllow = "$($item)$((Get-Module -Name Engine).Author)\Deploy\Allow\$($Mark)"
+			$TestDeployMarkNotAllowed = Join-Path -Path $item -ChildPath "$((Get-Module -Name Engine).Author)\Deploy\Not Allowed\$($Mark)"
+			$TestDeployMarkAllow = Join-Path -Path $item -ChildPath "$((Get-Module -Name Engine).Author)\Deploy\Allow\$($Mark)"
 
 			if (Test-Path -Path $TestDeployMarkNotAllowed -PathType Leaf) {
 				Write-Host	"   $($lang.DiskSearchFind): " -NoNewline

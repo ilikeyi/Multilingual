@@ -132,7 +132,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Please install the latest PowerShell version"
 			UpdateOSVersion          = "1. Go to the official Microsoft website to download the latest`n      version of the operating system`n`n   2. Install the latest version of the operating system and try again"
 			HigherTermail            = "1. Open ""Terminal"" or ""PowerShell ISE"" as an administrator, `n      set PowerShell execution policy: Bypass, PS command line: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Once resolved, rerun the command."
-			HigherTermailAdmin       = "1. Open Terminal or PowerShell ISE as an administrator.`n    2. Once resolved, rerun the command."
+			HigherTermailAdmin       = "1. Open Terminal or PowerShell ISE as an administrator.`n  2. Once resolved, rerun the command."
 		}
 	}
 	@{
@@ -193,7 +193,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "الرجاء تثبيت أحدث إصدار من PowerShell"
 			UpdateOSVersion          = "1. انتقل إلى موقع Microsoft الرسمي لتنزيل أحدث إصدار من نظام التشغيل`n   2. قم بتثبيت أحدث إصدار من نظام التشغيل وحاول مرة أخرى"
 			HigherTermail            = "1. افتح ""المحطة الطرفية"" أو ""PowerShell ISE"" كمسؤول،, `n      تعيين سياسة تنفيذ PowerShell: التجاوز، سطر أوامر PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. بمجرد حل المشكلة، أعد تشغيل الأمر."
-			HigherTermailAdmin       = "1. افتح ""المحطة الطرفية"" أو ""PowerShell ISE"" كمسؤول،. `n    2. بمجرد حل المشكلة، أعد تشغيل الأمر."
+			HigherTermailAdmin       = "1. افتح ""المحطة الطرفية"" أو ""PowerShell ISE"" كمسؤول،. `n  2. بمجرد حل المشكلة، أعد تشغيل الأمر."
 		}
 	}
 	@{
@@ -254,7 +254,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Моля, инсталирайте най-новата версия на PowerShell"
 			UpdateOSVersion          = "1. Отидете на официалния уебсайт на Microsoft, за да изтеглите най-новата версия на операционната система`n   2. Инсталирайте най-новата версия на операционната система и опитайте отново"
 			HigherTermail            = "1. Отворете ""Терминал"" или ""PowerShell ISE"" като администратор, `n      Задайте политика за изпълнение на PowerShell: Bypass, PS команден ред: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. След като бъде разрешено, изпълнете отново командата."
-			HigherTermailAdmin       = "1. Отворете ""Терминал"" или ""PowerShell ISE"" като администратор. `n    2. След като бъде разрешено, изпълнете отново командата."
+			HigherTermailAdmin       = "1. Отворете ""Терминал"" или ""PowerShell ISE"" като администратор. `n  2. След като бъде разрешено, изпълнете отново командата."
 		}
 	}
 	@{
@@ -315,7 +315,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Nainstalujte si prosím nejnovější verzi PowerShellu"
 			UpdateOSVersion          = "1. Přejděte na oficiální web společnosti Microsoft a stáhněte si nejnovější verzi operačního systému`n   2. Nainstalujte nejnovější verzi operačního systému a zkuste to znovu"
 			HigherTermail            = "1. Otevřete ""Terminál"" nebo ""PowerShell ISE"" jako správce, `n      Nastavit zásady provádění PowerShellu: Obejít, příkazový řádek PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Po vyřešení spusťte příkaz znovu."
-			HigherTermailAdmin       = "1. Otevřete ""Terminál"" nebo ""PowerShell ISE"" jako správce. `n    2. Po vyřešení spusťte příkaz znovu."
+			HigherTermailAdmin       = "1. Otevřete ""Terminál"" nebo ""PowerShell ISE"" jako správce. `n  2. Po vyřešení spusťte příkaz znovu."
 		}
 	}
 	@{
@@ -376,7 +376,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Installer venligst den seneste PowerShell-version"
 			UpdateOSVersion          = "1. Gå til Microsofts officielle hjemmeside for at downloade den seneste version af operativsystemet`n   2. Installer den seneste version af operativsystemet, og prøv igen"
 			HigherTermail            = "1. Åbn ""Terminal"" eller ""PowerShell ISE"" som administrator, `n      Indstil PowerShell-udførelsespolitik: Bypass, PS-kommandolinje: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Kør kommandoen igen, når den er løst."
-			HigherTermailAdmin       = "1. Åbn ""Terminal"" eller ""PowerShell ISE"" som administrator. `n    2. Kør kommandoen igen, når den er løst."
+			HigherTermailAdmin       = "1. Åbn ""Terminal"" eller ""PowerShell ISE"" som administrator. `n  2. Kør kommandoen igen, når den er løst."
 		}
 	}
 	@{
@@ -437,7 +437,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Bitte installieren Sie die neueste PowerShell-Version"
 			UpdateOSVersion          = "1. Besuchen Sie die offizielle Website von Microsoft, um die neueste Version des Betriebssystems herunterzuladen`n   2. Installieren Sie die neueste Version des Betriebssystems und versuchen Sie es erneut"
 			HigherTermail            = "1. Öffnen Sie ""Terminal"" oder ""PowerShell ISE"" als Administrator, `n      PowerShell-Ausführungsrichtlinie festlegen: Bypass, PS-Befehlszeile: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Sobald das Problem gelöst ist, führen Sie den Befehl erneut aus."
-			HigherTermailAdmin       = "1. Öffnen Sie ""Terminal"" oder ""PowerShell ISE"" als Administrator. `n    2. Sobald das Problem gelöst ist, führen Sie den Befehl erneut aus."
+			HigherTermailAdmin       = "1. Öffnen Sie ""Terminal"" oder ""PowerShell ISE"" als Administrator. `n  2. Sobald das Problem gelöst ist, führen Sie den Befehl erneut aus."
 		}
 	}
 	@{
@@ -498,7 +498,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Εγκαταστήστε την πιο πρόσφατη έκδοση PowerShell"
 			UpdateOSVersion          = "1. Μεταβείτε στον επίσημο ιστότοπο της Microsoft για λήψη της πιο πρόσφατης έκδοσης του λειτουργικού συστήματος`n   2. Εγκαταστήστε την πιο πρόσφατη έκδοση του λειτουργικού συστήματος και δοκιμάστε ξανά"
 			HigherTermail            = "1. Ανοίξτε το ""Terminal"" ή το ""PowerShell ISE"" ως διαχειριστής, `n      Ορισμός πολιτικής εκτέλεσης PowerShell: Παράκαμψη, γραμμή εντολών PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Μόλις επιλυθεί, εκτελέστε ξανά την εντολή."
-			HigherTermailAdmin       = "1. Ανοίξτε το ""Terminal"" ή το ""PowerShell ISE"" ως διαχειριστής. `n    2. Μόλις επιλυθεί, εκτελέστε ξανά την εντολή."
+			HigherTermailAdmin       = "1. Ανοίξτε το ""Terminal"" ή το ""PowerShell ISE"" ως διαχειριστής. `n  2. Μόλις επιλυθεί, εκτελέστε ξανά την εντολή."
 		}
 	}
 	@{
@@ -557,9 +557,9 @@ $AvailableLanguages = @(
 			Check_Pass_Done          = "¡Enhorabuena! Se ha corregido."
 			How_solve                = "Cómo solucionarlo"
 			UpdatePSVersion          = "Instale la última versión de PowerShell."
-			UpdateOSVersion          = "1. Visita el sitio web oficial de Microsoft para descargar la última versión del sistema operativo.`n    2. Instala la última versión del sistema operativo y vuelve a intentarlo."
-			HigherTermail            = "1. Abra una terminal o PowerShell ISE como administrador.`n       Configurar la política de ejecución de PowerShell: Omitir, línea de comandos de PS:`n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n    2. Tras resolver el problema, vuelva a ejecutar el comando."
-			HigherTermailAdmin       = "1. Abra una terminal o PowerShell ISE como administrador.`n    2. Tras resolver el problema, vuelva a ejecutar el comando."
+			UpdateOSVersion          = "1. Visita el sitio web oficial de Microsoft para descargar la última versión del sistema operativo.`n  2. Instala la última versión del sistema operativo y vuelve a intentarlo."
+			HigherTermail            = "1. Abra una terminal o PowerShell ISE como administrador.`n       Configurar la política de ejecución de PowerShell: Omitir, línea de comandos de PS:`n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n  2. Tras resolver el problema, vuelva a ejecutar el comando."
+			HigherTermailAdmin       = "1. Abra una terminal o PowerShell ISE como administrador.`n  2. Tras resolver el problema, vuelva a ejecutar el comando."
 		}
 	}
 	@{
@@ -620,7 +620,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Instale la última versión de PowerShell"
 			UpdateOSVersion          = "1. Vaya al sitio web oficial de Microsoft para descargar la última versión del sistema operativo.`n   2. Instale la última versión del sistema operativo y vuelva a intentarlo."
 			HigherTermail            = "1. Abra ""Terminal"" o ""PowerShell ISE"" como administrador, `n      Establecer política de ejecución de PowerShell: omitir, línea de comando PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Una vez resuelto, vuelva a ejecutar el comando."
-			HigherTermailAdmin       = "1. Abra ""Terminal"" o ""PowerShell ISE"" como administrador. `n    2. Una vez resuelto, vuelva a ejecutar el comando."
+			HigherTermailAdmin       = "1. Abra ""Terminal"" o ""PowerShell ISE"" como administrador. `n  2. Una vez resuelto, vuelva a ejecutar el comando."
 		}
 	}
 	@{
@@ -681,7 +681,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Installige uusim PowerShelli versioon"
 			UpdateOSVersion          = "1. Operatsioonisüsteemi uusima versiooni allalaadimiseks minge Microsofti ametlikule veebisaidile`n   2. Installige operatsioonisüsteemi uusim versioon ja proovige uuesti"
 			HigherTermail            = "1. Avage administraatorina ""Terminal"" või ""PowerShell ISE"", `n      Seadke PowerShelli täitmispoliitika: ümbersõit, PS-i käsurida: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Kui see on lahendatud, käivitage käsk uuesti."
-			HigherTermailAdmin       = "1. Avage administraatorina ""Terminal"" või ""PowerShell ISE"". `n    2. Kui see on lahendatud, käivitage käsk uuesti."
+			HigherTermailAdmin       = "1. Avage administraatorina ""Terminal"" või ""PowerShell ISE"". `n  2. Kui see on lahendatud, käivitage käsk uuesti."
 		}
 	}
 	@{
@@ -742,7 +742,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Asenna uusin PowerShell-versio"
 			UpdateOSVersion          = "1. Lataa käyttöjärjestelmän uusin versio Microsoftin viralliselta verkkosivustolta`n   2. Asenna käyttöjärjestelmän uusin versio ja yritä uudelleen"
 			HigherTermail            = "1. Avaa ""Terminal"" tai ""PowerShell ISE"" järjestelmänvalvojana, `n      Aseta PowerShell-suorituskäytäntö: Ohitus, PS-komentorivi: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Kun se on ratkaistu, suorita komento uudelleen."
-			HigherTermailAdmin       = "1. Avaa ""Terminal"" tai ""PowerShell ISE"" järjestelmänvalvojana. `n    2. Kun se on ratkaistu, suorita komento uudelleen."
+			HigherTermailAdmin       = "1. Avaa ""Terminal"" tai ""PowerShell ISE"" järjestelmänvalvojana. `n  2. Kun se on ratkaistu, suorita komento uudelleen."
 		}
 	}
 	@{
@@ -803,7 +803,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Veuillez installer la dernière version de PowerShell"
 			UpdateOSVersion          = "1. Rendez-vous sur le site officiel de Microsoft pour télécharger la dernière version du système d'exploitation`n   2. Installez la dernière version du système d'exploitation et réessayez"
 			HigherTermail            = "1. Ouvrez ""Terminal"" ou ""PowerShell ISE"" en tant qu'administrateur, `n      Définir la politique d'exécution PowerShell: contourner, ligne de commande PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Une fois résolu, relancez la commande."
-			HigherTermailAdmin       = "1. Ouvrez ""Terminal"" ou ""PowerShell ISE"" en tant qu'administrateur. `n    2. Une fois résolu, relancez la commande."
+			HigherTermailAdmin       = "1. Ouvrez ""Terminal"" ou ""PowerShell ISE"" en tant qu'administrateur. `n  2. Une fois résolu, relancez la commande."
 		}
 	}
 	@{
@@ -862,9 +862,9 @@ $AvailableLanguages = @(
 			Check_Pass_Done          = "Félicitations, c'est approuvé."
 			How_solve                = "Comment résoudre"
 			UpdatePSVersion          = "Veuillez installer la dernière version de PowerShell."
-			UpdateOSVersion          = "1. Rendez-vous sur le site officiel de Microsoft pour télécharger la dernière version du système d'exploitation.`n    2. Installez la dernière version du système d'exploitation et réessayez."
-			HigherTermail            = "1. Ouvrez un terminal ou PowerShell ISE en tant qu administrateur.`n       Configurer la stratégie d'exécution PowerShell: Contourner, ligne de commande PS:`n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n    2. Une fois le problème résolu, exécutez à nouveau la commande."
-			HigherTermailAdmin       = "1. Ouvrez un terminal ou PowerShell ISE en tant qu administrateur.`n    2. Une fois le problème résolu, exécutez à nouveau la commande."
+			UpdateOSVersion          = "1. Rendez-vous sur le site officiel de Microsoft pour télécharger la dernière version du système d'exploitation.`n  2. Installez la dernière version du système d'exploitation et réessayez."
+			HigherTermail            = "1. Ouvrez un terminal ou PowerShell ISE en tant qu administrateur.`n       Configurer la stratégie d'exécution PowerShell: Contourner, ligne de commande PS:`n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n  2. Une fois le problème résolu, exécutez à nouveau la commande."
+			HigherTermailAdmin       = "1. Ouvrez un terminal ou PowerShell ISE en tant qu administrateur.`n  2. Une fois le problème résolu, exécutez à nouveau la commande."
 		}
 	}
 	@{
@@ -925,7 +925,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "אנא התקן את גרסת PowerShell העדכנית ביותר"
 			UpdateOSVersion          = "1. עבור לאתר הרשמי של מיקרוסופט כדי להוריד את הגרסה העדכנית ביותר של מערכת ההפעלה`n   2. התקן את הגרסה העדכנית ביותר של מערכת ההפעלה ונסה שוב"
 			HigherTermail            = "1. פתח את ""Terminal"" או ""PowerShell ISE"" כמנהל מערכת, `n      הגדר מדיניות ביצוע של PowerShell: עוקף, שורת פקודה PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. לאחר פתרון, הפעל מחדש את הפקודה."
-			HigherTermailAdmin       = "1. פתח את ""Terminal"" או ""PowerShell ISE"" כמנהל מערכת. `n    2. לאחר פתרון, הפעל מחדש את הפקודה."
+			HigherTermailAdmin       = "1. פתח את ""Terminal"" או ""PowerShell ISE"" כמנהל מערכת. `n  2. לאחר פתרון, הפעל מחדש את הפקודה."
 		}
 	}
 	@{
@@ -986,7 +986,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Instalirajte najnoviju verziju PowerShell-a"
 			UpdateOSVersion          = "1. Idite na Microsoftovo službeno web mjesto kako biste preuzeli najnoviju verziju operativnog sustava`n   2. Instalirajte najnoviju verziju operativnog sustava i pokušajte ponovno"
 			HigherTermail            = "1. Otvorite ""Terminal"" ili ""PowerShell ISE"" kao administrator, `n      Postavite politiku izvršavanja PowerShell-a: Zaobiđite, PS naredbeni redak: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Kada se riješi, ponovno pokrenite naredbu."
-			HigherTermailAdmin       = "1. Otvorite ""Terminal"" ili ""PowerShell ISE"" kao administrator. `n    2. Kada se riješi, ponovno pokrenite naredbu."
+			HigherTermailAdmin       = "1. Otvorite ""Terminal"" ili ""PowerShell ISE"" kao administrator. `n  2. Kada se riješi, ponovno pokrenite naredbu."
 		}
 	}
 	@{
@@ -1047,7 +1047,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Kérjük, telepítse a legújabb PowerShell-verziót"
 			UpdateOSVersion          = "1. Keresse fel a Microsoft hivatalos webhelyét az operációs rendszer legújabb verziójának letöltéséhez`n   2. Telepítse az operációs rendszer legújabb verzióját, és próbálja újra"
 			HigherTermail            = "1. Nyissa meg a ""Terminal"" vagy a ""PowerShell ISE"" programot rendszergazdaként, `n      Állítsa be a PowerShell végrehajtási házirendjét: Bypass, PS parancssor: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Ha megoldódott, futtassa újra a parancsot."
-			HigherTermailAdmin       = "1. Nyissa meg a ""Terminal"" vagy a ""PowerShell ISE"" programot rendszergazdaként, `n    2. Ha megoldódott, futtassa újra a parancsot."
+			HigherTermailAdmin       = "1. Nyissa meg a ""Terminal"" vagy a ""PowerShell ISE"" programot rendszergazdaként, `n  2. Ha megoldódott, futtassa újra a parancsot."
 		}
 	}
 	@{
@@ -1108,7 +1108,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Installa la versione più recente di PowerShell"
 			UpdateOSVersion          = "1. Vai al sito Web ufficiale di Microsoft per scaricare l'ultima versione del sistema operativo`n   2. Installa la versione più recente del sistema operativo e riprova"
 			HigherTermail            = "1. Apri ""Terminale"" o ""PowerShell ISE"" come amministratore, `n      Imposta i criteri di esecuzione di PowerShell: Bypass, riga di comando PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Una volta risolto, eseguire nuovamente il comando."
-			HigherTermailAdmin       = "1. Apri ""Terminale"" o ""PowerShell ISE"" come amministratore. `n    2. Una volta risolto, eseguire nuovamente il comando."
+			HigherTermailAdmin       = "1. Apri ""Terminale"" o ""PowerShell ISE"" come amministratore. `n  2. Una volta risolto, eseguire nuovamente il comando."
 		}
 	}
 	@{
@@ -1169,7 +1169,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "最新の PowerShell バージョンをインストールしてください"
 			UpdateOSVersion          = "1. Microsoft の公式 Web サイトにアクセスして、`n      オペレーティング システムの最新バージョンをダウンロードします。`n   2. 最新バージョンのオペレーティング システムをインストールして再試行してください"
 			HigherTermail            = "1. 管理者としてターミナルまたは PowerShell ISE を開きます。`n      设置 PowerShell 执行策略：绕过，PS命令行：`n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. 解決したら、コマンドを再実行します。"
-			HigherTermailAdmin       = "1. 管理者としてターミナルまたは PowerShell ISE を開きます。`n    2. 解決したら、コマンドを再実行します。"
+			HigherTermailAdmin       = "1. 管理者としてターミナルまたは PowerShell ISE を開きます。`n  2. 解決したら、コマンドを再実行します。"
 		}
 	}
 	@{
@@ -1230,7 +1230,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "최신 PowerShell 버전을 설치하세요."
 			UpdateOSVersion          = "1. 최신 버전의 운영 체제를 다운로드하려면 Microsoft 공식 웹사이트로 이동하세요.`n   2. 최신 버전의 운영 체제를 설치하고 다시 시도해 보세요."
 			HigherTermail            = "1. 터미널 또는 PowerShell ISE를 관리자로 열고, `n      PowerShell 실행 정책 설정: 우회, PS 명령줄:`n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. 해결되면 명령을 다시 실행하십시오."
-			HigherTermailAdmin       = "1. 터미널 또는 PowerShell ISE를 관리자로 엽니다.`n    2. 해결되면 명령을 다시 실행하십시오."
+			HigherTermailAdmin       = "1. 터미널 또는 PowerShell ISE를 관리자로 엽니다.`n  2. 해결되면 명령을 다시 실행하십시오."
 		}
 	}
 	@{
@@ -1291,7 +1291,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Įdiekite naujausią PowerShell versiją"
 			UpdateOSVersion          = "1. Eikite į oficialią Microsoft svetainę ir atsisiųskite naujausią operacinės sistemos versiją`n   2. Įdiekite naujausią operacinės sistemos versiją ir bandykite dar kartą"
 			HigherTermail            = "1. Atidarykite ""Terminal"" arba ""PowerShell ISE"" kaip administratorius, `n      Nustatykite PowerShell vykdymo strategiją: apeiti, PS komandų eilutė: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Išspręsę komandą paleiskite iš naujo."
-			HigherTermailAdmin       = "1. Atidarykite ""Terminal"" arba ""PowerShell ISE"" kaip administratorius. `n    2. Išspręsę komandą paleiskite iš naujo."
+			HigherTermailAdmin       = "1. Atidarykite ""Terminal"" arba ""PowerShell ISE"" kaip administratorius. `n  2. Išspręsę komandą paleiskite iš naujo."
 		}
 	}
 	@{
@@ -1352,7 +1352,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Lūdzu, instalējiet jaunāko PowerShell versiju"
 			UpdateOSVersion          = "1. Dodieties uz Microsoft oficiālo vietni, lai lejupielādētu jaunāko operētājsistēmas versiju`n   2. Instalējiet jaunāko operētājsistēmas versiju un mēģiniet vēlreiz"
 			HigherTermail            = "1. Atveriet ""Terminal"" vai ""PowerShell ISE"" kā administrators, `n      Iestatīt PowerShell izpildes politiku: apiet, PS komandrinda: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Kad tas ir atrisināts, palaidiet komandu vēlreiz."
-			HigherTermailAdmin       = "1. Atveriet ""Terminal"" vai ""PowerShell ISE"" kā administrators. `n    2. Kad tas ir atrisināts, palaidiet komandu vēlreiz."
+			HigherTermailAdmin       = "1. Atveriet ""Terminal"" vai ""PowerShell ISE"" kā administrators. `n  2. Kad tas ir atrisināts, palaidiet komandu vēlreiz."
 		}
 	}
 	@{
@@ -1413,7 +1413,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Installer den nyeste PowerShell-versjonen"
 			UpdateOSVersion          = "1. Gå til Microsofts offisielle nettsted for å laste ned den nyeste versjonen av operativsystemet`n   2. Installer den nyeste versjonen av operativsystemet og prøv på nytt"
 			HigherTermail            = "1. Åpne ""Terminal"" eller ""PowerShell ISE"" som administrator, `n      Angi PowerShell-utførelsespolicy: Bypass, PS-kommandolinje: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Når det er løst, kjør kommandoen på nytt."
-			HigherTermailAdmin       = "1. Åpne ""Terminal"" eller ""PowerShell ISE"" som administrator. `n    2. Når det er løst, kjør kommandoen på nytt."
+			HigherTermailAdmin       = "1. Åpne ""Terminal"" eller ""PowerShell ISE"" som administrator. `n  2. Når det er løst, kjør kommandoen på nytt."
 		}
 	}
 	@{
@@ -1474,7 +1474,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Installeer de nieuwste PowerShell-versie"
 			UpdateOSVersion          = "1. Ga naar de officiële website van Microsoft om de nieuwste versie van het besturingssysteem te downloaden`n   2. Installeer de nieuwste versie van het besturingssysteem en probeer het opnieuw"
 			HigherTermail            = "1. Open ""Terminal"" of ""PowerShell ISE"" als beheerder, `n      PowerShell-uitvoeringsbeleid instellen: Bypass, PS-opdrachtregel: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Nadat het probleem is opgelost, voert u de opdracht opnieuw uit."
-			HigherTermailAdmin       = "1. Open ""Terminal"" of ""PowerShell ISE"" als beheerder. `n    2. Nadat het probleem is opgelost, voert u de opdracht opnieuw uit."
+			HigherTermailAdmin       = "1. Open ""Terminal"" of ""PowerShell ISE"" als beheerder. `n  2. Nadat het probleem is opgelost, voert u de opdracht opnieuw uit."
 		}
 	}
 	@{
@@ -1535,7 +1535,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Zainstaluj najnowszą wersję PowerShell"
 			UpdateOSVersion          = "1. Przejdź do oficjalnej strony Microsoftu, aby pobrać najnowszą wersję systemu operacyjnego`n   2. Zainstaluj najnowszą wersję systemu operacyjnego i spróbuj ponownie"
 			HigherTermail            = "1. Otwórz ""Terminal"" lub ""PowerShell ISE"" jako administrator, `n      Ustaw zasady wykonywania PowerShell: Pomiń, wiersz poleceń PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Po rozwiązaniu problemu uruchom ponownie polecenie."
-			HigherTermailAdmin       = "1. Otwórz ""Terminal"" lub ""PowerShell ISE"" jako administrator. `n    2. Po rozwiązaniu problemu uruchom ponownie polecenie."
+			HigherTermailAdmin       = "1. Otwórz ""Terminal"" lub ""PowerShell ISE"" jako administrator. `n  2. Po rozwiązaniu problemu uruchom ponownie polecenie."
 		}
 	}
 	@{
@@ -1596,7 +1596,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Instale a versão mais recente do PowerShell"
 			UpdateOSVersion          = "1. Acesse o site oficial da Microsoft para baixar a versão mais recente do sistema operacional`n   2. Instale a versão mais recente do sistema operacional e tente novamente"
 			HigherTermail            = "1. Abra ""Terminal"" ou ""PowerShell ISE"" como administrador, `n      Definir política de execução do PowerShell: Ignorar, linha de comando PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Depois de resolvido, execute novamente o comando."
-			HigherTermailAdmin       = "1. Abra ""Terminal"" ou ""PowerShell ISE"" como administrador. `n    2. Depois de resolvido, execute novamente o comando."
+			HigherTermailAdmin       = "1. Abra ""Terminal"" ou ""PowerShell ISE"" como administrador. `n  2. Depois de resolvido, execute novamente o comando."
 		}
 	}
 	@{
@@ -1655,9 +1655,9 @@ $AvailableLanguages = @(
 			Check_Pass_Done          = "Parabéns, foi aprovado."
 			How_solve                = "Como resolver"
 			UpdatePSVersion          = "Instale a versão mais recente do PowerShell."
-			UpdateOSVersion          = "1. Aceda ao site oficial da Microsoft para descarregar a versão mais recente do sistema operativo.`n    2. Instale a versão mais recente do sistema operativo e tente novamente."
-			HigherTermail            = "1. Abra um terminal ou o PowerShell ISE como administrador.`n       Configurar a política de execução do PowerShell: Ignorar, linha de comandos PS: `n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n    2. Após resolver o problema, execute novamente o comando."
-			HigherTermailAdmin       = "1. Abra um terminal ou o PowerShell ISE como administrador.`n    2. Após resolver o problema, execute novamente o comando."
+			UpdateOSVersion          = "1. Aceda ao site oficial da Microsoft para descarregar a versão mais recente do sistema operativo.`n  2. Instale a versão mais recente do sistema operativo e tente novamente."
+			HigherTermail            = "1. Abra um terminal ou o PowerShell ISE como administrador.`n       Configurar a política de execução do PowerShell: Ignorar, linha de comandos PS: `n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n  2. Após resolver o problema, execute novamente o comando."
+			HigherTermailAdmin       = "1. Abra um terminal ou o PowerShell ISE como administrador.`n  2. Após resolver o problema, execute novamente o comando."
 		}
 	}
 	@{
@@ -1718,7 +1718,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Instalați cea mai recentă versiune PowerShell"
 			UpdateOSVersion          = "1. Accesați site-ul web oficial Microsoft pentru a descărca cea mai recentă versiune a sistemului de operare`n   2. Instalați cea mai recentă versiune a sistemului de operare și încercați din nou"
 			HigherTermail            = "1. Deschideți ""Terminal"" sau ""PowerShell ISE"" ca administrator, `n      Setați politica de execuție PowerShell: Bypass, linia de comandă PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Odată rezolvată, executați din nou comanda."
-			HigherTermailAdmin       = "1. Deschideți ""Terminal"" sau ""PowerShell ISE"" ca administrator. `n    2. Odată rezolvată, executați din nou comanda."
+			HigherTermailAdmin       = "1. Deschideți ""Terminal"" sau ""PowerShell ISE"" ca administrator. `n  2. Odată rezolvată, executați din nou comanda."
 		}
 	}
 	@{
@@ -1779,7 +1779,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Пожалуйста, установите последнюю версию PowerShell."
 			UpdateOSVersion          = "1. Перейдите на официальный сайт Microsoft, чтобы загрузить последнюю версию операционной системы.`n   2. Установите последнюю версию операционной системы и повторите попытку."
 			HigherTermail            = "1. Откройте ""Terminal"" или ""PowerShell ISE"" от имени администратора, `n      Установите политику выполнения PowerShell: Обход, командная строка PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. После устранения проблемы повторите команду."
-			HigherTermailAdmin       = "1. Откройте ""Terminal"" или ""PowerShell ISE"" от имени администратора. `n    2. После устранения проблемы повторите команду."
+			HigherTermailAdmin       = "1. Откройте ""Terminal"" или ""PowerShell ISE"" от имени администратора. `n  2. После устранения проблемы повторите команду."
 		}
 	}
 	@{
@@ -1840,7 +1840,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Nainštalujte si najnovšiu verziu prostredia PowerShell"
 			UpdateOSVersion          = "1. Prejdite na oficiálnu webovú stránku spoločnosti Microsoft a stiahnite si najnovšiu verziu operačného systému`n   2. Nainštalujte najnovšiu verziu operačného systému a skúste to znova"
 			HigherTermail            = "1. Otvorte ""Terminál"" alebo ""PowerShell ISE"" ako správca, `n      Nastaviť politiku vykonávania prostredia PowerShell: Obísť, príkazový riadok PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Po vyriešení príkaz znova spustite."
-			HigherTermailAdmin       = "1. Otvorte ""Terminál"" alebo ""PowerShell ISE"" ako správca. `n    2. Po vyriešení príkaz znova spustite."
+			HigherTermailAdmin       = "1. Otvorte ""Terminál"" alebo ""PowerShell ISE"" ako správca. `n  2. Po vyriešení príkaz znova spustite."
 		}
 	}
 	@{
@@ -1901,7 +1901,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Namestite najnovejšo različico PowerShell"
 			UpdateOSVersion          = "1. Pojdite na Microsoftovo uradno spletno mesto in prenesite najnovejšo različico operacijskega sistema`n   2. Namestite najnovejšo različico operacijskega sistema in poskusite znova"
 			HigherTermail            = "1. Odprite ""Terminal"" ali ""PowerShell ISE"" kot skrbnik, `n      Nastavite pravilnik izvajanja PowerShell: Bypass, ukazna vrstica PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Ko je težava rešena, znova zaženite ukaz."
-			HigherTermailAdmin       = "1. Odprite ""Terminal"" ali ""PowerShell ISE"" kot skrbnik. `n    2. Ko je težava rešena, znova zaženite ukaz."
+			HigherTermailAdmin       = "1. Odprite ""Terminal"" ali ""PowerShell ISE"" kot skrbnik. `n  2. Ko je težava rešena, znova zaženite ukaz."
 		}
 	}
 	@{
@@ -1962,7 +1962,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Инсталирајте најновију верзију ПоверСхелл-а"
 			UpdateOSVersion          = "1. Идите на званичну веб локацију компаније Мицрософт да бисте преузели најновију верзију оперативног система`n   2. Инсталирајте најновију верзију оперативног система и покушајте поново"
 			HigherTermail            = "1. Отворите ""Терминал"" или ""ПоверСхелл ИСЕ"" као администратор, `n      Подесите политику извршавања ПоверСхелл-а: Заобиђите, ПС командна линија:`n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Када се реши, поново покрените команду."
-			HigherTermailAdmin       = "1. Отворите ""Терминал"" или ""ПоверСхелл ИСЕ"" као администратор. `n    2. Када се реши, поново покрените команду."
+			HigherTermailAdmin       = "1. Отворите ""Терминал"" или ""ПоверСхелл ИСЕ"" као администратор. `n  2. Када се реши, поново покрените команду."
 		}
 	}
 	@{
@@ -2021,9 +2021,9 @@ $AvailableLanguages = @(
 			Check_Pass_Done          = "Grattis, godkänd."
 			How_solve                = "Hur man löser"
 			UpdatePSVersion          = "Installera den senaste PowerShell-versionen."
-			UpdateOSVersion          = "1. Gå till Microsofts officiella webbplats för att ladda ner den senaste versionen av operativsystemet.`n    2. Installera den senaste versionen av operativsystemet och försök igen."
-			HigherTermail            = "1. Öppna en terminal eller PowerShell ISE som administratör.`n       Konfigurera PowerShell-körningspolicy: Bypass, PS-kommandorad: `n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n    2. Kör kommandot igen när du har löst problemet."
-			HigherTermailAdmin       = "1. Öppna en terminal eller PowerShell ISE som administratör.`n    2. Kör kommandot igen när du har löst problemet."
+			UpdateOSVersion          = "1. Gå till Microsofts officiella webbplats för att ladda ner den senaste versionen av operativsystemet.`n  2. Installera den senaste versionen av operativsystemet och försök igen."
+			HigherTermail            = "1. Öppna en terminal eller PowerShell ISE som administratör.`n       Konfigurera PowerShell-körningspolicy: Bypass, PS-kommandorad: `n`n       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n  2. Kör kommandot igen när du har löst problemet."
+			HigherTermailAdmin       = "1. Öppna en terminal eller PowerShell ISE som administratör.`n  2. Kör kommandot igen när du har löst problemet."
 		}
 	}
 	@{
@@ -2084,7 +2084,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "โปรดติดตั้ง PowerShell เวอร์ชันล่าสุด"
 			UpdateOSVersion          = "1. ไปที่เว็บไซต์อย่างเป็นทางการของ Microsoft เพื่อดาวน์โหลดระบบปฏิบัติการเวอร์ชันล่าสุด`n   2. ติดตั้งระบบปฏิบัติการเวอร์ชันล่าสุดแล้วลองอีกครั้ง"
 			HigherTermail            = "1. เปิด ""Terminal"" หรือ ""PowerShell ISE"" ในฐานะผู้ดูแลระบบ, `n      ตั้งค่านโยบายการดำเนินการ PowerShell: บายพาส, บรรทัดคำสั่ง PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. เมื่อแก้ไขแล้ว ให้รันคำสั่งอีกครั้ง"
-			HigherTermailAdmin       = "1. เปิด ""Terminal"" หรือ ""PowerShell ISE"" ในฐานะผู้ดูแลระบบ. `n    2. เมื่อแก้ไขแล้ว ให้รันคำสั่งอีกครั้ง"
+			HigherTermailAdmin       = "1. เปิด ""Terminal"" หรือ ""PowerShell ISE"" ในฐานะผู้ดูแลระบบ. `n  2. เมื่อแก้ไขแล้ว ให้รันคำสั่งอีกครั้ง"
 		}
 	}
 	@{
@@ -2145,7 +2145,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Lütfen en son PowerShell sürümünü yükleyin"
 			UpdateOSVersion          = "1. İşletim sisteminin en son sürümünü indirmek için Microsoft'un resmi web sitesine gidin.`n   2. İşletim sisteminin son sürümünü yükleyip tekrar deneyin."
 			HigherTermail            = "1. ""Terminal"" veya ""PowerShell ISE"" yi yönetici olarak açın, `n      PowerShell yürütme politikasını ayarlayın: Baypas, PS komut satırı: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Çözüldükten sonra komutu yeniden çalıştırın."
-			HigherTermailAdmin       = "1. ""Terminal"" veya ""PowerShell ISE"" yi yönetici olarak açın. `n    2. Çözüldükten sonra komutu yeniden çalıştırın."
+			HigherTermailAdmin       = "1. ""Terminal"" veya ""PowerShell ISE"" yi yönetici olarak açın. `n  2. Çözüldükten sonra komutu yeniden çalıştırın."
 		}
 	}
 	@{
@@ -2206,7 +2206,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "Установіть останню версію PowerShell"
 			UpdateOSVersion          = "1. Перейдіть на офіційний сайт Microsoft, щоб завантажити останню версію операційної системи`n   2. Установіть останню версію операційної системи та повторіть спробу"
 			HigherTermail            = "1. Відкрийте ""Термінал"" або ""PowerShell ISE"" як адміністратор, `n      Налаштувати політику виконання PowerShell: обійти, командний рядок PS: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Після вирішення повторіть команду."
-			HigherTermailAdmin       = "1. Відкрийте ""Термінал"" або ""PowerShell ISE"" як адміністратор. `n    2. Після вирішення повторіть команду."
+			HigherTermailAdmin       = "1. Відкрийте ""Термінал"" або ""PowerShell ISE"" як адміністратор. `n  2. Після вирішення повторіть команду."
 		}
 	}
 	@{
@@ -2267,7 +2267,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "请安装最新的 PowerShell 版本"
 			UpdateOSVersion          = "1. 前往微软官方网站下载最新版本的操作系统`n   2. 安装最新版本的操作系统并重试"
 			HigherTermail            = "1. 以管理员身份打开 ""终端"" 或 ""PowerShell ISE""，`n      设置 PowerShell 执行策略：绕过，PS命令行：`n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. 解决后，重新运行命令。"
-			HigherTermailAdmin       = "1. 以管理员身份打开 ""终端"" 或 ""PowerShell ISE""。`n    2. 解决后，重新运行命令。"
+			HigherTermailAdmin       = "1. 以管理员身份打开 ""终端"" 或 ""PowerShell ISE""。`n  2. 解决后，重新运行命令。"
 		}
 	}
 	@{
@@ -2328,7 +2328,7 @@ $AvailableLanguages = @(
 			UpdatePSVersion          = "請安裝最新的 PowerShell 版本"
 			UpdateOSVersion          = "1. 前往微軟官方網站下載最新版本的作業系統`n   2. 安裝最新版本的作業系統並重試"
 			HigherTermail            = "1. 以管理員身分開啟 ""終端"" 或 ""PowerShell ISE""，`n      設定 PowerShell 執行策略：繞過，PS命令列：`n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. 解決後，重新運行命令。"
-			HigherTermailAdmin       = "1. 以管理員身分開啟 ""終端"" 或 ""PowerShell ISE""。`n    2. 解決後，重新運行命令。"
+			HigherTermailAdmin       = "1. 以管理員身分開啟 ""終端"" 或 ""PowerShell ISE""。`n  2. 解決後，重新運行命令。"
 		}
 	}
 )
@@ -2431,6 +2431,15 @@ Function Prerequisite
 		write-host "`n  $($lang.How_solve): " -ForegroundColor Yellow
 		write-host "  $('-' * 80)"
 		write-host "  $($lang.HigherTermailAdmin)`n"
+
+		$arguments = @(
+			"-ExecutionPolicy",
+			"ByPass",
+			"-File",
+			"""$($MyInvocation.MyCommand.Path)"""
+		)
+		Start-Process "powershell" -ArgumentList $arguments -Verb RunAs
+
 		pause
 		exit
 	}
@@ -3388,7 +3397,7 @@ Function Download_Process
 							$arguments = @(
 								"-ExecutionPolicy",
 								"ByPass",
-								"-file",
+								"-File",
 								"""$($test_new_File)"""
 							)
 
@@ -3414,7 +3423,7 @@ Function Download_Process
 							$arguments = @(
 								"-ExecutionPolicy",
 								"ByPass",
-								"-file",
+								"-File",
 								"""$($test_new_File)"""
 							)
 

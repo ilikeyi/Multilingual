@@ -68,7 +68,7 @@ Deployment Engine: Automatically add languages installed on Windows systems
 * Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
 
 ```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
 ```
 
    * After the download is completed, unzip it to any disk, for example, unzip it to: D:\Multilingual

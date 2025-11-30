@@ -67,6 +67,15 @@ Function Prerequisite
 		write-host "`n  $($lang.How_solve): " -ForegroundColor Yellow
 		write-host "  $('-' * 80)"
 		write-host "    $($lang.HigherTermailAdmin)`n"
+
+		$arguments = @(
+			"-ExecutionPolicy",
+			"ByPass",
+			"-File",
+			"""$($MyInvocation.MyCommand.Path)"""
+		)
+		Start-Process "powershell" -ArgumentList $arguments -Verb RunAs
+
 		pause
 		exit
 	}

@@ -2996,9 +2996,9 @@ Function Installation_interface_UI
 				if (Test-Path -Path $UI_Main_Save_To_Path.Text -PathType Container) {
 					Start-Process $UI_Main_Save_To_Path.Text
 
-					$UI_Main_Error.Text = "$($lang.OpenFolder): $($UI_Main_Save_To_Path.Text), $($lang.Done)"
+					$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 				} else {
-					$UI_Main_Error.Text = "$($lang.OpenFolder): $($UI_Main_Save_To_Path.Text), $($lang.Inoperable)"
+					$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 				}
 			}
 		}

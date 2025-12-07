@@ -94,19 +94,19 @@ Function Remove_Tree
 		[string]$Path
 	)
 
-	Remove-Item -Path $Path -force -Recurse -ErrorAction silentlycontinue | Out-Null
-	
-	if (Test-Path -Path "$($Path)\" -ErrorAction silentlycontinue) {
-		Get-ChildItem -Path $Path -File -Force -ErrorAction SilentlyContinue | ForEach-Object {
-			Remove-Item -Path $_.FullName -force -ErrorAction SilentlyContinue
+	Remove-Item -Path $Path -force -Recurse -ErrorAction silentlycontinue -Confirm:$false | Out-Null
+
+	if (Test-Path -Path "$($path)\" -ErrorAction silentlycontinue) {
+		Get-ChildItem -Path $Path -File -Force -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+			Remove-Item -Path $_.FullName -force -ErrorAction SilentlyContinue -Confirm:$false | Out-Null
 		}
 
 		Get-ChildItem -Path $Path -Directory -ErrorAction SilentlyContinue | ForEach-Object {
 			Remove_Tree -Path $_.FullName
 		}
 
-		if (Test-Path -Path "$($Path)\" -ErrorAction silentlycontinue) {
-			Remove-Item -Path $Path -force -ErrorAction SilentlyContinue
+		if (Test-Path -Path "$($path)\" -ErrorAction silentlycontinue) {
+			Remove-Item -Path $Path -force -Recurse -ErrorAction SilentlyContinue -Confirm:$false | Out-Null
 		}
 	}
 }

@@ -1751,10 +1751,10 @@ Function Language
 		$Global:IsLang = $null
 	} else {
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
-			$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt"
+			$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue
 			if ($GetLanguagePrompt -eq "True") {
 				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
-					$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
+					$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue
 					Language_Change -lang $GetLanguage
 					Modules_Import -Import
 					return
@@ -1769,7 +1769,7 @@ Function Language
 	#>
 	if ($Auto) {
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
-			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
+			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue
 			Language_Change -lang $GetLanguage
 		} else {
 			Language_Change -lang (Get-Culture).Name
@@ -1818,7 +1818,7 @@ Function Language_Select_GUI
 		$UI_Main_Error_Icon.Image = $null
 
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue) {
-			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language"
+			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "Language" -ErrorAction SilentlyContinue
 			$FlagsDefaultLanguage = $GetLanguage
 		} else {
 			$FlagsDefaultLanguage = (Get-Culture).Name
@@ -1982,7 +1982,7 @@ Function Language_Select_GUI
 		}
 	}
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue) {
-		$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt"
+		$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Engine).Author)\Multilingual" -Name "LanguagePrompt" -ErrorAction SilentlyContinue
 		switch ($GetLanguagePrompt) {
 			"True" { $UI_Main_Dont_Prompt.Checked = $True }
 			"False" { $UI_Main_Dont_Prompt.Checked = $False }

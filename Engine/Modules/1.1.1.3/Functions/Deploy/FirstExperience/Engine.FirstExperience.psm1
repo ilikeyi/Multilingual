@@ -446,7 +446,7 @@ Function FirstExperience_Process
 		#>
 		$Uac_Bypass = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
 		if (Get-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin" -ErrorAction SilentlyContinue) {
-			$GetLanguagePrompt = Get-ItemPropertyValue -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin"
+			$GetLanguagePrompt = Get-ItemPropertyValue -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin" -ErrorAction SilentlyContinue
 			Set-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin_Bak" -Value $GetLanguagePrompt -ErrorAction SilentlyContinue
 
 			Set-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin" -Value 0 -ErrorAction SilentlyContinue
@@ -510,7 +510,7 @@ Function FirstExperience_Deploy
 	#>
 	$Uac_Bypass = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
 	if (Get-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin_Bak" -ErrorAction SilentlyContinue) {
-		$GetLanguagePrompt = Get-ItemPropertyValue -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin_Bak"
+		$GetLanguagePrompt = Get-ItemPropertyValue -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin_Bak" -ErrorAction SilentlyContinue
 		Set-ItemProperty -Path $Uac_Bypass -Name "ConsentPromptBehaviorAdmin" -Value $GetLanguagePrompt -ErrorAction SilentlyContinue
 
 		Remove-ItemProperty -LiteralPath $Uac_Bypass -Name 'ConsentPromptBehaviorAdmin_Bak' -Force -ErrorAction SilentlyContinue | Out-Null

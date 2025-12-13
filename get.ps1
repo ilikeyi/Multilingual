@@ -3,7 +3,7 @@
 	 Yi's Solutions
 
 	.Open "Terminal" or "PowerShell ISE" as an administrator,
-	 set PowerShell execution policy: Bypass, PS command line: 
+	 set PowerShell execution policy: Bypass, PS >
 
 	 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
 
@@ -131,7 +131,7 @@ $AvailableLanguages = @(
 			How_solve                = "How to solve it"
 			UpdatePSVersion          = "Please install the latest PowerShell version"
 			UpdateOSVersion          = "1. Go to the official Microsoft website to download the latest`n      version of the operating system`n`n   2. Install the latest version of the operating system and try again"
-			HigherTermail            = "1. Open ""Terminal"" or ""PowerShell ISE"" as an administrator, `n      set PowerShell execution policy: Bypass, PS command line: `n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Once resolved, rerun the command."
+			HigherTermail            = "1. Open ""Terminal"" or ""PowerShell ISE"" as an administrator, `n      set PowerShell execution policy: Bypass, PS >`n`n      Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force`n`n   2. Once resolved, rerun the command."
 			HigherTermailAdmin       = "1. Open Terminal or PowerShell ISE as an administrator.`n  2. Once resolved, rerun the command."
 		}
 	}

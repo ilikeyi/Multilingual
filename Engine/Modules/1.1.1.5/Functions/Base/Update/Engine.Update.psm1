@@ -60,10 +60,11 @@ Function Update_Setting_UI
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
-		MinimizeBox    = $False
-		ControlBox     = $False
+		MinimizeBox    = $True
+		ControlBox     = $True
 		BackColor      = "#ffffff"
 		FormBorderStyle = "Fixed3D"
+		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\..\..\..\Assets\icon\Yi.ico")
 	}
 	$UI_Main_Auto_Select = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
@@ -134,7 +135,7 @@ Function Update_Setting_UI
 	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Height         = 36
-		Width          = 255
+		Width          = 515
 		Location       = "8,635"
 		Text           = $lang.OK
 		add_Click      = {
@@ -170,18 +171,6 @@ Function Update_Setting_UI
 			}
 		}
 	}
-	$UI_Main_Canel     = New-Object system.Windows.Forms.Button -Property @{
-		UseVisualStyleBackColor = $True
-		Height         = 36
-		Width          = 255
-		Location       = "268,635"
-		Text           = $lang.Cancel
-		add_Click      = {
-			$UI_Main.Hide()
-			write-host "  $($lang.UserCancel)" -ForegroundColor Red
-			$UI_Main.Close()
-		}
-	}
 	$UI_Main.controls.AddRange((
 		$UI_Main_Auto_Select,
 		$UI_Main_Menu,
@@ -191,8 +180,7 @@ Function Update_Setting_UI
 		$UI_Main_Reset_Tips,
 		$UI_Main_Error_Icon,
 		$UI_Main_Error,
-		$UI_Main_OK,
-		$UI_Main_Canel
+		$UI_Main_OK
 	))
 
 	ForEach ($item in (Get-Module -Name Engine).PrivateData.PSData.UpdateServer) {

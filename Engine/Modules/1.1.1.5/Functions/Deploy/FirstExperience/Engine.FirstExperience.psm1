@@ -45,10 +45,11 @@ Function FirstExperience_Setting_UI
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
-		MinimizeBox    = $False
-		ControlBox     = $False
+		MinimizeBox    = $True
+		ControlBox     = $True
 		BackColor      = "#ffffff"
 		FormBorderStyle = "Fixed3D"
+		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\..\..\..\Assets\icon\Yi.ico")
 	}
 	$GUIFEPanel        = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		Height         = 520
@@ -200,7 +201,7 @@ Function FirstExperience_Setting_UI
 	$GUIFEOK           = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Height         = 36
-		Width          = 255
+		Width          = 515
 		Location       = "8,635"
 		Text           = $lang.OK
 		add_Click      = {
@@ -286,23 +287,11 @@ Function FirstExperience_Setting_UI
 			$GUIFE.Close()
 		}
 	}
-	$GUIFECanel        = New-Object system.Windows.Forms.Button -Property @{
-		UseVisualStyleBackColor = $True
-		Height         = 36
-		Width          = 255
-		Location       = "268,635"
-		Text           = $lang.Cancel
-		add_Click      = {
-			write-host "  $($lang.UserCancel)" -ForegroundColor Red
-			$GUIFE.Close()
-		}
-	}
 	$GUIFE.controls.AddRange((
 		$GUIFEPanel,
 		$GUIFEDeployCleanup,
 		$GUIFEReboot,
-		$GUIFEOK,
-		$GUIFECanel
+		$GUIFEOK
 	))
 	$GUIFEPanel.controls.AddRange((
 		$GUIFEPreAppxCleanup,

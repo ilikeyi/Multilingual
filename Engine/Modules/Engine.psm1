@@ -1915,16 +1915,11 @@ Function Language_Select_GUI
 		Text           = $lang.LanguageSelRegion
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
-		MinimizeBox    = $True
-		ControlBox     = $True
+		MinimizeBox    = $False
+		ControlBox     = $False
 		BackColor      = "#ffffff"
 		FormBorderStyle = "Fixed3D"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
-	}
-
-	$IconYi = "$($PSScriptRoot)\$((Get-Module -Name Engine).Version.ToString())\Assets\icon\Yi.ico"
-	if (Test-Path $IconYi -PathType Leaf) {
-		$UI_Main.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon($IconYi)
 	}
 
 	$UI_Main_Search    = New-Object System.Windows.Forms.TextBox -Property @{
@@ -1997,7 +1992,7 @@ Function Language_Select_GUI
 	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Height         = 36
-		Width          = 515
+		Width          = 255
 		Location       = "8,635"
 		Text           = $lang.Ok
 		add_Click      = {
@@ -2025,6 +2020,18 @@ Function Language_Select_GUI
 			}
 		}
 	}
+	$UI_Main_Canel     = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Height         = 36
+		Width          = 255
+		Location       = "268,635"
+		Text           = $lang.Cancel
+		add_Click      = {
+			Write-Host "  $($lang.UserCancel)" -ForegroundColor Red
+			$UI_Main.Close()
+			Stop-Process $PID
+		}
+	}
 	$UI_Main.controls.AddRange((
 		$UI_Main_Search,
 		$UI_Main_Search_Refresh,
@@ -2032,7 +2039,8 @@ Function Language_Select_GUI
 		$UI_Main_Dont_Prompt,
 		$UI_Main_Error_Icon,
 		$UI_Main_Error,
-		$UI_Main_OK
+		$UI_Main_OK,
+		$UI_Main_Canel
 	))
 
 	Language_Refresh_Search

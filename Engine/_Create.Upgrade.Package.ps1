@@ -169,11 +169,17 @@ Function Update_Create_UI
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
-		MinimizeBox    = $False
-		ControlBox     = $False
+		MinimizeBox    = $True
+		ControlBox     = $True
 		BackColor      = "#ffffff"
 		FormBorderStyle = "Fixed3D"
 	}
+
+	$IconYi = "$($PSScriptRoot)\Modules\$((Get-Module -Name Engine).Version.ToString())\Assets\icon\Yi.ico"
+	if (Test-Path $IconYi -PathType Leaf) {
+		$GUIUpdate.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon($IconYi)
+	}
+
 	$GUIUpdateVersion  = New-Object system.Windows.Forms.Label -Property @{
 		Location       = "12,15"
 		Height         = 30
@@ -230,10 +236,11 @@ Function Update_Create_UI
 		Width          = 390
 		Text           = $lang.CreateASCPwd
 	}
-	$UI_Main_Create_ASCPWD = New-Object System.Windows.Forms.TextBox -Property @{
+	$UI_Main_Create_ASCPWD = New-Object System.Windows.Forms.MaskedTextBox -Property @{
 		Height         = 30
 		Width          = 400
-		Text           = $Script:secure_password
+		PasswordChar = "*"
+		Text           = $Global:secure_password
 	}
 	$UI_Add_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 20
@@ -267,7 +274,7 @@ Function Update_Create_UI
 	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Height         = 36
-		Width          = 255
+		Width          = 515
 		Location       = "8,635"
 		Text           = $lang.OK
 		add_Click      = {
@@ -281,7 +288,7 @@ Function Update_Create_UI
 						return
 					} else {
 						Save_Dynamic -regkey "Multilingual" -name "PGP" -value $UI_Main_Create_ASCSign.Text -String
-						$Script:secure_password = $UI_Main_Create_ASCPWD.Text
+						$Global:secure_password = $UI_Main_Create_ASCPWD.Text
 						$Script:SignGpgKeyID = $UI_Main_Create_ASCSign.Text
 					}
 				}
@@ -306,25 +313,13 @@ Function Update_Create_UI
 			$GUIUpdate.Close()
 		}
 	}
-	$GUIUpdateCanel = New-Object system.Windows.Forms.Button -Property @{
-		UseVisualStyleBackColor = $True
-		Height         = 36
-		Width          = 255
-		Location       = "268,635"
-		Text           = $lang.Cancel
-		add_Click      = {
-			write-host "  $($lang.UserCancel)" -ForegroundColor Red
-			$GUIUpdate.Close()
-		}
-	}
 	$GUIUpdate.controls.AddRange((
 		$GUIUpdateVersion,
 		$GUIUpdateLowVersion,
 		$GUIUpdateRearTips,
 		$GUIUpdateGroupASC,
 		$GUIUpdateErrorMsg,
-		$GUIUpdateOK,
-		$GUIUpdateCanel
+		$GUIUpdateOK
 	))
 
 	$GUIUpdateGroupASC.controls.AddRange((
@@ -540,7 +535,7 @@ Function Update_Create_ASC
 			Remove-Item -path "$($_.FullName).asc" -Force -ErrorAction SilentlyContinue
 
 			write-host "  * $($lang.Uping) $UpdateName.asc"
-			if (([string]::IsNullOrEmpty($Script:secure_password))) {
+			if (([string]::IsNullOrEmpty($Global:secure_password))) {
 				$arguments = @(
 					"--local-user",
 					$Script:SignGpgKeyID,
@@ -556,7 +551,7 @@ Function Update_Create_ASC
 					"--pinentry-mode",
 					"loopback",
 					"--passphrase",
-					$Script:secure_password,
+					$Global:secure_password,
 					"--local-user",
 					$Script:SignGpgKeyID,
 					"--output",
@@ -639,7 +634,7 @@ if ($Silent) {
 	Update_Create_Process
 
 	if ($PGP) {
-		$Script:secure_password = $PGPPWD
+		$Global:secure_password = $PGPPWD
 		$Script:SignGpgKeyID = $PGPKEY
 		Update_Create_ASC
 	}

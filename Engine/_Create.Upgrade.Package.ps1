@@ -9,7 +9,7 @@
 
 	.Example
 	 PS C:\> .\_Create.Upgrade.Package.ps1
-	 PS C:\> .\_Create.Upgrade.Package.ps1 -Silent -PGP -PGPPWD "P@ssw0rd" $PGPKEY "0FEBF674EAD23E05" -SaveTo "D:\UpdatePackge"
+	 PS C:\> .\_Create.Upgrade.Package.ps1 -Silent -PGP -PGPPWD "P@ssw0rd" $PGPKEY "DBBC8D7BB64C4648A70AEA180FEBF674EAD23E05" -SaveTo "D:\UpdatePackge"
 
 	.LINK
 	 https://github.com/ilikeyi/Multilingual
@@ -64,7 +64,7 @@ Logging
   .签名 GPG KEY-ID
 #>
 $GpgKI = @(
-	"0FEBF674EAD23E05"
+	"DBBC8D7BB64C4648A70AEA180FEBF674EAD23E05"
 	"2499B7924675A12B"
 )
 

@@ -3047,6 +3047,7 @@ Function Installation_interface_UI
 		Margin         = "25,5,0,20"
 		Text           = ""
 		Enabled        = $False
+		BackColor      = "#FFFFFF"
 	}
 
 	$UI_Main_Save_To_SelectFolder = New-Object system.Windows.Forms.LinkLabel -Property @{

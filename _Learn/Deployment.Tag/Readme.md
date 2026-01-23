@@ -20,9 +20,9 @@ Available languages
 When allowing full disk search and synchronization of deployment marks, you can store deployment marks on any other disk, allowing deployment or disallowing deployment, for example:
 
    1. Prioritize the deployment mark as:
-      D:\Yi\Deploy\Not Allowed\Auto_Update
+      D:\Yi\Deploy\Not Allowed\Prerequisites_Reboot
 
-   2. Continue to judge: D:\Yi\Deploy\Allow\Auto_Update
+   2. Continue to judge: D:\Yi\Deploy\Allow\Prerequisites_Reboot
 
    3. Continue to determine the Deploy directory under the directory where the deployment engine script is stored.
 
@@ -39,7 +39,6 @@ Download template: Engine.Deploy.Rule.ISO
 
 | Assignable path               | Deployment tag        | Description |
 |-------------------------------|-----------------------|---|
-| \Deploy\{allow, Not Allowed}  | Auto_Update           | Allow automatic updates |
 | \Deploy\{allow, Not Allowed}  | Use_UTF8              | Beta: Use Unicode UTF-8 to provide global language support |
 | \Deploy\Regional              | Zone marker           | Change system locale |
 | \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | Network Location Wizard |

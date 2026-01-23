@@ -21,9 +21,9 @@ Available languages
 允许全盘搜索并同步部署标记时，你可以在其它任意磁盘存放部署标记，可允许部署和不允许部署，例如：
 
    1、优先判断部署标记为：
-      D:\Yi\Deploy\Not Allowed\Auto_Update
+      D:\Yi\Deploy\Not Allowed\Prerequisites_Reboot
 
-   2、继续判断：D:\Yi\Deploy\Allow\Auto_Update
+   2、继续判断：D:\Yi\Deploy\Allow\Prerequisites_Reboot
 
    3、继续判断部署引擎脚本存放目录下的 Deploy 目录。
 
@@ -40,7 +40,6 @@ Available languages
 
 | 可分配路径                     | 部署标记               | 描述 |
 |-------------------------------|-----------------------|---|
-| \Deploy\{allow, Not Allowed}  | Auto_Update           | 允许自动更新 |
 | \Deploy\{allow, Not Allowed}  | Use_UTF8              | Beta 版：使用 Unicode UTF-8 提供全球语言支持 |
 | \Deploy\Regional              | 区域标记               | 更改系统区域设置 |
 | \Deploy\{allow, Not Allowed}  | Disable_Network_Location_Wizard | 网络位置向导 |

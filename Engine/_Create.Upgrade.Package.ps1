@@ -60,15 +60,6 @@ Prerequisite
 Logging
 
 <#
-  .Signed GPG KEY-ID
-  .签名 GPG KEY-ID
-#>
-$GpgKI = @(
-	"DBBC8D7BB64C4648A70AEA180FEBF674EAD23E05"
-	"2499B7924675A12B"
-)
-
-<#
   .Compressed package name
   .压缩包名称
 #>
@@ -78,7 +69,7 @@ $UpdateName = "latest"
   .Save the compressed package to
   .压缩包保存到
 #>
-$UpdateSaveTo = Join-Path -Path ([Environment]::GetFolderPath("Desktop")) -ChildPath "Multilingual.Upgrade.Package"
+$UpdateSaveTo = Join-Path -Path ([Environment]::GetFolderPath("Desktop")) -ChildPath "Upgrade.Package\Multilingual"
 
 <#
 	.Archive temporary directory
@@ -139,6 +130,33 @@ Function Get_ASC
 	}
 
 	return $False
+}
+
+Function Get_gpg_list_secret_keys
+{
+	$gpgPath = Get_ASC -Run "gpg.exe"
+
+	if (Test-Path -Path $gpgPath -PathType leaf) {
+		$output = gpg --list-secret-keys --with-colons --fingerprint
+		$hasKeys = $output -match "^sec:"
+		if (-not $hasKeys) {
+		   $output = gpg --list-secret-keys --with-colons --fingerprint
+		}
+
+		$newout = @()
+
+		for ($i=0; $i -lt $output.Count; $i++) {
+			if ($output[$i] -match "^sec:") {
+				if ($output[$i+1] -match "^fpr:") {
+					$newout += ($output[$i+1] -split ':')[9]
+				}
+			}
+		}
+
+		return $newout
+	}
+
+	return $null
 }
 
 <#
@@ -217,10 +235,10 @@ Function Update_Create_UI
 		add_Click      = {
 			if ($UI_Main_Create_ASC.Checked) {
 				$UI_Main_Create_ASC_Panel.Enabled = $True
-				Save_Dynamic -regkey "Multilingual" -name "IsPGP" -value "True"
+				Save_Dynamic -regkey "Multilingual\GPG" -name "IsPGP" -value "True"
 			} else {
 				$UI_Main_Create_ASC_Panel.Enabled = $False
-				Save_Dynamic -regkey "Multilingual" -name "IsPGP" -value "False"
+				Save_Dynamic -regkey "Multilingual\GPG" -name "IsPGP" -value "False"
 			}
 		}
 	}
@@ -287,7 +305,7 @@ Function Update_Create_UI
 						$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError): $($lang.CreateASCAuthorTips)"
 						return
 					} else {
-						Save_Dynamic -regkey "Multilingual" -name "PGP" -value $UI_Main_Create_ASCSign.Text
+						Save_Dynamic -regkey "Multilingual\GPG" -name "PGP" -value $UI_Main_Create_ASCSign.Text
 						$Global:secure_password = $UI_Main_Create_ASCPWD.Text
 						$Script:SignGpgKeyID = $UI_Main_Create_ASCSign.Text
 					}
@@ -347,24 +365,14 @@ Function Update_Create_UI
 	}
 
 	<#
-		.初始化：PGP KEY-ID
-	#>
-	ForEach ($item in $GpgKI) {
-		$UI_Main_Create_ASCSign.Items.Add($item) | Out-Null
-	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue) {
-		$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual" -Name "PGP" -ErrorAction SilentlyContinue
-	}
-
-	<#
 		.初始化复选框：生成 PGP
 	#>
 	$Verify_Install_Path = Get_ASC -Run "gpg.exe"
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		$UI_Main_Create_ASC.Enabled = $True
 		
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\GPG" -Name "IsPGP" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\GPG" -Name "IsPGP" -ErrorAction SilentlyContinue) {
 				"True" {
 					$UI_Main_Create_ASC.Checked = $True
 				}
@@ -375,19 +383,38 @@ Function Update_Create_UI
 		} else {
 			$UI_Main_Create_ASC.Checked = $False
 		}
+
+		$Newgpglistkey = Get_gpg_list_secret_keys
+		if ($Newgpglistkey.Count -gt 0) {
+			$UI_Main_Create_ASC.Enabled = $True
+
+			<#
+				.初始化：PGP KEY-ID
+			#>
+			ForEach ($item in $Newgpglistkey) {
+				$UI_Main_Create_ASCSign.Items.Add($item) | Out-Null
+			}
+
+			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\GPG" -Name "PGP" -ErrorAction SilentlyContinue) {
+				$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\GPG" -Name "PGP" -ErrorAction SilentlyContinue
+			}
+
+			if ($UI_Main_Create_ASC.Checked) {
+				$UI_Main_Create_ASC_Panel.Enabled = $True
+			} else {
+				$UI_Main_Create_ASC_Panel.Enabled = $False
+			}
+		} else {
+			$UI_Main_Create_ASC.Enabled = $False
+			$UI_Main_Create_ASC.Checked = $False
+			$UI_Main_Create_ASC_Panel.Enabled = $False
+
+			$UI_Main_Error.Text = $lang.NoPGPKey
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+		}
 	} else {
 		$UI_Main_Create_ASC.Enabled = $False
 		$GUIUpdateErrorMsg.Text += $lang.ASCStatus
-	}
-
-	if ($UI_Main_Create_ASC.Enabled) {
-		if ($UI_Main_Create_ASC.Checked) {
-			$UI_Main_Create_ASC_Panel.Enabled = $True
-		} else {
-			$UI_Main_Create_ASC_Panel.Enabled = $False
-		}
-	} else {
-		$UI_Main_Create_ASC_Panel.Enabled = $False
 	}
 
 	$GUIUpdate.ShowDialog() | Out-Null

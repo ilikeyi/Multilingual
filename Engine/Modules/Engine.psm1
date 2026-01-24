@@ -499,11 +499,7 @@ Function Language_Select_GUI
 		BackColor      = "#ffffff"
 		FormBorderStyle = "Fixed3D"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
-	}
-
-	$IconYi = "$($PSScriptRoot)\$((Get-Module -Name Engine).Version.ToString())\Assets\icon\Yi.ico"
-	if (Test-Path $IconYi -PathType Leaf) {
-		$UI_Main.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon($IconYi)
+		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\Assets\icon\Yi.ico")
 	}
 
 	$UI_Main_Search    = New-Object System.Windows.Forms.TextBox -Property @{
@@ -511,6 +507,7 @@ Function Language_Select_GUI
 		Width          = 375
 		Location       = "20,22"
 		Text           = ""
+		BackColor      = "#FFFFFF"
 		add_Click      = {
 			$This.BackColor = "#FFFFFF"
 			$UI_Main_Error_Icon.Image = $null
@@ -599,7 +596,7 @@ Function Language_Select_GUI
 			if ($FlagsLanguageCheck) {
 				$UI_Main.Close()
 			} else {
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\$((Get-Module -Name Engine).Version)\Assets\icon\Error.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Assets\icon\Error.ico")
 				$UI_Main_Error.Text = $lang.LanguageNoSel
 			}
 		}

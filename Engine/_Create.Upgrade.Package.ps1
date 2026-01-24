@@ -191,11 +191,7 @@ Function Update_Create_UI
 		ControlBox     = $True
 		BackColor      = "#ffffff"
 		FormBorderStyle = "Fixed3D"
-	}
-
-	$IconYi = "$($PSScriptRoot)\Modules\$((Get-Module -Name Engine).Version.ToString())\Assets\icon\Yi.ico"
-	if (Test-Path $IconYi -PathType Leaf) {
-		$GUIUpdate.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon($IconYi)
+		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\Modules\Assets\icon\Yi.ico")
 	}
 
 	$GUIUpdateVersion  = New-Object system.Windows.Forms.Label -Property @{
@@ -233,6 +229,9 @@ Function Update_Create_UI
 		Width          = 470
 		Text           = $lang.UpCreateASC
 		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+
 			if ($UI_Main_Create_ASC.Checked) {
 				$UI_Main_Create_ASC_Panel.Enabled = $True
 				Save_Dynamic -regkey "Multilingual\GPG" -name "IsPGP" -value "True"
@@ -259,21 +258,64 @@ Function Update_Create_UI
 		Width          = 400
 		PasswordChar = "*"
 		Text           = $Global:secure_password
+		BackColor      = "#FFFFFF"
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+		}
 	}
 	$UI_Add_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 20
 		Width          = 410
 	}
-	$UI_Main_Create_ASCSignName = New-Object system.Windows.Forms.Label -Property @{
+	$UI_Main_Create_ASCSignName = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 30
 		Width          = 390
 		Text           = $lang.CreateASCAuthor
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+			$UI_Main_Create_ASCSign.Items.Clear()
+
+			$Newgpglistkey = Get_gpg_list_secret_keys
+			if ($Newgpglistkey.Count -gt 0) {
+				$UI_Main_Create_ASC.Enabled = $True
+
+				<#
+					.初始化：PGP KEY-ID
+				#>
+				ForEach ($item in $Newgpglistkey) {
+					$UI_Main_Create_ASCSign.Items.Add($item) | Out-Null
+				}
+
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\ISO" -Name "PGP" -ErrorAction SilentlyContinue) {
+					$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\ISO" -Name "PGP" -ErrorAction SilentlyContinue
+				} else {
+					if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\GPG" -Name "PGP" -ErrorAction SilentlyContinue) {
+						$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\GPG" -Name "PGP" -ErrorAction SilentlyContinue
+					}
+				}
+
+				$UI_Main_Error.Text = "$($lang.Refresh), $($lang.Done)"
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Success.ico")
+			} else {
+				$UI_Main_Error.Text = "$($lang.Refresh), $($lang.Done) > $($lang.NoPGPKey)"
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Info.ico")
+			}
+		}
 	}
 	$UI_Main_Create_ASCSign = New-Object system.Windows.Forms.ComboBox -Property @{
 		Height         = 55
 		Width          = 400
 		Text           = ""
 		DropDownStyle  = "DropDownList"
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+		}
 	}
 
 	$GUIUpdateCreateSHA256 = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -281,28 +323,42 @@ Function Update_Create_UI
 		Width          = 470
 		Text           = $lang.UpCreateSHA256
 		Checked        = $True
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+		}
 	}
 
-	$GUIUpdateErrorMsg = New-Object system.Windows.Forms.Label -Property @{
+	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
+		Location       = "10,600"
+		Height         = 20
+		Width          = 20
+		SizeMode       = "StretchImage"
+	}
+	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 30
-		Width          = 510
-		Location       = "10,602"
+		Width          = 465
+		Location       = "35,602"
 		Text           = ""
 	}
-	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
+	$UI_Main_OK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Height         = 36
 		Width          = 515
 		Location       = "8,635"
 		Text           = $lang.OK
 		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+
 			<#
 				.搜索到后生成 PGP
 			#>
 			if ($UI_Main_Create_ASC.Enabled) {
 				if ($UI_Main_Create_ASC.Checked) {
 					if ([string]::IsNullOrEmpty($UI_Main_Create_ASCSign.Text)) {
-						$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError): $($lang.CreateASCAuthorTips)"
+						$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.CreateASCAuthorTips)"
+						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
 						return
 					} else {
 						Save_Dynamic -regkey "Multilingual\GPG" -name "PGP" -value $UI_Main_Create_ASCSign.Text
@@ -336,8 +392,9 @@ Function Update_Create_UI
 		$GUIUpdateLowVersion,
 		$GUIUpdateRearTips,
 		$GUIUpdateGroupASC,
-		$GUIUpdateErrorMsg,
-		$GUIUpdateOK
+		$UI_Main_Error_Icon,
+		$UI_Main_Error,
+		$UI_Main_OK
 	))
 
 	$GUIUpdateGroupASC.controls.AddRange((
@@ -356,12 +413,13 @@ Function Update_Create_UI
 
 	$Verify_Install_Path = Get_Zip -Run "7z.exe"
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
-		$GUIUpdateOK.Enabled = $True
+		$UI_Main_OK.Enabled = $True
 	} else {
 		$UI_Main_Create_ASC.Enabled = $False
 		$UI_Main_Create_ASC_Panel.Enabled = $False
-		$GUIUpdateOK.Enabled = $False
-		$GUIUpdateErrorMsg.Text += $lang.ZipStatus
+		$UI_Main_OK.Enabled = $False
+		$UI_Main_Error.Text += $lang.ZipStatus
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
 	}
 
 	<#
@@ -405,16 +463,18 @@ Function Update_Create_UI
 				$UI_Main_Create_ASC_Panel.Enabled = $False
 			}
 		} else {
-			$UI_Main_Create_ASC.Enabled = $False
+			$UI_Main_Create_ASC.Enabled = $True
 			$UI_Main_Create_ASC.Checked = $False
 			$UI_Main_Create_ASC_Panel.Enabled = $False
 
 			$UI_Main_Error.Text = $lang.NoPGPKey
-			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
 		}
 	} else {
 		$UI_Main_Create_ASC.Enabled = $False
-		$GUIUpdateErrorMsg.Text += $lang.ASCStatus
+		$UI_Main_Create_ASC_Panel.Enabled = $False
+		$UI_Main_Error.Text += $lang.ASCStatus
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
 	}
 
 	$GUIUpdate.ShowDialog() | Out-Null

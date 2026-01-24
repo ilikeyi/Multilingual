@@ -264,7 +264,27 @@ Function Update_Create_UI
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	$UI_Add_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
+	
+	<#
+		.证书密码：显示明文
+	#>
+	$UI_Main_Pass_Show = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 450
+		Text           = $lang.ShowPassword
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+
+			if ($UI_Main_Pass_Show.Checked) {
+				$UI_Main_Create_ASCPWD.PasswordChar = (New-Object Char)
+			} else {
+				$UI_Main_Create_ASCPWD.PasswordChar = "*"
+			}
+		}
+	}
+
+	$UI_Main_Create_ASCSign_Warp = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 20
 		Width          = 410
 	}
@@ -291,12 +311,8 @@ Function Update_Create_UI
 					$UI_Main_Create_ASCSign.Items.Add($item) | Out-Null
 				}
 
-				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\ISO" -Name "PGP" -ErrorAction SilentlyContinue) {
-					$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\ISO" -Name "PGP" -ErrorAction SilentlyContinue
-				} else {
-					if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\GPG" -Name "PGP" -ErrorAction SilentlyContinue) {
-						$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\GPG" -Name "PGP" -ErrorAction SilentlyContinue
-					}
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\GPG" -Name "PGP" -ErrorAction SilentlyContinue) {
+					$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\GPG" -Name "PGP" -ErrorAction SilentlyContinue
 				}
 
 				$UI_Main_Error.Text = "$($lang.Refresh), $($lang.Done)"
@@ -404,11 +420,12 @@ Function Update_Create_UI
 	))
 
 	$UI_Main_Create_ASC_Panel.controls.AddRange((
+		$UI_Main_Create_ASCSignName,
+		$UI_Main_Create_ASCSign,
+		$UI_Main_Create_ASCSign_Warp,
 		$UI_Main_Create_ASCPWDName,
 		$UI_Main_Create_ASCPWD,
-		$UI_Add_End_Wrap,
-		$UI_Main_Create_ASCSignName,
-		$UI_Main_Create_ASCSign
+		$UI_Main_Pass_Show
 	))
 
 	$Verify_Install_Path = Get_Zip -Run "7z.exe"
@@ -418,7 +435,7 @@ Function Update_Create_UI
 		$UI_Main_Create_ASC.Enabled = $False
 		$UI_Main_Create_ASC_Panel.Enabled = $False
 		$UI_Main_OK.Enabled = $False
-		$UI_Main_Error.Text += $lang.ZipStatus
+		$UI_Main_Error.Text += "$($lang.SoftIsInstl -f "7-Zip")"
 		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
 	}
 
@@ -453,8 +470,8 @@ Function Update_Create_UI
 				$UI_Main_Create_ASCSign.Items.Add($item) | Out-Null
 			}
 
-			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\GPG" -Name "PGP" -ErrorAction SilentlyContinue) {
-				$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\GPG" -Name "PGP" -ErrorAction SilentlyContinue
+			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\GPG" -Name "PGP" -ErrorAction SilentlyContinue) {
+				$UI_Main_Create_ASCSign.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\GPG" -Name "PGP" -ErrorAction SilentlyContinue
 			}
 
 			if ($UI_Main_Create_ASC.Checked) {
@@ -470,10 +487,22 @@ Function Update_Create_UI
 			$UI_Main_Error.Text = $lang.NoPGPKey
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
 		}
+
+		if ([string]::IsNullOrEmpty($UI_Main_Create_ASCPWD.Text)) {
+			$UI_Main_Pass_Show.Checked = $True
+		} else {
+			$UI_Main_Pass_Show.Checked = $False
+		}
+
+		if ($UI_Main_Pass_Show.Checked) {
+			$UI_Main_Create_ASCPWD.PasswordChar = (New-Object Char) # `0 and [char]0
+		} else {
+			$UI_Main_Create_ASCPWD.PasswordChar = "*"
+		}
 	} else {
 		$UI_Main_Create_ASC.Enabled = $False
 		$UI_Main_Create_ASC_Panel.Enabled = $False
-		$UI_Main_Error.Text += $lang.ASCStatus
+		$UI_Main_Error.Text += "$($lang.SoftIsInstl -f "gpg4win")"
 		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
 	}
 
@@ -609,7 +638,7 @@ Function Update_Create_Process_Add
 			}
 		}
 	} else {
-		write-host "    $($lang.ZipStatus)`n" -ForegroundColor Green
+		write-host "    $($lang.SoftIsInstl -f "7-Zip")`n" -ForegroundColor Green
 	}
 }
 
@@ -657,7 +686,7 @@ Function Update_Create_ASC
 			}
 		}
 	} else {
-		write-host "   $($lang.ASCStatus)" -ForegroundColor Red
+		write-host "   $($lang.SoftIsInstl -f "gpg4win")" -ForegroundColor Red
 	}
 }
 

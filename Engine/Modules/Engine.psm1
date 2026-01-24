@@ -669,6 +669,8 @@ Function Modules_Refresh
 		[string[]]$Functions
 	)
 
+	$Global:SaveTempVersion = ""
+
 	Write-Host
 	Write-Host "  " -NoNewline
 	Write-Host " $($lang.RefreshModules) " -NoNewline -BackgroundColor White -ForegroundColor Black

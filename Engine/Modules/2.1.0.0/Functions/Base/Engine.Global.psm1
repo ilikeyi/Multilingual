@@ -45,7 +45,7 @@ Function Test_Available_Disk
 	try {
 		New-Item -Path $Path -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 
-		$RandomGuid = [guid]::NewGuid()
+		$RandomGuid = New-Guid
 		$test_tmp_filename = "writetest-$($RandomGuid)"
 		$test_filename = Join-Path -Path $Path -ChildPath $test_tmp_filename -ErrorAction SilentlyContinue
 

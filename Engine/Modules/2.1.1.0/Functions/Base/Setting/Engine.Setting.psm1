@@ -36,14 +36,14 @@ Function Setting_UI
 	<#
 		.语言、更改、显示当前首选语言
 	#>
-	$GUIImageSourceSettingLP = New-Object system.Windows.Forms.Label -Property @{
+	$UI_Setting_Lang = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 35
 		Width          = 478
 		Margin         = "0,10,0,0"
 		Text           = $lang.Language
 	}
 
-	$GUIImageSourceSettingLP_Change = New-Object system.Windows.Forms.LinkLabel -Property @{
+	$UI_Setting_Lang_Change = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
 		Width          = 475
 		Padding        = "16,0,0,0"
@@ -62,12 +62,12 @@ Function Setting_UI
 	$Region = Language_Region
 	ForEach ($itemRegion in $Region) {
 		if ($itemRegion.Region -eq $Global:IsLang) {
-			$GUIImageSourceSettingLP_Change.Text = $itemRegion.Name
+			$UI_Setting_Lang_Change.Text = $itemRegion.Name
 			break
 		}
 	}
 
-	$GUIImageSourceSettingUP = New-Object system.Windows.Forms.LinkLabel -Property @{
+	$UI_Setting_Auto_Update_Check = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
 		Width          = 478
 		margin         = "0,30,0,0"
@@ -83,14 +83,14 @@ Function Setting_UI
 			Modules_Refresh -Function "Setting_UI"
 		}
 	}
-	$GUIImageSourceSettingUPCurrentVersion = New-Object system.Windows.Forms.Label -Property @{
+	$UI_Setting_Auto_Update_CV = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 30
 		Width          = 475
 		Padding        = "10,0,0,0"
 		Text           = "$($lang.UpdateCurrent): $((Get-Module -Name Engine).Version.ToString())"
 	}
 
-	$GUIImageSourceSettingUP_Auto = New-Object System.Windows.Forms.CheckBox -Property @{
+	$UI_Setting_Auto_Update = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 438
 		Padding        = "20,0,0,0"
@@ -102,26 +102,45 @@ Function Setting_UI
 
 			if ($This.Checked) {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdate" -value "True"
-				$GUIImageSourceSettingUP_Auto_Adv.Enabled = $True
+				$UI_Setting_Auto_Update_Adv.Enabled = $True
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
 				$UI_Main_Error.Text = "$($lang.Auto_Update_Allow), $($lang.Enable), $($lang.Done)"
 			} else {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdate" -value "False"
-				$GUIImageSourceSettingUP_Auto_Adv.Enabled = $False
+				$UI_Setting_Auto_Update_Adv.Enabled = $False
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
 				$UI_Main_Error.Text = "$($lang.Auto_Update_Allow), $($lang.Disable), $($lang.Done)"
 			}
 		}
 	}
 
-	$GUIImageSourceSettingUP_Auto_Adv = New-Object system.Windows.Forms.Panel -Property @{
+	$UI_Setting_Auto_Update_Adv = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
-		Height         = 100
+		Height         = 150
 		Width          = 475
 		autoSizeMode   = 1
 	}
+	$UI_Setting_Auto_Update_Clean = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 438
+		Location       = '35,5'
+		Text           = $lang.UpdateClean
+		add_Click      = {
+			$UI_Main_Error_Icon.Image = $null
+			$UI_Main_Error.Text = ""
 
-	$GUIImageSourceSettingUP_Auto_Update_New_Allow = New-Object System.Windows.Forms.CheckBox -Property @{
+			if ($This.Checked) {
+				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "True"
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Enable), $($lang.Done)"
+			} else {
+				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "False"
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Disable), $($lang.Done)"
+			}
+		}
+	}
+	$UI_Setting_Auto_Update_New_Allow = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 438
 		Location       = '35,5'
@@ -143,7 +162,7 @@ Function Setting_UI
 		}
 	}
 
-	$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Setting = New-Object system.Windows.Forms.NumericUpDown -Property @{
+	$UI_Setting_Auto_Update_Adv_Auto_Check_Setting = New-Object system.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
 		Width          = 45
 		Location       = '52,55'
@@ -160,7 +179,7 @@ Function Setting_UI
 		}
 	}
 
-	$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Time = New-Object system.Windows.Forms.Label -Property @{
+	$UI_Setting_Auto_Update_Check_Time = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 60
 		Width          = 420
 		Location       = '105,58'
@@ -184,20 +203,33 @@ Function Setting_UI
 		$UI_Main_Error
 	))
 	$UI_Main_Menu.controls.AddRange((
-		$GUIImageSourceSettingLP,
-		$GUIImageSourceSettingLP_Change,
-
-		$GUIImageSourceSettingUP,
-		$GUIImageSourceSettingUPCurrentVersion,
-		$GUIImageSourceSettingUP_Auto,
-		$GUIImageSourceSettingUP_Auto_Adv
+		$UI_Setting_Lang,
+		$UI_Setting_Lang_Change,
+		$UI_Setting_Auto_Update_Check,
+		$UI_Setting_Auto_Update_CV,
+		$UI_Setting_Auto_Update,
+		$UI_Setting_Auto_Update_Adv
 	))
 
-	$GUIImageSourceSettingUP_Auto_Adv.Controls.AddRange((
-		$GUIImageSourceSettingUP_Auto_Update_New_Allow,
-		$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Setting,
-		$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Time
+	$UI_Setting_Auto_Update_Adv.Controls.AddRange((
+		$UI_Setting_Auto_Update_Clean,
+		$UI_Setting_Auto_Update_New_Allow,
+		$UI_Setting_Auto_Update_Adv_Auto_Check_Setting,
+		$UI_Setting_Auto_Update_Check_Time
 	))
+
+	<#
+		.允许自动清理旧版本
+	#>
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
+			"True"  { $UI_Setting_Auto_Update_Clean.Checked = $True }
+			"False" { $UI_Setting_Auto_Update_Clean.Checked = $False }
+		}
+	} else {
+		$UI_Setting_Auto_Update_Clean.Checked = $True
+		Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "True"
+	}
 
 	<#
 		.允许自动更新
@@ -205,18 +237,18 @@ Function Setting_UI
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsAutoUpdate" -ErrorAction SilentlyContinue) {
 		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsAutoUpdate" -ErrorAction SilentlyContinue) {
 			"True"  {
-				$GUIImageSourceSettingUP_Auto.Checked = $True
-				$GUIImageSourceSettingUP_Auto_Adv.Enabled = $True
+				$UI_Setting_Auto_Update.Checked = $True
+				$UI_Setting_Auto_Update_Adv.Enabled = $True
 			}
 			"False" {
-				$GUIImageSourceSettingUP_Auto.Checked = $False
-				$GUIImageSourceSettingUP_Auto_Adv.Enabled = $False
+				$UI_Setting_Auto_Update.Checked = $False
+				$UI_Setting_Auto_Update_Adv.Enabled = $False
 			}
 		}
 	} else {
 		Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdate" -value "True"
-		$GUIImageSourceSettingUP_Auto.Checked = $True
-		$GUIImageSourceSettingUP_Auto_Adv.Enabled = $True
+		$UI_Setting_Auto_Update.Checked = $True
+		$UI_Setting_Auto_Update_Adv.Enabled = $True
 	}
 
 	<#
@@ -224,11 +256,11 @@ Function Setting_UI
 	#>
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsAutoUpdateNew" -ErrorAction SilentlyContinue) {
 		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsAutoUpdateNew" -ErrorAction SilentlyContinue) {
-			"True"  { $GUIImageSourceSettingUP_Auto_Update_New_Allow.Checked = $True }
-			"False" { $GUIImageSourceSettingUP_Auto_Update_New_Allow.Checked = $False }
+			"True"  { $UI_Setting_Auto_Update_New_Allow.Checked = $True }
+			"False" { $UI_Setting_Auto_Update_New_Allow.Checked = $False }
 		}
 	} else {
-		$GUIImageSourceSettingUP_Auto_Update_New_Allow.Checked = $True
+		$UI_Setting_Auto_Update_New_Allow.Checked = $True
 		Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdateNew" -value "True"
 	}
 
@@ -236,10 +268,10 @@ Function Setting_UI
 		.自动检查更新间隔小时
 	#>
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "AutoCheckUpdate_Hours" -ErrorAction SilentlyContinue) {
-		$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Setting.Value = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "AutoCheckUpdate_Hours" -ErrorAction SilentlyContinue
+		$UI_Setting_Auto_Update_Adv_Auto_Check_Setting.Value = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "AutoCheckUpdate_Hours" -ErrorAction SilentlyContinue
 	} else {
 		Save_Dynamic -regkey "Multilingual\Update" -name "AutoCheckUpdate_Hours" -value "2"
-		$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Setting.Value = 2
+		$UI_Setting_Auto_Update_Adv_Auto_Check_Setting.Value = 2
 	}
 	#endregion
 

@@ -257,14 +257,28 @@ Function Auto_Update_And_Download
 
 		$SaveNewVersion = (Get-Module -Name Engine).Version.ToString().Replace('.', '')
 
+		<#
+			.允许自动清理旧版本
+		#>
 		Write-Host "`n  $($lang.UpdateClean)" -ForegroundColor Yellow
-		if ($SaveOldVersionShort -eq $SaveNewVersion) {
-			Write-Host "  $($lang.UpdateNotExecuted)"
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Multilingual\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
+				"True"  {
+					if ($SaveOldVersionShort -eq $SaveNewVersion) {
+						Write-Host "  $($lang.UpdateNotExecuted)"
+					} else {
+						Write-Host "  " -NoNewline
+						Write-Host " $($lang.AddTo) " -NoNewline -BackgroundColor White -ForegroundColor Black
+						Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean" -value $SaveOldVersion
+						Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+					}
+				}
+				"False" {
+					Write-Host "  $($lang.Disable)" -ForegroundColor Red
+				}
+			}
 		} else {
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.AddTo) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean" -value $SaveOldVersion
-			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+			Write-Host "  $($lang.NoWork)" -ForegroundColor Red
 		}
 
 		Save_Dynamic -regkey "Multilingual\Update" -name "Auto_Update_Last_status" -value $lang.UpdateDone

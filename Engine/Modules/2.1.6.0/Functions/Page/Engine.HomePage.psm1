@@ -259,8 +259,9 @@ Function Mainpage
 			ToMainpage -wait 2
 			Mainpage
 		}
-		"q" {
-			return
+		"exit" {
+			Stop-Process $PID
+			exit
 		}
 		default { Mainpage }
 

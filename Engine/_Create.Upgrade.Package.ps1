@@ -189,7 +189,7 @@ Function Update_Create_UI
 		MaximizeBox    = $False
 		MinimizeBox    = $True
 		ControlBox     = $True
-		BackColor      = "#ffffff"
+		BackColor      = "#FFFFFF"
 		FormBorderStyle = "Fixed3D"
 		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\Modules\Assets\icon\Yi.ico")
 	}
@@ -292,8 +292,8 @@ Function Update_Create_UI
 		Height         = 30
 		Width          = 390
 		Text           = $lang.CreateASCAuthor
-		LinkColor      = "GREEN"
-		ActiveLinkColor = "RED"
+		LinkColor      = "#008000"
+		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Main_Error.Text = ""

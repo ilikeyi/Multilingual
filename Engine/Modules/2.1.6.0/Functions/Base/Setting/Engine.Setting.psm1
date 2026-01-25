@@ -18,7 +18,7 @@ Function Setting_UI
 		MaximizeBox    = $False
 		MinimizeBox    = $True
 		ControlBox     = $True
-		BackColor      = "#ffffff"
+		BackColor      = "#FFFFFF"
 		FormBorderStyle = "Fixed3D"
 		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\..\..\..\..\Assets\icon\Yi.ico")
 	}
@@ -48,8 +48,8 @@ Function Setting_UI
 		Width          = 475
 		Padding        = "16,0,0,0"
 		Text           = "English (United States)"
-		LinkColor      = "GREEN"
-		ActiveLinkColor = "RED"
+		LinkColor      = "#008000"
+		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Main.Hide()
@@ -72,8 +72,8 @@ Function Setting_UI
 		Width          = 478
 		margin         = "0,30,0,0"
 		Text           = $lang.ChkUpdate
-		LinkColor      = "GREEN"
-		ActiveLinkColor = "RED"
+		LinkColor      = "#008000"
+		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Main.Hide()

@@ -41,7 +41,7 @@ Function FirstExperience_Setting_UI
 		MaximizeBox    = $False
 		MinimizeBox    = $True
 		ControlBox     = $True
-		BackColor      = "#ffffff"
+		BackColor      = "#FFFFFF"
 		FormBorderStyle = "Fixed3D"
 		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\..\..\..\..\Assets\icon\Yi.ico")
 	}

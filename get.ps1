@@ -2978,7 +2978,7 @@ Function Installation_interface_UI
 		MaximizeBox    = $False
 		MinimizeBox    = $False
 		ControlBox     = $False
-		BackColor      = "#ffffff"
+		BackColor      = "#FFFFFF"
 		FormBorderStyle = "Fixed3D"
 	}
 
@@ -3055,8 +3055,8 @@ Function Installation_interface_UI
 		Width          = 480
 		Padding        = "23,0,5,0"
 		Text           = $lang.SelectFolder
-		LinkColor      = "GREEN"
-		ActiveLinkColor = "RED"
+		LinkColor      = "#008000"
+		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
@@ -3085,8 +3085,8 @@ Function Installation_interface_UI
 		Width          = 480
 		Padding        = "36,0,0,0"
 		Text           = $lang.RestoreTo
-		LinkColor      = "GREEN"
-		ActiveLinkColor = "RED"
+		LinkColor      = "#008000"
+		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
@@ -3154,8 +3154,8 @@ Function Installation_interface_UI
 		Width          = 480
 		Padding        = "23,0,0,0"
 		Text           = $lang.OpenFolder
-		LinkColor      = "GREEN"
-		ActiveLinkColor = "RED"
+		LinkColor      = "#008000"
+		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
@@ -3179,8 +3179,8 @@ Function Installation_interface_UI
 		Width          = 480
 		Padding        = "23,0,0,0"
 		Text           = $lang.Paste
-		LinkColor      = "GREEN"
-		ActiveLinkColor = "RED"
+		LinkColor      = "#008000"
+		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
@@ -3373,7 +3373,7 @@ Function Installation_interface_UI
 			$UI_Main_List.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					if ($Cus -Contains $_.Tag) {
-						$_.ForeColor = "GREEN"
+						$_.ForeColor = "#008000"
 						$_.Checked = $True
 					} else {
 						$_.Checked = $False

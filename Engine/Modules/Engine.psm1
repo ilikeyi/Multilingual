@@ -643,17 +643,30 @@ Function Language_Change
 				$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
 			}
 		} else {
-			Clear-Host
-			Write-Host "`n  The local language pack is missing or corrupted. Please download it again." -ForegroundColor Red
-			Write-Host "  $('-' * 80)"
+			<#
+				.Language pack is missing, when running in PowreShell 7 it will not occupy local resources, allowing changes and deletions, but when running under Windows PowerShell 5.1 it will occupy local resources and cannot be changed and deleted
+				.语言包丢失, 在 PowreShell 7 运行不会占用本地资源，允许更改和删除，但在 Windows PowerShell 5.1 下运行会占用本地资源，且无法更改和删除
+			#>
+			$manifest = Import-PowerShellDataFile -Path "$($PSScriptRoot)\Engine.psd1"
+			if (Test-Path "$($PSScriptRoot)\$($manifest.ModuleVersion)\langpacks\en-US\Lang.psd1" -PathType Leaf) {
+				$Global:IsLang = "en-US"
 
-			Write-host "  Learn more at: " -ForegroundColor Yellow
-			write-host "  1. https://fengyi.tel/solutions" -ForegroundColor Green
-			write-host "  2. https://github.com/ilikeyi/Multilingual" -ForegroundColor Green
-			write-host "`n  Please try again after reinstalling."
-			write-host "`n  The application will exit automatically.`n"
-			Start-Sleep -s 6
-			exit
+				Get-ChildItem -Path "$($PSScriptRoot)\$($manifest.ModuleVersion)\langpacks\en-US" -Recurse -include "*.psd1" | ForEach-Object {
+					$Global:Lang += Import-LocalizedData -FileName $_.Name -BaseDirectory $_.DirectoryName
+				}
+			} else {
+				Clear-Host
+				Write-Host "`n  The local language pack is missing or corrupted. Please download it again." -ForegroundColor Red
+				Write-Host "  $('-' * 80)"
+
+				Write-host "  Learn more at: " -ForegroundColor Yellow
+				write-host "  1. https://fengyi.tel/solutions" -ForegroundColor Green
+				write-host "  2. https://github.com/ilikeyi/Multilingual" -ForegroundColor Green
+				write-host "`n  Please try again after reinstalling."
+				write-host "`n  The application will exit automatically.`n"
+				Start-Sleep -s 6
+				exit
+			}
 		}
 	}
 }
@@ -696,6 +709,29 @@ Function Modules_Import
 	)
 
 	$CurrentVersion = (Get-Module -Name Engine).Version
+	if (Test-Path "$($PSScriptRoot)\$($CurrentVersion)" -PathType Container) {
+	} else {
+		<#
+			.Failed to retrieve version information., when running in PowreShell 7 it will not occupy local resources, allowing changes and deletions, but when running under Windows PowerShell 5.1 it will occupy local resources and cannot be changed and deleted
+			.获取版本丢失, 在 PowreShell 7 运行不会占用本地资源，允许更改和删除，但在 Windows PowerShell 5.1 下运行会占用本地资源，且无法更改和删除
+		#>
+		$manifest = Import-PowerShellDataFile -Path "$($PSScriptRoot)\Engine.psd1"
+		if (Test-Path "$($PSScriptRoot)\$($manifest.ModuleVersion)" -PathType Container) {
+			$CurrentVersion = $manifest.ModuleVersion
+		} else {
+			Clear-Host
+			Write-Host "`n  The file is missing or corrupted. Please download it again." -ForegroundColor Red
+			Write-Host "  $('-' * 80)"
+
+			Write-host "  Learn more at: " -ForegroundColor Yellow
+			write-host "  1. https://fengyi.tel/solutions" -ForegroundColor Green
+			write-host "  2. https://github.com/ilikeyi/Multilingual" -ForegroundColor Green
+			write-host "`n  Please try again after reinstalling."
+			write-host "`n  The application will exit automatically.`n"
+			Start-Sleep -s 6
+			exit
+		}
+	}
 
 	<#
 		.Remove all Multilingual modules

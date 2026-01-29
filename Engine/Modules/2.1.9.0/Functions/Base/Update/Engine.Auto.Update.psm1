@@ -56,7 +56,7 @@ Function Auto_Update_Process
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
-			Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
+			Write-Host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 			break
 		} else {
 			Write-Host "    $($lang.UpdateUnavailable)`n" -ForegroundColor Red

@@ -55,7 +55,7 @@ param
 
 $Default_directory_name = "Multilingual"
 $Update_Server = @(
-	"https://fengyi.tel/download/solutions/update/Multilingual/latest.zip"
+	"https://fengyi.tel/solutions/update/Multilingual/latest.zip"
 	"https://github.com/ilikeyi/Multilingual/raw/main/update/latest.zip"
 )
 
@@ -3525,7 +3525,7 @@ Function Download_Process
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
-			Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
+			Write-Host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 			break
 		} else {
 			write-host "    $($lang.UpdateUnavailable)`n" -ForegroundColor Red

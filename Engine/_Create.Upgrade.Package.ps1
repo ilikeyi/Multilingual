@@ -738,7 +738,7 @@ Function Update_Create_Version
 		"title": "$($Global:Author)'s Solutions - Change log",
 		"log":   "   - Latest *Update\n  - Allows automatic background update checks, new feature. *New"
 	},
-	"url": "$((Get-Module -Name Engine).HelpInfoURI)/download/solutions/update/Multilingual/latest.zip"
+	"url": "$((Get-Module -Name Engine).HelpInfoURI)/solutions/update/Multilingual/latest.zip"
 }
 "@ | Out-File -FilePath "$($SaveTo)\latest.json" -Encoding Ascii
 }

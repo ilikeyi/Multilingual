@@ -152,7 +152,7 @@ Function Auto_Update_Process
 			Write-Host $url -ForegroundColor Green
 
 			if (Test_URI $url) {
-				Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
+				Write-Host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "  $('-' * 80)"
 
 				Write-Host "`n  $($lang.UpdateCurrent): $((Get-Module -Name Engine).Version.ToString())

@@ -120,30 +120,34 @@ Function Setting_UI
 		Width          = 475
 		autoSizeMode   = 1
 	}
-	$UI_Setting_Auto_Update_Clean = New-Object System.Windows.Forms.CheckBox -Property @{
+	$UI_Setting_Auto_Update_Adv_Auto_Check_Setting = New-Object system.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
-		Width          = 438
-		Location       = '35,5'
-		Text           = $lang.UpdateClean
-		add_Click      = {
+		Width          = 45
+		Location       = '38,5'
+		Minimum        = 1
+		Maximum        = 365
+		Value          = 6
+		add_ValueChanged = {
 			$UI_Main_Error_Icon.Image = $null
 			$UI_Main_Error.Text = ""
 
-			if ($This.Checked) {
-				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "True"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
-				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Enable), $($lang.Done)"
-			} else {
-				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "False"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
-				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Disable), $($lang.Done)"
-			}
+			Save_Dynamic -regkey "Multilingual\Update" -name "AutoCheckUpdate_Hours" -value $This.Value
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+			$UI_Main_Error.Text = "$($lang.Setting): $($This.Value) $($lang.Auto_Check_Time), $($lang.Done)"
 		}
 	}
+
+	$UI_Setting_Auto_Update_Check_Time = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 40
+		Width          = 420
+		Location       = '95,8'
+		Text           = $lang.Auto_Check_Time
+	}
+
 	$UI_Setting_Auto_Update_New_Allow = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 438
-		Location       = '35,5'
+		Location       = '35,55'
 		Text           = $lang.Auto_Update_New_Allow
 		Checked        = $True
 		add_Click      = {
@@ -162,29 +166,27 @@ Function Setting_UI
 		}
 	}
 
-	$UI_Setting_Auto_Update_Adv_Auto_Check_Setting = New-Object system.Windows.Forms.NumericUpDown -Property @{
+	$UI_Setting_Auto_Update_Clean = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
-		Width          = 45
-		Location       = '52,55'
-		Minimum        = 1
-		Maximum        = 365
-		Value          = 6
-		add_ValueChanged = {
+		Width          = 438
+		Location       = '35,95'
+		Text           = $lang.UpdateClean
+		add_Click      = {
 			$UI_Main_Error_Icon.Image = $null
 			$UI_Main_Error.Text = ""
 
-			Save_Dynamic -regkey "Multilingual\Update" -name "AutoCheckUpdate_Hours" -value $This.Value
-			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
-			$UI_Main_Error.Text = "$($lang.Setting): $($This.Value) $($lang.Auto_Check_Time), $($lang.Done)"
+			if ($This.Checked) {
+				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "True"
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Enable), $($lang.Done)"
+			} else {
+				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "False"
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Disable), $($lang.Done)"
+			}
 		}
 	}
 
-	$UI_Setting_Auto_Update_Check_Time = New-Object system.Windows.Forms.Label -Property @{
-		Height         = 60
-		Width          = 420
-		Location       = '105,58'
-		Text           = $lang.Auto_Check_Time
-	}
 	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
 		Location       = "10,618"
 		Height         = 20
@@ -212,10 +214,10 @@ Function Setting_UI
 	))
 
 	$UI_Setting_Auto_Update_Adv.Controls.AddRange((
-		$UI_Setting_Auto_Update_Clean,
-		$UI_Setting_Auto_Update_New_Allow,
 		$UI_Setting_Auto_Update_Adv_Auto_Check_Setting,
-		$UI_Setting_Auto_Update_Check_Time
+		$UI_Setting_Auto_Update_Check_Time,
+		$UI_Setting_Auto_Update_New_Allow,
+		$UI_Setting_Auto_Update_Clean
 	))
 
 	<#

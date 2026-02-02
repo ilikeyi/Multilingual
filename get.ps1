@@ -2826,7 +2826,7 @@ Function Test_Available_Disk
 	try {
 		New-Item -Path $Path -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 
-		$RandomGuid = New-Guid
+		$RandomGuid = (New-Guid).Guid
 		$test_tmp_filename = "writetest-$($RandomGuid)"
 		$test_filename = Join-Path -Path $Path -ChildPath $test_tmp_filename -ErrorAction SilentlyContinue
 
@@ -3581,7 +3581,7 @@ Function Download_Process
 
 	write-host "`n  $($lang.UpdateQueryingUpdate)"
 
-	$RandomGuid = New-Guid
+	$RandomGuid = (New-Guid).Guid
 	$Temp_Main_Path = Join-Path -Path $env:TEMP -ChildPath $RandomGuid
 	New-Item -Path $Temp_Main_Path -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 

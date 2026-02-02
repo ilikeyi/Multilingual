@@ -647,7 +647,7 @@ Function Language_Change
 				.Language pack is missing, when running in PowreShell 7 it will not occupy local resources, allowing changes and deletions, but when running under PowerShell 5.1 it will occupy local resources and cannot be changed and deleted
 				.语言包丢失, 在 PowreShell 7 运行不会占用本地资源，允许更改和删除，但在 PowerShell 5.1 下运行会占用本地资源，且无法更改和删除
 			#>
-			$manifest = Import-PowerShellDataFile -Path "$($PSScriptRoot)\Engine.psd1"
+			$manifest = Invoke-Expression (Get-Content "$($PSScriptRoot)\Engine.psd1" -Raw)
 			if (Test-Path "$($PSScriptRoot)\$($manifest.ModuleVersion)\langpacks\en-US\Lang.psd1" -PathType Leaf) {
 				$Global:IsLang = "en-US"
 
@@ -712,7 +712,7 @@ Function Modules_Import
 		.Failed to retrieve version information., when running in PowreShell 7 it will not occupy local resources, allowing changes and deletions, but when running under PowerShell 5.1 it will occupy local resources and cannot be changed and deleted
 		.获取版本丢失, 在 PowreShell 7 运行不会占用本地资源，允许更改和删除，但在 PowerShell 5.1 下运行会占用本地资源，且无法更改和删除
 	#>
-	$manifest = Import-PowerShellDataFile -Path "$($PSScriptRoot)\Engine.psd1"
+	$manifest = Invoke-Expression (Get-Content "$($PSScriptRoot)\Engine.psd1" -Raw)
 	if (Test-Path "$($PSScriptRoot)\$($manifest.ModuleVersion)" -PathType Container) {
 		$CurrentVersion = $manifest.ModuleVersion
 	} else {

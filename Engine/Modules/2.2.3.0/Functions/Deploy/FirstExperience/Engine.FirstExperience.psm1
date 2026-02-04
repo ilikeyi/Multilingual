@@ -57,7 +57,7 @@ Function FirstExperience_Setting_UI
 	}
 
 	$GUIFEPreAppxCleanup = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 490
 		Text           = $lang.PreAppxCleanup
 		Checked        = $True
@@ -88,7 +88,7 @@ Function FirstExperience_Setting_UI
 		Text           = $lang.Disable
 	}
 	$GUIFELanguageComponents = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 490
 		Text           = $lang.CleanupOndemandLP
 		Checked        = $True
@@ -120,7 +120,7 @@ Function FirstExperience_Setting_UI
 	}
 
 	$GUIFECleanupUnusedLP = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 490
 		Text           = $lang.CleanupUnusedLP
 		Checked        = $True
@@ -152,13 +152,13 @@ Function FirstExperience_Setting_UI
 	}
 
 	$GUIFELangAndKeyboard = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 490
 		Text           = $lang.SettingLangAndKeyboard
 		Checked        = $True
 	}
 	$GUIFEUtf8         = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 490
 		Text           = $lang.SettingUTF8
 	}
@@ -166,10 +166,15 @@ Function FirstExperience_Setting_UI
 		Height         = 26
 		Width          = 490
 		Text           = $lang.SettingUTF8Tips
-		margin         = "19,0,0,8"
+		margin         = "19,0,0,0"
 	}
+	$GUIFEUtf8_Wrap = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 25
+		Width          = 490
+	}
+
 	$GUIFELocale       = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 490
 		Text           = "$($lang.SettingLocale) ( $((Get-Culture).Name) )"
 	}
@@ -177,17 +182,22 @@ Function FirstExperience_Setting_UI
 		Height         = 26
 		Width          = 490
 		Text           = $lang.SettingLocaleTips
-		margin         = "19,0,0,8"
+		margin         = "19,0,0,0"
 	}
+	$GUIFELocale_Wrap = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 25
+		Width          = 490
+	}
+
 	$GUIFEDeployCleanup = New-Object System.Windows.Forms.Checkbox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 505
 		Text           = $lang.DeployCleanup
 		Location       = "12,550"
 		Checked        = $True
 	}
 	$GUIFEReboot       = New-Object System.Windows.Forms.Checkbox -Property @{
-		Height         = 30
+		Height         = 40
 		Width          = 505
 		Text           = $lang.Reboot
 		Location       = "12,585"
@@ -297,8 +307,10 @@ Function FirstExperience_Setting_UI
 		$GUIFELangAndKeyboard,
 		$GUIFEUtf8,
 		$GUIFEUtf8Tips,
+		$GUIFEUtf8_Wrap,
 		$GUIFELocale,
-		$GUIFELocaleTips
+		$GUIFELocaleTips,
+		$GUIFELocale_Wrap
 	))
 	$GUIFEPreAppxCleanupSel.controls.AddRange((
 		$GUIFEPreAppxCleanupEnabled,

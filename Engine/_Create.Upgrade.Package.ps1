@@ -75,7 +75,7 @@ $UpdateSaveTo = Join-Path -Path ([Environment]::GetFolderPath("Desktop")) -Child
 	.Archive temporary directory
 	.压缩包临时目录
 #>
-$TempFolderUpdate = Join-Path -Path ([Environment]::GetFolderPath("MyDocuments")) -ChildPath "Temp.Multilingual.Upgrade.Package"
+$TempFolderUpdate = Join-Path -Path $env:Temp -ChildPath "Temp.Multilingual.Upgrade.Package"
 
 <#
 	.Exclude files or directories from the compressed package

@@ -648,15 +648,14 @@ Function Update_Create_ASC
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 		Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
 			Remove-Item -path "$($_.FullName).sig" -Force -ErrorAction SilentlyContinue
-			Remove-Item -path "$($_.FullName).asc" -Force -ErrorAction SilentlyContinue
 
-			write-host "  * $($lang.Uping) $UpdateName.asc"
+			write-host "  * $($lang.Uping) $UpdateName.sig"
 			if (([string]::IsNullOrEmpty($Global:secure_password))) {
 				$arguments = @(
 					"--local-user",
 					$Script:SignGpgKeyID,
 					"--output",
-					"""$($_.FullName).asc""",
+					"""$($_.FullName).sig""",
 					"--detach-sign",
 					"""$($_.FullName)"""
 				)
@@ -671,7 +670,7 @@ Function Update_Create_ASC
 					"--local-user",
 					$Script:SignGpgKeyID,
 					"--output",
-					"""$($_.FullName).asc""",
+					"""$($_.FullName).sig""",
 					"--detach-sign",
 					"""$($_.FullName)"""
 				)
@@ -679,7 +678,7 @@ Function Update_Create_ASC
 				Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 			}
 
-			if (Test-Path "$($_.FullName).asc" -PathType Leaf) {
+			if (Test-Path "$($_.FullName).sig" -PathType Leaf) {
 				write-host "    $($lang.Done)`n" -ForegroundColor Green
 			} else {
 				write-host "    $($lang.Inoperable)`n"

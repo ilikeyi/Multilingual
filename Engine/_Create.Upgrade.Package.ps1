@@ -39,10 +39,10 @@ Remove-Module -Name Engine -Force -ErrorAction Ignore | Out-Null
 Import-Module -Name $PSScriptRoot\Modules\Engine.psd1 -PassThru -Force | Out-Null
 
 <#
-	.设置语言，用法
+	.设置语言, 用法
 	.Set language pack, usage:
-	 Language                  | Language selected by the user       | 选择语言，交互
-	 Language -Auto            | Automatic matching                  | 自动选择，不提示
+	 Language                  | Language selected by the user       | 选择语言, 交互
+	 Language -Auto            | Automatic matching                  | 自动选择, 不提示
 	 Language -NewLang "zh-CN" | Mandatory use of specified language | 强制选择语言
 #>
 Language -Auto
@@ -54,8 +54,8 @@ Language -Auto
 Prerequisite
 
 <#
-	.启用日志记录并将其保存在脚本文件夹中。
-	.Enabled logging and save it in the script folder.
+	.启用日志记录并将其保存在脚本文件夹中
+	.Enabled logging and save it in the script folder
 #>
 Logging
 
@@ -266,7 +266,7 @@ Function Update_Create_UI
 	}
 	
 	<#
-		.证书密码：显示明文
+		.证书密码: 显示明文
 	#>
 	$UI_Main_Pass_Show = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
@@ -305,7 +305,7 @@ Function Update_Create_UI
 				$UI_Main_Create_ASC.Enabled = $True
 
 				<#
-					.初始化：PGP KEY-ID
+					.初始化: PGP KEY-ID
 				#>
 				ForEach ($item in $Newgpglistkey) {
 					$UI_Main_Create_ASCSign.Items.Add($item) | Out-Null
@@ -440,7 +440,7 @@ Function Update_Create_UI
 	}
 
 	<#
-		.初始化复选框：生成 PGP
+		.初始化复选框: 生成 PGP
 	#>
 	$Verify_Install_Path = Get_ASC -Run "gpg.exe"
 	if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
@@ -464,7 +464,7 @@ Function Update_Create_UI
 			$UI_Main_Create_ASC.Enabled = $True
 
 			<#
-				.初始化：PGP KEY-ID
+				.初始化: PGP KEY-ID
 			#>
 			ForEach ($item in $Newgpglistkey) {
 				$UI_Main_Create_ASCSign.Items.Add($item) | Out-Null

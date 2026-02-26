@@ -104,7 +104,7 @@ Function Auto_Update_Process
 		Write-Host "`n  $($lang.UpdateMinimumVersion -f $((Get-Module -Name Engine).PrivateData.PSData.MinimumVersion))"
 		$IsUpdateAvailable = $false
 
-		if ($getSerVer.version.version.Replace('.', '') -gt (Get-Module -Name Engine).Version.ToString().Replace('.', '')) {
+		if ($getSerVer.version.version.Replace('.', '') -ge (Get-Module -Name Engine).Version.ToString().Replace('.', '')) {
 			$IsUpdateAvailable = $true
 		} else {
 			$IsUpdateAvailable = $false

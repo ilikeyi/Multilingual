@@ -2918,8 +2918,7 @@ Function Test_URI
 
 Function Installation_interface_UI
 {
-	Add-Type -AssemblyName System.Windows.Forms
-	Add-Type -AssemblyName System.Drawing
+	Add-Type -AssemblyName System.Windows.Forms, System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
 
 	write-host "`n  $($lang.Get)"

@@ -360,6 +360,44 @@ Function Update_Process
 		}
 
 		if ($IsUpdateAvailable) {
+			Write-Host "`n  $($lang.IsAllowSHA256Check)" -ForegroundColor Yellow
+			write-host "  $('-' * 80)"
+			if ($IsAllowSHA256Check.Checked) {
+				$SHAReCount = 0
+				$SHAMaxRetries = 3
+				$SHASuccess = $false
+				$getSerVerSHA = $null
+
+				Write-host "  SHA-256: " -NoNewline -ForegroundColor Yellow
+				for ($i = 0; $i -le $SHAMaxRetries; $i++) {
+					try {
+						$getSerVerSHA = (Invoke-RestMethod -Uri "$($url).sha256" -UseBasicParsing -Body $body -Method:Get -Headers $head -ContentType "application/json" -TimeoutSec 15 -ErrorAction:stop)
+
+						if ($null -ne $getSerVerSHA) {
+							$SHASuccess = $true
+							$NewFileSha256 = $getSerVerSHA.Substring(0, 64)
+							write-host $NewFileSha256 -ForegroundColor Green
+							break
+						}
+					} catch {
+						$SHAReCount++
+						if ($SHAReCount -gt 0) {
+							write-host $lang.Failed -ForegroundColor Red
+
+							Write-Host "`n  $($lang.UpdateREConnect -f $SHAReCount, $SHAMaxRetries)" -ForegroundColor Red
+							Write-host "  SHA-256: " -NoNewline -ForegroundColor Yellow
+							Start-Sleep -Seconds 10
+						}
+					}
+				}
+
+				if (-not $SHASuccess) {
+					Write-Host $lang.Failed -ForegroundColor Red
+				}
+			} else {
+				Write-host "  $($lang.Inoperable)" -ForegroundColor Red
+			}
+
 			write-host "`n  $($lang.UpdateVerifyAvailable)" -ForegroundColor Yellow
 			write-host "  $('-' * 80)"
 			write-host "  * $($lang.UpdateDownloadAddress): " -NoNewline -ForegroundColor Yellow

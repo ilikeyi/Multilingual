@@ -175,8 +175,7 @@ Function Update_Create_UI
 	write-host "  $($lang.UpdateCreate)" -ForegroundColor Yellow
 	write-host "  $('-' * 80)"
 
-	Add-Type -AssemblyName System.Windows.Forms
-	Add-Type -AssemblyName System.Drawing
+	Add-Type -AssemblyName System.Windows.Forms, System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
  
 	$GUIUpdate         = New-Object system.Windows.Forms.Form -Property @{

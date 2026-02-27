@@ -27,8 +27,7 @@ Function FirstExperience
 
 Function FirstExperience_Setting_UI
 {
-	Add-Type -AssemblyName System.Windows.Forms
-	Add-Type -AssemblyName System.Drawing
+	Add-Type -AssemblyName System.Windows.Forms, System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
 
 	$GUIFE             = New-Object system.Windows.Forms.Form -Property @{

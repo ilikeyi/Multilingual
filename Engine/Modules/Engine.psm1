@@ -595,7 +595,7 @@ Function Language_Select_GUI
 			if ($FlagsLanguageCheck) {
 				$UI_Main.Close()
 			} else {
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Assets\icon\Error.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Assets\icon\Error.png")
 				$UI_Main_Error.Text = $lang.LanguageNoSel
 			}
 		}

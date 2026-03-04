@@ -315,10 +315,10 @@ Function Update_Create_UI
 				}
 
 				$UI_Main_Error.Text = "$($lang.Refresh), $($lang.Done)"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Success.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Success.png")
 			} else {
 				$UI_Main_Error.Text = "$($lang.Refresh), $($lang.Done) > $($lang.NoPGPKey)"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Info.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Info.png")
 			}
 		}
 	}
@@ -373,7 +373,7 @@ Function Update_Create_UI
 				if ($UI_Main_Create_ASC.Checked) {
 					if ([string]::IsNullOrEmpty($UI_Main_Create_ASCSign.Text)) {
 						$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.CreateASCAuthorTips)"
-						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
+						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.png")
 						return
 					} else {
 						Save_Dynamic -regkey "Multilingual\GPG" -name "PGP" -value $UI_Main_Create_ASCSign.Text
@@ -435,7 +435,7 @@ Function Update_Create_UI
 		$UI_Main_Create_ASC_Panel.Enabled = $False
 		$UI_Main_OK.Enabled = $False
 		$UI_Main_Error.Text += "$($lang.SoftIsInstl -f "7-Zip")"
-		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.png")
 	}
 
 	<#
@@ -484,7 +484,7 @@ Function Update_Create_UI
 			$UI_Main_Create_ASC_Panel.Enabled = $False
 
 			$UI_Main_Error.Text = $lang.NoPGPKey
-			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.png")
 		}
 
 		if ([string]::IsNullOrEmpty($UI_Main_Create_ASCPWD.Text)) {
@@ -502,7 +502,7 @@ Function Update_Create_UI
 		$UI_Main_Create_ASC.Enabled = $False
 		$UI_Main_Create_ASC_Panel.Enabled = $False
 		$UI_Main_Error.Text += "$($lang.SoftIsInstl -f "gpg4win")"
-		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.ico")
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\Modules\Assets\icon\Error.png")
 	}
 
 	$GUIUpdate.ShowDialog() | Out-Null

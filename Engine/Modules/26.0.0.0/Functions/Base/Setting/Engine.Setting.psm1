@@ -102,12 +102,12 @@ Function Setting_UI
 			if ($This.Checked) {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdate" -value "True"
 				$UI_Setting_Auto_Update_Adv.Enabled = $True
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.png")
 				$UI_Main_Error.Text = "$($lang.Auto_Update_Allow), $($lang.Enable), $($lang.Done)"
 			} else {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdate" -value "False"
 				$UI_Setting_Auto_Update_Adv.Enabled = $False
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.png")
 				$UI_Main_Error.Text = "$($lang.Auto_Update_Allow), $($lang.Disable), $($lang.Done)"
 			}
 		}
@@ -131,7 +131,7 @@ Function Setting_UI
 			$UI_Main_Error.Text = ""
 
 			Save_Dynamic -regkey "Multilingual\Update" -name "AutoCheckUpdate_Hours" -value $This.Value
-			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.png")
 			$UI_Main_Error.Text = "$($lang.Setting): $($This.Value) $($lang.Auto_Check_Time), $($lang.Done)"
 		}
 	}
@@ -155,11 +155,11 @@ Function Setting_UI
 
 			if ($This.Checked) {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdateNew" -value "True"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.png")
 				$UI_Main_Error.Text = "$($lang.Auto_Update_New_Allow), $($lang.Enable), $($lang.Done)"
 			} else {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsAutoUpdateNew" -value "False"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.png")
 				$UI_Main_Error.Text = "$($lang.Auto_Update_New_Allow), $($lang.Disable), $($lang.Done)"
 			}
 		}
@@ -176,11 +176,11 @@ Function Setting_UI
 
 			if ($This.Checked) {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "True"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.png")
 				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Enable), $($lang.Done)"
 			} else {
 				Save_Dynamic -regkey "Multilingual\Update" -name "IsUpdate_Clean_Allow" -value "False"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.png")
 				$UI_Main_Error.Text = "$($lang.UpdateClean), $($lang.Disable), $($lang.Done)"
 			}
 		}

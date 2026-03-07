@@ -2921,6 +2921,7 @@ Function Installation_interface_UI
 	Add-Type -AssemblyName System.Windows.Forms, System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
 
+	$Host.UI.RawUI.WindowTitle = $lang.Get
 	write-host "`n  $($lang.Get)"
 	write-host "  $('-' * 80)"
 
